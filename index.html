@@ -618,6 +618,13 @@
           totalEarnings = state.totalEarnings || 0;
           withdrawFeeRate = state.withdrawFeeRate || 0.05;
           
+          // 同步团队收益：总收益 = 团队人数 * 10
+          const teamData = JSON.parse(localStorage.getItem('teamData') || '{}');
+          if (teamData.totalMembers) {
+            totalEarnings = teamData.totalMembers * 10;
+            teamMembers = teamData.totalMembers;
+          }
+          
           // 恢复任务状态
           if (state.newTasks) {
             state.newTasks.forEach((task, index) => {
@@ -644,6 +651,12 @@
      * 将当前状态保存到 localStorage。
      */
     function saveState() {
+      // 同步团队收益：总收益 = 团队人数 * 10
+      const teamData = JSON.parse(localStorage.getItem('teamData') || '{}');
+      if (teamData.totalMembers) {
+        totalEarnings = teamData.totalMembers * 10;
+      }
+      
       const state = {
         currentState,
         countdownStart,

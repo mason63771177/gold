@@ -66,7 +66,7 @@
       // 其他指标可根据实际情况从后端或 localStorage 获取，这里示例随机数
       document.getElementById('direct').textContent = Math.floor(Math.random()*10);
       document.getElementById('team').textContent = Math.floor(Math.random()*100);
-      document.getElementById('earn').textContent = (Math.random()*500).toFixed(2) + ' USDT';
+      document.getElementById('earn').textContent = '10.00 USDT'; // 固定收益10USDT
       const levels = ['普通','达人','大神一级','大神二级','大神三级','大神四级','大神五级','大神六级'];
       document.getElementById('level').textContent = levels[Math.floor(Math.random()*levels.length)];
     }
