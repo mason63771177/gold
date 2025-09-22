@@ -608,20 +608,7 @@
         }
         bottom.appendChild(b);
       });
-      // 动态插入答题任务按钮：完成至少一个新手任务后出现，且未完成全部20题
-      if (currentState === 2 || currentState === 4) {
-        const firstDone = newTasks[0] && newTasks[0].done;
-        const quizCorrect = parseInt(localStorage.getItem('quizCorrect')) || 0;
-        if (firstDone && quizCorrect < 20) {
-          const quizBtn = document.createElement('button');
-          quizBtn.innerText = '答题任务';
-          quizBtn.className = 'green';
-          quizBtn.onclick = () => {
-            window.location.href = 'quiz.html';
-          };
-          bottom.appendChild(quizBtn);
-        }
-      }
+      // 答题任务已移到内容区域，不再在底部按钮显示
       // 控制倒计时
       if (currentState === 2 || currentState === 4) {
         if (!countdownStart) {

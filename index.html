@@ -416,12 +416,27 @@
             `;
           }
           const completedTasks = newTasks.filter(t => t.done).length;
+          
+          // 答题任务区域：完成至少一个新手任务后出现，且未完成全部20题
+          const firstDone = newTasks[0] && newTasks[0].done;
+          const quizCorrect = parseInt(localStorage.getItem('quizCorrect')) || 0;
+          let quizSection = '';
+          if (firstDone && quizCorrect < 20) {
+            quizSection = `
+            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 12px; margin-top: 12px; box-shadow: var(--btn-glow); cursor: pointer;" onclick="window.location.href='quiz.html'">
+              <div class="section-title" style="color: var(--accent-color);">📝 答题任务</div>
+              <div class="section-content">完成20道基础题目，降低提现手续费<br/>当前进度：${quizCorrect}/20 题</div>
+            </div>
+            `;
+          }
+          
           return `
             <div class="section">
               <div class="section-title">倒计时</div>
               <div class="section-content"><span id="countdown">--:--:--</span></div>
             </div>
             ${taskSection}
+            ${quizSection}
             <div class="section">
               <div class="section-title">战绩卡</div>
               <div class="section-content">已完成 <span id="taskProgress">${completedTasks}</span>/3 新手任务<br/>团队人数：<span id="teamCount">${teamMembers}</span>人<br/>总收益：<span id="totalEarnings">${totalEarnings.toFixed(2)}</span> USDT</div>
@@ -488,6 +503,19 @@
           } else {
             godSection = `<div class="section"><div class="section-title">大神任务</div><div class="section-content">完成新手任务后解锁大神任务</div></div>`;
           }
+          
+          // 答题任务区域：完成至少一个新手任务后出现，且未完成全部20题
+          const firstDone = newTasks[0] && newTasks[0].done;
+          const quizCorrect = parseInt(localStorage.getItem('quizCorrect')) || 0;
+          let quizSection = '';
+          if (firstDone && quizCorrect < 20) {
+            quizSection = `
+            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 12px; margin-top: 12px; box-shadow: var(--btn-glow); cursor: pointer;" onclick="window.location.href='quiz.html'">
+              <div class="section-title" style="color: var(--accent-color);">📝 答题任务</div>
+              <div class="section-content">完成20道基础题目，降低提现手续费<br/>当前进度：${quizCorrect}/20 题</div>
+            </div>
+            `;
+          }
           // 邀请链接高亮区块，与状态2一致，强调邀请
           const inviteSection = `
             <div class="section invite-highlight">
@@ -503,6 +531,7 @@
           `;
           return `
             ${godSection}
+            ${quizSection}
             <div class="section">
               <div class="section-title">战绩卡</div>
               <div class="section-content">大神任务进行中<br/>团队人数：<span id="teamCount">${teamMembers}</span>人<br/>总收益：<span id="totalEarnings">${totalEarnings.toFixed(2)}</span> USDT</div>
@@ -695,22 +724,7 @@
       const baseButtons = STATES[state].buttons;
       const result = [...baseButtons];
       
-      // 动态插入答题任务按钮：完成至少一个新手任务后出现，且未完成全部20题
-      if (state === 2 || state === 4) {
-        const firstDone = newTasks[0] && newTasks[0].done;
-        const quizCorrect = parseInt(localStorage.getItem('quizCorrect')) || 0;
-        if (firstDone && quizCorrect < 20) {
-          // 在任务按钮后插入答题任务按钮
-          const taskIndex = result.findIndex(btn => btn.key === 'task');
-          const insertIndex = taskIndex >= 0 ? taskIndex + 1 : 1;
-          result.splice(insertIndex, 0, {
-            text: '答题任务',
-            color: 'green',
-            key: 'quiz',
-            action: () => { window.location.href = 'quiz.html'; }
-          });
-        }
-      }
+      // 答题任务已移到内容区域，不再在底部按钮显示
       
       return result;
     }
