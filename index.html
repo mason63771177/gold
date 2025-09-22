@@ -317,6 +317,23 @@
     .invite-highlight .section-title {
       color: var(--accent-color);
     }
+    
+    .invite-link-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .invite-link-container input {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .invite-link-container button:hover {
+      background: linear-gradient(135deg, #45a049, #3d8b40) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -411,13 +428,18 @@
             </div>
             <div class="section invite-highlight">
               <div class="section-title">邀请链接</div>
-              <div class="section-content">有效期剩余 <span id="inviteLeft">168h</span>，点击按钮复制。</div>
+              <div class="section-content">
+                <div style="margin-bottom: 8px;">有效期剩余 <span id="inviteLeft">168h</span></div>
+                <div class="invite-link-container">
+                  <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9; font-size: 12px;">
+                  <button onclick="copyInviteLink()" style="margin-left: 8px; padding: 8px 12px; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">复制</button>
+                </div>
+              </div>
             </div>
           `;
         },
         buttons: [
           { text: '任务', color: 'green', key: 'task', action: () => openTasks() },
-          { text: '邀请链接', color: 'blue', key: 'invite', action: () => copyInvite() },
           { text: '抢红包', color: 'red', key: 'red', action: () => grabRedPacket() },
           { text: '我的团队', color: 'orange', key: 'team', action: () => showTeam() },
           { text: '我的钱包', color: 'purple', key: 'wallet', action: () => showWallet() },
@@ -470,7 +492,13 @@
           const inviteSection = `
             <div class="section invite-highlight">
               <div class="section-title">邀请链接</div>
-              <div class="section-content">有效期剩余 <span id="inviteLeft">168h</span>，点击按钮复制。</div>
+              <div class="section-content">
+                <div style="margin-bottom: 8px;">有效期剩余 <span id="inviteLeft">168h</span></div>
+                <div class="invite-link-container">
+                  <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9; font-size: 12px;">
+                  <button onclick="copyInviteLink()" style="margin-left: 8px; padding: 8px 12px; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">复制</button>
+                </div>
+              </div>
             </div>
           `;
           return `
@@ -491,7 +519,6 @@
           { text: '我的团队', color: 'orange', key: 'team', action: () => showTeam() },
           { text: '我的钱包', color: 'purple', key: 'wallet', action: () => showWallet() },
           { text: '排行榜', color: 'blue', key: 'rank', action: () => showRanking() },
-          { text: '邀请链接', color: 'green', key: 'invite', action: () => copyInvite() },
           { text: '抢红包', color: 'red', key: 'red', action: () => grabRedPacket() }
         ]
       }
@@ -712,12 +739,10 @@
       const str = `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
       const countdownEl = document.getElementById('countdown');
       if (countdownEl) countdownEl.innerText = str;
-      // 邀请链接剩余小时数
-      const inviteEl = document.getElementById('inviteLeft');
-      if (inviteEl) {
-        const inviteRemainingHrs = Math.max(0, ((inviteStart + total) - now) / 3600000);
-        inviteEl.innerText = inviteRemainingHrs.toFixed(1) + 'h';
-      }
+      
+      // 更新邀请链接显示
+      updateInviteDisplay();
+      
       // 当倒计时结束，自动进入状态3
       if (remaining === 0 && currentState === 2) {
         currentState = 3;
@@ -729,6 +754,27 @@
         currentState = 3;
         countdownStart = null;
         renderState();
+      }
+    }
+    
+    // 更新邀请链接显示
+    function updateInviteDisplay() {
+      const total = 168 * 3600 * 1000;
+      const now = Date.now();
+      
+      // 更新剩余时间显示
+      const inviteEl = document.getElementById('inviteLeft');
+      if (inviteEl) {
+        const inviteRemainingHrs = Math.max(0, ((inviteStart + total) - now) / 3600000);
+        inviteEl.innerText = inviteRemainingHrs.toFixed(1) + 'h';
+      }
+      
+      // 更新邀请链接内容
+      const inviteLinkEl = document.getElementById('inviteLink');
+      if (inviteLinkEl) {
+        // 生成动态邀请链接
+        const userCode = 'ABC123'; // 这里可以根据用户ID生成
+        inviteLinkEl.value = `https://gold7.com/invite?code=${userCode}`;
       }
     }
 
@@ -857,6 +903,37 @@
       navigator.clipboard.writeText(link).then(() => {
         showDialog('邀请链接已复制', `有效期剩余 ${document.getElementById('inviteLeft').innerText}。`);
       });
+    }
+    
+    // 新的复制邀请链接函数
+    function copyInviteLink() {
+      const linkInput = document.getElementById('inviteLink');
+      const link = linkInput.value;
+      
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(link).then(() => {
+          showDialog('邀请链接已复制', `有效期剩余 ${document.getElementById('inviteLeft').innerText}。`);
+        }).catch(() => {
+          fallbackCopy(link);
+        });
+      } else {
+        fallbackCopy(link);
+      }
+    }
+    
+    // 降级复制方案
+    function fallbackCopy(text) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showDialog('邀请链接已复制', `有效期剩余 ${document.getElementById('inviteLeft').innerText}。`);
+      } catch (err) {
+        showDialog('复制失败', '请手动复制链接');
+      }
+      document.body.removeChild(textArea);
     }
     // 抢红包 - 严格时间窗口和资格校验
     function grabRedPacket() {
