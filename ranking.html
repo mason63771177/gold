@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>裂金7日 · 排行榜</title>
+  <link rel="stylesheet" href="themes.css">
+  <script src="theme-switcher.js"></script>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #111823;
+      --card: #0e141d;
+      --brand: #56ccf2;
+      --brand-2: #2f80ed;
+      --text: #e6efff;
+      --muted: #9fb3cd;
+      --accent-border: rgba(111, 158, 255, 0.18);
+      /* 安全区域适配：用于 iPhone X 等带底部凹槽设备 */
+      --safe: env(safe-area-inset-bottom, 0px);
+    }
+    html, body { margin: 0; padding: 0; height: 100vh; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; overflow: hidden; }
+    .container { height: 100vh; display: flex; flex-direction: column; }
+    .header { position: relative; flex: 0 0 20%; display: flex; align-items: center; justify-content: center; padding-top: 20px; }
+    .header h1 { font-size: 24px; font-weight: 700; background: linear-gradient(45deg, #2193b0, #6dd5ed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 12px rgba(109,213,237,0.5)) drop-shadow(0 0 24px rgba(109,213,237,0.3)); margin: 0; }
+    /* 小logo样式 */
+    .logo-small {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-right: 8px;
+      filter: drop-shadow(0 0 8px rgba(109, 213, 237, 0.4)) drop-shadow(0 0 16px rgba(109, 213, 237, 0.2));
+    }
+    .back-btn { position: absolute; left: 16px; top: 24px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 6px 12px; color: var(--text); font-size: 14px; cursor: pointer; }
+    .content { flex: 1; padding: 0 16px; display: flex; align-items: center; justify-content: center; }
+    .card { width: 100%; max-width: 480px; background: linear-gradient(180deg, rgba(15,21,32,0.85), rgba(15,21,32,0.9)); border-radius: 24px; padding: 24px; border: 1px solid var(--accent-border); box-shadow: 0 6px 20px rgba(0,0,0,0.35) inset, 0 12px 28px rgba(0,0,0,0.35); backdrop-filter: blur(16px); }
+    .tabs { display: flex; justify-content: space-between; margin-bottom: 16px; }
+    .tab { flex: 1; text-align: center; padding: 8px 0; border-radius: 14px; margin: 0 4px; font-size: 14px; cursor: pointer; background: rgba(255,255,255,0.06); }
+    .tab.active { background: linear-gradient(180deg, var(--brand), var(--brand-2)); color: #031e2e; box-shadow: 0 8px 24px rgba(47,128,237,0.45), inset 0 1px 0 rgba(255,255,255,0.25); }
+    .rank-list { list-style: none; padding: 0; margin: 0; }
+    .rank-item { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
+    .rank-item:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .bottom { flex: 0 0 auto; padding: 14px 16px calc(24px + var(--safe)); display: flex; background: rgba(255,255,255,0.04); backdrop-filter: blur(10px); border-top: 1px solid rgba(255,255,255,0.06); margin: 0 12px 12px; border-radius: 20px; }
+    .bottom button {
+      flex: 1;
+      margin: 0 6px;
+      border: none;
+      border-radius: 16px;
+      padding: 14px 0;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.08s ease, filter 0.2s ease, box-shadow 0.2s ease;
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+      box-shadow: 0 8px 24px rgba(47,128,237,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+      /* 避免移动端按钮文字换行 */
+      white-space: nowrap;
+    }
+    .bottom button:hover { transform: translateY(-3px); filter: brightness(1.2); }
+    .bottom button:active { transform: translateY(0); filter: brightness(0.95); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <button class="back-btn" onclick="history.back()">返回</button>
+      <img src="logo_gold7.png" alt="Logo" class="logo-small" />
+      <h1>排行榜</h1>
+    </div>
+    <div class="content">
+      <div class="card">
+        <div class="tabs">
+          <div class="tab active" onclick="switchTab(0)">团队榜</div>
+          <div class="tab" onclick="switchTab(1)">红包榜</div>
+          <div class="tab" onclick="switchTab(2)">大神榜</div>
+        </div>
+        <ul id="rankList" class="rank-list">
+          <li class="rank-item"><span>1. 用户A</span><span>团队人数：200</span></li>
+          <li class="rank-item"><span>2. 用户B</span><span>团队人数：150</span></li>
+          <li class="rank-item"><span>3. 用户C</span><span>团队人数：120</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <button onclick="history.back()">返回</button>
+    </div>
+  </div>
+  <script>
+    let currentTab = 0;
+    const tabs = document.querySelectorAll('.tab');
+    const listEl = document.getElementById('rankList');
+    
+    // 模拟排行榜数据
+    const mockRankingData = {
+      team: [
+        { name: '金牌导师张三', value: 1250, desc: '团队人数' },
+        { name: '超级推广李四', value: 980, desc: '团队人数' },
+        { name: '资深玩家王五', value: 756, desc: '团队人数' },
+        { name: '新星导师赵六', value: 623, desc: '团队人数' },
+        { name: '精英推广孙七', value: 445, desc: '团队人数' },
+        { name: '优秀导师周八', value: 332, desc: '团队人数' },
+        { name: '活跃推广吴九', value: 287, desc: '团队人数' },
+        { name: '潜力新人郑十', value: 198, desc: '团队人数' },
+        { name: '努力玩家钱一', value: 156, desc: '团队人数' },
+        { name: '坚持导师孙二', value: 89, desc: '团队人数' }
+      ],
+      redpacket: [
+        { name: '红包王者陈三', value: 2850.50, desc: '红包收入' },
+        { name: '抢包高手林四', value: 2234.80, desc: '红包收入' },
+        { name: '幸运玩家黄五', value: 1876.20, desc: '红包收入' },
+        { name: '速度之王刘六', value: 1654.90, desc: '红包收入' },
+        { name: '手气达人杨七', value: 1432.60, desc: '红包收入' },
+        { name: '抢包专家何八', value: 1298.40, desc: '红包收入' },
+        { name: '幸运女神罗九', value: 1087.30, desc: '红包收入' },
+        { name: '红包猎手谢十', value: 945.70, desc: '红包收入' },
+        { name: '抢包新星韩一', value: 823.50, desc: '红包收入' },
+        { name: '运气玩家曾二', value: 756.80, desc: '红包收入' }
+      ],
+      master: [
+        { name: '终极大神马三', value: 6, desc: '大神等级' },
+        { name: '超级大神冯四', value: 6, desc: '大神等级' },
+        { name: '资深大神朱五', value: 5, desc: '大神等级' },
+        { name: '高级大神许六', value: 5, desc: '大神等级' },
+        { name: '中级大神邓七', value: 4, desc: '大神等级' },
+        { name: '初级大神叶八', value: 4, desc: '大神等级' },
+        { name: '准大神潘九', value: 3, desc: '大神等级' },
+        { name: '新晋大神袁十', value: 2, desc: '大神等级' },
+        { name: '候选大神蒋一', value: 1, desc: '大神等级' },
+        { name: '预备大神沈二', value: 1, desc: '大神等级' }
+      ]
+    };
+    
+    function loadRankingData() {
+      // 从appState加载用户数据，用于显示自己的排名
+      const appState = JSON.parse(localStorage.getItem('appState') || '{}');
+      const userName = appState.userName || '我';
+      const teamCount = appState.teamCount || 0;
+      const totalEarnings = appState.totalEarnings || 0;
+      const userLevel = appState.userLevel || 0;
+      
+      // 添加用户自己的数据到排行榜（如果有数据的话）
+      if (teamCount > 0) {
+        const userTeamRank = { name: userName + '（我）', value: teamCount, desc: '团队人数', isMe: true };
+        mockRankingData.team.push(userTeamRank);
+        mockRankingData.team.sort((a, b) => b.value - a.value);
+      }
+      
+      if (totalEarnings > 0) {
+        const userRedpacketRank = { name: userName + '（我）', value: totalEarnings, desc: '红包收入', isMe: true };
+        mockRankingData.redpacket.push(userRedpacketRank);
+        mockRankingData.redpacket.sort((a, b) => b.value - a.value);
+      }
+      
+      if (userLevel > 0) {
+        const userMasterRank = { name: userName + '（我）', value: userLevel, desc: '大神等级', isMe: true };
+        mockRankingData.master.push(userMasterRank);
+        mockRankingData.master.sort((a, b) => b.value - a.value);
+      }
+    }
+    
+    function switchTab(index) {
+      currentTab = index;
+      tabs.forEach((tab, i) => {
+        if (i === index) tab.classList.add('active');
+        else tab.classList.remove('active');
+      });
+      
+      renderRankingList();
+    }
+    
+    function renderRankingList() {
+      let data = [];
+      if (currentTab === 0) {
+        data = mockRankingData.team;
+      } else if (currentTab === 1) {
+        data = mockRankingData.redpacket;
+      } else {
+        data = mockRankingData.master;
+      }
+      
+      let html = '';
+      if (data.length === 0) {
+        html = '<li class="rank-item" style="text-align:center;color:var(--muted);padding:20px 0;">暂无排行数据</li>';
+      } else {
+        data.forEach((item, index) => {
+          const rank = index + 1;
+          let rankIcon = '';
+          if (rank === 1) rankIcon = '🥇';
+          else if (rank === 2) rankIcon = '🥈';
+          else if (rank === 3) rankIcon = '🥉';
+          else rankIcon = rank + '.';
+          
+          const valueText = currentTab === 1 ? 
+            `${item.desc}：${item.value.toFixed(2)} USDT` : 
+            `${item.desc}：${item.value}`;
+          
+          const nameStyle = item.isMe ? 'color:#56ccf2;font-weight:bold;' : '';
+          
+          html += `<li class="rank-item">
+            <span style="${nameStyle}">${rankIcon} ${item.name}</span>
+            <span style="${nameStyle}">${valueText}</span>
+          </li>`;
+        });
+      }
+      
+      listEl.innerHTML = html;
+    }
+    
+    // 页面加载时初始化
+    window.addEventListener('DOMContentLoaded', () => {
+      loadRankingData();
+      renderRankingList();
+    });
+  </script>
+</body>
+</html>

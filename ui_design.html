@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>裂金7日 H5 页面</title>
+  <style>
+    /* 主题变量，参考示例代码 */
+    :root {
+      --bg: #0b0f14;
+      --panel: #111823;
+      --card: #0e141d;
+      --brand: #56ccf2;
+      --brand-2: #2f80ed;
+      --text: #e6efff;
+      --muted: #9fb3cd;
+      --accent-border: rgba(111, 158, 255, 0.18);
+    }
+
+    /* 黑金主题覆盖变量 */
+    body.theme-gold {
+      --bg: #0c0905;
+      --panel: #1a1207;
+      --card: #120d05;
+      --brand: #d4af37;
+      --brand-2: #b8860b;
+      --text: #f5deb3;
+      --muted: #a98c57;
+      --accent-border: rgba(212, 175, 55, 0.3);
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      /* 深色渐变背景，更成熟高端 */
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    /* 应用容器 100vh 三段式布局 */
+    .app {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 顶部区域 */
+    .header {
+      flex: 0 0 22%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding-top: 10px;
+    }
+    .logo {
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(45deg, #2193b0, #6dd5ed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px rgba(109, 213, 237, 0.5))
+        drop-shadow(0 0 24px rgba(109, 213, 237, 0.3));
+    }
+
+    /* 新的 logo 图片样式 */
+    .logo-img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(109, 213, 237, 0.5)) drop-shadow(0 0 24px rgba(109, 213, 237, 0.3));
+    }
+    .state-label {
+      margin-top: 8px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #8faad9;
+      text-shadow: 0 0 6px rgba(143, 170, 217, 0.4);
+    }
+    .subtitle {
+      margin-top: 4px;
+      font-size: 14px;
+      color: #7a7fa0;
+    }
+    /* 开发测试按钮，可隐藏于生产环境 */
+    .test-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      color: #7bcfff;
+      font-size: 12px;
+      padding: 3px 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    /* 风格切换按钮 */
+    .theme-btn {
+      position: absolute;
+      top: 8px;
+      right: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      color: #f5deb3;
+      font-size: 12px;
+      padding: 3px 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .theme-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .test-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* 中部内容卡片区域 */
+    .content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+    }
+    .card {
+      width: 100%;
+      max-width: 480px;
+      /* 玻璃拟态效果，提升质感 */
+      background: linear-gradient(180deg, rgba(15, 21, 32, 0.85), rgba(15, 21, 32, 0.9));
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid var(--accent-border);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35) inset, 0 12px 28px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .section {
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .section:last-child {
+      margin-bottom: 0;
+    }
+    /* 光效分割线 */
+    .section:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--brand-2), transparent);
+      opacity: 0.4;
+    }
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #a3b6ff;
+    }
+    .section-content {
+      font-size: 14px;
+      line-height: 1.4;
+      color: #cdd6f7;
+    }
+    /* 任务列表样式 */
+    .task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+    }
+    .task-item:not(:last-child) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .task-title {
+      flex: 1;
+      font-size: 14px;
+      color: #e0e5fb;
+    }
+    .task-status {
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 12px;
+      background: linear-gradient(45deg, #00eaff, #0088ff);
+      box-shadow: 0 0 6px rgba(0, 136, 255, 0.6);
+      color: #031e2e;
+    }
+    .task-status.done {
+      background: linear-gradient(45deg, #9be15d, #00e3ae);
+      box-shadow: 0 0 6px rgba(0, 227, 174, 0.6);
+      color: #022817;
+    }
+
+    /* 底部按钮区域 */
+    .bottom {
+      flex: 0 0 auto;
+      padding: 14px 16px 24px;
+      display: flex;
+      /* 半透明背景与模糊，仿原生底部栏 */
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin: 0 12px 12px;
+      border-radius: 20px;
+    }
+    .bottom button {
+      flex: 1;
+      margin: 0 6px;
+      border: none;
+      border-radius: 16px;
+      padding: 14px 0;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.08s ease, filter 0.2s ease, box-shadow 0.2s ease;
+      /* 避免移动端按钮文字换行 */
+      white-space: nowrap;
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+      box-shadow: 0 8px 24px rgba(47, 128, 237, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+    /* 按钮颜色渐变（更高级低饱和） */
+    .bottom button.red {
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+      box-shadow: 0 8px 24px rgba(47, 128, 237, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+    .bottom button.orange {
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+    }
+    .bottom button.green {
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+    }
+    .bottom button.purple {
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+    }
+    .bottom button.blue {
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+    }
+    .bottom button:disabled {
+      opacity: 0.4;
+      cursor: default;
+      filter: grayscale(0.6);
+    }
+    .bottom button:not(:disabled):hover {
+      transform: translateY(-3px);
+      filter: brightness(1.2);
+    }
+    .bottom button:not(:disabled):active {
+      transform: translateY(0);
+      filter: brightness(0.95);
+    }
+    /* 邀请按钮突出显示，增加光晕 */
+    .bottom button[data-key="invite"],
+    .bottom button[data-key="inviteNew"] {
+      box-shadow: 0 12px 32px rgba(86, 204, 242, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    /* 统一样式的对话框提示 */
+    .dialog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .dialog .dialog-box {
+      background: rgba(9, 14, 40, 0.95);
+      border-radius: 16px;
+      padding: 20px 24px;
+      max-width: 90%;
+      color: #e7ebfc;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+    .dialog .dialog-box h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      color: #a3b6ff;
+    }
+    .dialog .dialog-box p {
+      margin: 0 0 20px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .dialog .dialog-box button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      color: #031e2e;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    }
+    /* 邀请区高亮样式 */
+    .invite-highlight {
+      background: linear-gradient(180deg, rgba(86, 204, 242, 0.16), rgba(47, 128, 237, 0.12));
+      border: 1px solid rgba(86, 204, 242, 0.35);
+      border-radius: 16px;
+      padding: 12px;
+      margin-top: 12px;
+    }
+    .invite-highlight .section-title {
+      color: var(--brand);
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="app">
+    <div class="header">
+      <!-- 替换为图标 logo -->
+      <img src="logo_gold7.png" alt="Logo" class="logo-img" />
+      <div id="stateLabel" class="state-label">状态1</div>
+      <div id="subtitle" class="subtitle">欢迎加入裂金7日</div>
+      <button class="theme-btn" id="themeSwitch">风格</button>
+      <button class="test-btn" onclick="cycleState()">切换状态</button>
+    </div>
+    <div class="content">
+      <div id="card" class="card">
+        <!-- 动态内容将在这里注入 -->
+      </div>
+    </div>
+    <div id="bottomButtons" class="bottom">
+      <!-- 底部按钮动态生成 -->
+    </div>
+  </div>
+  <!-- 模态弹窗 -->
+  <div id="modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <button id="modalClose" class="modal-close">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+  <div id="dialog" class="dialog" style="display:none;">
+    <div class="dialog-box">
+      <h3 id="dialogTitle">提示</h3>
+      <p id="dialogMsg">内容</p>
+      <button onclick="closeDialog()">确定</button>
+    </div>
+  </div>
+
+  <script>
+    /* 状态数据与逻辑定义 */
+    const STATES = {
+      1: {
+        name: '状态1',
+        subtitle: '新手未入金',
+        card: function() {
+          return `
+            <div class="section">
+              <div class="section-title">激活账号</div>
+              <div class="section-content">立即入金100 USDT，开启168小时挑战。</div>
+            </div>
+            <div class="section">
+              <div class="section-title">查看收益榜单</div>
+              <div class="section-content">查看前10名收益排行榜，了解潜在收益。</div>
+            </div>
+          `;
+        },
+        buttons: [
+          { text: '激活账号', color: 'green', action: () => activateAccount() },
+          { text: '排行榜', color: 'purple', action: () => showRanking() }
+        ]
+      },
+      2: {
+        name: '状态2',
+        subtitle: '168小时倒计时中',
+        card: function() {
+          // 当前新手任务：只显示尚未完成的第一个任务
+          const currentTask = newTasks.find(t => !t.done);
+          let taskSection;
+          if (currentTask) {
+            taskSection = `
+            <div class="section">
+              <div class="section-title">当前任务</div>
+              <div class="section-content">${currentTask.title}</div>
+            </div>
+            `;
+          } else {
+            taskSection = `
+            <div class="section">
+              <div class="section-title">当前任务</div>
+              <div class="section-content">所有新手任务已完成</div>
+            </div>
+            `;
+          }
+          return `
+            <div class="section">
+              <div class="section-title">倒计时</div>
+              <div class="section-content"><span id="countdown">--:--:--</span></div>
+            </div>
+            ${taskSection}
+            <div class="section invite-highlight">
+              <div class="section-title">邀请链接</div>
+              <div class="section-content">有效期剩余 <span id="inviteLeft">168h</span>，点击按钮复制。</div>
+            </div>
+          `;
+        },
+        buttons: [
+          { text: '任务', color: 'green', key: 'task', action: () => openTasks() },
+          { text: '邀请链接', color: 'blue', key: 'invite', action: () => copyInvite() },
+          { text: '抢红包', color: 'red', key: 'red', action: () => grabRedPacket() },
+          { text: '我的团队', color: 'orange', key: 'team', action: () => showTeam() },
+          { text: '我的钱包', color: 'purple', key: 'wallet', action: () => showWallet() },
+          { text: '排行榜', color: 'green', key: 'rank', action: () => showRanking() }
+        ]
+      },
+      3: {
+        name: '状态3',
+        subtitle: '倒计时结束未复购',
+        card: function() {
+          return `
+            <div class="section">
+              <div class="section-title">战绩卡</div>
+              <div class="section-content">本期收益：<strong>-- USDT</strong><br/>邀请人数：--人<br/>团队规模：--人</div>
+            </div>
+            <div class="section">
+              <div class="section-title">我的团队</div>
+              <div class="section-content">查看七层团队结构和人数。</div>
+            </div>
+          `;
+        },
+        buttons: [
+          { text: '我的钱包', color: 'purple', action: () => showWallet() },
+          { text: '我的团队', color: 'orange', action: () => showTeam() },
+          { text: '排行榜', color: 'green', action: () => showRanking() },
+          { text: '大神榜', color: 'red', action: () => showGodRanking() },
+          { text: '再次激活', color: 'green', action: () => repurchase() }
+        ]
+      },
+      4: {
+        name: '状态4',
+        subtitle: '复购状态',
+        card: function() {
+          // 判断是否解锁大神任务：所有新手任务已完成
+          const allNewDone = newTasks.every(t => t.done);
+          let godSection;
+          if (allNewDone) {
+            // 只显示当前未完成的大神任务，未触发的不显示
+            const currentGod = godTasks.find(t => !t.done);
+            if (currentGod) {
+              godSection = `<div class="section"><div class="section-title">大神任务</div><div class="section-content">${currentGod.title}</div></div>`;
+            } else {
+              godSection = `<div class="section"><div class="section-title">大神任务</div><div class="section-content">所有大神任务已完成</div></div>`;
+            }
+          } else {
+            godSection = `<div class="section"><div class="section-title">大神任务</div><div class="section-content">完成新手任务后解锁大神任务</div></div>`;
+          }
+          // 邀请链接高亮区块，与状态2一致，强调邀请
+          const inviteSection = `
+            <div class="section invite-highlight">
+              <div class="section-title">邀请链接</div>
+              <div class="section-content">有效期剩余 <span id="inviteLeft">168h</span>，点击按钮复制。</div>
+            </div>
+          `;
+          return `
+            ${godSection}
+            ${inviteSection}
+            <div class="section">
+              <div class="section-title">我的团队</div>
+              <div class="section-content">查看七层团队结构和人数。</div>
+            </div>
+          `;
+        },
+        buttons: [
+          { text: '大神任务', color: 'green', key: 'god', action: () => openGodTasks() },
+          { text: '我的团队', color: 'orange', key: 'team', action: () => showTeam() },
+          { text: '我的钱包', color: 'purple', key: 'wallet', action: () => showWallet() },
+          { text: '排行榜', color: 'blue', key: 'rank', action: () => showRanking() },
+          { text: '邀请链接', color: 'green', key: 'invite', action: () => copyInvite() },
+          { text: '抢红包', color: 'red', key: 'red', action: () => grabRedPacket() }
+        ]
+      }
+    };
+
+    /* 任务数据 */
+    const newTasks = [
+      { id: 1, title: '直接推荐1人', done: false },
+      { id: 2, title: '帮助下级推荐1人', done: false },
+      { id: 3, title: '教下级如何教他的下级推荐1人', done: false }
+    ];
+    const godTasks = [
+      { id: 1, title: '大神任务一：直推2人 × 2层 = 6人', done: false },
+      { id: 2, title: '大神任务二：直推3人 × 3层 = 39人', done: false },
+      { id: 3, title: '大神任务三：直推4人 × 4层 = 340人', done: false },
+      { id: 4, title: '大神任务四：直推5人 × 5层 = 3905人', done: false },
+      { id: 5, title: '大神任务五：直推6人 × 6层 = 55986人', done: false },
+      { id: 6, title: '大神任务六：直推7人 × 7层 = 960799人', done: false }
+    ];
+
+    /* 全局状态变量 */
+    let currentState = 1;
+    let countdownStart = null; // 开启倒计时的时间戳
+    let inviteStart = null;    // 邀请链接生效时间戳
+    let countdownTimer = null;
+
+    // 模拟用户钱包余额，用于红包和提现功能
+    let walletBalance = 0;
+
+    // 交易记录列表
+    let transactions = [];
+
+    // 提现手续费比例，默认为 5%（0.05），可通过答题任务降低，最低 1%（0.01）
+    let withdrawFeeRate = 0.05;
+
+    /**
+     * 从 localStorage 初始化状态，包括余额、任务完成状态和交易记录。
+     */
+    function loadState() {
+      const wb = localStorage.getItem('walletBalance');
+      walletBalance = wb ? parseFloat(wb) : 0;
+      const nt = localStorage.getItem('newTasks');
+      if (nt) {
+        try {
+          const arr = JSON.parse(nt);
+          // 对原始任务表进行状态覆盖
+          newTasks.forEach((t, i) => {
+            if (arr[i] && typeof arr[i].done === 'boolean') {
+              t.done = arr[i].done;
+            }
+          });
+        } catch (e) {
+          console.warn('无法解析 newTasks', e);
+        }
+      }
+      const gt = localStorage.getItem('godTasks');
+      if (gt) {
+        try {
+          const arr = JSON.parse(gt);
+          godTasks.forEach((t, i) => {
+            if (arr[i] && typeof arr[i].done === 'boolean') {
+              t.done = arr[i].done;
+            }
+          });
+        } catch (e) {
+          console.warn('无法解析 godTasks', e);
+        }
+      }
+      const tx = localStorage.getItem('transactions');
+      if (tx) {
+        try {
+          transactions = JSON.parse(tx);
+        } catch (e) {
+          console.warn('无法解析 transactions', e);
+        }
+      }
+      // 加载提现手续费比例
+      const wfr = localStorage.getItem('withdrawFeeRate');
+      if (wfr) {
+        const rate = parseFloat(wfr);
+        if (!isNaN(rate)) withdrawFeeRate = rate;
+      }
+    }
+
+    /**
+     * 将当前状态保存到 localStorage。
+     */
+    function saveState() {
+      localStorage.setItem('walletBalance', walletBalance.toFixed(2));
+      localStorage.setItem('newTasks', JSON.stringify(newTasks));
+      localStorage.setItem('godTasks', JSON.stringify(godTasks));
+      localStorage.setItem('transactions', JSON.stringify(transactions));
+      localStorage.setItem('withdrawFeeRate', withdrawFeeRate.toFixed(4));
+    }
+
+    function init() {
+      // 从 localStorage 加载历史状态
+      loadState();
+      renderState();
+    }
+
+    function renderState() {
+      const state = STATES[currentState];
+      document.getElementById('stateLabel').innerText = state.name;
+      document.getElementById('subtitle').innerText = state.subtitle;
+      // 渲染卡片内容
+      document.getElementById('card').innerHTML = state.card();
+      // 渲染底部按钮
+      const bottom = document.getElementById('bottomButtons');
+      bottom.innerHTML = '';
+      state.buttons.forEach(btn => {
+        const b = document.createElement('button');
+        b.innerText = btn.text;
+        b.classList.add(btn.color);
+        b.onclick = btn.action;
+        // 设置 data-key 以便样式定制（如邀请按钮高亮）
+        if (btn.key) {
+          b.dataset.key = btn.key;
+        }
+        bottom.appendChild(b);
+      });
+      // 动态插入答题任务按钮：完成至少一个新手任务后出现，且未完成全部20题
+      if (currentState === 2 || currentState === 4) {
+        const firstDone = newTasks[0] && newTasks[0].done;
+        const quizCorrect = parseInt(localStorage.getItem('quizCorrect')) || 0;
+        if (firstDone && quizCorrect < 20) {
+          const quizBtn = document.createElement('button');
+          quizBtn.innerText = '答题任务';
+          quizBtn.className = 'green';
+          quizBtn.onclick = () => {
+            window.location.href = 'quiz.html';
+          };
+          bottom.appendChild(quizBtn);
+        }
+      }
+      // 控制倒计时
+      if (currentState === 2 || currentState === 4) {
+        if (!countdownStart) {
+          countdownStart = Date.now();
+          inviteStart = countdownStart;
+        }
+        updateCountdown();
+        countdownTimer = setInterval(updateCountdown, 1000);
+      } else {
+        if (countdownTimer) clearInterval(countdownTimer);
+      }
+    }
+
+    function updateCountdown() {
+      // 倒计时 168h = 7*24*3600s
+      const total = 168 * 3600 * 1000;
+      const now = Date.now();
+      const elapsed = now - countdownStart;
+      let remaining = total - elapsed;
+      if (remaining < 0) remaining = 0;
+      const hrs = Math.floor(remaining / 3600000);
+      const mins = Math.floor((remaining % 3600000) / 60000);
+      const secs = Math.floor((remaining % 60000) / 1000);
+      const str = `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      const countdownEl = document.getElementById('countdown');
+      if (countdownEl) countdownEl.innerText = str;
+      // 邀请链接剩余小时数
+      const inviteEl = document.getElementById('inviteLeft');
+      if (inviteEl) {
+        const inviteRemainingHrs = Math.max(0, ((inviteStart + total) - now) / 3600000);
+        inviteEl.innerText = inviteRemainingHrs.toFixed(1) + 'h';
+      }
+      // 当倒计时结束，自动进入状态3
+      if (remaining === 0 && currentState === 2) {
+        currentState = 3;
+        countdownStart = null;
+        renderState();
+      }
+      // 当倒计时结束，在状态4回到3
+      if (remaining === 0 && currentState === 4) {
+        currentState = 3;
+        countdownStart = null;
+        renderState();
+      }
+    }
+
+    // 开发测试循环状态
+    function cycleState() {
+      currentState++;
+      if (currentState > 4) currentState = 1;
+      countdownStart = null;
+      renderState();
+    }
+
+    // 激活账号/首次入金
+    function activateAccount() {
+      showDialog('激活账号', '请向系统提供的USDT地址支付100 USDT以激活账号。');
+      // 模拟支付成功
+      setTimeout(() => {
+        // 首次激活扣除100 USDT并记录交易
+        walletBalance -= 100;
+        transactions.push({ type: '激活缴费', amount: -100, fee: 0, net: -100, time: new Date().toISOString() });
+        saveState();
+        currentState = 2;
+        countdownStart = Date.now();
+        renderState();
+      }, 500);
+    }
+
+    // 再次入金（复购）
+    function repurchase() {
+      showDialog('再次激活', '请向系统提供的新USDT地址支付100 USDT以重新激活。');
+      setTimeout(() => {
+        // 复购扣除100 USDT并记录交易
+        walletBalance -= 100;
+        transactions.push({ type: '复购缴费', amount: -100, fee: 0, net: -100, time: new Date().toISOString() });
+        saveState();
+        currentState = 4;
+        countdownStart = Date.now();
+        renderState();
+      }, 500);
+    }
+
+    // 任务按钮
+    function openTasks() {
+      // 完成当前新手任务并获得奖励
+      const task = newTasks.find(t => !t.done);
+      if (task) {
+        task.done = true;
+        // 完成一个新手任务奖励10 USDT
+        walletBalance += 10;
+        // 记录交易
+        transactions.push({ type: '任务奖励', amount: 10, fee: 0, net: 10, time: new Date().toISOString() });
+        saveState();
+        showDialog('任务完成', `你已完成任务：${task.title}。奖励10 USDT！\n当前余额：${walletBalance.toFixed(2)} USDT。`);
+        renderState();
+      } else {
+        showDialog('任务列表', '所有新手任务已完成。');
+      }
+    }
+    // 复制邀请链接
+    function copyInvite() {
+      const link = 'https://example.com/invite?code=ABC123';
+      navigator.clipboard.writeText(link).then(() => {
+        showDialog('邀请链接已复制', `有效期剩余 ${document.getElementById('inviteLeft').innerText}。`);
+      });
+    }
+    // 抢红包
+    function grabRedPacket() {
+      // 简单时间检查：每日9:00/12:00/20:00 77秒窗口
+      const nowDate = new Date();
+      const hours = nowDate.getHours();
+      const minutes = nowDate.getMinutes();
+      const seconds = nowDate.getSeconds();
+      const inWindow = (
+        (hours === 9 || hours === 12 || hours === 20) &&
+        minutes === 0 &&
+        seconds < 77
+      );
+      if (!inWindow) {
+        showDialog('抢红包未开始', '红包活动每日9:00、12:00、20:00开始，仅开放77秒。');
+        return;
+      }
+      // 判断资格：仅状态2或4
+      if (currentState === 2 || currentState === 4) {
+        // 随机生成红包金额，范围0.01-5 USDT
+        const prize = parseFloat((Math.random() * 4.99 + 0.01).toFixed(2));
+        walletBalance += prize;
+        // 记录交易
+        transactions.push({ type: '红包收入', amount: prize, fee: 0, net: prize, time: new Date().toISOString() });
+        saveState();
+        showDialog('抢红包成功', `恭喜你抢到红包：${prize.toFixed(2)} USDT！\n当前余额：${walletBalance.toFixed(2)} USDT。`);
+      } else {
+        showDialog('无抢红包资格', '只有在入金状态（状态2/4）才可以抢红包。');
+      }
+    }
+    // 我的团队
+    function showTeam() {
+      // 跳转到团队页面
+      window.location.href = 'team.html';
+    }
+    // 我的钱包
+    function showWallet() {
+      // 跳转到钱包页面
+      window.location.href = 'wallet.html';
+    }
+    // 排行榜
+    function showRanking() {
+      // 跳转到排行榜页面
+      window.location.href = 'ranking.html';
+    }
+    function showRedRanking() {
+      showDialog('红包排行榜', '按红包收入USDT总额排行。');
+    }
+    function showGodRanking() {
+      showDialog('大神排行榜', '按大神等级排行。');
+    }
+    function openGodTasks() {
+      showDialog('大神任务', '请在卡片中查看大神任务目标。');
+    }
+    /* 对话框 */
+    function showDialog(title, msg) {
+      document.getElementById('dialogTitle').innerText = title;
+      document.getElementById('dialogMsg').innerText = msg;
+      document.getElementById('dialog').style.display = 'flex';
+    }
+    function closeDialog() {
+      document.getElementById('dialog').style.display = 'none';
+    }
+
+    /**
+     * 模态弹窗管理
+     */
+    const modal = document.getElementById('modal');
+    const modalClose = document.getElementById('modalClose');
+    const modalBody = document.getElementById('modalBody');
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    function openModal(type) {
+      let html = '';
+      if(type === 'task') {
+        const currentTask = newTasks.find(t => !t.done);
+        if(currentTask) {
+          html += `<h3 style="margin-top:0;color:var(--brand)">${currentTask.title}</h3>`;
+          html += `<p style="font-size:14px;color:var(--muted)">${currentTask.desc ? currentTask.desc : '完成此任务可推进进度。'}</p>`;
+          html += `<button class="btn" id="modalTaskDone" style="margin-top:16px;width:100%">标记完成</button>`;
+        } else {
+          html += `<h3 style="margin-top:0;color:var(--brand)">所有新手任务已完成</h3>`;
+          html += `<p style="font-size:14px;color:var(--muted)">无需再执行新手任务。</p>`;
+        }
+      } else if(type === 'wallet') {
+        html += `<h3 style="margin-top:0;color:var(--brand)">我的钱包</h3>`;
+        html += `<p style="font-size:14px;color:var(--muted)">当前余额：-- USDT</p>`;
+        html += `<button class="btn" style="margin-top:16px;width:100%">提现</button>`;
+      } else if(type === 'team') {
+        html += `<h3 style="margin-top:0;color:var(--brand)">我的团队</h3>`;
+        html += `<p style="font-size:14px;color:var(--muted)">此处展示七层团队结构（占位）</p>`;
+      } else if(type === 'ranking') {
+        html += `<h3 style="margin-top:0;color:var(--brand)">排行榜</h3>`;
+        html += `<p style="font-size:14px;color:var(--muted)">此处展示团队、红包与大神排行（占位）</p>`;
+      }
+      modalBody.innerHTML = html;
+      modal.style.display = 'flex';
+      // 绑定任务完成按钮
+      const completeBtn = document.getElementById('modalTaskDone');
+      if(completeBtn) {
+        completeBtn.addEventListener('click', () => {
+          const task = newTasks.find(t => !t.done);
+          if(task) task.done = true;
+          modal.style.display = 'none';
+          renderState();
+        });
+      }
+    }
+
+    window.onload = init;
+
+    // ====== 主题切换脚本（黑金与默认） ======
+    (function() {
+      const current = localStorage.getItem('theme');
+      if (current === 'gold') {
+        document.body.classList.add('theme-gold');
+      }
+      const toggleBtn = document.getElementById('themeSwitch');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          const isGold = document.body.classList.toggle('theme-gold');
+          localStorage.setItem('theme', isGold ? 'gold' : 'default');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
