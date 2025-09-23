@@ -1113,25 +1113,19 @@
         subtitle: '新手未入金',
         card: function() {
           return `
-            <div class="section reactivate-highlight">
-              <div class="section-title">🚀 激活账号</div>
-              <div class="section-content">
-                <p style="margin-bottom: 12px;">立即入金100 USDT，开启168小时挑战，开始赚取收益！</p>
-                <button class="reactivate-btn" onclick="activateAccount()">立即激活 100 USDT</button>
-              </div>
+            <div class="section">
+              <div class="section-title">激活账号</div>
+              <div class="section-content">立即入金100 USDT，开启168小时挑战。</div>
             </div>
             <div class="section">
-              <div class="section-title">💰 收益预览</div>
-              <div class="section-content">
-                <p style="margin-bottom: 8px;">查看前10名收益排行榜，了解潜在收益机会。</p>
-                <div style="text-align: center; margin-top: 12px;">
-                  <button onclick="showRanking()" style="background: var(--btn-gradient); border: none; border-radius: 20px; padding: 10px 20px; color: white; cursor: pointer; font-size: 14px; font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0, 0, 0, 0.2)'">查看排行榜</button>
-                </div>
-              </div>
+              <div class="section-title">查看收益榜单</div>
+              <div class="section-content">查看前10名收益排行榜，了解潜在收益。</div>
             </div>
           `;
         },
-        buttons: []
+        buttons: [
+          { text: '激活账号', color: 'green primary-highlight', action: () => activateAccount() }
+        ]
       },
       2: {
         name: '状态2',
@@ -1313,100 +1307,6 @@
           { text: '团队', color: 'orange', action: () => showTeam() },
           { text: '钱包', color: 'purple', action: () => showWallet() },
           { text: '排行', color: 'green', action: () => showRanking() }
-        ]
-      },
-      4: {
-        name: '状态4',
-        subtitle: '复购状态',
-        card: function() {
-          // 判断是否解锁大神任务：所有新手任务已完成
-          const allNewDone = newTasks.every(t => t.done);
-          let godSection;
-          if (allNewDone) {
-            // 只显示当前未完成的大神任务，未触发的不显示
-            const currentGod = godTasks.find(t => !t.done);
-            if (currentGod) {
-              godSection = `<div class="section"><div class="section-title">大神任务</div><div class="section-content">${currentGod.title}</div></div>`;
-            } else {
-              godSection = `<div class="section"><div class="section-title">大神任务</div><div class="section-content">所有大神任务已完成</div></div>`;
-            }
-          } else {
-            godSection = `<div class="section"><div class="section-title">大神任务</div><div class="section-content">完成新手任务后解锁大神任务</div></div>`;
-          }
-          
-          // 答题任务区域：完成至少一个新手任务后出现，且未完成全部20题
-          const firstDone = newTasks[0] && newTasks[0].done;
-          const quizCorrect = parseInt(localStorage.getItem('quizCorrect')) || 0;
-          let quizSection = '';
-          if (firstDone && quizCorrect < 20) {
-            quizSection = `
-            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; box-shadow: var(--btn-glow); cursor: pointer;" onclick="window.location.href='quiz.html'">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 2px;">📝 答题任务</div>
-                  <div style="font-size: 12px; color: var(--text-secondary);">降低提现手续费</div>
-                </div>
-                <div style="text-align: right;">
-                  <div style="font-size: 12px; color: var(--text-secondary);">进度</div>
-                  <div style="font-weight: bold; color: var(--accent-color);">${quizCorrect}/20</div>
-                </div>
-              </div>
-            </div>
-            `;
-          }
-          // 邀请链接高亮区块，与状态2一致，强调邀请
-          const inviteSection = `
-            <div class="section invite-highlight">
-              <div class="section-title">邀请链接</div>
-              <div class="section-content">
-                <!-- 专属邀请码区域 -->
-                <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(46, 91, 186, 0.05)); border: 1px solid rgba(74, 144, 226, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);">
-                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">💎 我的专属邀请码</div>
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="flex: 1; font-weight: bold; color: var(--accent-color); font-size: 16px; text-align: center; padding: 10px; background: var(--input-bg); border-radius: 8px; border: 1px solid var(--border-color); box-shadow: inset 0 1px 3px var(--accent-shadow);" id="myInviteCode">ABC123</div>
-                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制码</button>
-                  </div>
-                </div>
-                
-                <!-- 邀请链接区域 -->
-                <div style="padding: 12px; background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(46, 91, 186, 0.05)); border: 1px solid rgba(74, 144, 226, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);">
-                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 邀请链接</div>
-                  <div class="invite-link-container" style="display: flex; gap: 8px;">
-                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--input-bg); font-size: 11px; color: var(--accent-color); box-shadow: inset 0 1px 3px var(--accent-shadow);">
-                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制链接</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `;
-          return `
-            <div class="section" style="display: flex; gap: 12px; margin-bottom: 8px;">
-              <div style="flex: 1; background: var(--bg-secondary); border-radius: 12px; padding: 8px; text-align: center;">
-                <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">倒计时</div>
-                <div style="font-weight: bold; color: var(--accent-color); font-size: 18px;"><span id="countdown">--:--:--</span></div>
-              </div>
-              <div style="flex: 1; background: var(--bg-secondary); border-radius: 12px; padding: 8px; text-align: center;">
-                <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">大神任务</div>
-                <div style="font-weight: bold; font-size: 12px;">${allNewDone ? (godTasks.find(t => !t.done) ? '进行中' : '已完成') : '未解锁'}</div>
-              </div>
-              <div style="flex: 1; background: var(--bg-secondary); border-radius: 12px; padding: 8px; text-align: center;">
-                <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">战绩卡</div>
-                <div style="font-weight: bold; font-size: 11px; line-height: 1.3;">团队：<span id="teamCount">${teamMembers}</span>人 | 收益：<span id="totalEarnings">${totalEarnings.toFixed(2)}</span>U</div>
-              </div>
-            </div>
-            ${quizSection}
-            ${inviteSection}
-            <div class="section" style="margin-top: 8px; padding: 10px;">
-              <div class="section-title" style="margin-bottom: 6px;">我的团队</div>
-              <div class="section-content" style="font-size: 13px;">查看七层团队结构和人数。</div>
-            </div>
-          `;
-        },
-        buttons: [
-          { text: '团队', color: 'orange', key: 'team', action: () => showTeam() },
-          { text: '钱包', color: 'purple', key: 'wallet', action: () => showWallet() },
-          { text: '排行', color: 'blue', key: 'rank', action: () => showRanking() },
-          { text: '红包', color: 'red', key: 'red', action: () => grabRedPacket() }
         ]
       }
     };
@@ -1612,7 +1512,7 @@
       });
       
       // 控制倒计时
-      if (currentState === 2 || currentState === 4) {
+      if (currentState === 2) {
         if (!countdownStart) {
           countdownStart = Date.now();
           inviteStart = countdownStart;
@@ -1670,8 +1570,8 @@
         countdownStart = null;
         renderState();
       }
-      // 当倒计时结束，在状态4回到3
-      if (remaining === 0 && currentState === 4) {
+      // 当倒计时结束，从状态2回到状态3
+      if (remaining === 0 && currentState === 2) {
         currentState = 3;
         countdownStart = null;
         renderState();
@@ -1699,7 +1599,7 @@
     // 开发测试循环状态
     function cycleState() {
       currentState++;
-      if (currentState > 4) currentState = 1;
+      if (currentState > 3) currentState = 1;
       countdownStart = null;
       renderState();
     }
@@ -1747,19 +1647,14 @@
         });
         
         // 更新状态
-        currentState = 4;
+        currentState = 2;
         countdownStart = Date.now();
         inviteStart = countdownStart;
-        
-        // 解锁大神任务（需要完成新手任务+答题任务）
-        if (completedNewbieTasks >= 3 && quizCompleted) {
-          godTasksUnlocked = true;
-        }
         
         saveState();
         renderState();
         
-        showDialog('复购成功', '复购激活成功！新的168小时挑战期已开始，大神任务已解锁。');
+        showDialog('复购成功', '复购激活成功！新的168小时挑战期已开始。');
       }, 1000);
     }
 
@@ -1913,7 +1808,7 @@
     // 抢红包 - 严格时间窗口和资格校验
     function grabRedPacket() {
       // 检查资格：仅状态2或4
-      if (currentState !== 2 && currentState !== 4) {
+      if (currentState !== 2) {
         showDialog('无抢红包资格', '只有在激活状态（初次挑战或复购状态）才可以抢红包。');
         return;
       }
