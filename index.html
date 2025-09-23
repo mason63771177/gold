@@ -528,7 +528,7 @@
       <button class="theme-demo-btn" onclick="window.location.href='theme-demo.html'">主题演示</button>
       <button class="test-btn" onclick="cycleState()">切换状态</button>
       <button class="reset-btn" onclick="resetTestData()">重置数据</button>
-      <button class="settings-btn" onclick="openSettings()" style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 8px; padding: 8px 12px; font-size: 12px; cursor: pointer; margin-left: 8px;">⚙️ 设置</button>
+      <button class="settings-btn" onclick="console.log('设置按钮被点击'); openSettings();" style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 8px; padding: 8px 12px; font-size: 12px; cursor: pointer; margin-left: 8px;">⚙️ 设置</button>
     </div>
     <div class="content">
       <div id="card" class="card">
@@ -615,6 +615,40 @@
   </div>
 
   <script>
+    // 设置面板功能 - 提前定义确保onclick可以找到
+    function openSettings() {
+      console.log('openSettings函数被调用');
+      const settingsModal = document.getElementById('settingsModal');
+      console.log('settingsModal元素:', settingsModal);
+      
+      if (!settingsModal) {
+        console.error('找不到settingsModal元素');
+        alert('设置面板元素未找到，请刷新页面重试');
+        return;
+      }
+      
+      settingsModal.style.display = 'flex';
+      console.log('设置面板已显示');
+      
+      // 更新个人信息显示
+      updateSettingsInfo();
+    }
+
+    function closeSettings() {
+      const settingsModal = document.getElementById('settingsModal');
+      settingsModal.style.display = 'none';
+    }
+
+    function updateSettingsInfo() {
+      const userEmail = localStorage.getItem('userEmail') || '未登录';
+      const userInviteCode = localStorage.getItem('userInviteCode') || '-';
+      const currentLanguage = localStorage.getItem('language') || 'zh-CN';
+      
+      document.getElementById('userEmailDisplay').textContent = userEmail;
+      document.getElementById('userInviteCodeDisplay').textContent = userInviteCode;
+      document.getElementById('languageSelect').value = currentLanguage;
+    }
+
     /* 状态数据与逻辑定义 */
     const STATES = {
       1: {
@@ -1668,29 +1702,7 @@
       }
     }
 
-    // 设置面板功能
-    function openSettings() {
-      const settingsModal = document.getElementById('settingsModal');
-      settingsModal.style.display = 'flex';
-      
-      // 更新个人信息显示
-      updateSettingsInfo();
-    }
-
-    function closeSettings() {
-      const settingsModal = document.getElementById('settingsModal');
-      settingsModal.style.display = 'none';
-    }
-
-    function updateSettingsInfo() {
-      const userEmail = localStorage.getItem('userEmail') || '未登录';
-      const userInviteCode = localStorage.getItem('userInviteCode') || '-';
-      const currentLanguage = localStorage.getItem('language') || 'zh-CN';
-      
-      document.getElementById('userEmailDisplay').textContent = userEmail;
-      document.getElementById('userInviteCodeDisplay').textContent = userInviteCode;
-      document.getElementById('languageSelect').value = currentLanguage;
-    }
+    // 设置面板功能已移至script开头
 
     // 初始化设置面板事件监听器
     function initSettingsEvents() {
