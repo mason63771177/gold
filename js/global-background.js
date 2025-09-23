@@ -28,8 +28,16 @@
     logoImage.alt = 'Background Logo';
     logoImage.loading = 'lazy';
     
+    console.log('创建logo图片元素，路径:', logoImage.src);
+    
+    // 图片加载成功时的回调
+    logoImage.onload = function() {
+      console.log('Logo图片加载成功');
+    };
+    
     // 如果logo图片加载失败，使用SVG作为备用
     logoImage.onerror = function() {
+      console.warn('Logo图片加载失败，使用备用SVG');
       // 创建SVG logo作为备用
       const svgLogo = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svgLogo.setAttribute('viewBox', '0 0 200 200');
@@ -58,6 +66,8 @@
     
     // 添加到页面最前面（但z-index最低）
     document.body.insertBefore(backgroundContainer, document.body.firstChild);
+    
+    console.log('背景容器已添加到页面，logo容器透明度:', logoContainer.style.opacity);
     
     // 添加样式表（如果还没有加载）
     if (!document.querySelector('link[href*="global-background.css"]')) {
