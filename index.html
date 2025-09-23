@@ -847,14 +847,33 @@
             <div class="section invite-highlight">
               <div class="section-title">邀请链接</div>
               <div class="section-content">
-                <div style="margin-bottom: 8px;">有效期剩余 <span id="inviteLeft">168h</span></div>
-                <div style="margin-bottom: 8px;">
-                  <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">我的专属邀请码</div>
-                  <div style="font-weight: bold; color: var(--accent-color); font-size: 14px; padding: 4px 8px; background: var(--bg-secondary); border-radius: 4px; display: inline-block;" id="myInviteCode">ABC123</div>
+                <!-- 倒计时和进度条 -->
+                <div style="margin-bottom: 12px;">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                    <span style="font-size: 12px; color: var(--text-secondary);">有效期剩余</span>
+                    <span id="inviteLeft" style="font-weight: bold; color: var(--accent-color);">168h</span>
+                  </div>
+                  <div style="width: 100%; height: 6px; background: var(--bg-secondary); border-radius: 3px; overflow: hidden;">
+                    <div id="inviteProgress" style="height: 100%; background: linear-gradient(90deg, #4CAF50, #45a049, #FFD700); border-radius: 3px; width: 100%; transition: width 0.3s ease;"></div>
+                  </div>
                 </div>
-                <div class="invite-link-container">
-                  <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9; font-size: 12px;">
-                  <button onclick="copyInviteLink()" style="margin-left: 8px; padding: 8px 12px; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">复制</button>
+                
+                <!-- 专属邀请码区域 -->
+                <div style="margin-bottom: 12px; padding: 8px; background: var(--bg-secondary); border-radius: 8px;">
+                  <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; text-align: center;">🎯 我的专属邀请码</div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="flex: 1; font-weight: bold; color: var(--accent-color); font-size: 16px; text-align: center; padding: 6px; background: var(--bg-primary); border-radius: 6px; border: 2px dashed var(--accent-color);" id="myInviteCode">ABC123</div>
+                    <button onclick="copyInviteCode()" style="padding: 6px 12px; background: linear-gradient(135deg, #FF6B6B, #FF5252); color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; white-space: nowrap;">复制码</button>
+                  </div>
+                </div>
+                
+                <!-- 邀请链接区域 -->
+                <div style="padding: 8px; background: var(--bg-secondary); border-radius: 8px;">
+                  <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; text-align: center;">🔗 邀请链接</div>
+                  <div class="invite-link-container" style="display: flex; gap: 8px;">
+                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-primary); font-size: 11px; color: var(--text-primary);">
+                    <button onclick="copyInviteLink()" style="padding: 8px 12px; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; white-space: nowrap;">复制链接</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -941,14 +960,34 @@
             <div class="section invite-highlight">
               <div class="section-title">邀请链接</div>
               <div class="section-content">
-                <div style="margin-bottom: 8px;">有效期剩余 <span id="inviteLeft">168h</span></div>
-                <div style="margin-bottom: 8px;">
-                  <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">我的专属邀请码</div>
-                  <div style="font-weight: bold; color: var(--accent-color); font-size: 14px; padding: 4px 8px; background: var(--bg-secondary); border-radius: 4px; display: inline-block;" id="myInviteCode">ABC123</div>
+                <!-- 倒计时和进度条 -->
+                <div style="margin-bottom: 12px;">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                    <span style="font-size: 12px; color: var(--text-secondary);">有效期剩余</span>
+                    <span id="inviteLeft" style="font-weight: bold; color: var(--accent-color);">168h</span>
+                  </div>
+                  <div style="width: 100%; height: 6px; background: var(--bg-secondary); border-radius: 3px; overflow: hidden;">
+                    <div id="inviteProgress" style="height: 100%; background: linear-gradient(90deg, #4CAF50, #45a049, #FFD700); border-radius: 3px; width: 100%; transition: width 0.3s ease;"></div>
+                  </div>
                 </div>
-                <div class="invite-link-container">
-                  <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9; font-size: 12px;">
-                  <button onclick="copyInviteLink()" style="margin-left: 8px; padding: 8px 12px; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">复制</button>
+                
+                <!-- 专属邀请码区域 -->
+                <div style="margin-bottom: 12px; padding: 8px; background: var(--bg-secondary); border-radius: 8px;">
+                  <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; text-align: center;">🎯 我的专属邀请码</div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="flex: 1; font-weight: bold; color: var(--accent-color); font-size: 16px; text-align: center; padding: 6px; background: var(--bg-primary); border-radius: 6px; border: 2px dashed var(--accent-color);" id="myInviteCode">ABC123</div>
+                    <button onclick="copyInviteCode()" style="padding: 6px 12px; background: linear-gradient(135deg, #FF6B6B, #FF5252); color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; white-space: nowrap;">复制码</button>
+                  </div>
+                </div>
+                
+                <!-- 邀请链接区域 -->
+                <div style="padding: 8px; background: var(--bg-secondary); border-radius: 8px;">
+                  <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; text-align: center;">🔗 邀请链接</div>
+                  <div class="invite-link-container" style="display: flex; gap: 8px;">
+                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-primary); font-size: 11px; color: var(--text-primary);">
+                    <button onclick="copyInviteLink()" style="padding: 8px 12px; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 6px; font-size: 11px; cursor: pointer; white-space: nowrap;">复制链接</button>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -1255,9 +1294,27 @@
       
       // 更新剩余时间显示
       const inviteEl = document.getElementById('inviteLeft');
+      const progressEl = document.getElementById('inviteProgress');
+      
       if (inviteEl) {
-        const inviteRemainingHrs = Math.max(0, ((inviteStart + total) - now) / 3600000);
+        const inviteRemainingMs = Math.max(0, (inviteStart + total) - now);
+        const inviteRemainingHrs = inviteRemainingMs / 3600000;
         inviteEl.innerText = inviteRemainingHrs.toFixed(1) + 'h';
+        
+        // 更新进度条
+        if (progressEl) {
+          const progressPercent = Math.max(0, (inviteRemainingMs / total) * 100);
+          progressEl.style.width = progressPercent + '%';
+          
+          // 根据剩余时间改变进度条颜色
+          if (progressPercent > 50) {
+            progressEl.style.background = 'linear-gradient(90deg, #4CAF50, #45a049, #FFD700)';
+          } else if (progressPercent > 20) {
+            progressEl.style.background = 'linear-gradient(90deg, #FF9800, #F57C00, #FFD700)';
+          } else {
+            progressEl.style.background = 'linear-gradient(90deg, #F44336, #D32F2F, #FF5722)';
+          }
+        }
       }
       
       // 更新邀请码和邀请链接内容
@@ -1413,13 +1470,42 @@
       
       if (navigator.clipboard) {
         navigator.clipboard.writeText(link).then(() => {
-          showDialog('邀请链接已复制', `有效期剩余 ${document.getElementById('inviteLeft').innerText}。`);
+          const detailedTime = getDetailedCountdown();
+          showDialog('邀请链接已复制', `有效期剩余 ${detailedTime}`);
         }).catch(() => {
           fallbackCopy(link);
         });
       } else {
         fallbackCopy(link);
       }
+    }
+    
+    // 复制专属邀请码函数
+    function copyInviteCode() {
+      const codeEl = document.getElementById('myInviteCode');
+      const code = codeEl.textContent;
+      
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(code).then(() => {
+          const detailedTime = getDetailedCountdown();
+          showDialog('邀请码已复制', `专属邀请码: ${code}\n有效期剩余 ${detailedTime}`);
+        }).catch(() => {
+          fallbackCopyCode(code);
+        });
+      } else {
+        fallbackCopyCode(code);
+      }
+    }
+    
+    // 获取详细倒计时时间
+    function getDetailedCountdown() {
+      const total = 168 * 3600 * 1000;
+      const now = Date.now();
+      const inviteRemainingMs = Math.max(0, (inviteStart + total) - now);
+      const hrs = Math.floor(inviteRemainingMs / 3600000);
+      const mins = Math.floor((inviteRemainingMs % 3600000) / 60000);
+      const secs = Math.floor((inviteRemainingMs % 60000) / 1000);
+      return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
     }
     
     // 降级复制方案
@@ -1430,9 +1516,26 @@
       textArea.select();
       try {
         document.execCommand('copy');
-        showDialog('邀请链接已复制', `有效期剩余 ${document.getElementById('inviteLeft').innerText}。`);
+        const detailedTime = getDetailedCountdown();
+        showDialog('邀请链接已复制', `有效期剩余 ${detailedTime}`);
       } catch (err) {
         showDialog('复制失败', '请手动复制链接');
+      }
+      document.body.removeChild(textArea);
+    }
+    
+    // 降级复制邀请码方案
+    function fallbackCopyCode(code) {
+      const textArea = document.createElement('textarea');
+      textArea.value = code;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        const detailedTime = getDetailedCountdown();
+        showDialog('邀请码已复制', `专属邀请码: ${code}\n有效期剩余 ${detailedTime}`);
+      } catch (err) {
+        showDialog('复制失败', '请手动复制邀请码');
       }
       document.body.removeChild(textArea);
     }
