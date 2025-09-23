@@ -106,7 +106,7 @@
     .theme-btn {
       position: absolute;
       top: 8px;
-      right: 60px;
+      right: 110px;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 6px;
@@ -118,6 +118,23 @@
     }
     .theme-btn:hover {
       background: rgba(255, 255, 255, 0.2);
+    }
+    /* 退出登录按钮 */
+    .logout-btn {
+      position: absolute;
+      top: 8px;
+      right: 60px;
+      background: rgba(255, 100, 100, 0.1);
+      border: 1px solid rgba(255, 100, 100, 0.3);
+      border-radius: 6px;
+      color: #ff6b6b;
+      font-size: 12px;
+      padding: 3px 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .logout-btn:hover {
+      background: rgba(255, 100, 100, 0.2);
     }
     .test-btn:hover {
       background: rgba(255, 255, 255, 0.2);
@@ -333,6 +350,7 @@
       <div id="stateLabel" class="state-label">状态1</div>
       <div id="subtitle" class="subtitle">欢迎加入裂金7日</div>
       <button class="theme-btn" id="themeSwitch">风格</button>
+      <button class="logout-btn" onclick="logout()">退出</button>
       <button class="test-btn" onclick="cycleState()">切换状态</button>
     </div>
     <div class="content">
@@ -584,6 +602,14 @@
     }
 
     function init() {
+      // 检查用户是否已登录
+      const userEmail = localStorage.getItem('userEmail');
+      if (!userEmail) {
+        // 未登录，跳转到登录页面
+        window.location.href = 'login.html';
+        return;
+      }
+      
       // 从 localStorage 加载历史状态
       loadState();
       renderState();
@@ -824,6 +850,15 @@
           renderState();
         });
       }
+    }
+
+    // 退出登录功能
+    function logout() {
+      // 清除用户登录信息
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('userPassword');
+      // 跳转到登录页面
+      window.location.href = 'login.html';
     }
 
     window.onload = init;
