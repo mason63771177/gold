@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置按钮测试</title>
+</head>
+<body>
+    <h1>设置按钮功能测试</h1>
+    <p>正在自动测试设置按钮功能...</p>
+    <div id="test-results"></div>
+    
+    <script>
+        // 等待页面加载完成后执行测试
+        window.onload = function() {
+            setTimeout(function() {
+                // 打开主页面进行测试
+                var iframe = document.createElement('iframe');
+                iframe.src = 'index.html';
+                iframe.style.width = '100%';
+                iframe.style.height = '600px';
+                iframe.style.border = '1px solid #ccc';
+                document.body.appendChild(iframe);
+                
+                // 等待iframe加载完成
+                iframe.onload = function() {
+                    setTimeout(function() {
+                        try {
+                            var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                            var settingsBtn = iframeDoc.querySelector('.settings-btn');
+                            var resultsDiv = document.getElementById('test-results');
+                            
+                            if (settingsBtn) {
+                                resultsDiv.innerHTML += '<p style="color: green;">✅ 找到设置按钮</p>';
+                                
+                                // 模拟点击
+                                settingsBtn.click();
+                                resultsDiv.innerHTML += '<p style="color: blue;">🔄 已模拟点击设置按钮</p>';
+                                
+                                // 检查设置面板是否打开
+                                setTimeout(function() {
+                                    var settingsModal = iframeDoc.getElementById('settingsModal');
+                                    if (settingsModal && settingsModal.style.display !== 'none') {
+                                        resultsDiv.innerHTML += '<p style="color: green;">✅ 设置面板成功打开！</p>';
+                                        resultsDiv.innerHTML += '<p style="font-weight: bold;">🎉 设置按钮功能正常工作！</p>';
+                                    } else {
+                                        resultsDiv.innerHTML += '<p style="color: red;">❌ 设置面板未能打开</p>';
+                                    }
+                                }, 500);
+                            } else {
+                                resultsDiv.innerHTML += '<p style="color: red;">❌ 未找到设置按钮</p>';
+                            }
+                        } catch (e) {
+                            document.getElementById('test-results').innerHTML += '<p style="color: red;">❌ 测试出错: ' + e.message + '</p>';
+                        }
+                    }, 1000);
+                };
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
