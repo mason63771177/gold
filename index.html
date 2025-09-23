@@ -398,6 +398,67 @@
       border: 1px solid var(--border-color);
     }
     .dialog .dialog-box h3 {
+    }
+
+    /* 设置面板样式 */
+    .settings-panel {
+      padding: 0;
+    }
+    .settings-section {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .settings-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .settings-section h3 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .settings-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      color: var(--text-secondary);
+    }
+    .settings-btn {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(47, 128, 237, 0.3);
+    }
+    .settings-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(47, 128, 237, 0.4);
+    }
+    .settings-btn:active {
+      transform: translateY(0);
+    }
+    .settings-select {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .settings-select:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 2px rgba(47, 128, 237, 0.2);
+    }
+    .dialog .dialog-box h3 {
       margin: 0 0 12px;
       font-size: 18px;
       color: var(--text-secondary);
@@ -467,7 +528,7 @@
       <button class="theme-demo-btn" onclick="window.location.href='theme-demo.html'">主题演示</button>
       <button class="test-btn" onclick="cycleState()">切换状态</button>
       <button class="reset-btn" onclick="resetTestData()">重置数据</button>
-      <button class="logout-btn" onclick="logout()" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52); color: white; border: none; border-radius: 8px; padding: 8px 12px; font-size: 12px; cursor: pointer; margin-left: 8px;">退出</button>
+      <button class="settings-btn" onclick="openSettings()" style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 8px; padding: 8px 12px; font-size: 12px; cursor: pointer; margin-left: 8px;">⚙️ 设置</button>
     </div>
     <div class="content">
       <div id="card" class="card">
@@ -490,6 +551,66 @@
       <h3 id="dialogTitle">提示</h3>
       <p id="dialogMsg">内容</p>
       <button onclick="closeDialog()">确定</button>
+    </div>
+  </div>
+
+  <!-- 设置面板 -->
+  <div id="settingsModal" class="modal" style="display:none;">
+    <div class="modal-content" style="max-width: 400px; width: 90%;">
+      <button class="modal-close" onclick="closeSettings()">✕</button>
+      <div class="settings-panel">
+        <h2 style="margin: 0 0 20px 0; color: var(--text-primary); text-align: center;">⚙️ 设置</h2>
+        
+        <!-- 个人信息 -->
+        <div class="settings-section">
+          <h3>👤 个人信息</h3>
+          <div class="settings-item">
+            <span>邮箱：</span>
+            <span id="userEmailDisplay">未登录</span>
+          </div>
+          <div class="settings-item">
+            <span>邀请码：</span>
+            <span id="userInviteCodeDisplay">-</span>
+          </div>
+        </div>
+
+        <!-- 主题风格 -->
+        <div class="settings-section">
+          <h3>🎨 主题风格</h3>
+          <div class="settings-item">
+            <button class="settings-btn" onclick="window.location.href='theme-demo.html'">选择主题风格</button>
+          </div>
+        </div>
+
+        <!-- 语言选择 -->
+        <div class="settings-section">
+          <h3>🌐 语言设置</h3>
+          <div class="settings-item">
+            <select id="languageSelect" class="settings-select">
+              <option value="zh-CN">简体中文</option>
+              <option value="zh-TW">繁體中文</option>
+              <option value="en-US">English</option>
+              <option value="ja-JP">日本語</option>
+              <option value="ko-KR">한국어</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 其他设置 -->
+        <div class="settings-section">
+          <h3>🔧 其他设置</h3>
+          <div class="settings-item">
+            <button class="settings-btn" onclick="resetTestData()">重置测试数据</button>
+          </div>
+        </div>
+
+        <!-- 退出登录 -->
+        <div class="settings-section">
+          <div class="settings-item">
+            <button class="settings-btn logout-btn" onclick="logout()" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52); color: white;">🚪 退出登录</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1543,6 +1664,52 @@
         window.location.href = 'login.html';
       }
     }
+
+    // 设置面板功能
+    function openSettings() {
+      const settingsModal = document.getElementById('settingsModal');
+      settingsModal.style.display = 'flex';
+      
+      // 更新个人信息显示
+      updateSettingsInfo();
+    }
+
+    function closeSettings() {
+      const settingsModal = document.getElementById('settingsModal');
+      settingsModal.style.display = 'none';
+    }
+
+    function updateSettingsInfo() {
+      const userEmail = localStorage.getItem('userEmail') || '未登录';
+      const userInviteCode = localStorage.getItem('userInviteCode') || '-';
+      const currentLanguage = localStorage.getItem('language') || 'zh-CN';
+      
+      document.getElementById('userEmailDisplay').textContent = userEmail;
+      document.getElementById('userInviteCodeDisplay').textContent = userInviteCode;
+      document.getElementById('languageSelect').value = currentLanguage;
+    }
+
+    // 语言切换功能
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageSelect = document.getElementById('languageSelect');
+      if (languageSelect) {
+        languageSelect.addEventListener('change', function() {
+          const selectedLanguage = this.value;
+          localStorage.setItem('language', selectedLanguage);
+          
+          // 这里可以添加实际的语言切换逻辑
+          showDialog('语言设置', `已切换到：${this.options[this.selectedIndex].text}`);
+        });
+      }
+    });
+
+    // 点击模态框背景关闭设置面板
+    document.addEventListener('click', function(e) {
+      const settingsModal = document.getElementById('settingsModal');
+      if (e.target === settingsModal) {
+        closeSettings();
+      }
+    });
 
     window.onload = init;
   </script>
