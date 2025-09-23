@@ -52,13 +52,13 @@
 
     /* 顶部区域 - 固定高度 */
     .header {
-      flex: 0 0 90px;
+      flex: 0 0 60px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      padding-top: 8px;
+      padding-top: 4px;
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border-color);
       z-index: 100;
@@ -67,14 +67,14 @@
     .header-main {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 4px;
+      gap: 10px;
+      margin-bottom: 2px;
     }
     
     .status-info {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     .logo {
       font-size: 32px;
@@ -87,21 +87,21 @@
       filter: var(--logo-filter);
     }
 
-    /* 新的 logo 图片样式 - 放大尺寸 */
+    /* 新的 logo 图片样式 - 适中尺寸 */
     .logo-img {
-      width: 65px;
-      height: 65px;
+      width: 58px;
+      height: 58px;
       object-fit: contain;
       filter: var(--logo-filter);
     }
     .state-label {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--text-secondary);
       text-shadow: 0 0 6px var(--accent-color);
     }
     .subtitle {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-secondary);
       opacity: 0.8;
     }
@@ -136,6 +136,28 @@
       background: linear-gradient(135deg, #ff6464, #ff4444);
       color: var(--text-primary);
       transform: translateY(-1px);
+    }
+    
+    .settings-btn {
+      background: rgba(255,255,255,0.1) !important;
+      color: var(--text-secondary) !important;
+      border: 1px solid rgba(255,255,255,0.2) !important;
+      border-radius: 6px !important;
+      padding: 4px 8px !important;
+      font-size: 11px !important;
+      cursor: pointer !important;
+      position: fixed !important;
+      top: 8px !important;
+      right: 8px !important;
+      z-index: 999 !important;
+      opacity: 0.6 !important;
+      transition: opacity 0.3s ease !important;
+    }
+    
+    .settings-btn:hover {
+      opacity: 1 !important;
+      background: rgba(255,255,255,0.2) !important;
+      border-color: rgba(255,255,255,0.4) !important;
     }
     
     .theme-demo-btn {
@@ -575,7 +597,7 @@
       <button class="theme-demo-btn" onclick="window.location.href='theme-demo.html'">主题演示</button>
       <button class="test-btn" onclick="cycleState()">切换状态</button>
       <button class="reset-btn" onclick="resetTestData()">重置数据</button>
-      <button class="settings-btn" onclick="console.log('设置按钮被点击'); openSettings();" style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 8px; padding: 8px 12px; font-size: 12px; cursor: pointer; margin-left: 8px; position: relative; z-index: 999;">⚙️ 设置</button>
+      <button class="settings-btn" onclick="console.log('设置按钮被点击'); openSettings();">⚙️</button>
     </div>
     <div class="content">
       <div id="card" class="card">
@@ -850,20 +872,20 @@
               <div class="section-title">邀请链接</div>
               <div class="section-content">
                 <!-- 专属邀请码区域 -->
-                <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(46, 91, 186, 0.05)); border: 1px solid rgba(74, 144, 226, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);">
-                  <div style="font-size: 12px; color: #4A90E2; margin-bottom: 8px; text-align: center; font-weight: 500;">🎯 我的专属邀请码</div>
+                <div style="margin-bottom: 12px; padding: 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; box-shadow: 0 2px 8px var(--accent-shadow);">
+                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">💎 我的专属邀请码</div>
                   <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="flex: 1; font-weight: bold; color: #4A90E2; font-size: 16px; text-align: center; padding: 10px; background: linear-gradient(135deg, rgba(74, 144, 226, 0.15), rgba(46, 91, 186, 0.1)); border-radius: 8px; border: 1px solid rgba(74, 144, 226, 0.4); box-shadow: inset 0 1px 3px rgba(74, 144, 226, 0.2);" id="myInviteCode">ABC123</div>
-                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: linear-gradient(135deg, #4A90E2, #2E5BBA); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(74, 144, 226, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(74, 144, 226, 0.3)'">复制码</button>
+                    <div style="flex: 1; font-weight: bold; color: var(--accent-color); font-size: 16px; text-align: center; padding: 10px; background: var(--input-bg); border-radius: 8px; border: 1px solid var(--border-color); box-shadow: inset 0 1px 3px var(--accent-shadow);" id="myInviteCode">ABC123</div>
+                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制码</button>
                   </div>
                 </div>
                 
                 <!-- 邀请链接区域 -->
-                <div style="padding: 12px; background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(46, 91, 186, 0.05)); border: 1px solid rgba(74, 144, 226, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);">
-                  <div style="font-size: 12px; color: #4A90E2; margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 邀请链接</div>
+                <div style="padding: 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; box-shadow: 0 2px 8px var(--accent-shadow);">
+                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 邀请链接</div>
                   <div class="invite-link-container" style="display: flex; gap: 8px;">
-                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 10px; border: 1px solid rgba(74, 144, 226, 0.4); border-radius: 8px; background: linear-gradient(135deg, rgba(74, 144, 226, 0.15), rgba(46, 91, 186, 0.1)); font-size: 11px; color: #2E5BBA; box-shadow: inset 0 1px 3px rgba(74, 144, 226, 0.2);">
-                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: linear-gradient(135deg, #4A90E2, #2E5BBA); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(74, 144, 226, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(74, 144, 226, 0.3)'">复制链接</button>
+                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--input-bg); font-size: 11px; color: var(--accent-color); box-shadow: inset 0 1px 3px var(--accent-shadow);">
+                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制链接</button>
                   </div>
                 </div>
               </div>
@@ -953,19 +975,19 @@
               <div class="section-content">
                 <!-- 专属邀请码区域 -->
                 <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(46, 91, 186, 0.05)); border: 1px solid rgba(74, 144, 226, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);">
-                  <div style="font-size: 12px; color: #4A90E2; margin-bottom: 8px; text-align: center; font-weight: 500;">🎯 我的专属邀请码</div>
+                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">💎 我的专属邀请码</div>
                   <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="flex: 1; font-weight: bold; color: #4A90E2; font-size: 16px; text-align: center; padding: 10px; background: linear-gradient(135deg, rgba(74, 144, 226, 0.15), rgba(46, 91, 186, 0.1)); border-radius: 8px; border: 1px solid rgba(74, 144, 226, 0.4); box-shadow: inset 0 1px 3px rgba(74, 144, 226, 0.2);" id="myInviteCode">ABC123</div>
-                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: linear-gradient(135deg, #4A90E2, #2E5BBA); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(74, 144, 226, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(74, 144, 226, 0.3)'">复制码</button>
+                    <div style="flex: 1; font-weight: bold; color: var(--accent-color); font-size: 16px; text-align: center; padding: 10px; background: var(--input-bg); border-radius: 8px; border: 1px solid var(--border-color); box-shadow: inset 0 1px 3px var(--accent-shadow);" id="myInviteCode">ABC123</div>
+                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制码</button>
                   </div>
                 </div>
                 
                 <!-- 邀请链接区域 -->
                 <div style="padding: 12px; background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(46, 91, 186, 0.05)); border: 1px solid rgba(74, 144, 226, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);">
-                  <div style="font-size: 12px; color: #4A90E2; margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 邀请链接</div>
+                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 邀请链接</div>
                   <div class="invite-link-container" style="display: flex; gap: 8px;">
-                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 10px; border: 1px solid rgba(74, 144, 226, 0.4); border-radius: 8px; background: linear-gradient(135deg, rgba(74, 144, 226, 0.15), rgba(46, 91, 186, 0.1)); font-size: 11px; color: #2E5BBA; box-shadow: inset 0 1px 3px rgba(74, 144, 226, 0.2);">
-                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: linear-gradient(135deg, #4A90E2, #2E5BBA); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(74, 144, 226, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(74, 144, 226, 0.3)'">复制链接</button>
+                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--input-bg); font-size: 11px; color: var(--accent-color); box-shadow: inset 0 1px 3px var(--accent-shadow);">
+                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制链接</button>
                   </div>
                 </div>
               </div>

@@ -54,28 +54,27 @@
       padding-top: 20px;
     }
     .back-btn {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: linear-gradient(180deg, rgba(86, 204, 242, 0.2), rgba(47, 128, 237, 0.2));
-      border: 1px solid rgba(86, 204, 242, 0.3);
-      border-radius: 12px;
-      padding: 8px 12px;
-      color: var(--brand);
+      flex: 1;
+      margin: 0 6px;
+      border: none;
+      border-radius: 16px;
+      padding: 14px 0;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 800;
+      color: var(--text);
       cursor: pointer;
-      transition: all 0.2s ease;
-      backdrop-filter: blur(8px);
+      background-image: linear-gradient(180deg, #6c757d, #5a6268);
+      box-shadow: 0 8px 24px rgba(108,117,125,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+      transition: transform 0.08s ease, filter 0.2s ease;
+      white-space: nowrap;
     }
     .back-btn:hover {
-      background: linear-gradient(180deg, rgba(86, 204, 242, 0.3), rgba(47, 128, 237, 0.3));
-      transform: translateY(-50%) translateY(-1px);
+      transform: translateY(-2px);
+      filter: brightness(1.1);
     }
     .back-btn:active {
-      transform: translateY(-50%) translateY(0);
-      filter: brightness(0.9);
+      transform: translateY(0);
+      filter: brightness(0.95);
     }
     .header h1 {
       font-size: 24px;
@@ -182,7 +181,6 @@
   <script src="js/smart-back.js"></script>
   <div class="container">
     <div class="header">
-      <button class="back-btn" onclick="goBack()">← 返回</button>
       <img src="logo_gold7.png" alt="Logo" class="logo-small" />
       <h1>答题任务</h1>
     </div>
@@ -193,8 +191,9 @@
         <div class="status" id="status"></div>
       </div>
     </div>
-    <div class="bottom" style="display: none;">
-      <button onclick="selectAnswer()" id="submitBtn">提交答案</button>
+    <div class="bottom">
+      <button class="back-btn" onclick="goBack()">← 返回</button>
+      <button onclick="selectAnswer()" id="submitBtn" style="display: none;">提交答案</button>
     </div>
   </div>
   <script>
