@@ -79,6 +79,22 @@
   --logo-filter: drop-shadow(0 0 6px rgba(32, 201, 151, 0.4));
 }
 
+/* 主题5：赛博朋克 */
+[data-theme="cyberpunk"] {
+  --bg-primary: linear-gradient(135deg, #0a0a0a 0%, #1a0d1a 25%, #0d1a1a 50%, #1a1a0d 75%, #0a0a0a 100%);
+  --bg-secondary: rgba(26, 13, 26, 0.95);
+  --bg-card: linear-gradient(145deg, rgba(26, 26, 13, 0.9), rgba(13, 26, 26, 0.8));
+  --text-primary: #00ff41;
+  --text-secondary: #ff0080;
+  --text-accent: #00d4ff;
+  --btn-gradient: linear-gradient(45deg, #ff0080, #00ff41, #00d4ff, #ff0080);
+  --btn-shadow: 0 8px 32px rgba(255, 0, 128, 0.5);
+  --btn-glow: 0 0 25px rgba(0, 255, 65, 0.6), 0 0 50px rgba(255, 0, 128, 0.4), 0 0 75px rgba(0, 212, 255, 0.3);
+  --border-color: rgba(0, 255, 65, 0.5);
+  --accent-color: #00ff41;
+  --logo-filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.8)) drop-shadow(0 0 30px rgba(255, 0, 128, 0.6));
+}
+
 /* 彩虹主题动画效果 */
 [data-theme="rainbow"] .btn {
   animation: rainbow-pulse 3s ease-in-out infinite;
@@ -90,6 +106,52 @@
   }
   50% {
     box-shadow: var(--btn-shadow), 0 0 30px rgba(72, 219, 251, 0.8), 0 0 60px rgba(255, 159, 243, 0.6);
+  }
+}
+
+/* 赛博朋克主题动画效果 */
+[data-theme="cyberpunk"] .btn {
+  animation: cyberpunk-glow 2s ease-in-out infinite alternate;
+}
+
+[data-theme="cyberpunk"] .logo-img {
+  animation: cyberpunk-logo 3s ease-in-out infinite;
+}
+
+[data-theme="cyberpunk"] .state-label {
+  animation: cyberpunk-text 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes cyberpunk-glow {
+  0% {
+    box-shadow: var(--btn-shadow), var(--btn-glow);
+    filter: brightness(1);
+  }
+  100% {
+    box-shadow: var(--btn-shadow), 0 0 35px rgba(0, 255, 65, 0.8), 0 0 70px rgba(255, 0, 128, 0.6), 0 0 105px rgba(0, 212, 255, 0.4);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes cyberpunk-logo {
+  0%, 100% {
+    filter: var(--logo-filter);
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(0, 255, 65, 1)) drop-shadow(0 0 40px rgba(255, 0, 128, 0.8)) drop-shadow(0 0 60px rgba(0, 212, 255, 0.6));
+    transform: scale(1.05);
+  }
+}
+
+@keyframes cyberpunk-text {
+  0% {
+    text-shadow: 0 0 6px var(--accent-color);
+    color: var(--text-secondary);
+  }
+  100% {
+    text-shadow: 0 0 12px var(--accent-color), 0 0 24px rgba(255, 0, 128, 0.6);
+    color: var(--accent-color);
   }
 }
 

@@ -34,6 +34,7 @@
         "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
+      font-size: 16px;
       overflow: hidden;
     }
 
@@ -46,7 +47,7 @@
 
     /* 顶部区域 - 固定高度 */
     .header {
-      flex: 0 0 80px;
+      flex: 0 0 90px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -55,6 +56,19 @@
       padding-top: 8px;
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border-color);
+    }
+    
+    .header-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+    
+    .status-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .logo {
       font-size: 32px;
@@ -66,23 +80,21 @@
       filter: var(--logo-filter);
     }
 
-    /* 新的 logo 图片样式 - 压缩尺寸 */
+    /* 新的 logo 图片样式 - 放大尺寸 */
     .logo-img {
-      width: 50px;
-      height: 50px;
+      width: 65px;
+      height: 65px;
       object-fit: contain;
       filter: var(--logo-filter);
     }
     .state-label {
-      margin-top: 4px;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--text-secondary);
       text-shadow: 0 0 6px var(--accent-color);
     }
     .subtitle {
-      margin-top: 2px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
       opacity: 0.8;
     }
@@ -390,10 +402,14 @@
   
   <div id="app" class="app">
     <div class="header">
-      <!-- 替换为图标 logo -->
-      <img src="logo_gold7.png" alt="Logo" class="logo-img" />
-      <div id="stateLabel" class="state-label">状态1</div>
-      <div id="subtitle" class="subtitle">欢迎加入裂金7日</div>
+      <div class="header-main">
+        <!-- 放大的logo -->
+        <img src="logo_gold7.png" alt="Logo" class="logo-img" />
+        <div class="status-info">
+          <div id="stateLabel" class="state-label">状态1</div>
+          <div id="subtitle" class="subtitle">欢迎加入裂金7日</div>
+        </div>
+      </div>
       <button class="theme-demo-btn" onclick="window.location.href='theme-demo.html'">主题演示</button>
       <button class="test-btn" onclick="cycleState()">切换状态</button>
       <button class="reset-btn" onclick="resetTestData()">重置数据</button>
@@ -1165,6 +1181,10 @@
         localStorage.setItem('teamSize', randomTeamSize.toString());
         localStorage.setItem('userBalance', newBalance.toString());
         
+        // 切换到赛博朋克主题
+        document.documentElement.setAttribute('data-theme', 'cyberpunk');
+        localStorage.setItem('selectedTheme', 'cyberpunk');
+        
         // 重置到状态1
         currentState = 1;
         
@@ -1172,7 +1192,7 @@
         renderState();
         
         // 显示重置成功信息
-        showDialog('数据重置成功', `团队人数：${randomTeamSize}人\n余额：${newBalance} USDT\n所有任务已重置`);
+        showDialog('数据重置成功', `团队人数：${randomTeamSize}人\n余额：${newBalance} USDT\n所有任务已重置\n已切换至赛博朋克风格`);
       }
     }
 
