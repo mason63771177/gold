@@ -2281,6 +2281,10 @@
     // 退出登录功能
     // 确认退出登录
     function confirmLogout() {
+      // 先关闭设置界面
+      closeSettings();
+      
+      // 然后显示确认退出对话框
       showDialog('确认退出', '退出登录将清除所有本地数据，确定要继续吗？', [
         {
           text: '取消',
