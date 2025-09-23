@@ -2263,13 +2263,8 @@
       localStorage.removeItem('userStatus');
       localStorage.removeItem('inviteCode');
       
-      // 显示退出成功提示
-      showDialog('退出成功', '已成功退出登录，即将跳转到登录页面');
-      
-      // 延迟跳转
-      setTimeout(() => {
-        window.location.href = 'login.html';
-      }, 1500);
+      // 直接跳转到登录页面
+      window.location.href = 'login.html';
     }
     
     // 显示帮助信息
