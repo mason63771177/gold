@@ -467,6 +467,7 @@
       <button class="theme-demo-btn" onclick="window.location.href='theme-demo.html'">主题演示</button>
       <button class="test-btn" onclick="cycleState()">切换状态</button>
       <button class="reset-btn" onclick="resetTestData()">重置数据</button>
+      <button class="logout-btn" onclick="logout()" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52); color: white; border: none; border-radius: 8px; padding: 8px 12px; font-size: 12px; cursor: pointer; margin-left: 8px;">退出</button>
     </div>
     <div class="content">
       <div id="card" class="card">
@@ -580,6 +581,10 @@
               <div class="section-title">邀请链接</div>
               <div class="section-content">
                 <div style="margin-bottom: 8px;">有效期剩余 <span id="inviteLeft">168h</span></div>
+                <div style="margin-bottom: 8px;">
+                  <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">我的专属邀请码</div>
+                  <div style="font-weight: bold; color: var(--accent-color); font-size: 14px; padding: 4px 8px; background: var(--bg-secondary); border-radius: 4px; display: inline-block;" id="myInviteCode">ABC123</div>
+                </div>
                 <div class="invite-link-container">
                   <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9; font-size: 12px;">
                   <button onclick="copyInviteLink()" style="margin-left: 8px; padding: 8px 12px; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">复制</button>
@@ -670,6 +675,10 @@
               <div class="section-title">邀请链接</div>
               <div class="section-content">
                 <div style="margin-bottom: 8px;">有效期剩余 <span id="inviteLeft">168h</span></div>
+                <div style="margin-bottom: 8px;">
+                  <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">我的专属邀请码</div>
+                  <div style="font-weight: bold; color: var(--accent-color); font-size: 14px; padding: 4px 8px; background: var(--bg-secondary); border-radius: 4px; display: inline-block;" id="myInviteCode">ABC123</div>
+                </div>
                 <div class="invite-link-container">
                   <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9; font-size: 12px;">
                   <button onclick="copyInviteLink()" style="margin-left: 8px; padding: 8px 12px; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">复制</button>
@@ -834,9 +843,38 @@
       localStorage.setItem('appState', JSON.stringify(state));
     }
 
+    // 生成用户专属邀请码
+    function generateUserInviteCode() {
+      const userEmail = localStorage.getItem('userEmail');
+      if (userEmail) {
+        // 使用邮箱前缀 + 随机6位字符生成邀请码
+        const emailPrefix = userEmail.split('@')[0].substring(0, 6).toUpperCase();
+        const randomSuffix = Math.random().toString(36).substring(2, 8).toUpperCase();
+        return emailPrefix + randomSuffix;
+      }
+      // 如果没有邮箱，生成随机邀请码
+      return 'USER' + Math.random().toString(36).substring(2, 8).toUpperCase();
+    }
+
     function init() {
+      // 检查用户是否已登录
+      const userEmail = localStorage.getItem('userEmail');
+      if (!userEmail) {
+        // 未登录，跳转到登录页面
+        window.location.href = 'login.html';
+        return;
+      }
+      
       // 从 localStorage 加载历史状态
       loadState();
+      
+      // 生成或获取用户邀请码
+      let userInviteCode = localStorage.getItem('userInviteCode');
+      if (!userInviteCode) {
+        userInviteCode = generateUserInviteCode();
+        localStorage.setItem('userInviteCode', userInviteCode);
+      }
+      
       renderState();
     }
 
@@ -953,12 +991,19 @@
         inviteEl.innerText = inviteRemainingHrs.toFixed(1) + 'h';
       }
       
-      // 更新邀请链接内容
+      // 更新邀请码和邀请链接内容
+      const userInviteCode = localStorage.getItem('userInviteCode') || 'ABC123';
+      
+      // 更新专属邀请码显示
+      const inviteCodeEl = document.getElementById('myInviteCode');
+      if (inviteCodeEl) {
+        inviteCodeEl.textContent = userInviteCode;
+      }
+      
+      // 更新邀请链接
       const inviteLinkEl = document.getElementById('inviteLink');
       if (inviteLinkEl) {
-        // 生成动态邀请链接
-        const userCode = 'ABC123'; // 这里可以根据用户ID生成
-        inviteLinkEl.value = `https://gold7.com/invite?code=${userCode}`;
+        inviteLinkEl.value = `https://gold7.com/login.html?invite=${userInviteCode}`;
       }
     }
 
@@ -1484,6 +1529,18 @@
           modal.style.display = 'none';
           renderState();
         });
+      }
+    }
+
+    // 退出登录功能
+    function logout() {
+      if (confirm('确定要退出登录吗？')) {
+        // 清除用户登录信息
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userPassword');
+        
+        // 跳转到登录页面
+        window.location.href = 'login.html';
       }
     }
 

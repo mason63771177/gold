@@ -204,12 +204,18 @@
     // 解析邀请代码 from querystring
     (function() {
       const params = new URLSearchParams(location.search);
-      const code = params.get('code');
-      if(code) {
+      const inviteCode = params.get('invite') || params.get('code'); // 支持两种参数格式
+      if(inviteCode) {
         // 如果有邀请码，自动切换到注册页面
         switchTab('register');
-        document.getElementById('inviteCode').value = code;
+        document.getElementById('inviteCode').value = inviteCode;
         document.getElementById('inviteCode').readOnly = true;
+        
+        // 显示邀请信息
+        const inviteInfo = document.createElement('div');
+        inviteInfo.style.cssText = 'background: rgba(86, 204, 242, 0.1); border: 1px solid var(--brand); border-radius: 8px; padding: 12px; margin-bottom: 16px; font-size: 14px; color: var(--brand);';
+        inviteInfo.innerHTML = `🎉 您通过邀请码 <strong>${inviteCode}</strong> 进入注册`;
+        document.querySelector('#registerForm .card').insertBefore(inviteInfo, document.querySelector('#registerForm .card').firstChild);
       }
     })();
     
@@ -235,7 +241,7 @@
       
       if(storedEmail === email && storedPassword === password) {
         alert('登录成功！');
-        window.location.href = 'ui_design.html';
+        window.location.href = 'index.html';
       } else {
         alert('邮箱或密码错误，请检查后重试');
       }
@@ -270,12 +276,24 @@
       // 保存到 localStorage (模拟注册)
       localStorage.setItem('userEmail', email);
       localStorage.setItem('userPassword', password);
-      localStorage.setItem('inviteCode', invite);
+      localStorage.setItem('myInviterCode', invite); // 保存邀请我的人的邀请码
       // 设置状态1 (新手未入金)
       localStorage.setItem('userStatus', '1');
       
+      // 建立邀请关系 - 将自己添加到邀请人的团队中
+      const inviteRelations = JSON.parse(localStorage.getItem('inviteRelations') || '{}');
+      if (!inviteRelations[invite]) {
+        inviteRelations[invite] = [];
+      }
+      inviteRelations[invite].push({
+        email: email,
+        joinTime: new Date().toISOString(),
+        status: 'registered'
+      });
+      localStorage.setItem('inviteRelations', JSON.stringify(inviteRelations));
+      
       alert('注册成功！即将跳转首页');
-      window.location.href = 'ui_design.html';
+      window.location.href = 'index.html';
     });
     
     // 回车键登录/注册
