@@ -678,17 +678,19 @@
           </div>
         </div>
 
-        <!-- 退出登录 -->
-        <div class="settings-section">
-          <div class="settings-item">
-            <button class="settings-btn logout-btn" onclick="logout()" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52); color: white;">🚪 退出登录</button>
+        <!-- 危险操作区域 -->
+        <div class="settings-section danger-section" style="margin-top: 30px; padding: 20px; background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.3); border-radius: 12px;">
+          <h3 style="color: #ff6b6b; margin-bottom: 16px;">⚠️ 危险操作</h3>
+          <div class="settings-item" style="flex-direction: column; align-items: stretch;">
+            <p style="margin: 0 0 12px 0; font-size: 13px; color: var(--text-secondary); text-align: center;">退出登录将清除所有本地数据</p>
+            <button class="settings-btn logout-btn" onclick="logout()" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52); color: white; width: 100%; padding: 12px; font-size: 16px; box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);">🚪 退出登录</button>
           </div>
         </div>
 
         <!-- 返回按钮 -->
-        <div class="settings-section" style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+        <div class="settings-section" style="margin-top: 30px; border-top: 2px solid var(--border-color); padding-top: 20px;">
           <div class="settings-item">
-            <button class="settings-btn back-btn" onclick="closeSettings()" style="background: linear-gradient(135deg, #6c757d, #5a6268); color: white; width: 100%; padding: 12px; font-size: 16px;">← 返回</button>
+            <button class="settings-btn back-btn" onclick="closeSettings()" style="background: linear-gradient(135deg, #4a90e2, #357abd); color: white; width: 100%; padding: 14px; font-size: 16px; box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);">← 返回主页</button>
           </div>
         </div>
       </div>
