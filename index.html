@@ -478,14 +478,75 @@
     .settings-panel {
       padding: 0;
     }
+    
+    /* 设置标题 */
+    .settings-header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border-color);
+    }
+    .settings-header h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+    
+    /* 个人资料卡片 */
+    .profile-card {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 8px 24px rgba(47, 128, 237, 0.2);
+    }
+    .profile-avatar {
+      flex-shrink: 0;
+    }
+    .avatar-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      backdrop-filter: blur(10px);
+    }
+    .profile-info {
+      flex: 1;
+      color: white;
+    }
+    .profile-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .profile-code {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    .profile-level {
+      flex-shrink: 0;
+    }
+    .level-badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+    }
+    
+    /* 设置区域 */
     .settings-section {
       margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .settings-section:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
     }
     .settings-section h3 {
       margin: 0 0 12px 0;
@@ -493,40 +554,239 @@
       color: var(--text-primary);
       font-weight: 600;
     }
-    .settings-item {
+    
+    /* 设置卡片 */
+    .settings-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+    
+    /* 设置项 */
+    .setting-item {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 8px 0;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color 0.2s ease;
+    }
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+    .setting-item.clickable {
+      cursor: pointer;
+    }
+    .setting-item.clickable:hover {
+      background: rgba(47, 128, 237, 0.05);
+    }
+    .setting-info {
+      flex: 1;
+    }
+    .setting-title {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    .setting-desc {
+      display: block;
+      font-size: 13px;
       color: var(--text-secondary);
     }
-    .settings-btn {
-      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    .arrow {
+      font-size: 18px;
+      color: var(--text-secondary);
+      font-weight: bold;
+    }
+    
+    /* 主题按钮 */
+    .theme-btn {
+      background: var(--brand);
       color: white;
       border: none;
       border-radius: 8px;
       padding: 8px 16px;
       font-size: 14px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(47, 128, 237, 0.3);
     }
-    .settings-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(47, 128, 237, 0.4);
+    .theme-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(47, 128, 237, 0.3);
     }
-    .settings-btn:active {
-      transform: translateY(0);
+    .theme-preview {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
     }
-    .settings-select {
-      background: var(--bg-card);
+    
+    /* 现代化选择框 */
+    .modern-select {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      min-width: 140px;
+      transition: all 0.2s ease;
+    }
+    .modern-select:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.1);
+    }
+    
+    /* Toggle开关 */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.3s;
+      border-radius: 28px;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    input:checked + .toggle-slider {
+      background-color: var(--brand);
+    }
+    input:checked + .toggle-slider:before {
+      transform: translateX(22px);
+    }
+    
+    /* 操作按钮 */
+    .action-btn {
+      background: var(--bg-secondary);
       color: var(--text-primary);
       border: 1px solid var(--border-color);
       border-radius: 6px;
       padding: 6px 12px;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
+    .action-btn:hover {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
+    
+    /* 危险操作区域 */
+    .danger-zone {
+      margin: 32px 0 24px 0;
+    }
+    .danger-zone h3 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      color: #ff6b6b;
+      font-weight: 600;
+    }
+    .danger-card {
+      background: rgba(255, 107, 107, 0.05);
+      border: 1px solid rgba(255, 107, 107, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .danger-warning {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: rgba(255, 107, 107, 0.1);
+      border-radius: 8px;
+    }
+    .warning-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .warning-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .danger-btn {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+    .danger-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+    }
+    .danger-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* 设置页脚 */
+    .settings-footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 2px solid var(--border-color);
+      text-align: center;
+    }
+    .back-btn {
+      background: linear-gradient(135deg, #4a90e2, #357abd);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+      min-width: 200px;
+    }
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+    }
+    .back-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* 兼容旧样式 */
     .settings-select:focus {
       outline: none;
       border-color: var(--brand);
@@ -630,68 +890,141 @@
 
   <!-- 设置面板 -->
   <div id="settingsModal" class="modal" style="display:none;">
-    <div class="modal-content" style="max-width: 400px; width: 90%;">
+    <div class="modal-content" style="max-width: 420px; width: 95%; max-height: 90vh; overflow-y: auto;">
       <button class="modal-close" onclick="closeSettings()">✕</button>
       <div class="settings-panel">
-        <h2 style="margin: 0 0 20px 0; color: var(--text-primary); text-align: center;">⚙️ 设置</h2>
+        <!-- 标题 -->
+        <div class="settings-header">
+          <h2>⚙️ 设置中心</h2>
+        </div>
         
-        <!-- 个人信息 -->
-        <div class="settings-section">
-          <h3>👤 个人信息</h3>
-          <div class="settings-item">
-            <span>邮箱：</span>
-            <span id="userEmailDisplay">未登录</span>
+        <!-- 个人资料卡片 -->
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <div class="avatar-circle">👤</div>
           </div>
-          <div class="settings-item">
-            <span>邀请码：</span>
-            <span id="userInviteCodeDisplay">-</span>
+          <div class="profile-info">
+            <div class="profile-name" id="userEmailDisplay">未登录</div>
+            <div class="profile-code">邀请码：<span id="userInviteCodeDisplay">-</span></div>
           </div>
-        </div>
-
-        <!-- 主题风格 -->
-        <div class="settings-section">
-          <h3>🎨 主题风格</h3>
-          <div class="settings-item">
-            <button class="settings-btn" onclick="window.location.href='theme-demo.html'">选择主题风格</button>
+          <div class="profile-level">
+            <span class="level-badge">LV.1</span>
           </div>
         </div>
 
-        <!-- 语言选择 -->
+        <!-- 外观设置 -->
         <div class="settings-section">
-          <h3>🌐 语言设置</h3>
-          <div class="settings-item">
-            <select id="languageSelect" class="settings-select">
-              <option value="zh-CN">简体中文</option>
-              <option value="zh-TW">繁體中文</option>
-              <option value="en-US">English</option>
-              <option value="ja-JP">日本語</option>
-              <option value="ko-KR">한국어</option>
-            </select>
+          <h3>🎨 外观设置</h3>
+          <div class="settings-card">
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">主题风格</span>
+                <span class="setting-desc">选择您喜欢的界面主题</span>
+              </div>
+              <button class="theme-btn" onclick="window.location.href='theme-demo.html'">
+                <span class="theme-preview"></span>
+                切换
+              </button>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">🌐 语言</span>
+                <span class="setting-desc">选择界面显示语言</span>
+              </div>
+              <select id="languageSelect" class="modern-select">
+                <option value="zh-CN">🇨🇳 简体中文</option>
+                <option value="zh-TW">🇹🇼 繁體中文</option>
+                <option value="en-US">🇺🇸 English</option>
+                <option value="ja-JP">🇯🇵 日本語</option>
+                <option value="ko-KR">🇰🇷 한국어</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <!-- 其他设置 -->
+        <!-- 功能设置 -->
         <div class="settings-section">
-          <h3>🔧 其他设置</h3>
-          <div class="settings-item">
-            <button class="settings-btn" onclick="resetTestData()">重置测试数据</button>
+          <h3>🔧 功能设置</h3>
+          <div class="settings-card">
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">🔔 消息通知</span>
+                <span class="setting-desc">接收重要消息提醒</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">🔊 音效</span>
+                <span class="setting-desc">开启操作音效反馈</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">📊 数据管理</span>
+                <span class="setting-desc">重置本地测试数据</span>
+              </div>
+              <button class="action-btn" onclick="resetTestData()">重置</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 帮助与支持 -->
+        <div class="settings-section">
+          <h3>❓ 帮助与支持</h3>
+          <div class="settings-card">
+            <div class="setting-item clickable" onclick="showHelp()">
+              <div class="setting-info">
+                <span class="setting-title">📖 使用帮助</span>
+                <span class="setting-desc">查看功能说明和操作指南</span>
+              </div>
+              <span class="arrow">›</span>
+            </div>
+            <div class="setting-item clickable" onclick="showFeedback()">
+              <div class="setting-info">
+                <span class="setting-title">💬 意见反馈</span>
+                <span class="setting-desc">提交建议和问题反馈</span>
+              </div>
+              <span class="arrow">›</span>
+            </div>
+            <div class="setting-item clickable" onclick="showAbout()">
+              <div class="setting-info">
+                <span class="setting-title">ℹ️ 关于我们</span>
+                <span class="setting-desc">版本信息和开发团队</span>
+              </div>
+              <span class="arrow">›</span>
+            </div>
           </div>
         </div>
 
         <!-- 危险操作区域 -->
-        <div class="settings-section danger-section" style="margin-top: 30px; padding: 20px; background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.3); border-radius: 12px;">
-          <h3 style="color: #ff6b6b; margin-bottom: 16px;">⚠️ 危险操作</h3>
-          <div class="settings-item" style="flex-direction: column; align-items: stretch;">
-            <p style="margin: 0 0 12px 0; font-size: 13px; color: var(--text-secondary); text-align: center;">退出登录将清除所有本地数据</p>
-            <button class="settings-btn logout-btn" onclick="logout()" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52); color: white; width: 100%; padding: 12px; font-size: 16px; box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);">🚪 退出登录</button>
+        <div class="danger-zone">
+          <h3>⚠️ 危险操作</h3>
+          <div class="danger-card">
+            <div class="danger-warning">
+              <span class="warning-icon">🚨</span>
+              <div class="warning-text">
+                <strong>注意：</strong>退出登录将清除所有本地数据，请确保重要信息已备份
+              </div>
+            </div>
+            <button class="danger-btn" onclick="confirmLogout()">
+              🚪 退出登录
+            </button>
           </div>
         </div>
 
         <!-- 返回按钮 -->
-        <div class="settings-section" style="margin-top: 30px; border-top: 2px solid var(--border-color); padding-top: 20px;">
-          <div class="settings-item">
-            <button class="settings-btn back-btn" onclick="closeSettings()" style="background: linear-gradient(135deg, #4a90e2, #357abd); color: white; width: 100%; padding: 14px; font-size: 16px; box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);">← 返回主页</button>
-          </div>
+        <div class="settings-footer">
+          <button class="back-btn" onclick="closeSettings()">
+            ← 返回主页
+          </button>
         </div>
       </div>
     </div>
@@ -714,7 +1047,10 @@
       console.log('设置面板已显示');
       
       // 更新个人信息显示
-      updateSettingsInfo();
+      updateProfileDisplay();
+      
+      // 加载保存的设置
+      loadSettingsFromStorage();
     }
 
     function closeSettings() {
@@ -1900,45 +2236,113 @@
     }
 
     // 退出登录功能
+    // 确认退出登录
+    function confirmLogout() {
+      showDialog('确认退出', '退出登录将清除所有本地数据，确定要继续吗？', [
+        {
+          text: '取消',
+          style: 'secondary',
+          action: () => {}
+        },
+        {
+          text: '确认退出',
+          style: 'danger',
+          action: logout
+        }
+      ]);
+    }
+    
     function logout() {
-      if (confirm('确定要退出登录吗？\n\n退出后将清除所有本地数据，需要重新登录。')) {
-        // 清除所有用户相关的本地存储数据
-        localStorage.removeItem('userEmail');
-        localStorage.removeItem('userPassword');
-        localStorage.removeItem('appState');
-        localStorage.removeItem('userInviteCode');
-        localStorage.removeItem('teamData');
-        localStorage.removeItem('language');
-        localStorage.removeItem('userStatus');
-        localStorage.removeItem('inviteCode');
-        
-        // 也可以选择清除所有localStorage（更彻底）
-        // localStorage.clear();
-        
-        // 显示退出成功提示
-        alert('已成功退出登录！');
-        
-        // 跳转到登录页面
+      // 清除所有用户相关的本地存储数据
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('userPassword');
+      localStorage.removeItem('appState');
+      localStorage.removeItem('userInviteCode');
+      localStorage.removeItem('teamData');
+      localStorage.removeItem('language');
+      localStorage.removeItem('userStatus');
+      localStorage.removeItem('inviteCode');
+      
+      // 显示退出成功提示
+      showDialog('退出成功', '已成功退出登录，即将跳转到登录页面');
+      
+      // 延迟跳转
+      setTimeout(() => {
         window.location.href = 'login.html';
-      }
+      }, 1500);
+    }
+    
+    // 显示帮助信息
+    function showHelp() {
+      showDialog('使用帮助', '这里是功能说明和操作指南\n\n• 激活账号：完成邮箱验证\n• 邀请好友：分享专属邀请码\n• 完成任务：获得奖励积分\n• 抢红包：在指定时间参与\n• 查看排行：了解当前排名');
+    }
+    
+    // 显示意见反馈
+    function showFeedback() {
+      showDialog('意见反馈', '感谢您的宝贵意见！\n\n请通过以下方式联系我们：\n• 邮箱：feedback@example.com\n• 微信：goldapp_support\n• QQ群：123456789');
+    }
+    
+    // 显示关于信息
+    function showAbout() {
+      showDialog('关于我们', '裂金7日 H5应用\n\n版本：v1.0.0\n更新时间：2024年1月\n\n开发团队致力于为用户提供\n最佳的互动体验');
     }
 
     // 设置面板功能已移至script开头
 
+    // 主题切换功能
+    function selectTheme(theme) {
+      // 移除所有主题按钮的active状态
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // 激活选中的主题按钮
+      event.target.classList.add('active');
+      
+      // 保存主题设置
+      localStorage.setItem('theme', theme);
+      
+      // 应用主题（这里可以添加实际的主题切换逻辑）
+      showDialog('主题设置', `已切换到${theme}主题`);
+    }
+    
+    // Toggle开关功能
+    function toggleSwitch(switchId) {
+      const toggle = document.getElementById(switchId);
+      const isChecked = toggle.checked;
+      
+      // 保存设置
+      localStorage.setItem(switchId, isChecked);
+      
+      // 根据不同的开关执行不同的逻辑
+      switch(switchId) {
+        case 'soundToggle':
+          showDialog('声音设置', isChecked ? '已开启声音效果' : '已关闭声音效果');
+          break;
+        case 'vibrationToggle':
+          showDialog('震动设置', isChecked ? '已开启震动反馈' : '已关闭震动反馈');
+          break;
+        case 'notificationToggle':
+          showDialog('通知设置', isChecked ? '已开启推送通知' : '已关闭推送通知');
+          break;
+      }
+    }
+    
+    // 语言切换功能
+    function changeLanguage() {
+      const select = document.getElementById('languageSelect');
+      const selectedLanguage = select.value;
+      const selectedText = select.options[select.selectedIndex].text;
+      
+      localStorage.setItem('language', selectedLanguage);
+      showDialog('语言设置', `已切换到：${selectedText}`);
+    }
+
     // 初始化设置面板事件监听器
     function initSettingsEvents() {
-      // 语言切换功能
-      const languageSelect = document.getElementById('languageSelect');
-      if (languageSelect) {
-        languageSelect.addEventListener('change', function() {
-          const selectedLanguage = this.value;
-          localStorage.setItem('language', selectedLanguage);
-          
-          // 这里可以添加实际的语言切换逻辑
-          showDialog('语言设置', `已切换到：${this.options[this.selectedIndex].text}`);
-        });
-      }
-
+      // 加载保存的设置
+      loadSettingsFromStorage();
+      
       // 点击模态框背景关闭设置面板
       document.addEventListener('click', function(e) {
         const settingsModal = document.getElementById('settingsModal');
@@ -1946,6 +2350,44 @@
           closeSettings();
         }
       });
+    }
+    
+    // 从本地存储加载设置
+    function loadSettingsFromStorage() {
+      // 加载主题设置
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      const themeBtn = document.querySelector(`[onclick="selectTheme('${savedTheme}')"]`);
+      if (themeBtn) {
+        themeBtn.classList.add('active');
+      }
+      
+      // 加载语言设置
+      const savedLanguage = localStorage.getItem('language') || 'zh';
+      const languageSelect = document.getElementById('languageSelect');
+      if (languageSelect) {
+        languageSelect.value = savedLanguage;
+      }
+      
+      // 加载开关设置
+      const switches = ['soundToggle', 'vibrationToggle', 'notificationToggle'];
+      switches.forEach(switchId => {
+        const toggle = document.getElementById(switchId);
+        if (toggle) {
+          const savedState = localStorage.getItem(switchId);
+          toggle.checked = savedState === 'true';
+        }
+      });
+    }
+    
+    // 更新个人资料显示
+    function updateProfileDisplay() {
+      const userEmail = localStorage.getItem('userEmail') || 'user@example.com';
+      const profileEmail = document.getElementById('profileEmail');
+      if (profileEmail) {
+        profileEmail.textContent = userEmail;
+      }
+      
+      // 可以添加更多个人信息的更新逻辑
     }
 
     window.onload = init;
