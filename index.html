@@ -1894,10 +1894,22 @@
 
     // 退出登录功能
     function logout() {
-      if (confirm('确定要退出登录吗？')) {
-        // 清除用户登录信息
+      if (confirm('确定要退出登录吗？\n\n退出后将清除所有本地数据，需要重新登录。')) {
+        // 清除所有用户相关的本地存储数据
         localStorage.removeItem('userEmail');
         localStorage.removeItem('userPassword');
+        localStorage.removeItem('appState');
+        localStorage.removeItem('userInviteCode');
+        localStorage.removeItem('teamData');
+        localStorage.removeItem('language');
+        localStorage.removeItem('userStatus');
+        localStorage.removeItem('inviteCode');
+        
+        // 也可以选择清除所有localStorage（更彻底）
+        // localStorage.clear();
+        
+        // 显示退出成功提示
+        alert('已成功退出登录！');
         
         // 跳转到登录页面
         window.location.href = 'login.html';
