@@ -403,6 +403,24 @@
     .bottom button[data-key="inviteNew"] {
       box-shadow: 0 12px 32px rgba(86, 204, 242, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
+    /* 主要突出按钮样式 - 激活账号专用 */
+    .bottom button.primary-highlight {
+      font-size: 18px !important;
+      font-weight: bold !important;
+      padding: 16px 24px !important;
+      background: linear-gradient(135deg, #00ff88, #00cc66, #009944) !important;
+      box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4), 0 4px 12px rgba(0, 204, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+      border: 2px solid rgba(0, 255, 136, 0.6) !important;
+      animation: pulse-glow 2s ease-in-out infinite !important;
+    }
+    .bottom button.primary-highlight:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 12px 32px rgba(0, 255, 136, 0.5), 0 6px 16px rgba(0, 204, 102, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4), 0 4px 12px rgba(0, 204, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+      50% { box-shadow: 0 12px 32px rgba(0, 255, 136, 0.6), 0 6px 16px rgba(0, 204, 102, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+    }
     /* 统一样式的对话框提示 */
     .dialog {
       position: fixed;
@@ -1106,8 +1124,7 @@
           `;
         },
         buttons: [
-          { text: '激活账号', color: 'green', action: () => activateAccount() },
-          { text: '排行榜', color: 'purple', action: () => showRanking() }
+          { text: '激活账号', color: 'green primary-highlight', action: () => activateAccount() }
         ]
       },
       2: {
