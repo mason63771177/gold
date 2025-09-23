@@ -1113,19 +1113,25 @@
         subtitle: '新手未入金',
         card: function() {
           return `
-            <div class="section">
-              <div class="section-title">激活账号</div>
-              <div class="section-content">立即入金100 USDT，开启168小时挑战。</div>
+            <div class="section reactivate-highlight">
+              <div class="section-title">🚀 激活账号</div>
+              <div class="section-content">
+                <p style="margin-bottom: 12px;">立即入金100 USDT，开启168小时挑战，开始赚取收益！</p>
+                <button class="reactivate-btn" onclick="activateAccount()">立即激活 100 USDT</button>
+              </div>
             </div>
             <div class="section">
-              <div class="section-title">查看收益榜单</div>
-              <div class="section-content">查看前10名收益排行榜，了解潜在收益。</div>
+              <div class="section-title">💰 收益预览</div>
+              <div class="section-content">
+                <p style="margin-bottom: 8px;">查看前10名收益排行榜，了解潜在收益机会。</p>
+                <div style="text-align: center; margin-top: 12px;">
+                  <button onclick="showRanking()" style="background: var(--btn-gradient); border: none; border-radius: 20px; padding: 10px 20px; color: white; cursor: pointer; font-size: 14px; font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0, 0, 0, 0.2)'">查看排行榜</button>
+                </div>
+              </div>
             </div>
           `;
         },
-        buttons: [
-          { text: '激活账号', color: 'green primary-highlight', action: () => activateAccount() }
-        ]
+        buttons: []
       },
       2: {
         name: '状态2',
