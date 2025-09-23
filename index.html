@@ -1113,19 +1113,19 @@
         subtitle: '新手未入金',
         card: function() {
           return `
-            <div class="section">
+            <div class="section reactivate-highlight">
               <div class="section-title">激活账号</div>
-              <div class="section-content">立即入金100 USDT，开启168小时挑战。</div>
+              <div class="section-content" style="margin-bottom: 16px;">立即入金100 USDT，开启168小时挑战期，解锁任务系统和收益机会。</div>
+              <button class="reactivate-btn" onclick="activateAccount()">立即激活 100 USDT</button>
             </div>
             <div class="section">
-              <div class="section-title">查看收益榜单</div>
-              <div class="section-content">查看前10名收益排行榜，了解潜在收益。</div>
+              <div class="section-title">收益预览</div>
+              <div class="section-content">查看前10名收益排行榜，了解潜在收益机会。</div>
+              <button onclick="showRanking()" style="margin-top: 12px; padding: 8px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; width: 100%; font-weight: 500; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">查看排行榜</button>
             </div>
           `;
         },
-        buttons: [
-          { text: '激活账号', color: 'green primary-highlight', action: () => activateAccount() }
-        ]
+        buttons: []
       },
       2: {
         name: '状态2',
