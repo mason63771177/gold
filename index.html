@@ -997,6 +997,9 @@
       }
       
       renderState();
+      
+      // 初始化设置面板事件监听器
+      initSettingsEvents();
     }
 
     function renderState() {
@@ -1689,8 +1692,9 @@
       document.getElementById('languageSelect').value = currentLanguage;
     }
 
-    // 语言切换功能
-    document.addEventListener('DOMContentLoaded', function() {
+    // 初始化设置面板事件监听器
+    function initSettingsEvents() {
+      // 语言切换功能
       const languageSelect = document.getElementById('languageSelect');
       if (languageSelect) {
         languageSelect.addEventListener('change', function() {
@@ -1701,15 +1705,15 @@
           showDialog('语言设置', `已切换到：${this.options[this.selectedIndex].text}`);
         });
       }
-    });
 
-    // 点击模态框背景关闭设置面板
-    document.addEventListener('click', function(e) {
-      const settingsModal = document.getElementById('settingsModal');
-      if (e.target === settingsModal) {
-        closeSettings();
-      }
-    });
+      // 点击模态框背景关闭设置面板
+      document.addEventListener('click', function(e) {
+        const settingsModal = document.getElementById('settingsModal');
+        if (e.target === settingsModal) {
+          closeSettings();
+        }
+      });
+    }
 
     window.onload = init;
   </script>
