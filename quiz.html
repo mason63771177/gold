@@ -222,6 +222,11 @@
         document.getElementById('options').innerHTML = '';
         document.getElementById('status').innerText = `你答对了 ${correctCount} 题，提现手续费已降至 ${(parseFloat(localStorage.getItem('withdrawFeeRate'))*100).toFixed(1)}%。`;
         document.getElementById('submitBtn').style.display = 'none';
+        
+        // 显示返回按钮
+        const bottomDiv = document.querySelector('.bottom');
+        bottomDiv.style.display = 'flex';
+        bottomDiv.innerHTML = '<button onclick="goBack()" style="background: linear-gradient(180deg, #4CAF50, #45a049);">返回</button>';
         return;
       }
       const q = QUESTIONS[currentIndex];
@@ -245,6 +250,11 @@
       });
       document.getElementById('status').innerText = `已答对 ${correctCount} 题，手续费 ${(parseFloat(localStorage.getItem('withdrawFeeRate'))*100).toFixed(1)}%`;
     }
+    function goBack() {
+      // 返回到上一级页面（主页面）
+      window.location.href = 'index.html';
+    }
+    
     function selectAnswer() {
       if (correctCount >= 20) {
         // 答题完成，返回主页并更新状态

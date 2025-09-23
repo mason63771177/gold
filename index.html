@@ -655,6 +655,13 @@
             <button class="settings-btn logout-btn" onclick="logout()" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52); color: white;">🚪 退出登录</button>
           </div>
         </div>
+
+        <!-- 返回按钮 -->
+        <div class="settings-section" style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+          <div class="settings-item">
+            <button class="settings-btn back-btn" onclick="closeSettings()" style="background: linear-gradient(135deg, #6c757d, #5a6268); color: white; width: 100%; padding: 12px; font-size: 16px;">← 返回</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -740,6 +747,26 @@
           }
           const completedTasks = newTasks.filter(t => t.done).length;
           
+          // 可接的任务区域：显示所有未完成的新手任务
+          const availableTasks = newTasks.filter(t => !t.done);
+          let availableTasksSection = '';
+          if (availableTasks.length > 0) {
+            availableTasksSection = `
+            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; cursor: pointer;" onclick="window.location.href='tasks.html'">
+              <div class="section-title" style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 6px;">📋 可接的任务</div>
+              <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">点击查看详细任务列表</div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                ${availableTasks.map(task => `
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span style="font-size: 12px; color: var(--text);">${task.title}</span>
+                    <span style="font-size: 10px; padding: 2px 6px; background: linear-gradient(45deg, #00eaff, #0088ff); color: #031e2e; border-radius: 8px;">待完成</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            `;
+          }
+          
           // 答题任务区域：完成至少一个新手任务后出现，且未完成全部20题
           const firstDone = newTasks[0] && newTasks[0].done;
           const quizCorrect = parseInt(localStorage.getItem('quizCorrect')) || 0;
@@ -761,6 +788,31 @@
             `;
           }
           
+          // 大神任务区域：完成所有新手任务且完成答题任务后显示
+          const allNewTasksCompleted = newTasks.every(task => task.done);
+          const quizCompleted = quizCorrect >= 20;
+          let masterTasksSection = '';
+          if (allNewTasksCompleted && quizCompleted) {
+            // 获取大神任务完成状态
+            const godTasksCompleted = parseInt(localStorage.getItem('godTasksCompleted')) || 0;
+            const currentMasterTask = godTasks.find(task => !task.done);
+            
+            masterTasksSection = `
+            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; box-shadow: var(--btn-glow); cursor: pointer;" onclick="window.location.href='tasks.html?tab=master'">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 2px;">🏆 大神任务</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">${currentMasterTask ? currentMasterTask.title : '所有大神任务已完成'}</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 12px; color: var(--text-secondary);">进度</div>
+                  <div style="font-weight: bold; color: var(--accent-color);">${godTasksCompleted}/6</div>
+                </div>
+              </div>
+            </div>
+            `;
+          }
+          
           return `
             <div class="section" style="display: flex; gap: 12px; margin-bottom: 8px;">
               <div style="flex: 1; background: var(--bg-secondary); border-radius: 12px; padding: 8px; text-align: center;">
@@ -772,7 +824,9 @@
                 <div style="font-weight: bold; font-size: 12px;">${currentTask ? currentTask.title : '已完成'}</div>
               </div>
             </div>
+            ${availableTasksSection}
             ${quizSection}
+            ${masterTasksSection}
             <div class="section" style="margin-top: 8px; padding: 10px;">
               <div class="section-title" style="margin-bottom: 6px;">战绩卡</div>
               <div class="section-content" style="font-size: 13px; line-height: 1.4;">已完成 <span id="taskProgress">${completedTasks}</span>/3 新手任务<br/>团队人数：<span id="teamCount">${teamMembers}</span>人<br/>总收益：<span id="totalEarnings">${totalEarnings.toFixed(2)}</span> USDT</div>
@@ -910,7 +964,6 @@
           `;
         },
         buttons: [
-          { text: '大神', color: 'green', key: 'god', action: () => openGodTasks() },
           { text: '团队', color: 'orange', key: 'team', action: () => showTeam() },
           { text: '钱包', color: 'purple', key: 'wallet', action: () => showWallet() },
           { text: '排行', color: 'blue', key: 'rank', action: () => showRanking() },
@@ -1135,7 +1188,7 @@
       const baseButtons = STATES[state].buttons;
       const result = [...baseButtons];
       
-      // 答题任务已移到内容区域，不再在底部按钮显示
+
       
       return result;
     }
@@ -1329,6 +1382,9 @@
         showDialog('任务系统', '请按顺序完成任务。');
       }
     }
+    
+
+    
     // 复制邀请链接
     function copyInvite() {
       const link = 'https://example.com/invite?code=ABC123';

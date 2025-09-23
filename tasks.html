@@ -293,7 +293,32 @@
         godContainer.appendChild(ul);
       }
     }
-    window.addEventListener('DOMContentLoaded', renderTaskLists);
+    window.addEventListener('DOMContentLoaded', () => {
+      renderTaskLists();
+      
+      // 检查URL参数，如果有tab=master，则滚动到大神任务区域
+      const urlParams = new URLSearchParams(window.location.search);
+      const tab = urlParams.get('tab');
+      
+      if (tab === 'master') {
+        // 滚动到大神任务区域
+        setTimeout(() => {
+          const godTaskSection = document.getElementById('godTaskSection');
+          if (godTaskSection) {
+            godTaskSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // 高亮大神任务区域
+            godTaskSection.style.border = '2px solid var(--accent-color)';
+            godTaskSection.style.borderRadius = '12px';
+            godTaskSection.style.padding = '16px';
+            setTimeout(() => {
+              godTaskSection.style.border = '';
+              godTaskSection.style.borderRadius = '';
+              godTaskSection.style.padding = '';
+            }, 3000);
+          }
+        }, 100);
+      }
+    });
   </script>
   <script src="js/global-background.js"></script>
 </body>
