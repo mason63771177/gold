@@ -24,7 +24,7 @@
     // 创建logo图片
     const logoImage = document.createElement('img');
     logoImage.className = 'global-logo-image';
-    logoImage.src = 'images/logo.png'; // 假设logo文件路径
+    logoImage.src = 'logo_gold7.png'; // 正确的logo文件路径
     logoImage.alt = 'Background Logo';
     logoImage.loading = 'lazy';
     
@@ -92,25 +92,25 @@
     
     const theme = document.documentElement.getAttribute('data-theme') || 'cyberpunk';
     
-    // 根据不同主题调整透明度
+    // 根据不同主题调整透明度（提高可见度）
     switch(theme) {
       case 'cyberpunk':
-        logo.style.opacity = '0.06';
+        logo.style.opacity = '0.12';
         break;
       case 'rainbow':
-        logo.style.opacity = '0.04';
+        logo.style.opacity = '0.08';
         break;
       case 'business':
-        logo.style.opacity = '0.05';
+        logo.style.opacity = '0.10';
         break;
       case 'dark-tech':
-        logo.style.opacity = '0.07';
+        logo.style.opacity = '0.14';
         break;
       case 'fresh':
-        logo.style.opacity = '0.05';
+        logo.style.opacity = '0.10';
         break;
       default:
-        logo.style.opacity = '0.05';
+        logo.style.opacity = '0.10';
     }
   }
   
