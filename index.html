@@ -99,6 +99,26 @@
       padding: 3px 6px;
     }
     
+    .reset-btn {
+      position: absolute;
+      top: 8px;
+      right: 90px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: #ff6464;
+      font-size: 12px;
+      padding: 3px 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .reset-btn:hover {
+      background: linear-gradient(135deg, #ff6464, #ff4444);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+    
     .theme-demo-btn {
       position: absolute;
       top: 8px;
@@ -376,6 +396,7 @@
       <div id="subtitle" class="subtitle">欢迎加入裂金7日</div>
       <button class="theme-demo-btn" onclick="window.location.href='theme-demo.html'">主题演示</button>
       <button class="test-btn" onclick="cycleState()">切换状态</button>
+      <button class="reset-btn" onclick="resetTestData()">重置数据</button>
     </div>
     <div class="content">
       <div id="card" class="card">
@@ -1115,6 +1136,44 @@
     }
     function closeDialog() {
       document.getElementById('dialog').style.display = 'none';
+    }
+
+    /**
+     * 重置测试数据
+     */
+    function resetTestData() {
+      if(confirm('确定要重置所有测试数据吗？此操作不可撤销。')) {
+        // 重置所有任务状态
+        newTasks.forEach(task => task.done = false);
+        quizCompleted = false;
+        godTasksCompleted = false;
+        
+        // 生成随机团队人数 (1-50人)
+        const randomTeamSize = Math.floor(Math.random() * 50) + 1;
+        
+        // 设置余额为团队人数*10 USDT
+        const newBalance = randomTeamSize * 10;
+        
+        // 清空localStorage中的相关数据
+        localStorage.removeItem('userTasks');
+        localStorage.removeItem('quizCompleted');
+        localStorage.removeItem('godTasksCompleted');
+        localStorage.removeItem('userBalance');
+        localStorage.removeItem('teamSize');
+        
+        // 设置新的数据到localStorage
+        localStorage.setItem('teamSize', randomTeamSize.toString());
+        localStorage.setItem('userBalance', newBalance.toString());
+        
+        // 重置到状态1
+        currentState = 1;
+        
+        // 重新渲染页面
+        renderState();
+        
+        // 显示重置成功信息
+        showDialog('数据重置成功', `团队人数：${randomTeamSize}人\n余额：${newBalance} USDT\n所有任务已重置`);
+      }
     }
 
     /**
