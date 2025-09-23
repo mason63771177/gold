@@ -48,47 +48,7 @@
       z-index: 1;
     }
 
-    /* 高级进度条动画效果 */
-    @keyframes shimmer {
-      0% {
-        background-position: -200% 0;
-      }
-      100% {
-        background-position: 200% 0;
-      }
-    }
 
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.8;
-        transform: scale(1.02);
-      }
-    }
-
-    .progress-shimmer {
-      background: linear-gradient(
-        90deg,
-        #FFD700 0%,
-        #FFA500 25%,
-        #FFD700 50%,
-        #FF8C00 75%,
-        #FFD700 100%
-      ) !important;
-      background-size: 200% 100% !important;
-      animation: shimmer 2s infinite linear !important;
-    }
-
-    .progress-pulse {
-      animation: pulse 1.5s infinite ease-in-out !important;
-    }
-
-    .progress-urgent {
-      box-shadow: 0 0 10px rgba(255, 69, 0, 0.6), inset 0 1px 3px rgba(0,0,0,0.2) !important;
-    }
 
     /* 顶部区域 - 固定高度 */
     .header {
@@ -889,23 +849,18 @@
             <div class="section invite-highlight">
               <div class="section-title">邀请链接</div>
               <div class="section-content">
-                <!-- 倒计时和进度条 -->
-                <div style="margin-bottom: 12px; padding: 10px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1);">
-                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                    <span style="font-size: 12px; color: #B8860B; font-weight: 500;">⏰ 有效期剩余</span>
-                    <span id="inviteLeft" style="font-weight: bold; color: #DAA520; font-size: 14px;">168h</span>
-                  </div>
-                  <div style="width: 100%; height: 8px; background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(255, 193, 7, 0.1)); border-radius: 4px; overflow: hidden; border: 1px solid rgba(255, 215, 0, 0.3); box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
-                    <div id="inviteProgress" style="height: 100%; background: linear-gradient(90deg, #FFD700, #FFA500, #FF8C00); border-radius: 3px; width: 100%; transition: all 0.5s ease; position: relative; overflow: hidden;"></div>
-                  </div>
+                <!-- 倒计时显示 -->
+                <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1); text-align: center;">
+                  <div style="font-size: 12px; color: #B8860B; margin-bottom: 6px; font-weight: 500;">⏰ 有效期剩余</div>
+                  <div id="inviteLeft" style="font-weight: bold; color: #DAA520; font-size: 18px;">168h</div>
                 </div>
                 
                 <!-- 专属邀请码区域 -->
                 <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1);">
                   <div style="font-size: 12px; color: #B8860B; margin-bottom: 8px; text-align: center; font-weight: 500;">🎯 我的专属邀请码</div>
                   <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="flex: 1; font-weight: bold; color: #DAA520; font-size: 16px; text-align: center; padding: 8px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 193, 7, 0.1)); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.4); box-shadow: inset 0 1px 3px rgba(255, 215, 0, 0.2);" id="myInviteCode">ABC123</div>
-                    <button onclick="copyInviteCode()" style="padding: 8px 14px; background: linear-gradient(135deg, #FFD700, #FFA500); color: #8B4513; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 215, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(255, 215, 0, 0.3)'">复制码</button>
+                    <div style="flex: 1; font-weight: bold; color: #DAA520; font-size: 16px; text-align: center; padding: 10px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 193, 7, 0.1)); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.4); box-shadow: inset 0 1px 3px rgba(255, 215, 0, 0.2);" id="myInviteCode">ABC123</div>
+                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: linear-gradient(135deg, #FFD700, #FFA500); color: #8B4513; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 215, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(255, 215, 0, 0.3)'">复制码</button>
                   </div>
                 </div>
                 
@@ -913,8 +868,8 @@
                 <div style="padding: 12px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1);">
                   <div style="font-size: 12px; color: #B8860B; margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 邀请链接</div>
                   <div class="invite-link-container" style="display: flex; gap: 8px;">
-                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 8px; border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 8px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 193, 7, 0.1)); font-size: 11px; color: #8B4513; box-shadow: inset 0 1px 3px rgba(255, 215, 0, 0.2);">
-                    <button onclick="copyInviteLink()" style="padding: 8px 14px; background: linear-gradient(135deg, #FFD700, #FFA500); color: #8B4513; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 215, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(255, 215, 0, 0.3)'">复制链接</button>
+                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 10px; border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 8px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 193, 7, 0.1)); font-size: 11px; color: #8B4513; box-shadow: inset 0 1px 3px rgba(255, 215, 0, 0.2);">
+                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: linear-gradient(135deg, #FFD700, #FFA500); color: #8B4513; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 215, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(255, 215, 0, 0.3)'">复制链接</button>
                   </div>
                 </div>
               </div>
@@ -1002,23 +957,18 @@
             <div class="section invite-highlight">
               <div class="section-title">邀请链接</div>
               <div class="section-content">
-                <!-- 倒计时和进度条 -->
-                <div style="margin-bottom: 12px; padding: 10px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1);">
-                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                    <span style="font-size: 12px; color: #B8860B; font-weight: 500;">⏰ 有效期剩余</span>
-                    <span id="inviteLeft" style="font-weight: bold; color: #DAA520; font-size: 14px;">168h</span>
-                  </div>
-                  <div style="width: 100%; height: 8px; background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(255, 193, 7, 0.1)); border-radius: 4px; overflow: hidden; border: 1px solid rgba(255, 215, 0, 0.3); box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
-                    <div id="inviteProgress" style="height: 100%; background: linear-gradient(90deg, #FFD700, #FFA500, #FF8C00); border-radius: 3px; width: 100%; transition: all 0.5s ease; position: relative; overflow: hidden;"></div>
-                  </div>
+                <!-- 倒计时显示 -->
+                <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1); text-align: center;">
+                  <div style="font-size: 12px; color: #B8860B; margin-bottom: 6px; font-weight: 500;">⏰ 有效期剩余</div>
+                  <div id="inviteLeft" style="font-weight: bold; color: #DAA520; font-size: 18px;">168h</div>
                 </div>
                 
                 <!-- 专属邀请码区域 -->
                 <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1);">
                   <div style="font-size: 12px; color: #B8860B; margin-bottom: 8px; text-align: center; font-weight: 500;">🎯 我的专属邀请码</div>
                   <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="flex: 1; font-weight: bold; color: #DAA520; font-size: 16px; text-align: center; padding: 8px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 193, 7, 0.1)); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.4); box-shadow: inset 0 1px 3px rgba(255, 215, 0, 0.2);" id="myInviteCode">ABC123</div>
-                    <button onclick="copyInviteCode()" style="padding: 8px 14px; background: linear-gradient(135deg, #FFD700, #FFA500); color: #8B4513; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 215, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(255, 215, 0, 0.3)'">复制码</button>
+                    <div style="flex: 1; font-weight: bold; color: #DAA520; font-size: 16px; text-align: center; padding: 10px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 193, 7, 0.1)); border-radius: 8px; border: 1px solid rgba(255, 215, 0, 0.4); box-shadow: inset 0 1px 3px rgba(255, 215, 0, 0.2);" id="myInviteCode">ABC123</div>
+                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: linear-gradient(135deg, #FFD700, #FFA500); color: #8B4513; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 215, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(255, 215, 0, 0.3)'">复制码</button>
                   </div>
                 </div>
                 
@@ -1026,10 +976,9 @@
                 <div style="padding: 12px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1);">
                   <div style="font-size: 12px; color: #B8860B; margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 邀请链接</div>
                   <div class="invite-link-container" style="display: flex; gap: 8px;">
-                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 8px; border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 8px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 193, 7, 0.1)); font-size: 11px; color: #8B4513; box-shadow: inset 0 1px 3px rgba(255, 215, 0, 0.2);">
-                    <button onclick="copyInviteLink()" style="padding: 8px 14px; background: linear-gradient(135deg, #FFD700, #FFA500); color: #8B4513; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 215, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(255, 215, 0, 0.3)'">复制链接</button>
+                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 10px; border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 8px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 193, 7, 0.1)); font-size: 11px; color: #8B4513; box-shadow: inset 0 1px 3px rgba(255, 215, 0, 0.2);">
+                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: linear-gradient(135deg, #FFD700, #FFA500); color: #8B4513; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(255, 215, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(255, 215, 0, 0.3)'">复制链接</button>
                   </div>
-                </div>
                 </div>
               </div>
             </div>
@@ -1336,36 +1285,11 @@
       
       // 更新剩余时间显示
       const inviteEl = document.getElementById('inviteLeft');
-      const progressEl = document.getElementById('inviteProgress');
       
       if (inviteEl) {
         const inviteRemainingMs = Math.max(0, (inviteStart + total) - now);
         const inviteRemainingHrs = inviteRemainingMs / 3600000;
         inviteEl.innerText = inviteRemainingHrs.toFixed(1) + 'h';
-        
-        // 更新进度条
-        if (progressEl) {
-          const progressPercent = Math.max(0, (inviteRemainingMs / total) * 100);
-          progressEl.style.width = progressPercent + '%';
-          
-          // 清除之前的动画类
-          progressEl.classList.remove('progress-shimmer', 'progress-pulse', 'progress-urgent');
-          
-          // 根据剩余时间改变进度条颜色和动画效果
-          if (progressPercent > 50) {
-            // 充足时间：金色渐变 + 光泽动画
-            progressEl.style.background = 'linear-gradient(90deg, #FFD700, #FFA500, #FF8C00)';
-            progressEl.classList.add('progress-shimmer');
-          } else if (progressPercent > 20) {
-            // 中等时间：橙色渐变 + 光泽动画
-            progressEl.style.background = 'linear-gradient(90deg, #FF9800, #F57C00, #FFD700)';
-            progressEl.classList.add('progress-shimmer');
-          } else {
-            // 紧急时间：红色渐变 + 脉动动画 + 紧急效果
-            progressEl.style.background = 'linear-gradient(90deg, #F44336, #D32F2F, #FF5722)';
-            progressEl.classList.add('progress-pulse', 'progress-urgent');
-          }
-        }
       }
       
       // 更新邀请码和邀请链接内容
