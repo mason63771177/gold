@@ -156,6 +156,7 @@
         </div>
         <button class="btn" id="loginBtn">立即登录</button>
         <div class="note">登录即可继续您的7天挑战之旅</div>
+        <div class="note" style="color: #ff6b35; font-weight: bold; margin-top: 10px;">🧪 测试模式：直接点击登录按钮即可快速体验</div>
       </div>
       
       <!-- 注册表单 -->
@@ -224,8 +225,24 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value;
       
+      // 测试模式：如果没有填写邮箱密码，使用默认测试账号
+      if(!email && !password) {
+        // 使用测试账号自动登录
+        const testEmail = 'test@gold7.com';
+        const testPassword = 'test123';
+        
+        // 保存测试账号信息
+        localStorage.setItem('userEmail', testEmail);
+        localStorage.setItem('userPassword', testPassword);
+        localStorage.setItem('userStatus', '2'); // 设置为状态2，可以体验更多功能
+        
+        alert('测试模式登录成功！');
+        window.location.href = 'index.html';
+        return;
+      }
+      
       if(!email || !password) {
-        alert('请输入邮箱和密码');
+        alert('请输入邮箱和密码，或直接点击登录使用测试模式');
         return;
       }
       
