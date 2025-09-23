@@ -16,6 +16,7 @@
   </script>
   
   <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="css/global-background.css">
   <script src="theme-switcher.js"></script>
   <style>
     :root {
@@ -177,9 +178,10 @@
   </style>
 </head>
 <body>
+  <script src="js/smart-back.js"></script>
   <div class="container">
     <div class="header">
-      <button class="back-btn" onclick="history.back()">返回</button>
+      <button class="back-btn" onclick="smartBack()">返回</button>
       <img src="logo_gold7.png" alt="Logo" class="logo-small" />
       <h1>任务列表</h1>
     </div>
@@ -196,7 +198,7 @@
       </div>
     </div>
     <div class="bottom">
-      <button onclick="history.back()">返回</button>
+      <button onclick="smartBack()">返回</button>
     </div>
   </div>
   <script>
@@ -303,5 +305,6 @@
     }
     window.addEventListener('DOMContentLoaded', renderTaskLists);
   </script>
+  <script src="js/global-background.js"></script>
 </body>
 </html>

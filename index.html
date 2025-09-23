@@ -24,6 +24,7 @@
   </script>
   
   <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="css/global-background.css">
   <script src="theme-switcher.js"></script>
   <style>
     html, body {
@@ -1181,19 +1182,178 @@
         localStorage.setItem('teamSize', randomTeamSize.toString());
         localStorage.setItem('userBalance', newBalance.toString());
         
-        // 切换到赛博朋克主题
-        document.documentElement.setAttribute('data-theme', 'cyberpunk');
-        localStorage.setItem('selectedTheme', 'cyberpunk');
-        
         // 重置到状态1
         currentState = 1;
         
         // 重新渲染页面
         renderState();
         
-        // 显示重置成功信息
-        showDialog('数据重置成功', `团队人数：${randomTeamSize}人\n余额：${newBalance} USDT\n所有任务已重置\n已切换至赛博朋克风格`);
+        // 强制显示风格选择弹窗
+        showForceThemeSelection(randomTeamSize, newBalance);
       }
+    }
+
+    /**
+     * 强制风格选择弹窗
+     */
+    function showForceThemeSelection(teamSize, balance) {
+      const themes = {
+        'cyberpunk': { name: '赛博朋克', icon: '🌆', description: '未来科技感' },
+        'rainbow': { name: '彩虹渐变', icon: '🌈', description: '多彩绚烂' },
+        'business': { name: '商务蓝', icon: '💼', description: '专业稳重' },
+        'dark-tech': { name: '暗黑科技', icon: '⚡', description: '神秘酷炫' },
+        'fresh': { name: '清新绿', icon: '🌿', description: '自然清新' }
+      };
+      
+      const themeOptionsHTML = Object.entries(themes).map(([key, theme]) => `
+        <div class="force-theme-option" data-theme="${key}">
+          <span class="force-theme-icon">${theme.icon}</span>
+          <div class="force-theme-info">
+            <div class="force-theme-name">${theme.name}</div>
+            <div class="force-theme-desc">${theme.description}</div>
+          </div>
+        </div>
+      `).join('');
+      
+      const modalHTML = `
+        <div id="forceThemeModal" class="force-theme-modal">
+          <div class="force-theme-content">
+            <div class="force-theme-header">
+              <h2>🎨 选择您的专属风格</h2>
+              <p>数据重置成功！请选择一个风格主题继续使用</p>
+            </div>
+            <div class="force-theme-options">
+              ${themeOptionsHTML}
+            </div>
+            <div class="force-theme-footer">
+              <p class="force-theme-info-text">团队人数：${teamSize}人 | 余额：${balance} USDT | 所有任务已重置</p>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // 添加样式
+      const styleHTML = `
+        <style>
+        .force-theme-modal {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.8);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 10000;
+          backdrop-filter: blur(10px);
+        }
+        .force-theme-content {
+          background: var(--bg-card);
+          border-radius: 20px;
+          padding: 24px;
+          max-width: 400px;
+          width: 90%;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+          border: 1px solid var(--border-color);
+        }
+        .force-theme-header {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        .force-theme-header h2 {
+          color: var(--text-primary);
+          margin: 0 0 8px 0;
+          font-size: 20px;
+        }
+        .force-theme-header p {
+          color: var(--text-secondary);
+          margin: 0;
+          font-size: 14px;
+        }
+        .force-theme-options {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-bottom: 20px;
+        }
+        .force-theme-option {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 12px;
+          border: 2px solid var(--border-color);
+          border-radius: 12px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background: var(--bg-secondary);
+        }
+        .force-theme-option:hover {
+          border-color: var(--accent-color);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .force-theme-option.selected {
+          border-color: var(--accent-color);
+          background: var(--btn-gradient);
+          color: var(--text-primary);
+        }
+        .force-theme-icon {
+          font-size: 24px;
+          width: 32px;
+          text-align: center;
+        }
+        .force-theme-info {
+          flex: 1;
+        }
+        .force-theme-name {
+          font-weight: 600;
+          font-size: 16px;
+          margin-bottom: 2px;
+        }
+        .force-theme-desc {
+          font-size: 12px;
+          opacity: 0.8;
+        }
+        .force-theme-footer {
+          text-align: center;
+        }
+        .force-theme-info-text {
+          font-size: 12px;
+          color: var(--text-secondary);
+          margin: 0;
+        }
+        </style>
+      `;
+      
+      // 插入样式和模态框
+      document.head.insertAdjacentHTML('beforeend', styleHTML);
+      document.body.insertAdjacentHTML('beforeend', modalHTML);
+      
+      // 绑定事件
+      const modal = document.getElementById('forceThemeModal');
+      const options = document.querySelectorAll('.force-theme-option');
+      
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          const selectedTheme = option.getAttribute('data-theme');
+          
+          // 应用选中的主题
+          if (window.themeSwitcher) {
+            window.themeSwitcher.switchTheme(selectedTheme);
+          } else {
+            document.documentElement.setAttribute('data-theme', selectedTheme === 'cyberpunk' ? '' : selectedTheme);
+            localStorage.setItem('selectedTheme', selectedTheme);
+          }
+          
+          // 关闭模态框
+          modal.remove();
+          
+          // 显示成功信息
+          const themeName = themes[selectedTheme].name;
+          showDialog('风格设置成功', `已切换至${themeName}风格\n团队人数：${teamSize}人\n余额：${balance} USDT\n所有任务已重置`);
+        });
+      });
     }
 
     /**
@@ -1244,5 +1404,6 @@
 
     window.onload = init;
   </script>
+  <script src="js/global-background.js"></script>
 </body>
 </html>

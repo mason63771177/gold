@@ -15,6 +15,7 @@
     gtag('config', 'G-QQ6GQ79K7G');
   </script>
   
+  <link rel="stylesheet" href="css/global-background.css">
   <style>
     :root {
       --bg: #0b0f14;
@@ -50,9 +51,10 @@
   </style>
 </head>
 <body>
+  <script src="js/smart-back.js"></script>
   <div class="container">
     <div class="header">
-      <button class="back-btn" onclick="history.back()">返回</button>
+      <button class="back-btn" onclick="smartBackToParent()">返回</button>
       <img src="logo_gold7.png" alt="Logo" class="logo-small" />
       <h1>成员详情</h1>
     </div>
@@ -66,7 +68,7 @@
       </div>
     </div>
     <div class="bottom">
-      <button onclick="history.back()">返回</button>
+      <button onclick="smartBackToParent()">返回</button>
     </div>
   </div>
   <script>
@@ -83,5 +85,6 @@
     }
     window.addEventListener('DOMContentLoaded', loadMember);
   </script>
+  <script src="js/global-background.js"></script>
 </body>
 </html>

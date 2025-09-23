@@ -16,6 +16,7 @@
   </script>
   
   <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="css/global-background.css">
   <script src="theme-switcher.js"></script>
   <style>
     :root {
@@ -178,9 +179,10 @@
   </style>
 </head>
 <body>
+  <script src="js/smart-back.js"></script>
   <div class="container">
     <div class="header">
-      <button class="back-btn" onclick="history.back()">返回</button>
+      <button class="back-btn" onclick="smartBack()">返回</button>
       <img src="logo_gold7.png" alt="Logo" class="logo-small" />
       <h1>我的钱包</h1>
     </div>
@@ -209,7 +211,7 @@
       </div>
     </div>
     <div class="bottom">
-      <button onclick="history.back()">返回</button>
+      <button onclick="smartBack()">返回</button>
       <button onclick="window.location.href='transaction.html'">明细</button>
       <button onclick="window.location.href='withdraw.html'">提现</button>
     </div>
@@ -400,5 +402,6 @@
         }
       });
     </script>
+    <script src="js/global-background.js"></script>
   </body>
 </html>
