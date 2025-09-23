@@ -1102,6 +1102,8 @@
             state.newTasks.forEach((task, index) => {
               if (newTasks[index]) newTasks[index].done = task.done;
             });
+            // 同步completedNewbieTasks变量，确保与newTasks数组状态一致
+            completedNewbieTasks = newTasks.filter(t => t.done).length;
           }
           if (state.quizTasks) {
             state.quizTasks.forEach((task, index) => {
@@ -1252,7 +1254,9 @@
       const teamCountEl = document.getElementById('teamCount');
       const totalEarningsEl = document.getElementById('totalEarnings');
       
-      if (taskProgressEl) taskProgressEl.innerText = completedNewbieTasks;
+      // 使用newTasks数组的实际完成状态，确保与内容栏显示一致
+      const actualCompletedTasks = newTasks.filter(t => t.done).length;
+      if (taskProgressEl) taskProgressEl.innerText = actualCompletedTasks;
       if (teamCountEl) teamCountEl.innerText = teamMembers;
       if (totalEarningsEl) totalEarningsEl.innerText = totalEarnings.toFixed(2);
     }
@@ -1385,7 +1389,8 @@
         // 模拟任务完成
         setTimeout(() => {
           nextTask.done = true;
-          completedNewbieTasks++;
+          // 同步completedNewbieTasks变量，确保与newTasks数组状态一致
+          completedNewbieTasks = newTasks.filter(t => t.done).length;
           
           // 任务奖励
           walletBalance += nextTask.reward;
