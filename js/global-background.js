@@ -27,19 +27,16 @@
     logoImage.src = 'logo_gold7.png'; // 正确的logo文件路径
     logoImage.alt = 'Background Logo';
     logoImage.loading = 'lazy';
-    console.log('创建logo图片元素，路径:', logoImage.src);
     
     // 图片加载成功后的回调
     logoImage.onload = function() {
-        console.log('Logo图片加载成功');
         adjustLogoForTheme();
         adjustLogoPosition();
     };
     
     // 如果logo图片加载失败，使用SVG作为备用
     logoImage.onerror = function() {
-        console.error('Logo图片加载失败，路径:', logoImage.src);
-        console.warn('使用SVG备用方案');
+        console.warn('Logo图片加载失败，使用SVG备用方案');
       // 创建SVG logo作为备用
       const svgLogo = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svgLogo.setAttribute('viewBox', '0 0 200 200');
