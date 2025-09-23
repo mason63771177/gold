@@ -849,12 +849,6 @@
             <div class="section invite-highlight">
               <div class="section-title">邀请链接</div>
               <div class="section-content">
-                <!-- 倒计时显示 -->
-                <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1); text-align: center;">
-                  <div style="font-size: 12px; color: #B8860B; margin-bottom: 6px; font-weight: 500;">⏰ 有效期剩余</div>
-                  <div id="inviteLeft" style="font-weight: bold; color: #DAA520; font-size: 18px;">168h</div>
-                </div>
-                
                 <!-- 专属邀请码区域 -->
                 <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1);">
                   <div style="font-size: 12px; color: #B8860B; margin-bottom: 8px; text-align: center; font-weight: 500;">🎯 我的专属邀请码</div>
@@ -957,12 +951,6 @@
             <div class="section invite-highlight">
               <div class="section-title">邀请链接</div>
               <div class="section-content">
-                <!-- 倒计时显示 -->
-                <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1); text-align: center;">
-                  <div style="font-size: 12px; color: #B8860B; margin-bottom: 6px; font-weight: 500;">⏰ 有效期剩余</div>
-                  <div id="inviteLeft" style="font-weight: bold; color: #DAA520; font-size: 18px;">168h</div>
-                </div>
-                
                 <!-- 专属邀请码区域 -->
                 <div style="margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 193, 7, 0.05)); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.1);">
                   <div style="font-size: 12px; color: #B8860B; margin-bottom: 8px; text-align: center; font-weight: 500;">🎯 我的专属邀请码</div>
@@ -1280,18 +1268,6 @@
     
     // 更新邀请链接显示
     function updateInviteDisplay() {
-      const total = 168 * 3600 * 1000;
-      const now = Date.now();
-      
-      // 更新剩余时间显示
-      const inviteEl = document.getElementById('inviteLeft');
-      
-      if (inviteEl) {
-        const inviteRemainingMs = Math.max(0, (inviteStart + total) - now);
-        const inviteRemainingHrs = inviteRemainingMs / 3600000;
-        inviteEl.innerText = inviteRemainingHrs.toFixed(1) + 'h';
-      }
-      
       // 更新邀请码和邀请链接内容
       const userInviteCode = localStorage.getItem('userInviteCode') || 'ABC123';
       
@@ -1477,10 +1453,17 @@
       const total = 168 * 3600 * 1000;
       const now = Date.now();
       const inviteRemainingMs = Math.max(0, (inviteStart + total) - now);
-      const hrs = Math.floor(inviteRemainingMs / 3600000);
+      const days = Math.floor(inviteRemainingMs / (24 * 3600000));
+      const hrs = Math.floor((inviteRemainingMs % (24 * 3600000)) / 3600000);
       const mins = Math.floor((inviteRemainingMs % 3600000) / 60000);
-      const secs = Math.floor((inviteRemainingMs % 60000) / 1000);
-      return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      
+      let result = '';
+      if (days > 0) result += `${days}天`;
+      if (hrs > 0) result += `${hrs}小时`;
+      if (mins > 0) result += `${mins}分钟`;
+      if (result === '') result = '不足1分钟';
+      
+      return result;
     }
     
     // 降级复制方案
