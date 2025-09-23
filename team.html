@@ -375,8 +375,9 @@
       teamData.totalMembers = totalMembers;
       teamData.teamEarnings = totalMembers * 10; // 总收益 = 总人数 * 10
       
-      const userId = appState.userId || 'USER' + Date.now().toString().slice(-6);
-      teamData.inviteLink = `https://gold7.app/invite/${userId}`;
+      // 使用与index.html相同的邀请链接生成逻辑
+      const userInviteCode = localStorage.getItem('userInviteCode') || 'ABC123';
+      teamData.inviteLink = `https://gold7.com/login.html?invite=${userInviteCode}`;
       
       updateDisplay();
     }
