@@ -163,6 +163,25 @@
       background: rgba(86, 204, 242, 0.1);
       border-color: var(--brand);
     }
+    .quiz-btn {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 4px 8px;
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    }
+    .quiz-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+    }
     .bottom { position: fixed; bottom: 0; left: 0; right: 0; padding: 14px 16px calc(24px + var(--safe)); display: flex; background: rgba(255,255,255,0.04); backdrop-filter: blur(10px); border-top: 1px solid rgba(255,255,255,0.06); margin: 0 12px 12px; border-radius: 20px 20px 0 0; z-index: 100; }
     .bottom button {
       flex: 1;
@@ -258,7 +277,7 @@
               <span>2.00 USDT</span>
             </div>
             <div class="fee-row">
-              <span>比例手续费 (5%)</span>
+              <span id="feeRateLabel">比例手续费 (5%)</span>
               <span id="feePercent">0.00 USDT</span>
             </div>
             <div class="fee-row">
@@ -286,6 +305,9 @@
       
       document.getElementById('currentBalance').innerText = currentBalance.toFixed(2) + ' USDT';
       
+      // 更新手续费标签和答题按钮
+      updateFeeRateLabel();
+      
       // 监听输入变化
       const amountInput = document.getElementById('withdrawAmount');
       const addressInput = document.getElementById('walletAddress');
@@ -294,6 +316,19 @@
       addressInput.addEventListener('input', validateForm);
       
       updateFeeCalculation();
+    }
+    
+    function updateFeeRateLabel() {
+      const feeRateLabel = document.getElementById('feeRateLabel');
+      const feeRatePercent = (feeRate * 100).toFixed(0);
+      
+      if (feeRate !== 0.01) {
+        // 手续费不是1%，显示答题按钮
+        feeRateLabel.innerHTML = `比例手续费 (${feeRatePercent}%) <a href="quiz.html" class="quiz-btn">答题降费</a>`;
+      } else {
+        // 手续费是1%，不显示答题按钮
+        feeRateLabel.innerHTML = `比例手续费 (${feeRatePercent}%)`;
+      }
     }
     
     function setQuickAmount(amount) {
