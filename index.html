@@ -1240,6 +1240,11 @@
         localStorage.removeItem('userBalance');
         localStorage.removeItem('teamSize');
         
+        // 重置答题相关数据
+        localStorage.removeItem('quizIndex');
+        localStorage.removeItem('quizCorrect');
+        localStorage.setItem('withdrawFeeRate', '0.05'); // 重置手续费为5%
+        
         // 设置新的数据到localStorage
         localStorage.setItem('teamSize', randomTeamSize.toString());
         localStorage.setItem('userBalance', newBalance.toString());

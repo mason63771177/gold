@@ -169,7 +169,7 @@
         <div class="status" id="status"></div>
       </div>
     </div>
-    <div class="bottom">
+    <div class="bottom" style="display: none;">
       <button onclick="selectAnswer()" id="submitBtn">提交答案</button>
     </div>
   </div>
@@ -236,6 +236,10 @@
           document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
           li.classList.add('selected');
           selectedOption = opt;
+          // 直接提交答案，无需确认按钮
+          setTimeout(() => {
+            selectAnswer();
+          }, 300); // 短暂延迟显示选中效果
         });
         ul.appendChild(li);
       });
@@ -253,9 +257,9 @@
       }
       
       const q = QUESTIONS[currentIndex];
+      // 移除选择检查，因为点击选项就直接提交了
       if (!selectedOption) {
-        alert('请选择一个答案');
-        return;
+        return; // 如果没有选择就直接返回，不显示提示
       }
       
       if (selectedOption === q.a) {
