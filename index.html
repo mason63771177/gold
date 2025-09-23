@@ -1245,6 +1245,24 @@
         localStorage.removeItem('quizCorrect');
         localStorage.setItem('withdrawFeeRate', '0.05'); // 重置手续费为5%
         
+        // 清除交易记录和应用状态数据
+        localStorage.removeItem('transactions');
+        localStorage.removeItem('appState');
+        localStorage.removeItem('teamData');
+        localStorage.removeItem('recentRed');
+        
+        // 重置全局变量到初始状态
+        transactions = [];
+        userLevel = 0;
+        completedNewbieTasks = 0;
+        godTasksUnlocked = false;
+        teamMembers = randomTeamSize;
+        totalEarnings = randomTeamSize * 10;
+        withdrawFeeRate = 0.05;
+        walletBalance = randomTeamSize * 10;
+        countdownStart = null;
+        inviteStart = null;
+        
         // 设置新的数据到localStorage
         localStorage.setItem('teamSize', randomTeamSize.toString());
         localStorage.setItem('userBalance', newBalance.toString());
