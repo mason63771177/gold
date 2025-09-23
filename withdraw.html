@@ -205,11 +205,21 @@
       transform: none;
       filter: none;
     }
-    .bottom button.secondary {
-      background-image: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.9);
+    .bottom .back-btn {
+      position: static;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      padding: 12px 24px;
+      color: var(--text);
+      font-size: 16px;
+      cursor: pointer;
+      flex: 1;
+      margin-right: 12px;
+    }
+    .bottom .back-btn:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
     }
   </style>
 </head>
@@ -277,7 +287,7 @@
       </div>
     </div>
     <div class="bottom">
-      <button class="secondary" onclick="history.back()">取消</button>
+      <button class="back-btn" onclick="history.back()">返回</button>
       <button id="confirmBtn" onclick="confirmWithdraw()" disabled>确认提现</button>
     </div>
   </div>
