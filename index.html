@@ -1797,15 +1797,13 @@
           saveState();
           renderState();
           
-          // 先显示任务完成弹窗，用户点击确定后延迟显示解锁答题任务弹窗
-          showDialog('任务完成', `恭喜完成任务：${nextTask.title}！\n奖励：${nextTask.reward} USDT\n当前余额：${walletBalance.toFixed(2)} USDT`, null, 'normal', () => {
-            // 检查是否解锁答题任务，添加800ms延迟给用户视觉缓冲
-            if (completedNewbieTasks >= 1 && !quizCompleted) {
-              setTimeout(() => {
-                showDialog('解锁答题任务', '恭喜！解锁答题任务，完成可降低提现手续费！\n\n当前手续费：' + ((withdrawFeeRate * 100).toFixed(1)) + '%');
-              }, 800);
-            }
-          });
+          // 显示任务完成弹窗
+          showDialog('任务完成', `恭喜完成任务：${nextTask.title}！\n奖励：${nextTask.reward} USDT\n当前余额：${walletBalance.toFixed(2)} USDT`);
+          
+          // 检查是否解锁答题任务，直接加入弹窗队列
+          if (completedNewbieTasks >= 1 && !quizCompleted) {
+            showDialog('解锁答题任务', '恭喜！解锁答题任务，完成可降低提现手续费！\n\n当前手续费：' + ((withdrawFeeRate * 100).toFixed(1)) + '%');
+          }
         }, 1500);
       } else if (completedNewbieTasks >= 3) {
         // 检查答题任务状态
@@ -2002,7 +2000,18 @@
       showDialog('大神任务', '请在卡片中查看大神任务目标。');
     }
     /* 高级对话框 */
+    // 弹窗队列管理
+    let dialogQueue = [];
+    let isDialogShowing = false;
+    
     function showDialog(title, msg, buttons = null, type = 'normal', callback = null) {
+      // 如果当前有弹窗正在显示，将新弹窗加入队列
+      if (isDialogShowing) {
+        dialogQueue.push({ title, msg, buttons, type, callback });
+        return;
+      }
+      
+      isDialogShowing = true;
       const dialog = document.getElementById('dialog');
       const dialogTitle = document.getElementById('dialogTitle');
       const dialogMsg = document.getElementById('dialogMsg');
@@ -2060,8 +2069,18 @@
       setTimeout(() => {
         dialog.style.display = 'none';
         dialog.className = 'dialog'; // 重置类名
+        isDialogShowing = false;
+        
         if (callback) {
           callback();
+        }
+        
+        // 处理队列中的下一个弹窗，添加500ms延迟避免视觉冲突
+        if (dialogQueue.length > 0) {
+          setTimeout(() => {
+            const nextDialog = dialogQueue.shift();
+            showDialog(nextDialog.title, nextDialog.msg, nextDialog.buttons, nextDialog.type, nextDialog.callback);
+          }, 500);
         }
       }, 300);
     }
@@ -2374,16 +2393,19 @@
     
     // 显示帮助信息
     function showHelp() {
+      closeSettings();
       showDialog('使用帮助', '这里是功能说明和操作指南\n\n• 激活账号：完成邮箱验证\n• 邀请好友：分享专属邀请码\n• 完成任务：获得奖励积分\n• 抢红包：在指定时间参与\n• 查看排行：了解当前排名');
     }
     
     // 显示意见反馈
     function showFeedback() {
-      showDialog('意见反馈', '感谢您的宝贵意见！\n\n请通过以下方式联系我们：\n• 邮箱：feedback@example.com\n• 微信：goldapp_support\n• QQ群：123456789');
+      closeSettings();
+      showDialog('意见反馈', '感谢您的宝贵意见！\n\n请通过以下方式联系我们：\n• 邮箱：feedback@example.com');
     }
     
     // 显示关于信息
     function showAbout() {
+      closeSettings();
       showDialog('关于我们', '裂金7日 H5应用\n\n版本：v1.0.0\n更新时间：2024年1月\n\n开发团队致力于为用户提供\n最佳的互动体验');
     }
 
