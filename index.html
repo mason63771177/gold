@@ -421,29 +421,62 @@
       0%, 100% { box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4), 0 4px 12px rgba(0, 204, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4); }
       50% { box-shadow: 0 12px 32px rgba(0, 255, 136, 0.6), 0 6px 16px rgba(0, 204, 102, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
     }
-    /* 统一样式的对话框提示 */
+    /* 高级弹窗样式 */
     .dialog {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(8px);
+    }
+    .dialog.show {
+      opacity: 1;
+      visibility: visible;
     }
     .dialog .dialog-box {
       background: var(--bg-card);
-      border-radius: 16px;
-      padding: 20px 24px;
-      max-width: 90%;
+      border-radius: 20px;
+      padding: 28px 32px;
+      max-width: 85%;
+      min-width: 280px;
       color: var(--text-primary);
-      box-shadow: var(--btn-shadow);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.2);
       border: 1px solid var(--border-color);
+      transform: scale(0.7) translateY(20px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .dialog.show .dialog-box {
+      transform: scale(1) translateY(0);
+    }
+    .dialog .dialog-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s;
+    }
+    .dialog.show .dialog-box::before {
+      left: 100%;
     }
     .dialog .dialog-box h3 {
+      margin: 0 0 16px 0;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
     }
 
     /* 模态框基础样式 */
@@ -810,21 +843,34 @@
       border-color: var(--brand);
       box-shadow: 0 0 0 2px rgba(47, 128, 237, 0.2);
     }
-    .dialog .dialog-box h3 {
-      margin: 0 0 12px;
-      font-size: 18px;
-      color: var(--text-secondary);
-    }
     .dialog .dialog-box p {
-      margin: 0 0 20px;
-      font-size: 14px;
-      line-height: 1.4;
+      margin: 0 0 24px 0;
+      line-height: 1.6;
+      text-align: center;
+      font-size: 16px;
+      white-space: pre-line;
     }
     .dialog .dialog-box button {
-      padding: 8px 16px;
+      background: linear-gradient(135deg, var(--btn-primary), #0066cc);
+      color: white;
       border: none;
-      border-radius: 14px;
-      background: var(--btn-gradient);
+      padding: 14px 28px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 0 6px;
+      box-shadow: 0 4px 16px rgba(0, 102, 204, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .dialog .dialog-box button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 102, 204, 0.4);
+    }
+    .dialog .dialog-box button:active {
+      transform: translateY(0);
       color: var(--text-primary);
       font-weight: 600;
       cursor: pointer;
@@ -845,9 +891,61 @@
     #dialogButtons {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 12px;
+      margin-top: 20px;
     }
+    
+    /* 任务完成弹窗特殊样式 */
+    .dialog.success .dialog-box {
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 255, 136, 0.05) 100%);
+      border: 2px solid rgba(0, 255, 136, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2), 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    .dialog.success .dialog-box h3 {
+      color: #00ff88;
+      text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    }
+    .dialog.success .dialog-box::after {
+      content: '🎉';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 24px;
+      animation: celebrate 0.6s ease-out;
+    }
+    @keyframes celebrate {
+      0% { transform: scale(0) rotate(0deg); opacity: 0; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+      100% { transform: scale(1) rotate(360deg); opacity: 1; }
+    }
+    
+    /* 粒子效果 */
+     .dialog.success .dialog-box::before {
+       background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
+     }
+     
+     /* 成功弹窗的脉冲动画 */
+     .dialog.success .dialog-box {
+       animation: successPulse 2s ease-in-out infinite;
+     }
+     @keyframes successPulse {
+       0%, 100% { 
+         box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2), 0 8px 24px rgba(0, 0, 0, 0.2);
+       }
+       50% { 
+         box-shadow: 0 20px 60px rgba(0, 255, 136, 0.4), 0 8px 24px rgba(0, 255, 136, 0.1);
+       }
+     }
+     
+     /* 成功弹窗按钮特殊效果 */
+     .dialog.success button {
+       background: linear-gradient(135deg, #00ff88, #00cc66);
+       box-shadow: 0 4px 16px rgba(0, 255, 136, 0.4);
+     }
+     .dialog.success button:hover {
+       box-shadow: 0 8px 24px rgba(0, 255, 136, 0.6);
+       transform: translateY(-3px);
+     }
     /* 邀请区高亮样式 */
     .invite-highlight {
       background: var(--bg-secondary);
@@ -970,11 +1068,20 @@
                 <span class="setting-desc">选择界面显示语言</span>
               </div>
               <select id="languageSelect" class="modern-select">
-                <option value="zh-CN">🇨🇳 简体中文</option>
-                <option value="zh-TW">🇹🇼 繁體中文</option>
+                <option value="zh-CN" selected>🇨🇳 简体中文</option>
+                <option value="zh-TW">🇨🇳 繁體中文</option>
                 <option value="en-US">🇺🇸 English</option>
                 <option value="ja-JP">🇯🇵 日本語</option>
                 <option value="ko-KR">🇰🇷 한국어</option>
+                <option value="th-TH">🇹🇭 ไทย</option>
+                <option value="hi-IN">🇮🇳 हिन्दी</option>
+                <option value="vi-VN">🇻🇳 Tiếng Việt</option>
+                <option value="km-KH">🇰🇭 ខ្មែរ</option>
+                <option value="ru-RU">🇷🇺 Русский</option>
+                <option value="mn-MN">🇲🇳 Монгол</option>
+                <option value="my-MM">🇲🇲 မြန်မာ</option>
+                <option value="lo-LA">🇱🇦 ລາວ</option>
+                <option value="ar-SA">🇸🇦 العربية</option>
               </select>
             </div>
           </div>
@@ -1687,17 +1794,18 @@
             desc: `完成${nextTask.title}` 
           });
           
-          // 检查是否解锁答题任务
-          if (completedNewbieTasks >= 1 && !quizCompleted) {
-            setTimeout(() => {
-              showDialog('解锁答题任务', '恭喜！解锁答题任务，完成可降低提现手续费！\n\n当前手续费：' + ((withdrawFeeRate * 100).toFixed(1)) + '%');
-            }, 500);
-          }
-          
           saveState();
           renderState();
           
-          showDialog('任务完成', `恭喜完成任务：${nextTask.title}！\n奖励：${nextTask.reward} USDT\n当前余额：${walletBalance.toFixed(2)} USDT`);
+          // 先显示任务完成弹窗，用户点击确定后延迟显示解锁答题任务弹窗
+          showDialog('任务完成', `恭喜完成任务：${nextTask.title}！\n奖励：${nextTask.reward} USDT\n当前余额：${walletBalance.toFixed(2)} USDT`, null, 'normal', () => {
+            // 检查是否解锁答题任务，添加800ms延迟给用户视觉缓冲
+            if (completedNewbieTasks >= 1 && !quizCompleted) {
+              setTimeout(() => {
+                showDialog('解锁答题任务', '恭喜！解锁答题任务，完成可降低提现手续费！\n\n当前手续费：' + ((withdrawFeeRate * 100).toFixed(1)) + '%');
+              }, 800);
+            }
+          });
         }, 1500);
       } else if (completedNewbieTasks >= 3) {
         // 检查答题任务状态
@@ -1893,12 +2001,21 @@
     function openGodTasks() {
       showDialog('大神任务', '请在卡片中查看大神任务目标。');
     }
-    /* 对话框 */
-    function showDialog(title, msg, buttons = null) {
-      document.getElementById('dialogTitle').innerText = title;
-      document.getElementById('dialogMsg').innerText = msg;
-      
+    /* 高级对话框 */
+    function showDialog(title, msg, buttons = null, type = 'normal', callback = null) {
+      const dialog = document.getElementById('dialog');
+      const dialogTitle = document.getElementById('dialogTitle');
+      const dialogMsg = document.getElementById('dialogMsg');
       const dialogButtons = document.getElementById('dialogButtons');
+      
+      dialogTitle.innerText = title;
+      dialogMsg.innerText = msg;
+      
+      // 根据类型添加特殊样式
+       dialog.className = 'dialog';
+       if (title.includes('任务完成') || title.includes('恭喜') || title.includes('成功') || title.includes('抢红包成功') || title.includes('激活成功')) {
+         dialog.classList.add('success');
+       }
       
       if (buttons && Array.isArray(buttons)) {
         // 自定义按钮
@@ -1908,22 +2025,45 @@
           btn.textContent = button.text;
           btn.className = button.style === 'danger' ? 'danger-btn' : (button.style === 'secondary' ? 'secondary-btn' : '');
           btn.onclick = () => {
-            closeDialog();
-            if (button.action) {
-              button.action();
-            }
+            closeDialog(() => {
+              if (button.action) {
+                button.action();
+              }
+              if (callback) {
+                callback();
+              }
+            });
           };
           dialogButtons.appendChild(btn);
         });
       } else {
         // 默认确定按钮
-        dialogButtons.innerHTML = '<button onclick="closeDialog()">确定</button>';
+        dialogButtons.innerHTML = '';
+        const defaultBtn = document.createElement('button');
+        defaultBtn.textContent = '确定';
+        defaultBtn.onclick = () => {
+          closeDialog(callback);
+        };
+        dialogButtons.appendChild(defaultBtn);
       }
       
-      document.getElementById('dialog').style.display = 'flex';
+      // 显示弹窗并添加动画
+      dialog.style.display = 'flex';
+      setTimeout(() => {
+        dialog.classList.add('show');
+      }, 10);
     }
-    function closeDialog() {
-      document.getElementById('dialog').style.display = 'none';
+    
+    function closeDialog(callback = null) {
+      const dialog = document.getElementById('dialog');
+      dialog.classList.remove('show');
+      setTimeout(() => {
+        dialog.style.display = 'none';
+        dialog.className = 'dialog'; // 重置类名
+        if (callback) {
+          callback();
+        }
+      }, 300);
     }
 
     /**
@@ -2303,6 +2443,12 @@
       // 加载保存的设置
       loadSettingsFromStorage();
       
+      // 语言选择器事件监听
+      const languageSelect = document.getElementById('languageSelect');
+      if (languageSelect) {
+        languageSelect.addEventListener('change', changeLanguage);
+      }
+      
       // 点击模态框背景关闭设置面板
       document.addEventListener('click', function(e) {
         const settingsModal = document.getElementById('settingsModal');
@@ -2322,7 +2468,7 @@
       }
       
       // 加载语言设置
-      const savedLanguage = localStorage.getItem('language') || 'zh';
+      const savedLanguage = localStorage.getItem('language') || 'zh-CN';
       const languageSelect = document.getElementById('languageSelect');
       if (languageSelect) {
         languageSelect.value = savedLanguage;

@@ -240,9 +240,9 @@
         alert('不在红包开放时间，无法抢。');
         return;
       }
-      // 检查资格：状态存在于 localStorage 的 status=2 或 4
-      const status = parseInt(localStorage.getItem('userStatus') || '1', 10);
-      if (status !== 2 && status !== 4) {
+      // 检查资格：状态存在于 localStorage 的 status=2【已取消状态4】
+        const status = parseInt(localStorage.getItem('userStatus')) || 1;
+        if (status !== 2) {
         alert('当前状态没有资格抢红包。');
         return;
       }
