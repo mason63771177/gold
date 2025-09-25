@@ -7,7 +7,11 @@ class ThemeSwitcher {
         icon: '🌆',
         description: '炫酷科技风'
       },
-
+      'rainbow': {
+        name: '彩虹渐变',
+        icon: '🌈',
+        description: '七彩炫光风'
+      },
       'business': {
         name: '经典商务',
         icon: '💼',

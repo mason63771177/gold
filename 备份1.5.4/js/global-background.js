@@ -104,6 +104,9 @@
       case 'cyberpunk':
         logo.style.opacity = '0.12';
         break;
+      case 'rainbow':
+        logo.style.opacity = '0.08';
+        break;
       case 'business':
         logo.style.opacity = '0.10';
         break;

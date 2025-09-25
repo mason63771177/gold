@@ -15,7 +15,21 @@
   --logo-filter: drop-shadow(0 0 8px rgba(109, 213, 237, 0.4));
 }
 
-
+/* 主题1：彩虹渐变 */
+[data-theme="rainbow"] {
+  --bg-primary: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2d2d 100%);
+  --bg-secondary: rgba(20, 20, 20, 0.9);
+  --bg-card: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(20, 20, 20, 0.8));
+  --text-primary: #ffffff;
+  --text-secondary: #ff6b6b;
+  --text-accent: #4ecdc4;
+  --btn-gradient: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff, #5f27cd);
+  --btn-shadow: 0 8px 32px rgba(255, 107, 107, 0.4);
+  --btn-glow: 0 0 25px rgba(255, 107, 107, 0.6), 0 0 50px rgba(72, 219, 251, 0.4);
+  --border-color: rgba(255, 107, 107, 0.4);
+  --accent-color: #ff6b6b;
+  --logo-filter: drop-shadow(0 0 12px rgba(255, 107, 107, 0.6));
+}
 
 /* 主题2：经典商务 */
 [data-theme="business"] {
@@ -81,7 +95,19 @@
   --logo-filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.8)) drop-shadow(0 0 30px rgba(255, 0, 128, 0.6));
 }
 
+/* 彩虹主题动画效果 */
+[data-theme="rainbow"] .btn {
+  animation: rainbow-pulse 3s ease-in-out infinite;
+}
 
+@keyframes rainbow-pulse {
+  0%, 100% {
+    box-shadow: var(--btn-shadow), var(--btn-glow);
+  }
+  50% {
+    box-shadow: var(--btn-shadow), 0 0 30px rgba(72, 219, 251, 0.8), 0 0 60px rgba(255, 159, 243, 0.6);
+  }
+}
 
 /* 赛博朋克主题动画效果 */
 [data-theme="cyberpunk"] .btn {

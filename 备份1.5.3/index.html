@@ -624,15 +624,15 @@
       50% { opacity: 0.1; }
     }
     
-    /* 进度条高级科技流光动画 */
-        @keyframes slideRight {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(400%);
-          }
-        }
+    /* 进度条从左往右流光动画 */
+    @keyframes flowRight {
+      0% {
+        background-position: 100% 0;
+      }
+      100% {
+        background-position: -100% 0;
+      }
+    }
     
     /* 倒计时响应式设计 */
     @media (max-width: 480px) {
@@ -1878,25 +1878,15 @@
                           style="
                             height: 100%;
                             width: 100%;
-                            background: var(--accent-color);
+                            background: linear-gradient(90deg, var(--accent-color) 0%, var(--accent-color) 35%, rgba(255,255,255,0.7) 50%, var(--accent-color) 65%, var(--accent-color) 100%);
+                            background-size: 300% 100%;
                             border-radius: 2px;
                             transition: width 1s ease-in-out;
-                            box-shadow: 0 0 12px rgba(109, 213, 237, 0.6), 0 0 24px rgba(109, 213, 237, 0.3);
+                            box-shadow: 0 0 6px rgba(47, 128, 237, 0.5);
                             margin-left: auto;
-                            position: relative;
-                            overflow: hidden;
+                            animation: flowRight 3s linear infinite;
                           "
-                        >
-                          <div style="
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 30%;
-                            height: 100%;
-                            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-                            animation: slideRight 3s linear infinite;
-                          "></div>
-                        </div>
+                        ></div>
                       </div>
                       <div style="
                         display: flex;
@@ -2961,7 +2951,7 @@
     function showForceThemeSelection(teamSize, balance) {
       const themes = {
         'cyberpunk': { name: '赛博朋克', icon: '🌆', description: '未来科技感' },
-
+        'rainbow': { name: '彩虹渐变', icon: '🌈', description: '多彩绚烂' },
         'business': { name: '商务蓝', icon: '💼', description: '专业稳重' },
         'dark-tech': { name: '暗黑科技', icon: '⚡', description: '神秘酷炫' },
         'fresh': { name: '清新绿', icon: '🌿', description: '自然清新' }
