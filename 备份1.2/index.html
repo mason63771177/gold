@@ -52,13 +52,13 @@
 
     /* 顶部区域 - 固定高度 */
     .header {
-      flex: 0 0 65px;
+      flex: 0 0 70px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      padding-top: 0px;
+      padding-top: 4px;
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border-color);
       z-index: 100;
@@ -95,13 +95,13 @@
       filter: var(--logo-filter);
     }
     .state-label {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--text-secondary);
       text-shadow: 0 0 6px var(--accent-color);
     }
     .subtitle {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-secondary);
       opacity: 0.8;
     }
@@ -397,128 +397,6 @@
     .bottom button:not(:disabled):active {
       transform: translateY(0);
       filter: brightness(0.95);
-    }
-
-    /* 倒计时优化样式 */
-    @keyframes countdownPulse {
-      0%, 100% { 
-        box-shadow: 0 8px 32px rgba(47, 128, 237, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      }
-      50% { 
-        box-shadow: 0 12px 40px rgba(47, 128, 237, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-      }
-    }
-    
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    
-    /* 紧急状态动画 */
-    @keyframes urgentPulse {
-      0%, 100% { 
-        box-shadow: 0 8px 32px rgba(255, 69, 58, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        border-color: #ff453a;
-      }
-      50% { 
-        box-shadow: 0 12px 40px rgba(255, 69, 58, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-        border-color: #ff6961;
-      }
-    }
-    
-    @keyframes urgentBlink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.1; }
-    }
-    
-    /* 倒计时响应式设计 */
-    @media (max-width: 480px) {
-      .countdown-container {
-        padding: 16px !important;
-        margin: 0 -4px 16px -4px !important;
-      }
-      
-      .countdown-container .time-display {
-        font-size: 28px !important;
-        letter-spacing: 1px !important;
-      }
-      
-      .countdown-container .progress-ring {
-        width: 70px !important;
-        height: 70px !important;
-      }
-      
-      .countdown-container .progress-ring svg {
-        width: 70px !important;
-        height: 70px !important;
-      }
-      
-      .countdown-container .progress-ring circle {
-        r: 30 !important;
-        stroke-dasharray: 188 !important;
-      }
-      
-      /* 移动端时间显示区域调整 */
-      .countdown-container .time-area {
-        gap: 12px !important;
-      }
-      
-      /* 移动端状态提示调整 */
-      .countdown-container #countdownStatus {
-        font-size: 11px !important;
-        padding: 6px 10px !important;
-      }
-      
-      /* 移动端战绩卡调整 */
-      .grid-stats {
-        grid-template-columns: 1fr !important;
-        gap: 8px !important;
-        font-size: 11px !important;
-      }
-      
-      .stat-item {
-        padding: 8px !important;
-        font-size: 11px !important;
-      }
-      
-      .stat-value {
-        font-size: 13px !important;
-      }
-    }
-    
-    @media (max-width: 360px) {
-      .countdown-container {
-        padding: 12px !important;
-      }
-      
-      .countdown-container .time-display {
-        font-size: 24px !important;
-      }
-      
-      .countdown-container .progress-ring {
-        width: 60px !important;
-        height: 60px !important;
-      }
-      
-      .countdown-container .progress-ring svg {
-        width: 60px !important;
-        height: 60px !important;
-      }
-      
-      .countdown-container .progress-ring circle {
-        r: 25 !important;
-        stroke-dasharray: 157 !important;
-      }
-      
-      .countdown-container .time-labels {
-        gap: 8px !important;
-        font-size: 10px !important;
-      }
     }
     /* 邀请按钮突出显示，增加光晕 */
     .bottom button[data-key="invite"],
@@ -1097,155 +975,6 @@
       transform: translateY(-1px);
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
-    
-    /* 移动端字体优化 */
-    @media (max-width: 768px) {
-      html, body {
-        font-size: 18px; /* 基础字体从16px增加到18px */
-      }
-      
-      /* 顶部区域字体优化 */
-      .state-label {
-        font-size: 15px !important; /* 从13px增加到15px */
-      }
-      
-      .subtitle {
-        font-size: 13px !important; /* 从11px增加到13px */
-      }
-      
-      /* 按钮字体优化 */
-      .bottom button {
-        font-size: 16px !important; /* 从14px增加到16px */
-      }
-      
-      .btn, button {
-        font-size: 16px !important; /* 从14px增加到16px */
-      }
-      
-      /* 设置相关字体优化 */
-      .setting-title {
-        font-size: 17px !important; /* 从15px增加到17px */
-      }
-      
-      .setting-desc {
-        font-size: 15px !important; /* 从13px增加到15px */
-      }
-      
-      .theme-btn {
-        font-size: 16px !important; /* 从14px增加到16px */
-      }
-      
-      .modern-select {
-        font-size: 16px !important; /* 从14px增加到16px */
-      }
-      
-      /* 测试按钮字体优化 */
-      .test-btn, .reset-btn, .settings-btn {
-        font-size: 14px !important; /* 从12px增加到14px */
-      }
-      
-      /* 内容区域字体优化 */
-      .section-title {
-        font-size: 18px !important; /* 从16px增加到18px */
-      }
-      
-      /* 小字体优化 */
-      .info, .detail-row, .txn-item {
-        font-size: 16px !important; /* 从14px增加到16px */
-      }
-      
-      /* 非常小的字体优化 */
-      .note, .caption {
-        font-size: 14px !important; /* 从12px增加到14px */
-      }
-      
-      /* 倒计时字体优化 */
-      #countdown, .countdown {
-        font-size: 26px !important; /* 从24px增加到26px */
-      }
-      
-      /* 金额显示字体优化 */
-      .balance, .amount, .price, .value {
-        font-size: 20px !important; /* 从18px增加到20px */
-      }
-      
-      /* 邀请码和链接字体优化 */
-      #myInviteCode {
-        font-size: 18px !important; /* 从16px增加到18px */
-      }
-      
-      #inviteLink {
-        font-size: 13px !important; /* 从11px增加到13px */
-      }
-      
-      /* 复制按钮字体优化 */
-      button[onclick*="copy"] {
-        font-size: 13px !important; /* 从11px增加到13px */
-      }
-      
-      /* 战绩卡字体优化 */
-      .stats-card {
-        font-size: 13px !important; /* 从11px增加到13px */
-      }
-      
-      /* 任务相关字体优化 */
-      .task-item {
-        font-size: 14px !important; /* 从12px增加到14px */
-      }
-      
-      /* 状态标签字体优化 */
-      .status-badge {
-        font-size: 12px !important; /* 从10px增加到12px */
-      }
-      
-      /* 状态2倒计时区域特殊字体优化 */
-      .countdown-container span[style*="font-size: 11px"] {
-        font-size: 14px !important; /* 挑战倒计时标签从11px增加到14px */
-      }
-      
-      .countdown-container div[style*="font-size: 9px"] {
-        font-size: 12px !important; /* 168小时挑战标签从9px增加到12px */
-      }
-      
-      .countdown-container span[style*="font-size: 10px"] {
-        font-size: 13px !important; /* 剩余天数从10px增加到13px */
-      }
-      
-      /* 战绩卡区域字体优化 */
-      .grid-stats .stat-item div[style*="color: var(--text-secondary)"] {
-        font-size: 14px !important; /* 战绩卡标签从12px增加到14px */
-      }
-      
-      .grid-stats .stat-value {
-        font-size: 16px !important; /* 战绩卡数值从14px增加到16px */
-      }
-      
-      /* 邀请链接区域字体优化 */
-      div[style*="font-size: 12px"][style*="💎 我的专属邀请码"] {
-        font-size: 15px !important; /* 邀请码标题从12px增加到15px */
-      }
-      
-      div[style*="font-size: 12px"][style*="🔗 邀请链接"] {
-        font-size: 15px !important; /* 邀请链接标题从12px增加到15px */
-      }
-      
-      /* 通用小字体优化 - 针对内联样式 */
-      [style*="font-size: 9px"] {
-        font-size: 12px !important;
-      }
-      
-      [style*="font-size: 10px"] {
-        font-size: 13px !important;
-      }
-      
-      [style*="font-size: 11px"] {
-        font-size: 14px !important;
-      }
-      
-      [style*="font-size: 12px"] {
-        font-size: 15px !important;
-      }
-    }
   </style>
 </head>
 <body>
@@ -1264,6 +993,9 @@
           <div id="subtitle" class="subtitle">欢迎加入裂金7日</div>
         </div>
       </div>
+      <button class="theme-demo-btn" onclick="window.location.href='theme-demo.html'">主题演示</button>
+      <button class="test-btn" onclick="cycleState()">切换状态</button>
+      <button class="reset-btn" onclick="resetTestData()">重置数据</button>
       <button class="settings-btn" onclick="console.log('设置按钮被点击'); openSettings();">⚙️</button>
     </div>
     <div class="content">
@@ -1384,26 +1116,7 @@
                 <span class="setting-title">📊 数据管理</span>
                 <span class="setting-desc">重置本地测试数据</span>
               </div>
-              <button class="action-btn" onclick="resetTestData()">重置数据</button>
-            </div>
-            <div class="setting-item">
-              <div class="setting-info">
-                <span class="setting-title">🔄 状态切换</span>
-                <span class="setting-desc">切换用户状态进行测试</span>
-              </div>
-              <select id="stateSelect" class="modern-select" onchange="switchToState(this.value)">
-                <option value="">选择状态</option>
-                <option value="1">状态1 - 新手未入金</option>
-                <option value="2">状态2 - 新手已入金</option>
-                <option value="3">状态3 - 本期挑战结束</option>
-              </select>
-            </div>
-            <div class="setting-item">
-              <div class="setting-info">
-                <span class="setting-title">🎨 主题演示</span>
-                <span class="setting-desc">查看主题切换效果</span>
-              </div>
-              <button class="action-btn" onclick="demoTheme()">主题演示</button>
+              <button class="action-btn" onclick="resetTestData()">重置</button>
             </div>
           </div>
         </div>
@@ -1612,113 +1325,37 @@
           }
           
           return `
-            <!-- 优化后的倒计时区域 -->
-            <div class="section" style="margin-bottom: 16px;">
-              <div class="countdown-container" style="
-                background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(47, 128, 237, 0.1) 100%);
-                border: 2px solid var(--accent-color);
-                border-radius: 10px;
-                padding: 6px 10px;
-                position: relative;
-                overflow: hidden;
-                box-shadow: 0 8px 32px rgba(47, 128, 237, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-                animation: countdownPulse 3s ease-in-out infinite;
-              ">
-                
-                <!-- 倒计时主体 -->
-                <div style="position: relative; z-index: 2;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-                    <div style="display: flex; align-items: center; gap: 4px;">
-                      <div style="
-                        width: 5px;
-                        height: 5px;
-                        background: var(--accent-color);
-                        border-radius: 50%;
-                        animation: blink 1.5s ease-in-out infinite;
-                      "></div>
-                      <span style="font-size: 11px; color: var(--accent-color); font-weight: 600;">⚡ 挑战倒计时</span>
-                    </div>
-                    <div style="
-                      background: rgba(47, 128, 237, 0.2);
-                      padding: 1px 4px;
-                      border-radius: 6px;
-                      font-size: 9px;
-                      color: var(--accent-color);
-                      font-weight: 500;
-                    ">168小时挑战</div>
+            <div class="section" style="display: flex; gap: 12px; margin-bottom: 8px;">
+              <div style="flex: 1; background: var(--bg-secondary); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80px;">
+                <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">⏰ 倒计时</div>
+                <div style="font-weight: bold; color: var(--accent-color); font-size: 20px; line-height: 1;"><span id="countdown">--:--:--</span></div>
+              </div>
+              <div style="flex: 1.2; background: var(--bg-secondary); border-radius: 12px; padding: 12px;">
+                <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; text-align: center;">🏆 战绩卡</div>
+                <div style="font-size: 11px; line-height: 1.3; color: var(--text-primary);">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                    <span>新手任务:</span>
+                    <span style="color: var(--accent-color); font-weight: bold;"><span id="taskProgress">${completedTasks}</span>/3</span>
                   </div>
-                  
-                  <!-- 时间显示区域 -->
-                  <div class="time-area" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; margin-bottom: 2px;">
-                    <!-- 时间数字 -->
-                    <div style="text-align: center;">
-                      <div class="time-display" style="
-                        font-size: 28px;
-                        font-weight: 700;
-                        color: var(--accent-color);
-                        text-shadow: 0 0 20px rgba(47, 128, 237, 0.5);
-                        font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-                        letter-spacing: 1px;
-                        margin-bottom: 2px;
-                      ">
-                        <span id="countdown">--:--:--</span>
-                      </div>
-                    </div>
-                    
-                    <!-- 直线进度条 -->
-                    <div style="width: 100%; margin-top: 4px;">
-                      <div style="
-                        width: 100%;
-                        height: 4px;
-                        background: rgba(47, 128, 237, 0.2);
-                        border-radius: 2px;
-                        overflow: hidden;
-                        position: relative;
-                      ">
-                        <div 
-                          id="countdownProgress" 
-                          style="
-                            height: 100%;
-                            width: 100%;
-                            background: linear-gradient(90deg, var(--accent-color), #4FC3F7);
-                            border-radius: 2px;
-                            transition: width 1s ease-in-out;
-                            box-shadow: 0 0 6px rgba(47, 128, 237, 0.5);
-                            margin-left: auto;
-                          "
-                        ></div>
-                      </div>
-                      <div style="
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        margin-top: 2px;
-                        font-size: 10px;
-                        color: var(--text-secondary);
-                      ">
-                        <span id="remainingDays" style="color: var(--accent-color); font-weight: 600;">剩余 -- 天</span>
-                      </div>
-                    </div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                     <span>答题进度:</span>
+                     <span style="color: var(--accent-color); font-weight: bold;">${quizCorrect}/20</span>
+                   </div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                    <span>团队人数:</span>
+                    <span style="color: var(--accent-color); font-weight: bold;"><span id="teamCount">${teamMembers}</span>人</span>
                   </div>
-                  
-                  <!-- 状态提示 -->
-                  <div id="countdownStatus" style="
-                    text-align: center;
-                    font-size: 12px;
-                    color: var(--text-secondary);
-                    background: rgba(47, 128, 237, 0.1);
-                    padding: 8px 12px;
-                    border-radius: 12px;
-                    border: 1px solid rgba(47, 128, 237, 0.2);
-                    display: none;
-                  ">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span>总收益:</span>
+                    <span style="color: var(--success-color); font-weight: bold;"><span id="totalEarnings">${totalEarnings.toFixed(2)}</span> USDT</span>
                   </div>
                 </div>
               </div>
             </div>
-            
-            <!-- 邀请链接区域 -->
-            <div class="section invite-highlight" style="margin-bottom: 16px;">
+            ${availableTasksSection}
+            ${quizSection}
+            ${masterTasksSection}
+            <div class="section invite-highlight">
               <div class="section-title">邀请链接</div>
               <div class="section-content">
                 <!-- 专属邀请码区域 -->
@@ -1738,180 +1375,6 @@
                     <button onclick="copyInviteLink()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制链接</button>
                   </div>
                 </div>
-              </div>
-            </div>
-            
-            ${availableTasksSection}
-            ${quizSection}
-            ${masterTasksSection}
-            
-            <!-- 战绩卡区域 - 移动到最下方 -->
-            <div class="section" style="margin-bottom: 16px;">
-              <div style="
-                background: var(--bg-secondary); 
-                border-radius: 16px; 
-                padding: 16px;
-                border: 1px solid rgba(47, 128, 237, 0.1);
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-              ">
-                <div style="
-                  font-size: 14px; 
-                  color: var(--accent-color); 
-                  margin-bottom: 12px; 
-                  text-align: center;
-                  font-weight: 600;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  gap: 8px;
-                ">
-                  <span>🏆</span>
-                  <span>我的战绩</span>
-                </div>
-                <div class="grid-stats" style="
-                   display: grid;
-                   grid-template-columns: 1fr 1fr;
-                   gap: 12px;
-                   font-size: 12px;
-                   line-height: 1.4;
-                 ">
-                   <!-- 新手任务卡片 - 增强版 -->
-                   <div class="stat-item" style="
-                     background: rgba(47, 128, 237, 0.05);
-                     padding: 12px;
-                     border-radius: 12px;
-                     border: 1px solid rgba(47, 128, 237, 0.1);
-                     position: relative;
-                     transition: all 0.2s ease;
-                   " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(47, 128, 237, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">📚 新手任务</div>
-                       <div style="font-size: 10px; color: var(--accent-color); font-weight: 500;">
-                         ${completedTasks === 3 ? '✅ 已完成' : '进行中'}
-                       </div>
-                     </div>
-                     <div class="stat-value" style="color: var(--accent-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
-                       <span id="taskProgress">${completedTasks}</span>/3
-                       <span style="font-size: 12px; color: var(--text-secondary); margin-left: 4px;">
-                         (${Math.round(completedTasks/3*100)}%)
-                       </span>
-                     </div>
-                     <div style="
-                       width: 100%;
-                       height: 4px;
-                       background: rgba(47, 128, 237, 0.1);
-                       border-radius: 2px;
-                       overflow: hidden;
-                       margin-bottom: 4px;
-                     ">
-                       <div style="
-                         width: ${completedTasks/3*100}%;
-                         height: 100%;
-                         background: var(--accent-color);
-                         border-radius: 2px;
-                         transition: width 0.3s ease;
-                       "></div>
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary);">
-                       ${completedTasks < 3 ? `还需完成 ${3-completedTasks} 个任务` : '🎉 全部完成！'}
-                     </div>
-                   </div>
-                   
-                   <!-- 答题进度卡片 - 增强版 -->
-                   <div class="stat-item" style="
-                     background: rgba(47, 128, 237, 0.05);
-                     padding: 12px;
-                     border-radius: 12px;
-                     border: 1px solid rgba(47, 128, 237, 0.1);
-                     position: relative;
-                     transition: all 0.2s ease;
-                   " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(47, 128, 237, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">🧠 答题进度</div>
-                       <div style="font-size: 10px; color: var(--accent-color); font-weight: 500;">
-                         ${quizCorrect >= 16 ? '✅ 通过' : (completedTasks >= 1 ? '可答题' : '🔒 未解锁')}
-                       </div>
-                     </div>
-                     <div class="stat-value" style="color: var(--accent-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
-                       ${quizCorrect}/20
-                       <span style="font-size: 12px; color: var(--text-secondary); margin-left: 4px;">
-                         (${Math.round(quizCorrect/20*100)}%)
-                       </span>
-                     </div>
-                     <div style="
-                       width: 100%;
-                       height: 4px;
-                       background: rgba(47, 128, 237, 0.1);
-                       border-radius: 2px;
-                       overflow: hidden;
-                       margin-bottom: 4px;
-                     ">
-                       <div style="
-                         width: ${quizCorrect/20*100}%;
-                         height: 100%;
-                         background: var(--accent-color);
-                         border-radius: 2px;
-                         transition: width 0.3s ease;
-                       "></div>
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary);">
-                       ${completedTasks < 1 ? '需完成新手任务1解锁' : (quizCorrect < 16 ? `需答对 ${16-quizCorrect} 题通过` : '🎁 手续费已降低2%')}
-                     </div>
-                   </div>
-                   
-                   <!-- 团队人数卡片 - 增强版 -->
-                   <div class="stat-item" style="
-                     background: rgba(47, 128, 237, 0.05);
-                     padding: 12px;
-                     border-radius: 12px;
-                     border: 1px solid rgba(47, 128, 237, 0.1);
-                     position: relative;
-                     transition: all 0.2s ease;
-                   " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(47, 128, 237, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">👥 团队规模</div>
-                       <div style="font-size: 10px; color: var(--success-color); font-weight: 500;">
-                         ${teamMembers > 0 ? '↗️ 增长中' : '待发展'}
-                       </div>
-                     </div>
-                     <div class="stat-value" style="color: var(--accent-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
-                       <span id="teamCount">${teamMembers}</span>人
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary); margin-bottom: 4px;">
-                       ${teamMembers < 2 ? '距离大神任务一还需' + (2-teamMembers) + '人' : '已达成大神任务一条件 🎯'}
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary);">
-                       💡 邀请更多好友加入团队
-                     </div>
-                   </div>
-                   
-                   <!-- 总收益卡片 - 增强版 -->
-                   <div class="stat-item" style="
-                     background: rgba(40, 167, 69, 0.1);
-                     padding: 12px;
-                     border-radius: 12px;
-                     border: 1px solid rgba(40, 167, 69, 0.2);
-                     position: relative;
-                     transition: all 0.2s ease;
-                   " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(40, 167, 69, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">💰 总收益</div>
-                       <div style="font-size: 10px; color: var(--success-color); font-weight: 500;">
-                         ${totalEarnings > 0 ? '📈 盈利中' : '待激活'}
-                       </div>
-                     </div>
-                     <div class="stat-value" style="color: var(--success-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
-                       <span id="totalEarnings">${totalEarnings.toFixed(2)}</span> USDT
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary); margin-bottom: 2px;">
-                       收益率: ${totalEarnings > 0 ? (totalEarnings/100*100).toFixed(1) + '%' : '0%'}
-                       ${totalEarnings > 0 ? ' | 日均: ' + (totalEarnings/7).toFixed(2) + ' USDT' : ''}
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary);">
-                       ${totalEarnings === 0 ? '💡 完成任务开始赚取收益' : '🚀 继续完成任务提升收益'}
-                     </div>
-                   </div>
-                 </div>
               </div>
             </div>
           `;
@@ -2198,93 +1661,23 @@
       const elapsed = now - countdownStart;
       let remaining = total - elapsed;
       if (remaining < 0) remaining = 0;
-      
-      // 计算总小时数、分钟数、秒数
-      const totalHours = Math.floor(remaining / (3600 * 1000));
+      const hrs = Math.floor(remaining / 3600000);
       const mins = Math.floor((remaining % 3600000) / 60000);
       const secs = Math.floor((remaining % 60000) / 1000);
-      
-      // 格式化为 XXX:XX:XX 格式
-      const timeStr = `${String(totalHours).padStart(3, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-      
-      // 更新倒计时显示
+      const str = `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
       const countdownEl = document.getElementById('countdown');
-      if (countdownEl) countdownEl.innerText = timeStr;
-      
-      // 更新进度条（倒计时进度：从满逐渐变空）
-      const progressEl = document.getElementById('countdownProgress');
-      const remainingDaysEl = document.getElementById('remainingDays');
-      if (progressEl && remainingDaysEl) {
-        // 倒计时进度条：显示剩余时间进度（从100%递减到0%，从满逐渐变空）
-        const remainingProgress = (remaining / total);
-        const remainingPercent = remainingProgress * 100;
-        progressEl.style.width = `${remainingPercent}%`;
-        
-        // 计算剩余天数、小时数和分钟数
-        const remainingDays = Math.floor(remaining / (24 * 3600 * 1000));
-        const remainingHours = Math.floor((remaining % (24 * 3600 * 1000)) / (3600 * 1000));
-        const remainingMinutes = Math.floor((remaining % (3600 * 1000)) / (60 * 1000));
-        
-        // 根据剩余时间显示不同格式
-        if (remainingDays > 0) {
-          remainingDaysEl.textContent = `剩余${remainingDays}天${remainingHours}小时${remainingMinutes}分`;
-        } else {
-          remainingDaysEl.textContent = `仅剩余${remainingHours}小时${remainingMinutes}分`;
-        }
-      }
-      
-      // 更新状态提示和动画效果
-      const statusEl = document.getElementById('countdownStatus');
-      const containerEl = document.querySelector('.countdown-container');
-      
-      if (statusEl && containerEl) {
-        const hoursLeft = remaining / (3600 * 1000);
-        
-        if (hoursLeft <= 24) {
-          // 最后24小时 - 紧急状态
-          statusEl.innerHTML = '🚨 最后24小时！立即完成任务获得奖励';
-          statusEl.style.background = 'rgba(255, 69, 58, 0.2)';
-          statusEl.style.borderColor = 'rgba(255, 69, 58, 0.4)';
-          statusEl.style.color = '#ff453a';
-          containerEl.style.animation = 'urgentPulse 1.5s ease-in-out infinite';
-          
-          // 进度环变红色
-          if (progressEl) {
-            progressEl.style.stroke = '#ff453a';
-            progressEl.style.filter = 'drop-shadow(0 0 8px #ff453a)';
-          }
-        } else if (hoursLeft <= 72) {
-          // 最后72小时 - 警告状态
-          statusEl.innerHTML = '⚠️ 时间紧迫，抓紧完成任务获得收益';
-          statusEl.style.background = 'rgba(255, 193, 7, 0.2)';
-          statusEl.style.borderColor = 'rgba(255, 193, 7, 0.4)';
-          statusEl.style.color = '#ffc107';
-          containerEl.style.animation = 'countdownPulse 2s ease-in-out infinite';
-          
-          // 进度环变橙色
-          if (progressEl) {
-            progressEl.style.stroke = '#ffc107';
-            progressEl.style.filter = 'drop-shadow(0 0 8px #ffc107)';
-          }
-        } else {
-          // 正常状态 - 不显示任何提示
-          if (statusEl) {
-            statusEl.style.display = 'none';
-          }
-          containerEl.style.animation = 'countdownPulse 3s ease-in-out infinite';
-          
-          // 进度环保持蓝色
-          if (progressEl) {
-            progressEl.style.stroke = 'var(--accent-color)';
-            progressEl.style.filter = 'drop-shadow(0 0 8px var(--accent-color))';
-          }
-        }
-      }
+      if (countdownEl) countdownEl.innerText = str;
       
       // 更新邀请链接显示
       updateInviteDisplay();
       
       // 当倒计时结束，自动进入状态3
+      if (remaining === 0 && currentState === 2) {
+        currentState = 3;
+        countdownStart = null;
+        renderState();
+      }
+      // 当倒计时结束，从状态2回到状态3
       if (remaining === 0 && currentState === 2) {
         currentState = 3;
         countdownStart = null;
@@ -2316,21 +1709,6 @@
       if (currentState > 3) currentState = 1;
       countdownStart = null;
       renderState();
-    }
-
-    // 切换到指定状态
-    function switchToState(state) {
-      if (state === '') return; // 如果选择了空选项，不执行任何操作
-      
-      currentState = parseInt(state);
-      countdownStart = null;
-      renderState();
-      
-      // 重置下拉菜单
-      document.getElementById('stateSelect').value = '';
-      
-      // 自动关闭设置面板
-      closeSettings();
     }
 
     // 激活账号/首次入金

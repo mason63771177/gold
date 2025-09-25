@@ -25,19 +25,10 @@
   
   <link rel="stylesheet" href="themes.css">
   <link rel="stylesheet" href="css/global-background.css">
+  <link rel="stylesheet" href="css/design-system.css">
   <script src="theme-switcher.js"></script>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-size: 16px;
-      overflow: hidden;
-    }
+    /* 应用新的设计系统，移除overflow: hidden */
 
     /* 应用容器 100vh 三段式布局 */
     .app {
@@ -52,13 +43,13 @@
 
     /* 顶部区域 - 固定高度 */
     .header {
-      flex: 0 0 65px;
+      flex: 0 0 70px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      padding-top: 0px;
+      padding-top: 4px;
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border-color);
       z-index: 100;
@@ -77,7 +68,7 @@
       gap: 6px;
     }
     .logo {
-      font-size: 32px;
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: 1px;
       background: var(--btn-gradient);
@@ -95,13 +86,13 @@
       filter: var(--logo-filter);
     }
     .state-label {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text-secondary);
       text-shadow: 0 0 6px var(--accent-color);
     }
     .subtitle {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-secondary);
       opacity: 0.8;
     }
@@ -112,7 +103,7 @@
       right: 12px;
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
-      border-radius: 6px;
+      border-radius: 14px;
       color: var(--accent-color);
       font-size: 12px;
       padding: 3px 6px;
@@ -124,12 +115,12 @@
       right: 90px;
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
-      border-radius: 6px;
+      border-radius: 14px;
       color: #ff6464;
       font-size: 12px;
       padding: 3px 6px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .reset-btn:hover {
@@ -139,28 +130,28 @@
     }
     
     .settings-btn {
-      background: rgba(255,255,255,0.2) !important;
-      color: #ffffff !important;
-      border: 1px solid rgba(255,255,255,0.4) !important;
-      border-radius: 8px !important;
-      padding: 6px 10px !important;
-      font-size: 14px !important;
-      cursor: pointer !important;
-      position: fixed !important;
-      top: 10px !important;
-      right: 10px !important;
-      z-index: 999 !important;
-      opacity: 0.9 !important;
-      transition: all 0.3s ease !important;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+      background: rgba(255,255,255,0.2);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 14px;
+      padding: 6px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+      opacity: 0.9;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     
     .settings-btn:hover {
-      opacity: 1 !important;
-      background: rgba(255,255,255,0.3) !important;
-      border-color: rgba(255,255,255,0.6) !important;
-      transform: scale(1.05) !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+      opacity: 1;
+      background: rgba(255,255,255,0.3);
+      border-color: rgba(255,255,255,0.6);
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     }
     
     .theme-demo-btn {
@@ -169,13 +160,13 @@
       left: 12px;
       background: var(--btn-gradient);
       border: none;
-      border-radius: 6px;
+      border-radius: 14px;
       color: var(--text-primary);
       font-size: 12px;
       padding: 3px 6px;
       cursor: pointer;
       box-shadow: var(--btn-shadow);
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .theme-demo-btn:hover {
@@ -185,7 +176,7 @@
      
      .test-btn {
        cursor: pointer;
-       transition: all 0.3s ease;
+       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .test-btn:hover {
       background: var(--btn-gradient);
@@ -207,7 +198,7 @@
       width: 100%;
       max-width: 480px;
       background: var(--bg-card);
-      border-radius: 24px;
+      border-radius: 16px;
       padding: 24px;
       border: 1px solid var(--border-color);
       box-shadow: var(--btn-shadow);
@@ -235,7 +226,7 @@
       opacity: 0.4;
     }
     .section-title {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       margin-bottom: 6px;
       color: var(--text-secondary);
@@ -269,7 +260,7 @@
     .task-status {
       font-size: 12px;
       padding: 2px 6px;
-      border-radius: 12px;
+      border-radius: 14px;
       background: linear-gradient(45deg, #00eaff, #0088ff);
       box-shadow: 0 0 6px rgba(0, 136, 255, 0.6);
       color: #031e2e;
@@ -282,7 +273,7 @@
     .reactivate-highlight {
       background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 193, 7, 0.15));
       border: 2px solid rgba(255, 107, 107, 0.3);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 20px;
       margin-bottom: 16px;
       position: relative;
@@ -296,10 +287,7 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      animation: shimmer 2s infinite;
     }
-    @keyframes shimmer {
-      0% { left: -100%; }
       100% { left: 100%; }
     }
     .reactivate-highlight .section-title {
@@ -311,14 +299,14 @@
     .reactivate-btn {
       background: linear-gradient(45deg, #ff6b6b, #ffc107);
       border: none;
-      border-radius: 25px;
+      border-radius: 14px;
       padding: 12px 24px;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       color: white;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       width: 100%;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
@@ -345,20 +333,20 @@
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(255, 255, 255, 0.06);
       margin: 0 12px 12px;
-      border-radius: 20px 20px 0 0;
+      border-radius: 16px 16px 0 0;
       z-index: 100;
     }
     .bottom button {
       flex: 1;
       min-width: 0;
       border: none;
-      border-radius: 16px;
+      border-radius: 14px;
       padding: 12px 8px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--text);
       cursor: pointer;
-      transition: transform 0.08s ease, filter 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       /* 避免移动端按钮文字换行 */
       white-space: nowrap;
       overflow: hidden;
@@ -383,7 +371,7 @@
     .bottom button.purple,
     .bottom button.blue {
       background: var(--btn-gradient);
-      box-shadow: var(--btn-shadow), var(--btn-glow);
+      box-shadow: var(--btn-shadow);
     }
     .bottom button:disabled {
       opacity: 0.4;
@@ -398,128 +386,6 @@
       transform: translateY(0);
       filter: brightness(0.95);
     }
-
-    /* 倒计时优化样式 */
-    @keyframes countdownPulse {
-      0%, 100% { 
-        box-shadow: 0 8px 32px rgba(47, 128, 237, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      }
-      50% { 
-        box-shadow: 0 12px 40px rgba(47, 128, 237, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-      }
-    }
-    
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    
-    /* 紧急状态动画 */
-    @keyframes urgentPulse {
-      0%, 100% { 
-        box-shadow: 0 8px 32px rgba(255, 69, 58, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        border-color: #ff453a;
-      }
-      50% { 
-        box-shadow: 0 12px 40px rgba(255, 69, 58, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-        border-color: #ff6961;
-      }
-    }
-    
-    @keyframes urgentBlink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.1; }
-    }
-    
-    /* 倒计时响应式设计 */
-    @media (max-width: 480px) {
-      .countdown-container {
-        padding: 16px !important;
-        margin: 0 -4px 16px -4px !important;
-      }
-      
-      .countdown-container .time-display {
-        font-size: 28px !important;
-        letter-spacing: 1px !important;
-      }
-      
-      .countdown-container .progress-ring {
-        width: 70px !important;
-        height: 70px !important;
-      }
-      
-      .countdown-container .progress-ring svg {
-        width: 70px !important;
-        height: 70px !important;
-      }
-      
-      .countdown-container .progress-ring circle {
-        r: 30 !important;
-        stroke-dasharray: 188 !important;
-      }
-      
-      /* 移动端时间显示区域调整 */
-      .countdown-container .time-area {
-        gap: 12px !important;
-      }
-      
-      /* 移动端状态提示调整 */
-      .countdown-container #countdownStatus {
-        font-size: 11px !important;
-        padding: 6px 10px !important;
-      }
-      
-      /* 移动端战绩卡调整 */
-      .grid-stats {
-        grid-template-columns: 1fr !important;
-        gap: 8px !important;
-        font-size: 11px !important;
-      }
-      
-      .stat-item {
-        padding: 8px !important;
-        font-size: 11px !important;
-      }
-      
-      .stat-value {
-        font-size: 13px !important;
-      }
-    }
-    
-    @media (max-width: 360px) {
-      .countdown-container {
-        padding: 12px !important;
-      }
-      
-      .countdown-container .time-display {
-        font-size: 24px !important;
-      }
-      
-      .countdown-container .progress-ring {
-        width: 60px !important;
-        height: 60px !important;
-      }
-      
-      .countdown-container .progress-ring svg {
-        width: 60px !important;
-        height: 60px !important;
-      }
-      
-      .countdown-container .progress-ring circle {
-        r: 25 !important;
-        stroke-dasharray: 157 !important;
-      }
-      
-      .countdown-container .time-labels {
-        gap: 8px !important;
-        font-size: 10px !important;
-      }
-    }
     /* 邀请按钮突出显示，增加光晕 */
     .bottom button[data-key="invite"],
     .bottom button[data-key="inviteNew"] {
@@ -527,20 +393,17 @@
     }
     /* 主要突出按钮样式 - 激活账号专用 */
     .bottom button.primary-highlight {
-      font-size: 18px !important;
-      font-weight: bold !important;
-      padding: 16px 24px !important;
-      background: linear-gradient(135deg, #00ff88, #00cc66, #009944) !important;
-      box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4), 0 4px 12px rgba(0, 204, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
-      border: 2px solid rgba(0, 255, 136, 0.6) !important;
-      animation: pulse-glow 2s ease-in-out infinite !important;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #00ff88, #00cc66, #009944);
+      box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4), 0 4px 12px rgba(0, 204, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      border: 2px solid rgba(0, 255, 136, 0.6);
     }
     .bottom button.primary-highlight:hover {
-      transform: translateY(-4px) !important;
-      box-shadow: 0 12px 32px rgba(0, 255, 136, 0.5), 0 6px 16px rgba(0, 204, 102, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 255, 136, 0.5), 0 6px 16px rgba(0, 204, 102, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4), 0 4px 12px rgba(0, 204, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4); }
       50% { box-shadow: 0 12px 32px rgba(0, 255, 136, 0.6), 0 6px 16px rgba(0, 204, 102, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
     }
     /* 高级弹窗样式 */
@@ -566,7 +429,7 @@
     }
     .dialog .dialog-box {
       background: var(--bg-card);
-      border-radius: 20px;
+      border-radius: 16px;
       padding: 28px 32px;
       max-width: 85%;
       min-width: 280px;
@@ -574,7 +437,7 @@
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.2);
       border: 1px solid var(--border-color);
       transform: scale(0.7) translateY(20px);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
     }
@@ -596,7 +459,7 @@
     }
     .dialog .dialog-box h3 {
       margin: 0 0 16px 0;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
       text-align: center;
     }
@@ -619,7 +482,7 @@
       border-radius: 16px;
       padding: 24px;
       position: relative;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
       border: 1px solid var(--border-color);
       max-height: 90vh;
       overflow-y: auto;
@@ -630,7 +493,7 @@
       right: 12px;
       background: none;
       border: none;
-      font-size: 20px;
+      font-size: 18px;
       color: var(--text-secondary);
       cursor: pointer;
       padding: 4px;
@@ -640,7 +503,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .modal-close:hover {
       background: rgba(255, 255, 255, 0.1);
@@ -661,7 +524,7 @@
     }
     .settings-header h2 {
       margin: 0;
-      font-size: 20px;
+      font-size: 18px;
       color: var(--text-primary);
       font-weight: 700;
     }
@@ -696,12 +559,12 @@
       color: white;
     }
     .profile-name {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       margin-bottom: 4px;
     }
     .profile-code {
-      font-size: 13px;
+      font-size: 14px;
       opacity: 0.9;
     }
     .profile-level {
@@ -711,7 +574,7 @@
       background: rgba(255, 255, 255, 0.2);
       color: white;
       padding: 6px 12px;
-      border-radius: 20px;
+      border-radius: 16px;
       font-size: 12px;
       font-weight: 600;
       backdrop-filter: blur(10px);
@@ -723,7 +586,7 @@
     }
     .settings-section h3 {
       margin: 0 0 12px 0;
-      font-size: 16px;
+      font-size: 14px;
       color: var(--text-primary);
       font-weight: 600;
     }
@@ -731,7 +594,7 @@
     /* 设置卡片 */
     .settings-card {
       background: var(--bg-card);
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid var(--border-color);
       overflow: hidden;
     }
@@ -742,7 +605,7 @@
       align-items: center;
       padding: 16px 20px;
       border-bottom: 1px solid var(--border-color);
-      transition: background-color 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .setting-item:last-child {
       border-bottom: none;
@@ -758,14 +621,14 @@
     }
     .setting-title {
       display: block;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--text-primary);
       margin-bottom: 2px;
     }
     .setting-desc {
       display: block;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-secondary);
     }
     .arrow {
@@ -779,18 +642,18 @@
       background: var(--brand);
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 14px;
       padding: 8px 16px;
       font-size: 14px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .theme-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(47, 128, 237, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     }
     .theme-preview {
       width: 16px;
@@ -804,12 +667,12 @@
       background: var(--bg-secondary);
       color: var(--text-primary);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 14px;
       padding: 8px 12px;
       font-size: 14px;
       cursor: pointer;
       min-width: 140px;
-      transition: all 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .modern-select:focus {
       outline: none;
@@ -850,7 +713,7 @@
       background-color: white;
       transition: 0.3s;
       border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: var(--shadow-light);
     }
     input:checked + .toggle-slider {
       background-color: var(--brand);
@@ -864,11 +727,11 @@
       background: var(--bg-secondary);
       color: var(--text-primary);
       border: 1px solid var(--border-color);
-      border-radius: 6px;
+      border-radius: 14px;
       padding: 6px 12px;
-      font-size: 13px;
+      font-size: 14px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .action-btn:hover {
       background: var(--brand);
@@ -882,14 +745,14 @@
     }
     .danger-zone h3 {
       margin: 0 0 12px 0;
-      font-size: 16px;
+      font-size: 14px;
       color: #ff6b6b;
       font-weight: 600;
     }
     .danger-card {
       background: rgba(255, 107, 107, 0.05);
       border: 1px solid rgba(255, 107, 107, 0.2);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 20px;
     }
     .danger-warning {
@@ -899,14 +762,14 @@
       margin-bottom: 16px;
       padding: 12px;
       background: rgba(255, 107, 107, 0.1);
-      border-radius: 8px;
+      border-radius: 14px;
     }
     .warning-icon {
-      font-size: 20px;
+      font-size: 18px;
       flex-shrink: 0;
     }
     .warning-text {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-secondary);
       line-height: 1.4;
     }
@@ -914,14 +777,14 @@
       background: linear-gradient(135deg, #ff6b6b, #ee5a52);
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 14px;
       padding: 12px 24px;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
       width: 100%;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     }
     .danger-btn:hover {
       transform: translateY(-2px);
@@ -944,11 +807,11 @@
       border: none;
       border-radius: 10px;
       padding: 14px 32px;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
       min-width: 200px;
     }
     .back-btn:hover {
@@ -969,7 +832,7 @@
       margin: 0 0 24px 0;
       line-height: 1.6;
       text-align: center;
-      font-size: 16px;
+      font-size: 14px;
       white-space: pre-line;
     }
     .dialog .dialog-box button {
@@ -977,9 +840,9 @@
       color: white;
       border: none;
       padding: 14px 28px;
-      border-radius: 12px;
+      border-radius: 14px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       margin: 0 6px;
@@ -1033,7 +896,7 @@
       top: -10px;
       right: -10px;
       font-size: 24px;
-      animation: celebrate 0.6s ease-out;
+      animation: celebrate 0.3s ease-out;
     }
     @keyframes celebrate {
       0% { transform: scale(0) rotate(0deg); opacity: 0; }
@@ -1048,12 +911,7 @@
      
      /* 成功弹窗的脉冲动画 */
      .dialog.success .dialog-box {
-       animation: successPulse 2s ease-in-out infinite;
      }
-     @keyframes successPulse {
-       0%, 100% { 
-         box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2), 0 8px 24px rgba(0, 0, 0, 0.2);
-       }
        50% { 
          box-shadow: 0 20px 60px rgba(0, 255, 136, 0.4), 0 8px 24px rgba(0, 255, 136, 0.1);
        }
@@ -1075,7 +933,7 @@
       border-radius: 16px;
       padding: 12px;
       margin-top: 12px;
-      box-shadow: var(--btn-glow);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
     .invite-highlight .section-title {
       color: var(--accent-color);
@@ -1093,158 +951,9 @@
     }
     
     .invite-link-container button:hover {
-      background: linear-gradient(135deg, #45a049, #3d8b40) !important;
+      background: linear-gradient(135deg, #45a049, #3d8b40);
       transform: translateY(-1px);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    
-    /* 移动端字体优化 */
-    @media (max-width: 768px) {
-      html, body {
-        font-size: 18px; /* 基础字体从16px增加到18px */
-      }
-      
-      /* 顶部区域字体优化 */
-      .state-label {
-        font-size: 15px !important; /* 从13px增加到15px */
-      }
-      
-      .subtitle {
-        font-size: 13px !important; /* 从11px增加到13px */
-      }
-      
-      /* 按钮字体优化 */
-      .bottom button {
-        font-size: 16px !important; /* 从14px增加到16px */
-      }
-      
-      .btn, button {
-        font-size: 16px !important; /* 从14px增加到16px */
-      }
-      
-      /* 设置相关字体优化 */
-      .setting-title {
-        font-size: 17px !important; /* 从15px增加到17px */
-      }
-      
-      .setting-desc {
-        font-size: 15px !important; /* 从13px增加到15px */
-      }
-      
-      .theme-btn {
-        font-size: 16px !important; /* 从14px增加到16px */
-      }
-      
-      .modern-select {
-        font-size: 16px !important; /* 从14px增加到16px */
-      }
-      
-      /* 测试按钮字体优化 */
-      .test-btn, .reset-btn, .settings-btn {
-        font-size: 14px !important; /* 从12px增加到14px */
-      }
-      
-      /* 内容区域字体优化 */
-      .section-title {
-        font-size: 18px !important; /* 从16px增加到18px */
-      }
-      
-      /* 小字体优化 */
-      .info, .detail-row, .txn-item {
-        font-size: 16px !important; /* 从14px增加到16px */
-      }
-      
-      /* 非常小的字体优化 */
-      .note, .caption {
-        font-size: 14px !important; /* 从12px增加到14px */
-      }
-      
-      /* 倒计时字体优化 */
-      #countdown, .countdown {
-        font-size: 26px !important; /* 从24px增加到26px */
-      }
-      
-      /* 金额显示字体优化 */
-      .balance, .amount, .price, .value {
-        font-size: 20px !important; /* 从18px增加到20px */
-      }
-      
-      /* 邀请码和链接字体优化 */
-      #myInviteCode {
-        font-size: 18px !important; /* 从16px增加到18px */
-      }
-      
-      #inviteLink {
-        font-size: 13px !important; /* 从11px增加到13px */
-      }
-      
-      /* 复制按钮字体优化 */
-      button[onclick*="copy"] {
-        font-size: 13px !important; /* 从11px增加到13px */
-      }
-      
-      /* 战绩卡字体优化 */
-      .stats-card {
-        font-size: 13px !important; /* 从11px增加到13px */
-      }
-      
-      /* 任务相关字体优化 */
-      .task-item {
-        font-size: 14px !important; /* 从12px增加到14px */
-      }
-      
-      /* 状态标签字体优化 */
-      .status-badge {
-        font-size: 12px !important; /* 从10px增加到12px */
-      }
-      
-      /* 状态2倒计时区域特殊字体优化 */
-      .countdown-container span[style*="font-size: 11px"] {
-        font-size: 14px !important; /* 挑战倒计时标签从11px增加到14px */
-      }
-      
-      .countdown-container div[style*="font-size: 9px"] {
-        font-size: 12px !important; /* 168小时挑战标签从9px增加到12px */
-      }
-      
-      .countdown-container span[style*="font-size: 10px"] {
-        font-size: 13px !important; /* 剩余天数从10px增加到13px */
-      }
-      
-      /* 战绩卡区域字体优化 */
-      .grid-stats .stat-item div[style*="color: var(--text-secondary)"] {
-        font-size: 14px !important; /* 战绩卡标签从12px增加到14px */
-      }
-      
-      .grid-stats .stat-value {
-        font-size: 16px !important; /* 战绩卡数值从14px增加到16px */
-      }
-      
-      /* 邀请链接区域字体优化 */
-      div[style*="font-size: 12px"][style*="💎 我的专属邀请码"] {
-        font-size: 15px !important; /* 邀请码标题从12px增加到15px */
-      }
-      
-      div[style*="font-size: 12px"][style*="🔗 邀请链接"] {
-        font-size: 15px !important; /* 邀请链接标题从12px增加到15px */
-      }
-      
-      /* 通用小字体优化 - 针对内联样式 */
-      [style*="font-size: 9px"] {
-        font-size: 12px !important;
-      }
-      
-      [style*="font-size: 10px"] {
-        font-size: 13px !important;
-      }
-      
-      [style*="font-size: 11px"] {
-        font-size: 14px !important;
-      }
-      
-      [style*="font-size: 12px"] {
-        font-size: 15px !important;
-      }
+      box-shadow: var(--shadow-light);
     }
   </style>
 </head>
@@ -1264,6 +973,9 @@
           <div id="subtitle" class="subtitle">欢迎加入裂金7日</div>
         </div>
       </div>
+      <button class="theme-demo-btn" onclick="window.location.href='theme-demo.html'">主题演示</button>
+      <button class="test-btn" onclick="cycleState()">切换状态</button>
+      <button class="reset-btn" onclick="resetTestData()">重置数据</button>
       <button class="settings-btn" onclick="console.log('设置按钮被点击'); openSettings();">⚙️</button>
     </div>
     <div class="content">
@@ -1276,13 +988,13 @@
     </div>
   </div>
   <!-- 模态弹窗 -->
-  <div id="modal" class="modal" style="display:none;">
+  <div id="modal" class="modal" class="hidden">
     <div class="modal-content">
       <button id="modalClose" class="modal-close">✕</button>
       <div id="modalBody"></div>
     </div>
   </div>
-  <div id="dialog" class="dialog" style="display:none;">
+  <div id="dialog" class="dialog" class="hidden">
     <div class="dialog-box">
       <h3 id="dialogTitle">提示</h3>
       <p id="dialogMsg">内容</p>
@@ -1293,13 +1005,13 @@
   </div>
 
   <!-- 设置面板 -->
-  <div id="settingsModal" class="modal" style="display:none;">
+  <div id="settingsModal" class="modal" class="hidden">
     <div class="modal-content" style="max-width: 420px; width: 95%; max-height: 90vh; overflow-y: auto;">
       <button class="modal-close" onclick="closeSettings()">✕</button>
       <div class="settings-panel">
         <!-- 标题 -->
         <div class="settings-header">
-          <h2>⚙️ 设置中心</h2>
+          <h2 class="text-h2">⚙️ 设置中心</h2>
         </div>
         
         <!-- 个人资料卡片 -->
@@ -1384,26 +1096,7 @@
                 <span class="setting-title">📊 数据管理</span>
                 <span class="setting-desc">重置本地测试数据</span>
               </div>
-              <button class="action-btn" onclick="resetTestData()">重置数据</button>
-            </div>
-            <div class="setting-item">
-              <div class="setting-info">
-                <span class="setting-title">🔄 状态切换</span>
-                <span class="setting-desc">切换用户状态进行测试</span>
-              </div>
-              <select id="stateSelect" class="modern-select" onchange="switchToState(this.value)">
-                <option value="">选择状态</option>
-                <option value="1">状态1 - 新手未入金</option>
-                <option value="2">状态2 - 新手已入金</option>
-                <option value="3">状态3 - 本期挑战结束</option>
-              </select>
-            </div>
-            <div class="setting-item">
-              <div class="setting-info">
-                <span class="setting-title">🎨 主题演示</span>
-                <span class="setting-desc">查看主题切换效果</span>
-              </div>
-              <button class="action-btn" onclick="demoTheme()">主题演示</button>
+              <button class="action-btn" onclick="resetTestData()">重置</button>
             </div>
           </div>
         </div>
@@ -1509,13 +1202,13 @@
           return `
             <div class="section reactivate-highlight">
               <div class="section-title">激活账号</div>
-              <div class="section-content" style="margin-bottom: 16px;">立即入金100 USDT，开启168小时挑战期，解锁任务系统和收益机会。</div>
+              <div class="section-content" class="mb-md">立即入金100 USDT，开启168小时挑战期，解锁任务系统和收益机会。</div>
               <button class="reactivate-btn" onclick="activateAccount()">立即激活 100 USDT</button>
             </div>
             <div class="section">
               <div class="section-title">收益预览</div>
               <div class="section-content">查看前10名收益排行榜，了解潜在收益机会。</div>
-              <button onclick="showRanking()" style="margin-top: 12px; padding: 8px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; width: 100%; font-weight: 500; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">查看排行榜</button>
+              <button onclick="showRanking()" style="margin-top: 12px; padding: 8px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 14px; font-size: 14px; cursor: pointer; width: 100%; font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">查看排行榜</button>
             </div>
           `;
         },
@@ -1550,14 +1243,14 @@
           let availableTasksSection = '';
           if (availableTasks.length > 0) {
             availableTasksSection = `
-            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; cursor: pointer;" onclick="window.location.href='tasks.html'">
-              <div class="section-title" style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 6px;">📋 可接的任务</div>
-              <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">点击查看详细任务列表</div>
-              <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 14px; padding: 8px; margin-bottom: 8px; cursor: pointer;" onclick="window.location.href='tasks.html'">
+              <div class="section-title" class="text-body">📋 可接的任务</div>
+              <div class="text-caption">点击查看详细任务列表</div>
+              <div class="flex">
                 ${availableTasks.map(task => `
-                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <span style="font-size: 12px; color: var(--text);">${task.title}</span>
-                    <span style="font-size: 10px; padding: 2px 6px; background: linear-gradient(45deg, #00eaff, #0088ff); color: #031e2e; border-radius: 8px;">待完成</span>
+                  <div class="flex">
+                    <span class="text-caption">${task.title}</span>
+                    <span class="text-caption">待完成</span>
                   </div>
                 `).join('')}
               </div>
@@ -1571,14 +1264,14 @@
           let quizSection = '';
           if (firstDone && quizCorrect < 20) {
             quizSection = `
-            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; box-shadow: var(--btn-glow); cursor: pointer;" onclick="window.location.href='quiz.html'">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 14px; padding: 8px; margin-bottom: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); cursor: pointer;" onclick="window.location.href='quiz.html'">
+              <div class="flex">
                 <div>
-                  <div style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 2px;">📝 答题任务</div>
-                  <div style="font-size: 12px; color: var(--text-secondary);">降低提现手续费</div>
+                  <div class="text-body">📝 答题任务</div>
+                  <div class="text-caption">降低提现手续费</div>
                 </div>
                 <div style="text-align: right;">
-                  <div style="font-size: 12px; color: var(--text-secondary);">进度</div>
+                  <div class="text-caption">进度</div>
                   <div style="font-weight: bold; color: var(--accent-color);">${quizCorrect}/20</div>
                 </div>
               </div>
@@ -1596,14 +1289,14 @@
             const currentMasterTask = godTasks.find(task => !task.done);
             
             masterTasksSection = `
-            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; box-shadow: var(--btn-glow); cursor: pointer;" onclick="window.location.href='tasks.html?tab=master'">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 14px; padding: 8px; margin-bottom: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); cursor: pointer;" onclick="window.location.href='tasks.html?tab=master'">
+              <div class="flex">
                 <div>
-                  <div style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 2px;">🏆 大神任务</div>
-                  <div style="font-size: 12px; color: var(--text-secondary);">${currentMasterTask ? currentMasterTask.title : '所有大神任务已完成'}</div>
+                  <div class="text-body">🏆 大神任务</div>
+                  <div class="text-caption">${currentMasterTask ? currentMasterTask.title : '所有大神任务已完成'}</div>
                 </div>
                 <div style="text-align: right;">
-                  <div style="font-size: 12px; color: var(--text-secondary);">进度</div>
+                  <div class="text-caption">进度</div>
                   <div style="font-weight: bold; color: var(--accent-color);">${godTasksCompleted}/6</div>
                 </div>
               </div>
@@ -1612,306 +1305,56 @@
           }
           
           return `
-            <!-- 优化后的倒计时区域 -->
-            <div class="section" style="margin-bottom: 16px;">
-              <div class="countdown-container" style="
-                background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(47, 128, 237, 0.1) 100%);
-                border: 2px solid var(--accent-color);
-                border-radius: 10px;
-                padding: 6px 10px;
-                position: relative;
-                overflow: hidden;
-                box-shadow: 0 8px 32px rgba(47, 128, 237, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-                animation: countdownPulse 3s ease-in-out infinite;
-              ">
-                
-                <!-- 倒计时主体 -->
-                <div style="position: relative; z-index: 2;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-                    <div style="display: flex; align-items: center; gap: 4px;">
-                      <div style="
-                        width: 5px;
-                        height: 5px;
-                        background: var(--accent-color);
-                        border-radius: 50%;
-                        animation: blink 1.5s ease-in-out infinite;
-                      "></div>
-                      <span style="font-size: 11px; color: var(--accent-color); font-weight: 600;">⚡ 挑战倒计时</span>
-                    </div>
-                    <div style="
-                      background: rgba(47, 128, 237, 0.2);
-                      padding: 1px 4px;
-                      border-radius: 6px;
-                      font-size: 9px;
-                      color: var(--accent-color);
-                      font-weight: 500;
-                    ">168小时挑战</div>
+            <div class="section" class="flex">
+              <div style="flex: 1; background: var(--bg-secondary); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80px;">
+                <div class="text-caption">⏰ 倒计时</div>
+                <div style="font-weight: bold; color: var(--accent-color); font-size: 18px; line-height: 1;"><span id="countdown" class="text-countdown">--:--:--</span></div>
+              </div>
+              <div style="flex: 1.2; background: var(--bg-secondary); border-radius: 14px; padding: 12px;">
+                <div class="text-caption">🏆 战绩卡</div>
+                <div class="text-caption">
+                  <div class="flex">
+                    <span>新手任务:</span>
+                    <span style="color: var(--accent-color); font-weight: bold;"><span id="taskProgress">${completedTasks}</span>/3</span>
                   </div>
-                  
-                  <!-- 时间显示区域 -->
-                  <div class="time-area" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; margin-bottom: 2px;">
-                    <!-- 时间数字 -->
-                    <div style="text-align: center;">
-                      <div class="time-display" style="
-                        font-size: 28px;
-                        font-weight: 700;
-                        color: var(--accent-color);
-                        text-shadow: 0 0 20px rgba(47, 128, 237, 0.5);
-                        font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-                        letter-spacing: 1px;
-                        margin-bottom: 2px;
-                      ">
-                        <span id="countdown">--:--:--</span>
-                      </div>
-                    </div>
-                    
-                    <!-- 直线进度条 -->
-                    <div style="width: 100%; margin-top: 4px;">
-                      <div style="
-                        width: 100%;
-                        height: 4px;
-                        background: rgba(47, 128, 237, 0.2);
-                        border-radius: 2px;
-                        overflow: hidden;
-                        position: relative;
-                      ">
-                        <div 
-                          id="countdownProgress" 
-                          style="
-                            height: 100%;
-                            width: 100%;
-                            background: linear-gradient(90deg, var(--accent-color), #4FC3F7);
-                            border-radius: 2px;
-                            transition: width 1s ease-in-out;
-                            box-shadow: 0 0 6px rgba(47, 128, 237, 0.5);
-                            margin-left: auto;
-                          "
-                        ></div>
-                      </div>
-                      <div style="
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        margin-top: 2px;
-                        font-size: 10px;
-                        color: var(--text-secondary);
-                      ">
-                        <span id="remainingDays" style="color: var(--accent-color); font-weight: 600;">剩余 -- 天</span>
-                      </div>
-                    </div>
+                  <div class="flex">
+                     <span>答题进度:</span>
+                     <span style="color: var(--accent-color); font-weight: bold;">${quizCorrect}/20</span>
+                   </div>
+                  <div class="flex">
+                    <span>团队人数:</span>
+                    <span style="color: var(--accent-color); font-weight: bold;"><span id="teamCount">${teamMembers}</span>人</span>
                   </div>
-                  
-                  <!-- 状态提示 -->
-                  <div id="countdownStatus" style="
-                    text-align: center;
-                    font-size: 12px;
-                    color: var(--text-secondary);
-                    background: rgba(47, 128, 237, 0.1);
-                    padding: 8px 12px;
-                    border-radius: 12px;
-                    border: 1px solid rgba(47, 128, 237, 0.2);
-                    display: none;
-                  ">
+                  <div class="flex">
+                    <span>总收益:</span>
+                    <span style="color: var(--success-color); font-weight: bold;"><span id="totalEarnings">${totalEarnings.toFixed(2)}</span> USDT</span>
                   </div>
                 </div>
               </div>
             </div>
-            
-            <!-- 邀请链接区域 -->
-            <div class="section invite-highlight" style="margin-bottom: 16px;">
+            ${availableTasksSection}
+            ${quizSection}
+            ${masterTasksSection}
+            <div class="section invite-highlight">
               <div class="section-title">邀请链接</div>
               <div class="section-content">
                 <!-- 专属邀请码区域 -->
-                <div style="margin-bottom: 12px; padding: 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; box-shadow: 0 2px 8px var(--accent-shadow);">
-                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">💎 我的专属邀请码</div>
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <div style="flex: 1; font-weight: bold; color: var(--accent-color); font-size: 16px; text-align: center; padding: 10px; background: var(--input-bg); border-radius: 8px; border: 1px solid var(--border-color); box-shadow: inset 0 1px 3px var(--accent-shadow);" id="myInviteCode">ABC123</div>
-                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制码</button>
+                <div class="mb-sm">
+                  <div class="text-caption">💎 我的专属邀请码</div>
+                  <div class="flex">
+                    <div style="flex: 1; font-weight: bold; color: var(--accent-color); font-size: 14px; text-align: center; padding: 10px; background: var(--input-bg); border-radius: 14px; border: 1px solid var(--border-color); box-shadow: inset 0 1px 3px var(--accent-shadow);" id="myInviteCode">ABC123</div>
+                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 14px; font-size: 12px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制码</button>
                   </div>
                 </div>
                 
                 <!-- 邀请链接区域 -->
                 <div style="padding: 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; box-shadow: 0 2px 8px var(--accent-shadow);">
-                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 邀请链接</div>
-                  <div class="invite-link-container" style="display: flex; gap: 8px;">
-                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--input-bg); font-size: 11px; color: var(--accent-color); box-shadow: inset 0 1px 3px var(--accent-shadow);">
-                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制链接</button>
+                  <div class="text-caption">🔗 邀请链接</div>
+                  <div class="invite-link-container" class="flex">
+                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 14px; background: var(--input-bg); font-size: 12px; color: var(--accent-color); box-shadow: inset 0 1px 3px var(--accent-shadow);">
+                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 14px; font-size: 12px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制链接</button>
                   </div>
                 </div>
-              </div>
-            </div>
-            
-            ${availableTasksSection}
-            ${quizSection}
-            ${masterTasksSection}
-            
-            <!-- 战绩卡区域 - 移动到最下方 -->
-            <div class="section" style="margin-bottom: 16px;">
-              <div style="
-                background: var(--bg-secondary); 
-                border-radius: 16px; 
-                padding: 16px;
-                border: 1px solid rgba(47, 128, 237, 0.1);
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-              ">
-                <div style="
-                  font-size: 14px; 
-                  color: var(--accent-color); 
-                  margin-bottom: 12px; 
-                  text-align: center;
-                  font-weight: 600;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  gap: 8px;
-                ">
-                  <span>🏆</span>
-                  <span>我的战绩</span>
-                </div>
-                <div class="grid-stats" style="
-                   display: grid;
-                   grid-template-columns: 1fr 1fr;
-                   gap: 12px;
-                   font-size: 12px;
-                   line-height: 1.4;
-                 ">
-                   <!-- 新手任务卡片 - 增强版 -->
-                   <div class="stat-item" style="
-                     background: rgba(47, 128, 237, 0.05);
-                     padding: 12px;
-                     border-radius: 12px;
-                     border: 1px solid rgba(47, 128, 237, 0.1);
-                     position: relative;
-                     transition: all 0.2s ease;
-                   " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(47, 128, 237, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">📚 新手任务</div>
-                       <div style="font-size: 10px; color: var(--accent-color); font-weight: 500;">
-                         ${completedTasks === 3 ? '✅ 已完成' : '进行中'}
-                       </div>
-                     </div>
-                     <div class="stat-value" style="color: var(--accent-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
-                       <span id="taskProgress">${completedTasks}</span>/3
-                       <span style="font-size: 12px; color: var(--text-secondary); margin-left: 4px;">
-                         (${Math.round(completedTasks/3*100)}%)
-                       </span>
-                     </div>
-                     <div style="
-                       width: 100%;
-                       height: 4px;
-                       background: rgba(47, 128, 237, 0.1);
-                       border-radius: 2px;
-                       overflow: hidden;
-                       margin-bottom: 4px;
-                     ">
-                       <div style="
-                         width: ${completedTasks/3*100}%;
-                         height: 100%;
-                         background: var(--accent-color);
-                         border-radius: 2px;
-                         transition: width 0.3s ease;
-                       "></div>
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary);">
-                       ${completedTasks < 3 ? `还需完成 ${3-completedTasks} 个任务` : '🎉 全部完成！'}
-                     </div>
-                   </div>
-                   
-                   <!-- 答题进度卡片 - 增强版 -->
-                   <div class="stat-item" style="
-                     background: rgba(47, 128, 237, 0.05);
-                     padding: 12px;
-                     border-radius: 12px;
-                     border: 1px solid rgba(47, 128, 237, 0.1);
-                     position: relative;
-                     transition: all 0.2s ease;
-                   " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(47, 128, 237, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">🧠 答题进度</div>
-                       <div style="font-size: 10px; color: var(--accent-color); font-weight: 500;">
-                         ${quizCorrect >= 16 ? '✅ 通过' : (completedTasks >= 1 ? '可答题' : '🔒 未解锁')}
-                       </div>
-                     </div>
-                     <div class="stat-value" style="color: var(--accent-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
-                       ${quizCorrect}/20
-                       <span style="font-size: 12px; color: var(--text-secondary); margin-left: 4px;">
-                         (${Math.round(quizCorrect/20*100)}%)
-                       </span>
-                     </div>
-                     <div style="
-                       width: 100%;
-                       height: 4px;
-                       background: rgba(47, 128, 237, 0.1);
-                       border-radius: 2px;
-                       overflow: hidden;
-                       margin-bottom: 4px;
-                     ">
-                       <div style="
-                         width: ${quizCorrect/20*100}%;
-                         height: 100%;
-                         background: var(--accent-color);
-                         border-radius: 2px;
-                         transition: width 0.3s ease;
-                       "></div>
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary);">
-                       ${completedTasks < 1 ? '需完成新手任务1解锁' : (quizCorrect < 16 ? `需答对 ${16-quizCorrect} 题通过` : '🎁 手续费已降低2%')}
-                     </div>
-                   </div>
-                   
-                   <!-- 团队人数卡片 - 增强版 -->
-                   <div class="stat-item" style="
-                     background: rgba(47, 128, 237, 0.05);
-                     padding: 12px;
-                     border-radius: 12px;
-                     border: 1px solid rgba(47, 128, 237, 0.1);
-                     position: relative;
-                     transition: all 0.2s ease;
-                   " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(47, 128, 237, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">👥 团队规模</div>
-                       <div style="font-size: 10px; color: var(--success-color); font-weight: 500;">
-                         ${teamMembers > 0 ? '↗️ 增长中' : '待发展'}
-                       </div>
-                     </div>
-                     <div class="stat-value" style="color: var(--accent-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
-                       <span id="teamCount">${teamMembers}</span>人
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary); margin-bottom: 4px;">
-                       ${teamMembers < 2 ? '距离大神任务一还需' + (2-teamMembers) + '人' : '已达成大神任务一条件 🎯'}
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary);">
-                       💡 邀请更多好友加入团队
-                     </div>
-                   </div>
-                   
-                   <!-- 总收益卡片 - 增强版 -->
-                   <div class="stat-item" style="
-                     background: rgba(40, 167, 69, 0.1);
-                     padding: 12px;
-                     border-radius: 12px;
-                     border: 1px solid rgba(40, 167, 69, 0.2);
-                     position: relative;
-                     transition: all 0.2s ease;
-                   " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(40, 167, 69, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">💰 总收益</div>
-                       <div style="font-size: 10px; color: var(--success-color); font-weight: 500;">
-                         ${totalEarnings > 0 ? '📈 盈利中' : '待激活'}
-                       </div>
-                     </div>
-                     <div class="stat-value" style="color: var(--success-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
-                       <span id="totalEarnings">${totalEarnings.toFixed(2)}</span> USDT
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary); margin-bottom: 2px;">
-                       收益率: ${totalEarnings > 0 ? (totalEarnings/100*100).toFixed(1) + '%' : '0%'}
-                       ${totalEarnings > 0 ? ' | 日均: ' + (totalEarnings/7).toFixed(2) + ' USDT' : ''}
-                     </div>
-                     <div style="font-size: 10px; color: var(--text-secondary);">
-                       ${totalEarnings === 0 ? '💡 完成任务开始赚取收益' : '🚀 继续完成任务提升收益'}
-                     </div>
-                   </div>
-                 </div>
               </div>
             </div>
           `;
@@ -1933,7 +1376,7 @@
             <div class="section reactivate-highlight">
               <div class="section-title">🔥 再次激活</div>
               <div class="section-content">
-                <p style="margin-bottom: 12px;">重新开启168小时挑战，继续赚取收益！</p>
+                <p class="mb-sm">重新开启168小时挑战，继续赚取收益！</p>
                 <button class="reactivate-btn" onclick="repurchase()">立即激活 100 USDT</button>
               </div>
             </div>
@@ -2198,93 +1641,23 @@
       const elapsed = now - countdownStart;
       let remaining = total - elapsed;
       if (remaining < 0) remaining = 0;
-      
-      // 计算总小时数、分钟数、秒数
-      const totalHours = Math.floor(remaining / (3600 * 1000));
+      const hrs = Math.floor(remaining / 3600000);
       const mins = Math.floor((remaining % 3600000) / 60000);
       const secs = Math.floor((remaining % 60000) / 1000);
-      
-      // 格式化为 XXX:XX:XX 格式
-      const timeStr = `${String(totalHours).padStart(3, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-      
-      // 更新倒计时显示
+      const str = `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
       const countdownEl = document.getElementById('countdown');
-      if (countdownEl) countdownEl.innerText = timeStr;
-      
-      // 更新进度条（倒计时进度：从满逐渐变空）
-      const progressEl = document.getElementById('countdownProgress');
-      const remainingDaysEl = document.getElementById('remainingDays');
-      if (progressEl && remainingDaysEl) {
-        // 倒计时进度条：显示剩余时间进度（从100%递减到0%，从满逐渐变空）
-        const remainingProgress = (remaining / total);
-        const remainingPercent = remainingProgress * 100;
-        progressEl.style.width = `${remainingPercent}%`;
-        
-        // 计算剩余天数、小时数和分钟数
-        const remainingDays = Math.floor(remaining / (24 * 3600 * 1000));
-        const remainingHours = Math.floor((remaining % (24 * 3600 * 1000)) / (3600 * 1000));
-        const remainingMinutes = Math.floor((remaining % (3600 * 1000)) / (60 * 1000));
-        
-        // 根据剩余时间显示不同格式
-        if (remainingDays > 0) {
-          remainingDaysEl.textContent = `剩余${remainingDays}天${remainingHours}小时${remainingMinutes}分`;
-        } else {
-          remainingDaysEl.textContent = `仅剩余${remainingHours}小时${remainingMinutes}分`;
-        }
-      }
-      
-      // 更新状态提示和动画效果
-      const statusEl = document.getElementById('countdownStatus');
-      const containerEl = document.querySelector('.countdown-container');
-      
-      if (statusEl && containerEl) {
-        const hoursLeft = remaining / (3600 * 1000);
-        
-        if (hoursLeft <= 24) {
-          // 最后24小时 - 紧急状态
-          statusEl.innerHTML = '🚨 最后24小时！立即完成任务获得奖励';
-          statusEl.style.background = 'rgba(255, 69, 58, 0.2)';
-          statusEl.style.borderColor = 'rgba(255, 69, 58, 0.4)';
-          statusEl.style.color = '#ff453a';
-          containerEl.style.animation = 'urgentPulse 1.5s ease-in-out infinite';
-          
-          // 进度环变红色
-          if (progressEl) {
-            progressEl.style.stroke = '#ff453a';
-            progressEl.style.filter = 'drop-shadow(0 0 8px #ff453a)';
-          }
-        } else if (hoursLeft <= 72) {
-          // 最后72小时 - 警告状态
-          statusEl.innerHTML = '⚠️ 时间紧迫，抓紧完成任务获得收益';
-          statusEl.style.background = 'rgba(255, 193, 7, 0.2)';
-          statusEl.style.borderColor = 'rgba(255, 193, 7, 0.4)';
-          statusEl.style.color = '#ffc107';
-          containerEl.style.animation = 'countdownPulse 2s ease-in-out infinite';
-          
-          // 进度环变橙色
-          if (progressEl) {
-            progressEl.style.stroke = '#ffc107';
-            progressEl.style.filter = 'drop-shadow(0 0 8px #ffc107)';
-          }
-        } else {
-          // 正常状态 - 不显示任何提示
-          if (statusEl) {
-            statusEl.style.display = 'none';
-          }
-          containerEl.style.animation = 'countdownPulse 3s ease-in-out infinite';
-          
-          // 进度环保持蓝色
-          if (progressEl) {
-            progressEl.style.stroke = 'var(--accent-color)';
-            progressEl.style.filter = 'drop-shadow(0 0 8px var(--accent-color))';
-          }
-        }
-      }
+      if (countdownEl) countdownEl.innerText = str;
       
       // 更新邀请链接显示
       updateInviteDisplay();
       
       // 当倒计时结束，自动进入状态3
+      if (remaining === 0 && currentState === 2) {
+        currentState = 3;
+        countdownStart = null;
+        renderState();
+      }
+      // 当倒计时结束，从状态2回到状态3
       if (remaining === 0 && currentState === 2) {
         currentState = 3;
         countdownStart = null;
@@ -2316,21 +1689,6 @@
       if (currentState > 3) currentState = 1;
       countdownStart = null;
       renderState();
-    }
-
-    // 切换到指定状态
-    function switchToState(state) {
-      if (state === '') return; // 如果选择了空选项，不执行任何操作
-      
-      currentState = parseInt(state);
-      countdownStart = null;
-      renderState();
-      
-      // 重置下拉菜单
-      document.getElementById('stateSelect').value = '';
-      
-      // 自动关闭设置面板
-      closeSettings();
     }
 
     // 激活账号/首次入金
@@ -2533,16 +1891,69 @@
       }
       document.body.removeChild(textArea);
     }
-    // 抢红包 - 跳转到红包页面
+    // 抢红包 - 严格时间窗口和资格校验
     function grabRedPacket() {
-      // 检查资格：仅状态2有红包按钮
+      // 检查资格：仅状态2或4
       if (currentState !== 2) {
         showDialog('无抢红包资格', '只有在激活状态（初次挑战或复购状态）才可以抢红包。');
         return;
       }
       
-      // 跳转到红包页面
-      window.location.href = 'redpacket.html';
+      // 严格时间检查：每日9:00/12:00/20:00 开始，持续77秒
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      
+      const isValidHour = hours === 9 || hours === 12 || hours === 20;
+      const isValidTime = isValidHour && minutes === 0 && seconds < 77;
+      
+      if (!isValidTime) {
+        // 计算下一场红包时间
+        let nextHour;
+        if (hours < 9) nextHour = 9;
+        else if (hours < 12) nextHour = 12;
+        else if (hours < 20) nextHour = 20;
+        else nextHour = 9; // 明天9点
+        
+        const nextDay = hours >= 20 ? '明日' : '今日';
+        showDialog('红包未开始', `红包活动每日9:00、12:00、20:00开始，每次仅开放77秒。\n\n下一场：${nextDay} ${nextHour}:00`);
+        return;
+      }
+      
+      // 检查是否已经抢过（每场限抢一次）
+      const todayKey = now.toDateString();
+      const sessionKey = `${todayKey}_${hours}`;
+      const grabbedSessions = JSON.parse(localStorage.getItem('grabbedSessions') || '[]');
+      
+      if (grabbedSessions.includes(sessionKey)) {
+        showDialog('已抢过红包', '本场红包已抢过，请等待下一场。');
+        return;
+      }
+      
+      // 抢红包成功
+      const prize = parseFloat((Math.random() * 4.99 + 0.01).toFixed(2));
+      walletBalance += prize;
+      totalEarnings += prize;
+      
+      // 记录本场已抢
+      grabbedSessions.push(sessionKey);
+      localStorage.setItem('grabbedSessions', JSON.stringify(grabbedSessions));
+      
+      // 记录交易
+      transactions.push({ 
+        type: '红包收入', 
+        amount: prize, 
+        fee: 0, 
+        net: prize, 
+        time: new Date().toISOString(),
+        desc: `${hours}:00场红包` 
+      });
+      
+      saveState();
+      renderState();
+      
+      showDialog('抢红包成功', `🎉 恭喜抢到红包：${prize.toFixed(2)} USDT！\n\n当前余额：${walletBalance.toFixed(2)} USDT\n剩余时间：${77 - seconds}秒`);
     }
     // 我的团队
     function showTeam() {
@@ -2720,7 +2131,6 @@
      */
     function showForceThemeSelection(teamSize, balance) {
       const themes = {
-        'cyberpunk': { name: '赛博朋克', icon: '🌆', description: '未来科技感' },
         'rainbow': { name: '彩虹渐变', icon: '🌈', description: '多彩绚烂' },
         'business': { name: '商务蓝', icon: '💼', description: '专业稳重' },
         'dark-tech': { name: '暗黑科技', icon: '⚡', description: '神秘酷炫' },
@@ -2741,7 +2151,7 @@
         <div id="forceThemeModal" class="force-theme-modal">
           <div class="force-theme-content">
             <div class="force-theme-header">
-              <h2>🎨 选择您的专属风格</h2>
+              <h2 class="text-h2">🎨 选择您的专属风格</h2>
               <p>数据重置成功！请选择一个风格主题继续使用</p>
             </div>
             <div class="force-theme-options">
@@ -2772,7 +2182,7 @@
         }
         .force-theme-content {
           background: var(--bg-card);
-          border-radius: 20px;
+          border-radius: 16px;
           padding: 24px;
           max-width: 400px;
           width: 90%;
@@ -2786,7 +2196,7 @@
         .force-theme-header h2 {
           color: var(--text-primary);
           margin: 0 0 8px 0;
-          font-size: 20px;
+          font-size: 18px;
         }
         .force-theme-header p {
           color: var(--text-secondary);
@@ -2805,15 +2215,15 @@
           gap: 12px;
           padding: 12px;
           border: 2px solid var(--border-color);
-          border-radius: 12px;
+          border-radius: 14px;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           background: var(--bg-secondary);
         }
         .force-theme-option:hover {
           border-color: var(--accent-color);
           transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         }
         .force-theme-option.selected {
           border-color: var(--accent-color);
@@ -2830,7 +2240,7 @@
         }
         .force-theme-name {
           font-weight: 600;
-          font-size: 16px;
+          font-size: 14px;
           margin-bottom: 2px;
         }
         .force-theme-desc {
@@ -2864,7 +2274,6 @@
           if (window.themeSwitcher) {
             window.themeSwitcher.switchTheme(selectedTheme);
           } else {
-            document.documentElement.setAttribute('data-theme', selectedTheme === 'cyberpunk' ? '' : selectedTheme);
             localStorage.setItem('selectedTheme', selectedTheme);
           }
           
@@ -2893,22 +2302,22 @@
         const currentTask = newTasks.find(t => !t.done);
         if(currentTask) {
           html += `<h3 style="margin-top:0;color:var(--brand)">${currentTask.title}</h3>`;
-          html += `<p style="font-size:14px;color:var(--muted)">${currentTask.desc ? currentTask.desc : '完成此任务可推进进度。'}</p>`;
+          html += `<p class="text-body">${currentTask.desc ? currentTask.desc : '完成此任务可推进进度。'}</p>`;
           html += `<button class="btn" id="modalTaskDone" style="margin-top:16px;width:100%">标记完成</button>`;
         } else {
           html += `<h3 style="margin-top:0;color:var(--brand)">所有新手任务已完成</h3>`;
-          html += `<p style="font-size:14px;color:var(--muted)">无需再执行新手任务。</p>`;
+          html += `<p class="text-body">无需再执行新手任务。</p>`;
         }
       } else if(type === 'wallet') {
         html += `<h3 style="margin-top:0;color:var(--brand)">我的钱包</h3>`;
-        html += `<p style="font-size:14px;color:var(--muted)">当前余额：-- USDT</p>`;
+        html += `<p class="text-body">当前余额：-- USDT</p>`;
         html += `<button class="btn" style="margin-top:16px;width:100%">提现</button>`;
       } else if(type === 'team') {
         html += `<h3 style="margin-top:0;color:var(--brand)">我的团队</h3>`;
-        html += `<p style="font-size:14px;color:var(--muted)">此处展示七层团队结构（占位）</p>`;
+        html += `<p class="text-body">此处展示七层团队结构（占位）</p>`;
       } else if(type === 'ranking') {
         html += `<h3 style="margin-top:0;color:var(--brand)">排行榜</h3>`;
-        html += `<p style="font-size:14px;color:var(--muted)">此处展示团队、红包与大神排行（占位）</p>`;
+        html += `<p class="text-body">此处展示团队、红包与大神排行（占位）</p>`;
       }
       modalBody.innerHTML = html;
       modal.style.display = 'flex';
