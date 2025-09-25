@@ -624,6 +624,16 @@
       50% { opacity: 0.1; }
     }
     
+    /* 进度条从左往右流光动画 */
+    @keyframes flowRight {
+      0% {
+        background-position: 100% 0;
+      }
+      100% {
+        background-position: -100% 0;
+      }
+    }
+    
     /* 倒计时响应式设计 */
     @media (max-width: 480px) {
       .countdown-container {
@@ -1868,11 +1878,13 @@
                           style="
                             height: 100%;
                             width: 100%;
-                            background: linear-gradient(90deg, var(--accent-color), #4FC3F7);
+                            background: linear-gradient(90deg, var(--accent-color) 0%, var(--accent-color) 35%, rgba(255,255,255,0.7) 50%, var(--accent-color) 65%, var(--accent-color) 100%);
+                            background-size: 300% 100%;
                             border-radius: 2px;
                             transition: width 1s ease-in-out;
                             box-shadow: 0 0 6px rgba(47, 128, 237, 0.5);
                             margin-left: auto;
+                            animation: flowRight 3s linear infinite;
                           "
                         ></div>
                       </div>
