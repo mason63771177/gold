@@ -1911,69 +1911,16 @@
       }
       document.body.removeChild(textArea);
     }
-    // 抢红包 - 严格时间窗口和资格校验
+    // 抢红包 - 跳转到红包页面
     function grabRedPacket() {
-      // 检查资格：仅状态2或4
+      // 检查资格：仅状态2有红包按钮
       if (currentState !== 2) {
         showDialog('无抢红包资格', '只有在激活状态（初次挑战或复购状态）才可以抢红包。');
         return;
       }
       
-      // 严格时间检查：每日9:00/12:00/20:00 开始，持续77秒
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-      const seconds = now.getSeconds();
-      
-      const isValidHour = hours === 9 || hours === 12 || hours === 20;
-      const isValidTime = isValidHour && minutes === 0 && seconds < 77;
-      
-      if (!isValidTime) {
-        // 计算下一场红包时间
-        let nextHour;
-        if (hours < 9) nextHour = 9;
-        else if (hours < 12) nextHour = 12;
-        else if (hours < 20) nextHour = 20;
-        else nextHour = 9; // 明天9点
-        
-        const nextDay = hours >= 20 ? '明日' : '今日';
-        showDialog('红包未开始', `红包活动每日9:00、12:00、20:00开始，每次仅开放77秒。\n\n下一场：${nextDay} ${nextHour}:00`);
-        return;
-      }
-      
-      // 检查是否已经抢过（每场限抢一次）
-      const todayKey = now.toDateString();
-      const sessionKey = `${todayKey}_${hours}`;
-      const grabbedSessions = JSON.parse(localStorage.getItem('grabbedSessions') || '[]');
-      
-      if (grabbedSessions.includes(sessionKey)) {
-        showDialog('已抢过红包', '本场红包已抢过，请等待下一场。');
-        return;
-      }
-      
-      // 抢红包成功
-      const prize = parseFloat((Math.random() * 4.99 + 0.01).toFixed(2));
-      walletBalance += prize;
-      totalEarnings += prize;
-      
-      // 记录本场已抢
-      grabbedSessions.push(sessionKey);
-      localStorage.setItem('grabbedSessions', JSON.stringify(grabbedSessions));
-      
-      // 记录交易
-      transactions.push({ 
-        type: '红包收入', 
-        amount: prize, 
-        fee: 0, 
-        net: prize, 
-        time: new Date().toISOString(),
-        desc: `${hours}:00场红包` 
-      });
-      
-      saveState();
-      renderState();
-      
-      showDialog('抢红包成功', `🎉 恭喜抢到红包：${prize.toFixed(2)} USDT！\n\n当前余额：${walletBalance.toFixed(2)} USDT\n剩余时间：${77 - seconds}秒`);
+      // 跳转到红包页面
+      window.location.href = 'redpacket.html';
     }
     // 我的团队
     function showTeam() {
