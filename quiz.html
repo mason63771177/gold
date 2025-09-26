@@ -487,12 +487,12 @@
           const activationTime = localStorage.getItem('activationTime') || new Date().toISOString();
           const remainingHours = Math.max(0, 168 - Math.floor((new Date() - new Date(activationTime)) / (1000 * 60 * 60)));
           
-          showCustomAlert(`✅ 你已完成【20/20】道裂金测验！\n你的财富思维已升维：红包=小雨点，结构=水库，复制=爆炸曲线。\n你不只是玩家，你是【裂变引擎】。\n**入口只剩 ${remainingHours} 小时**，立即陪新人完成【第一单】，让水库自动奔流！`, true);
+          showCustomAlert(`✅ 你已完成【20/20】道裂金测验！\n你的财富思维已升维：红包=小雨点，结构=水库，复制=爆炸曲线。\n你不只是玩家，你是【裂变引擎】。\n**入口只剩 ${remainingHours} 小时**，立即陪新人完成【第一单】，让水库自动奔流！`, true, true);
         } else {
-          showCustomAlert('回答正确！提现手续费降低0.2%。');
+          showCustomAlert('回答正确！提现手续费降低0.2%。', false, false);
         }
       } else {
-        showCustomAlert(q.wrongMsg || `回答错误，正确答案是：${q.a}`);
+        showCustomAlert(q.wrongMsg || `回答错误，正确答案是：${q.a}`, false, true);
         selectedOption = null;
       }
       renderQuestion();
@@ -505,17 +505,25 @@
     renderQuestion();
     
     // 自定义弹窗函数
-    function showCustomAlert(message, isCompleteQuiz = false) {
+    function showCustomAlert(message, isCompleteQuiz = false, needCountdown = false) {
           document.getElementById('customAlertMessage').textContent = message;
           document.getElementById('customAlert').style.display = 'flex';
-          
-          // 设置倒计时时间：答错题3秒，完成测验5秒
-          const countdownTime = isCompleteQuiz ? 5 : 3;
-          let remainingTime = countdownTime;
           
           const button = document.getElementById('customAlertButton');
           const buttonText = document.getElementById('customAlertButtonText');
           const countdown = document.getElementById('customAlertCountdown');
+          
+          // 如果不需要倒计时，直接激活按钮
+          if (!needCountdown) {
+            button.disabled = false;
+            buttonText.style.display = 'inline';
+            countdown.style.display = 'none';
+            return;
+          }
+          
+          // 设置倒计时时间：答错题3秒，完成测验5秒
+          const countdownTime = isCompleteQuiz ? 5 : 3;
+          let remainingTime = countdownTime;
           
           // 初始化按钮状态
           button.disabled = true;
