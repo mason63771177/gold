@@ -522,12 +522,25 @@
       const feeRateLabel = document.getElementById('feeRateLabel');
       const feeRatePercent = (feeRate * 100).toFixed(0);
       
+      // 获取答题进度
+      const correctCount = parseInt(localStorage.getItem('quizCorrect')) || 0;
+      
+      // 根据答题进度显示不同的文案
+      let progressText = '';
+      if (correctCount === 0) {
+        progressText = '未开始答题';
+      } else if (feeRate <= 0.01) {
+        progressText = `已答对${correctCount}题，已达最低`;
+      } else {
+        progressText = `已答对${correctCount}题`;
+      }
+      
       if (feeRate !== 0.01) {
         // 手续费不是1%，显示答题按钮
-        feeRateLabel.innerHTML = `比例手续费 (${feeRatePercent}%) <a href="quiz.html" class="quiz-btn">答题降费</a>`;
+        feeRateLabel.innerHTML = `比例手续费 (${feeRatePercent}%) - ${progressText} <a href="quiz.html" class="quiz-btn">答题降费</a>`;
       } else {
         // 手续费是1%，不显示答题按钮
-        feeRateLabel.innerHTML = `比例手续费 (${feeRatePercent}%)`;
+        feeRateLabel.innerHTML = `比例手续费 (${feeRatePercent}%) - ${progressText}`;
       }
     }
     
