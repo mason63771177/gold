@@ -3273,6 +3273,9 @@
         countdownStart = Date.now();
         inviteStart = countdownStart;
         
+        // 设置激活时间供quiz.html使用
+        localStorage.setItem('activationTime', new Date().toISOString());
+        
         saveState();
         renderState();
         
@@ -3298,6 +3301,9 @@
         currentState = 2;
         countdownStart = Date.now();
         inviteStart = countdownStart;
+        
+        // 设置激活时间供quiz.html使用
+        localStorage.setItem('activationTime', new Date().toISOString());
         
         saveState();
         renderState();
