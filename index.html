@@ -1616,6 +1616,35 @@
       color: var(--brand);
     }
     
+    /* 功能按钮区域 */
+    .message-actions {
+      display: flex;
+      justify-content: center;
+      padding: 0 20px 16px 20px;
+    }
+    
+    .mark-all-read-btn {
+      background: linear-gradient(135deg, #28a745, #20c997);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    }
+    
+    .mark-all-read-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+    }
+    
+    .mark-all-read-btn:active {
+      transform: translateY(0);
+    }
+    
     /* 未读消息计数 */
     .unread-count {
       background: #ff4757;
@@ -1756,6 +1785,129 @@
     
     .message-flash {
       animation: messageFlash 1.5s ease-in-out infinite;
+    }
+    
+    /* Bug报告表单样式 */
+    .bug-report-form {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .bug-report-form h4 {
+      margin: 0 0 16px 0;
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      font-size: 14px;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 2px rgba(47, 128, 237, 0.2);
+    }
+    
+    .submit-bug-btn {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+      width: 100%;
+    }
+    
+    .submit-bug-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+    }
+    
+    .bug-list-section {
+      margin-top: 20px;
+    }
+    
+    .bug-list-section h4 {
+      margin: 0 0 12px 0;
+      color: var(--text-primary);
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .bug-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 8px;
+      border-left: 3px solid #ff6b6b;
+    }
+    
+    .bug-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    
+    .bug-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    
+    .bug-time {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .bug-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      margin: 8px 0;
+    }
+    
+    .bug-type {
+      display: inline-block;
+      background: rgba(255, 107, 107, 0.2);
+      color: #ff6b6b;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 12px;
     }
     
     /* 消息按钮未读提示小红点 */
@@ -2076,6 +2228,16 @@
           👥 团队消息
           <span class="unread-count" id="teamUnreadCount" style="display:none;">0</span>
         </button>
+        <button class="tab-btn" onclick="switchMessageTab('bug')" id="bugTab">
+          🐛 Bug报告
+        </button>
+      </div>
+      
+      <!-- 功能按钮区域 -->
+      <div class="message-actions">
+        <button class="mark-all-read-btn" onclick="markAllAsRead()">
+          ✅ 一键已读
+        </button>
       </div>
       
       <!-- 消息列表容器 -->
@@ -2093,6 +2255,44 @@
           <div class="empty-message">
             <div class="empty-icon">👥</div>
             <div class="empty-text">暂无团队消息</div>
+          </div>
+        </div>
+        
+        <!-- Bug报告列表 -->
+        <div id="bugMessages" class="message-list">
+          <div class="bug-report-form">
+            <h4>🐛 提交Bug报告</h4>
+            <form onsubmit="submitBugReport(event)">
+              <div class="form-group">
+                <label for="bugTitle">Bug标题：</label>
+                <input type="text" id="bugTitle" placeholder="请简要描述遇到的问题" required>
+              </div>
+              <div class="form-group">
+                <label for="bugDescription">详细描述：</label>
+                <textarea id="bugDescription" rows="4" placeholder="请详细描述问题的具体情况、复现步骤等" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="bugType">问题类型：</label>
+                <select id="bugType" required>
+                  <option value="">请选择问题类型</option>
+                  <option value="功能异常">功能异常</option>
+                  <option value="界面显示">界面显示</option>
+                  <option value="性能问题">性能问题</option>
+                  <option value="其他">其他</option>
+                </select>
+              </div>
+              <button type="submit" class="submit-bug-btn">📝 提交报告</button>
+            </form>
+          </div>
+          
+          <div class="bug-list-section">
+            <h4>📋 已提交的Bug报告</h4>
+            <div id="bugReportList">
+              <div class="empty-message">
+                <div class="empty-icon">🐛</div>
+                <div class="empty-text">暂无Bug报告</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2785,6 +2985,9 @@
       
       // 初始化消息系统
       initMessages();
+      
+      // 初始化Bug报告系统
+      initBugReports();
       
       renderState();
       
@@ -3953,6 +4156,22 @@
     
     let messageReadStatus = {};
     
+    // Bug报告数据管理
+    let bugReports = [];
+    
+    // 初始化Bug报告数据
+    function initBugReports() {
+      const savedBugReports = localStorage.getItem('bugReports');
+      if (savedBugReports) {
+        bugReports = JSON.parse(savedBugReports);
+      }
+    }
+    
+    // 保存Bug报告数据
+    function saveBugReports() {
+      localStorage.setItem('bugReports', JSON.stringify(bugReports));
+    }
+    
     // 初始化消息数据
     function initMessages() {
       const savedMessages = localStorage.getItem('messages');
@@ -4098,8 +4317,12 @@
       });
       document.getElementById(`${type}Messages`).classList.add('active');
       
-      // 渲染消息列表
-      renderMessageList(type);
+      // 渲染对应内容
+      if (type === 'bug') {
+        renderBugReportList();
+      } else {
+        renderMessageList(type);
+      }
     }
     
     // 渲染消息列表
@@ -4163,6 +4386,36 @@
         const type = activeTab.onclick.toString().includes('official') ? 'official' : 'team';
         renderMessageList(type);
       }
+    }
+    
+    // 一键已读功能
+    function markAllAsRead() {
+      // 获取当前活跃的标签页类型
+      const activeTab = document.querySelector('.tab-btn.active');
+      if (!activeTab) return;
+      
+      let type = 'official';
+      if (activeTab.onclick.toString().includes('team')) {
+        type = 'team';
+      } else if (activeTab.onclick.toString().includes('bug')) {
+        // Bug报告页面不需要已读功能
+        alert('Bug报告无需标记已读');
+        return;
+      }
+      
+      // 标记当前标签页所有消息为已读
+      messages[type].forEach(message => {
+        messageReadStatus[message.id] = true;
+      });
+      
+      // 保存数据并更新界面
+      saveMessages();
+      updateMessageButton();
+      updateTabUnreadCount();
+      renderMessageList(type);
+      
+      // 显示成功提示
+      alert(`已将所有${type === 'official' ? '官方公告' : '团队消息'}标记为已读`);
     }
     
     // 更新消息按钮状态（现在更新消息图标状态）
@@ -4270,6 +4523,80 @@
       
       // 显示成功提示
       showToast('📢 随机公告已发送！', 'success');
+    }
+    
+    // Bug报告相关函数
+    
+    // 提交Bug报告
+    function submitBugReport(event) {
+      event.preventDefault();
+      
+      const title = document.getElementById('bugTitle').value.trim();
+      const description = document.getElementById('bugDescription').value.trim();
+      const type = document.getElementById('bugType').value;
+      
+      if (!title || !description || !type) {
+        alert('请填写完整的Bug报告信息');
+        return;
+      }
+      
+      const bugReport = {
+        id: `bug_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        title: title,
+        description: description,
+        type: type,
+        time: new Date().toISOString(),
+        status: '已提交'
+      };
+      
+      bugReports.unshift(bugReport);
+      saveBugReports();
+      
+      // 清空表单
+      document.getElementById('bugTitle').value = '';
+      document.getElementById('bugDescription').value = '';
+      document.getElementById('bugType').value = '';
+      
+      // 重新渲染Bug报告列表
+      renderBugReportList();
+      
+      // 显示成功提示
+      alert('Bug报告提交成功！感谢您的反馈。');
+    }
+    
+    // 渲染Bug报告列表
+    function renderBugReportList() {
+      const container = document.getElementById('bugReportList');
+      
+      if (bugReports.length === 0) {
+        container.innerHTML = `
+          <div class="empty-message">
+            <div class="empty-icon">🐛</div>
+            <div class="empty-text">暂无Bug报告</div>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = bugReports.map(bug => {
+        const timeStr = formatMessageTime(bug.time);
+        
+        return `
+          <div class="bug-item">
+            <div class="bug-item-header">
+              <h5 class="bug-title">${bug.title}</h5>
+              <span class="bug-time">${timeStr}</span>
+            </div>
+            <p class="bug-description">${bug.description}</p>
+            <span class="bug-type">${bug.type}</span>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    // 格式化时间（复用消息系统的函数）
+    function formatBugTime(timeStr) {
+      return formatMessageTime(timeStr);
     }
 
     window.onload = init;
