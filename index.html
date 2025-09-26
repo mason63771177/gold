@@ -4651,12 +4651,10 @@
       }
 
       function startDragTouch(e) {
-        e.preventDefault();
-        e.stopPropagation();
         isDragging = true;
         startY = e.touches[0].clientY;
         startTop = parseInt(window.getComputedStyle(messageIcon).top, 10);
-        messageIcon.classList.add('dragging');
+        currentY = 0; // 重置移动距离
       }
 
       function drag(e) {
@@ -4679,20 +4677,26 @@
 
       function dragTouch(e) {
         if (!isDragging) return;
-        e.preventDefault();
-        e.stopPropagation();
         
         currentY = e.touches[0].clientY - startY;
-        const newTop = startTop + currentY;
         
-        // 边界检查
-        const maxTop = window.innerHeight - messageIcon.offsetHeight;
-        const constrainedTop = Math.max(0, Math.min(newTop, maxTop));
-        
-        // 使用requestAnimationFrame优化性能
-        requestAnimationFrame(() => {
-          messageIcon.style.top = constrainedTop + 'px';
-        });
+        // 只有在移动距离超过阈值时才开始真正的拖动
+        if (Math.abs(currentY) > 5) {
+          e.preventDefault();
+          e.stopPropagation();
+          messageIcon.classList.add('dragging');
+          
+          const newTop = startTop + currentY;
+          
+          // 边界检查
+          const maxTop = window.innerHeight - messageIcon.offsetHeight;
+          const constrainedTop = Math.max(0, Math.min(newTop, maxTop));
+          
+          // 使用requestAnimationFrame优化性能
+          requestAnimationFrame(() => {
+            messageIcon.style.top = constrainedTop + 'px';
+          });
+        }
       }
 
       function endDrag(e) {
@@ -4712,11 +4716,15 @@
         isDragging = false;
         messageIcon.classList.remove('dragging');
         
-        // 保存位置到localStorage
-        const finalTop = parseInt(messageIcon.style.top, 10);
-        localStorage.setItem('messageIconTop', finalTop);
-        
-        // 移除自动触发点击事件的逻辑，拖动后不自动打开消息中心
+        // 如果移动距离很小，说明是点击而不是拖动
+        if (Math.abs(currentY) <= 5) {
+          // 手动触发点击事件
+          showMessages();
+        } else {
+          // 保存位置到localStorage
+          const finalTop = parseInt(messageIcon.style.top, 10);
+          localStorage.setItem('messageIconTop', finalTop);
+        }
       }
     }
 
