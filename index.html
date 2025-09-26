@@ -115,9 +115,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      touch-action: none;
     }
 
-    .message-icon:hover {
+    /* 拖拽状态样式 */
+    .message-icon.dragging {
+      transition: none;
+      transform: scale(1.1);
+      opacity: 0.8;
+      cursor: grabbing;
+    }
+
+    .message-icon:hover:not(.dragging) {
       transform: translateY(-50%) scale(1.1);
     }
 
@@ -133,8 +146,8 @@
       transition: all 0.3s ease;
     }
 
-    .message-icon:hover img,
-    .message-icon:hover svg {
+    .message-icon:hover:not(.dragging) img,
+    .message-icon:hover:not(.dragging) svg {
       filter: brightness(1.1);
     }
 
@@ -1955,7 +1968,7 @@
       <div class="header-main">
         <!-- 消息图标 -->
         <div id="messageIcon" class="message-icon" onclick="showMessages()">
-          <img src="图标文件/message.png" alt="消息" width="36" height="36" />
+          <img src="图标文件/message_optimized.png" alt="消息" width="36" height="36" />
           <div id="messageUnreadDot" class="unread-dot" style="display: none;"></div>
         </div>
         
@@ -2988,6 +3001,9 @@
       
       // 初始化Bug报告系统
       initBugReports();
+      
+      // 初始化消息图标拖拽功能
+      initMessageIconDrag();
       
       renderState();
       
@@ -4597,6 +4613,111 @@
     // 格式化时间（复用消息系统的函数）
     function formatBugTime(timeStr) {
       return formatMessageTime(timeStr);
+    }
+
+    // 消息图标拖拽功能
+    function initMessageIconDrag() {
+      const messageIcon = document.getElementById('messageIcon');
+      if (!messageIcon) return;
+
+      let isDragging = false;
+      let startY = 0;
+      let startTop = 0;
+      let currentY = 0;
+
+      // 从localStorage加载保存的位置
+      const savedTop = localStorage.getItem('messageIconTop');
+      if (savedTop) {
+        messageIcon.style.top = savedTop + 'px';
+      }
+
+      // 鼠标事件
+      messageIcon.addEventListener('mousedown', startDrag);
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', endDrag);
+
+      // 触摸事件
+      messageIcon.addEventListener('touchstart', startDragTouch, { passive: false });
+      document.addEventListener('touchmove', dragTouch, { passive: false });
+      document.addEventListener('touchend', endDragTouch);
+
+      function startDrag(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        isDragging = true;
+        startY = e.clientY;
+        startTop = parseInt(window.getComputedStyle(messageIcon).top, 10);
+        messageIcon.classList.add('dragging');
+      }
+
+      function startDragTouch(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        isDragging = true;
+        startY = e.touches[0].clientY;
+        startTop = parseInt(window.getComputedStyle(messageIcon).top, 10);
+        messageIcon.classList.add('dragging');
+      }
+
+      function drag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        e.stopPropagation();
+        
+        currentY = e.clientY - startY;
+        const newTop = startTop + currentY;
+        
+        // 边界检查
+        const maxTop = window.innerHeight - messageIcon.offsetHeight;
+        const constrainedTop = Math.max(0, Math.min(newTop, maxTop));
+        
+        // 使用requestAnimationFrame优化性能
+        requestAnimationFrame(() => {
+          messageIcon.style.top = constrainedTop + 'px';
+        });
+      }
+
+      function dragTouch(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        e.stopPropagation();
+        
+        currentY = e.touches[0].clientY - startY;
+        const newTop = startTop + currentY;
+        
+        // 边界检查
+        const maxTop = window.innerHeight - messageIcon.offsetHeight;
+        const constrainedTop = Math.max(0, Math.min(newTop, maxTop));
+        
+        // 使用requestAnimationFrame优化性能
+        requestAnimationFrame(() => {
+          messageIcon.style.top = constrainedTop + 'px';
+        });
+      }
+
+      function endDrag(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        messageIcon.classList.remove('dragging');
+        
+        // 保存位置到localStorage
+        const finalTop = parseInt(messageIcon.style.top, 10);
+        localStorage.setItem('messageIconTop', finalTop);
+        
+        // 移除自动触发点击事件的逻辑，拖动后不自动打开消息中心
+      }
+
+      function endDragTouch(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        messageIcon.classList.remove('dragging');
+        
+        // 保存位置到localStorage
+        const finalTop = parseInt(messageIcon.style.top, 10);
+        localStorage.setItem('messageIconTop', finalTop);
+        
+        // 移除自动触发点击事件的逻辑，拖动后不自动打开消息中心
+      }
     }
 
     window.onload = init;
