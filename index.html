@@ -2167,6 +2167,19 @@
               </div>
               <button class="test-btn" onclick="sendRandomAnnouncement()">发送随机公告</button>
             </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">⏰ 时间调试</span>
+                <span class="setting-desc">手动设置挑战剩余时间（仅测试用）</span>
+              </div>
+              <div class="time-debug-controls">
+                <input type="number" id="debugHours" placeholder="小时" min="0" max="999" style="width: 60px; margin-right: 5px;">
+                <input type="number" id="debugMinutes" placeholder="分钟" min="0" max="59" style="width: 60px; margin-right: 5px;">
+                <input type="number" id="debugSeconds" placeholder="秒" min="0" max="59" style="width: 60px; margin-right: 10px;">
+                <button class="test-btn small" onclick="setDebugTime()">设置时间</button>
+                <button class="test-btn small" onclick="resetDebugTime()">重置</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -3110,8 +3123,8 @@
       const mins = Math.floor((remaining % 3600000) / 60000);
       const secs = Math.floor((remaining % 60000) / 1000);
       
-      // 格式化为 XXX:XX:XX 格式
-      const timeStr = `${String(totalHours).padStart(3, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      // 格式化为 XX:XX:XX 格式（小时不补前导0）
+      const timeStr = `${totalHours}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
       
       // 更新倒计时显示
       const countdownEl = document.getElementById('countdown');
@@ -4726,6 +4739,50 @@
           localStorage.setItem('messageIconTop', finalTop);
         }
       }
+    }
+
+    // 时间调试功能
+    let debugTimeOffset = 0; // 调试时间偏移量（毫秒）
+    
+    function setDebugTime() {
+      const hours = parseInt(document.getElementById('debugHours').value) || 0;
+      const minutes = parseInt(document.getElementById('debugMinutes').value) || 0;
+      const seconds = parseInt(document.getElementById('debugSeconds').value) || 0;
+      
+      // 计算总的调试时间（毫秒）
+      const debugTotalMs = (hours * 3600 + minutes * 60 + seconds) * 1000;
+      
+      // 计算需要的偏移量
+      const total = 168 * 3600 * 1000; // 总时间168小时
+      debugTimeOffset = total - debugTotalMs;
+      
+      // 重新设置倒计时开始时间
+      countdownStart = Date.now() - debugTimeOffset;
+      
+      // 立即更新显示
+      updateCountdown();
+      
+      // 显示设置成功提示
+      showToast(`⏰ 时间已设置为 ${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`);
+      
+      console.log(`调试时间设置: ${hours}小时${minutes}分${seconds}秒, 偏移量: ${debugTimeOffset}ms`);
+    }
+    
+    function resetDebugTime() {
+      debugTimeOffset = 0;
+      countdownStart = Date.now();
+      
+      // 清空输入框
+      document.getElementById('debugHours').value = '';
+      document.getElementById('debugMinutes').value = '';
+      document.getElementById('debugSeconds').value = '';
+      
+      // 立即更新显示
+      updateCountdown();
+      
+      showToast('⏰ 倒计时已重置为168小时');
+      
+      console.log('调试时间已重置');
     }
 
     window.onload = init;
