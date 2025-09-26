@@ -98,6 +98,78 @@
       font-size: 13px;
       font-weight: 600;
       color: var(--text-secondary);
+    }
+
+    /* 消息图标样式 */
+    .message-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 101;
+      transition: all 0.3s ease;
+    }
+
+    .message-icon:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .message-icon svg {
+      width: 100%;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .message-icon:hover svg {
+      filter: brightness(1.1);
+    }
+
+    /* 未读消息提示点 */
+    .unread-dot {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      background: #ff4444;
+      border-radius: 50%;
+      border: 2px solid var(--bg-secondary);
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s ease;
+    }
+
+    .unread-dot.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* 抖动动画 */
+    @keyframes shake {
+      0%, 100% { transform: translateY(-50%) translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateY(-50%) translateX(-4px); }
+      20%, 40%, 60%, 80% { transform: translateY(-50%) translateX(4px); }
+    }
+
+    .message-icon.shake {
+      animation: shake 0.3s ease-in-out;
+    }
+
+    /* 持续轻微抖动效果（未读消息时） */
+    @keyframes gentleShake {
+      0%, 100% { transform: translateY(-50%) translateX(0); }
+      25% { transform: translateY(-50%) translateX(-3px); }
+      75% { transform: translateY(-50%) translateX(3px); }
+    }
+
+    .message-icon.has-unread {
+      animation: gentleShake 0.8s ease-in-out infinite;
+    }
+
+    .state-label {
       text-shadow: 0 0 6px var(--accent-color);
     }
     .subtitle {
@@ -1342,6 +1414,21 @@
         font-size: 14px !important; /* 从12px增加到14px */
       }
       
+      /* 测试按钮容器样式 */
+      .test-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      
+      /* 小尺寸测试按钮 */
+      .test-btn.small {
+        padding: 6px 12px;
+        font-size: 12px;
+        min-width: 60px;
+      }
+      
       /* 内容区域字体优化 */
       .section-title {
         font-size: 18px !important; /* 从16px增加到18px */
@@ -1444,6 +1531,236 @@
         font-size: 15px !important;
       }
     }
+    
+    /* 消息弹窗样式 */
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 20px 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .message-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    /* 标签页切换 */
+    .message-tabs {
+      display: flex;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      margin: 16px 20px;
+      padding: 4px;
+      gap: 4px;
+    }
+    
+    .tab-btn {
+      flex: 1;
+      padding: 12px 16px;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .tab-btn.active {
+      background: var(--brand);
+      color: white;
+      box-shadow: 0 2px 8px rgba(47, 128, 237, 0.3);
+    }
+    
+    .tab-btn:hover:not(.active) {
+      background: rgba(47, 128, 237, 0.1);
+      color: var(--brand);
+    }
+    
+    /* 未读消息计数 */
+    .unread-count {
+      background: #ff4757;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 10px;
+      min-width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    
+    /* 消息内容区域 */
+    .message-content {
+      height: 400px;
+      overflow-y: auto;
+      padding: 0 20px 20px 20px;
+    }
+    
+    .message-list {
+      display: none;
+    }
+    
+    .message-list.active {
+      display: block;
+    }
+    
+    /* 空消息状态 */
+    .empty-message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      color: var(--text-secondary);
+    }
+    
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+      opacity: 0.6;
+    }
+    
+    .empty-text {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    /* 消息项样式 */
+    .message-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    
+    .message-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .message-item.unread {
+      border-left: 4px solid var(--brand);
+      background: rgba(47, 128, 237, 0.05);
+    }
+    
+    .message-item.unread::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 8px;
+      height: 8px;
+      background: #ff4757;
+      border-radius: 50%;
+    }
+    
+    .message-header-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    
+    .message-title-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+      line-height: 1.3;
+    }
+    
+    .message-time {
+      font-size: 12px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      margin-left: 12px;
+    }
+    
+    .message-content-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+    
+    .message-category {
+      display: inline-block;
+      background: rgba(47, 128, 237, 0.1);
+      color: var(--brand);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-top: 8px;
+    }
+    
+    /* 消息按钮闪烁动画 */
+    @keyframes messageFlash {
+      0%, 100% {
+        background: var(--btn-gradient);
+        box-shadow: 0 2px 6px var(--accent-shadow);
+        transform: scale(1);
+      }
+      50% {
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        box-shadow: 0 4px 16px rgba(255, 107, 107, 0.4);
+        transform: scale(1.05);
+      }
+    }
+    
+    .message-flash {
+      animation: messageFlash 1.5s ease-in-out infinite;
+    }
+    
+    /* 消息按钮未读提示小红点 */
+    .bottom button[data-key="message"] {
+      position: relative;
+    }
+    
+    .bottom button[data-key="message"].has-unread::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      background: #ff4757;
+      border-radius: 50%;
+      border: 2px solid var(--bg-primary);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1455,6 +1772,12 @@
   <div id="app" class="app">
     <div class="header">
       <div class="header-main">
+        <!-- 消息图标 -->
+        <div id="messageIcon" class="message-icon" onclick="showMessages()">
+          <img src="图标文件/message.png" alt="消息" width="24" height="24" />
+          <div id="messageUnreadDot" class="unread-dot" style="display: none;"></div>
+        </div>
+        
         <!-- 放大的logo -->
         <img src="logo_gold7.png" alt="Logo" class="logo-img" />
         <div class="status-info">
@@ -1573,7 +1896,7 @@
                 <span class="setting-desc">开启操作音效反馈</span>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" id="soundToggle" checked onchange="toggleSound()">
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -1607,6 +1930,52 @@
         </div>
 
         <!-- 帮助与支持 -->
+        <!-- 测试功能区域 -->
+        <div class="settings-section">
+          <h3>🧪 测试功能</h3>
+          <div class="settings-card">
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">🎯 新手任务模拟</span>
+                <span class="setting-desc">模拟完成新手任务1/2/3</span>
+              </div>
+              <div class="test-buttons">
+                <button class="test-btn small" onclick="simulateTask('newbie', 1)">任务1</button>
+                <button class="test-btn small" onclick="simulateTask('newbie', 2)">任务2</button>
+                <button class="test-btn small" onclick="simulateTask('newbie', 3)">任务3</button>
+              </div>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">📝 答题模拟</span>
+                <span class="setting-desc">模拟完成全部答题任务</span>
+              </div>
+              <button class="test-btn" onclick="simulateAllQuiz()">完成全部答题</button>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">🏆 大神任务模拟</span>
+                <span class="setting-desc">模拟完成大神任务1-6</span>
+              </div>
+              <div class="test-buttons">
+                <button class="test-btn small" onclick="simulateTask('master', 1)">任务1</button>
+                <button class="test-btn small" onclick="simulateTask('master', 2)">任务2</button>
+                <button class="test-btn small" onclick="simulateTask('master', 3)">任务3</button>
+                <button class="test-btn small" onclick="simulateTask('master', 4)">任务4</button>
+                <button class="test-btn small" onclick="simulateTask('master', 5)">任务5</button>
+                <button class="test-btn small" onclick="simulateTask('master', 6)">任务6</button>
+              </div>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">📢 消息测试</span>
+                <span class="setting-desc">发送随机官方公告测试消息功能</span>
+              </div>
+              <button class="test-btn" onclick="sendRandomAnnouncement()">发送随机公告</button>
+            </div>
+          </div>
+        </div>
+
         <div class="settings-section">
           <h3>❓ 帮助与支持</h3>
           <div class="settings-card">
@@ -1655,6 +2024,47 @@
           <button class="back-btn" onclick="closeSettings()">
             ← 返回主页
           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 消息弹窗 -->
+  <div id="messageModal" class="modal" style="display:none;">
+    <div class="modal-content" style="max-width: 420px; width: 95%; max-height: 80vh; overflow: hidden;">
+      <div class="message-header">
+        <h3 class="message-title">💬 消息中心</h3>
+        <button class="modal-close" onclick="closeMessages()">✕</button>
+      </div>
+      
+      <!-- 标签页切换 -->
+      <div class="message-tabs">
+        <button class="tab-btn active" onclick="switchMessageTab('official')" id="officialTab">
+          📢 官方公告
+          <span class="unread-count" id="officialUnreadCount" style="display:none;">0</span>
+        </button>
+        <button class="tab-btn" onclick="switchMessageTab('team')" id="teamTab">
+          👥 团队消息
+          <span class="unread-count" id="teamUnreadCount" style="display:none;">0</span>
+        </button>
+      </div>
+      
+      <!-- 消息列表容器 -->
+      <div class="message-content">
+        <!-- 官方公告列表 -->
+        <div id="officialMessages" class="message-list active">
+          <div class="empty-message">
+            <div class="empty-icon">📭</div>
+            <div class="empty-text">暂无官方公告</div>
+          </div>
+        </div>
+        
+        <!-- 团队消息列表 -->
+        <div id="teamMessages" class="message-list">
+          <div class="empty-message">
+            <div class="empty-icon">👥</div>
+            <div class="empty-text">暂无团队消息</div>
+          </div>
         </div>
       </div>
     </div>
@@ -2127,7 +2537,6 @@
           `;
         },
         buttons: [
-          { text: '任务', color: 'green', key: 'task', action: () => openTasks() },
           { text: '红包', color: 'red', key: 'red', action: () => grabRedPacket() },
           { text: '团队', color: 'orange', key: 'team', action: () => showTeam() },
           { text: '钱包', color: 'purple', key: 'wallet', action: () => showWallet() },
@@ -2342,6 +2751,12 @@
         localStorage.setItem('userInviteCode', userInviteCode);
       }
       
+      // 初始化音效系统
+      initAudioSystem();
+      
+      // 初始化消息系统
+      initMessages();
+      
       renderState();
       
       // 初始化设置面板事件监听器
@@ -2406,6 +2821,9 @@
       } else {
         if (countdownTimer) clearInterval(countdownTimer);
       }
+      
+      // 更新消息按钮状态
+      updateMessageButton();
     }
     
     // 根据状态严格控制按钮显示
@@ -3280,6 +3698,16 @@
         languageSelect.addEventListener('change', changeLanguage);
       }
       
+      // 初始化音效开关状态
+      const soundToggle = document.getElementById('soundToggle');
+      if (soundToggle) {
+        const savedSoundEnabled = localStorage.getItem('soundEnabled');
+        if (savedSoundEnabled !== null) {
+          soundEnabled = savedSoundEnabled === 'true';
+          soundToggle.checked = soundEnabled;
+        }
+      }
+      
       // 点击模态框背景关闭设置面板
       document.addEventListener('click', function(e) {
         const settingsModal = document.getElementById('settingsModal');
@@ -3325,6 +3753,494 @@
       }
       
       // 可以添加更多个人信息的更新逻辑
+    }
+
+    // 测试功能：模拟完成新手任务
+    function simulateTask(type, taskId) {
+      if (type === 'newbie') {
+        // 模拟完成新手任务
+        const task = newTasks.find(t => t.id === taskId);
+        if (task && !task.done) {
+          task.done = true;
+          completedNewbieTasks = newTasks.filter(t => t.done).length;
+          
+          // 更新钱包余额
+          walletBalance += task.reward;
+          
+          // 添加交易记录
+          transactions.unshift({
+            type: 'income',
+            amount: task.reward,
+            description: `完成${task.title}`,
+            timestamp: new Date().toISOString()
+          });
+          
+          // 检查是否解锁答题任务
+          if (completedNewbieTasks >= 1 && !quizCompleted) {
+            // 解锁答题任务
+          }
+          
+          // 检查是否解锁大神任务
+          if (completedNewbieTasks >= 3 && quizCompleted && !godTasksUnlocked) {
+            godTasksUnlocked = true;
+          }
+          
+          saveState();
+          renderState();
+          alert(`成功完成${task.title}，获得${task.reward}元奖励！`);
+        } else {
+          alert('该任务已完成或不存在！');
+        }
+      } else if (type === 'master') {
+        // 模拟完成大神任务
+        const task = godTasks.find(t => t.id === taskId);
+        if (task && !task.done) {
+          task.done = true;
+          
+          // 更新钱包余额
+          walletBalance += task.reward;
+          
+          // 添加交易记录
+          transactions.unshift({
+            type: 'income',
+            amount: task.reward,
+            description: `完成${task.title}`,
+            timestamp: new Date().toISOString()
+          });
+          
+          saveState();
+          renderState();
+          alert(`成功完成${task.title}，获得${task.reward}元奖励！`);
+        } else {
+          alert('该任务已完成或不存在！');
+        }
+      }
+    }
+    
+    // 测试功能：模拟完成全部答题
+    function simulateAllQuiz() {
+      if (!quizCompleted) {
+        quizCompleted = true;
+        const quizTask = quizTasks[0];
+        if (quizTask) {
+          quizTask.done = true;
+          
+          // 更新钱包余额
+          walletBalance += quizTask.reward;
+          
+          // 添加交易记录
+          transactions.unshift({
+            type: 'income',
+            amount: quizTask.reward,
+            description: `完成${quizTask.title}`,
+            timestamp: new Date().toISOString()
+          });
+          
+          // 降低提现手续费
+          withdrawFeeRate = Math.max(0.01, withdrawFeeRate - quizTask.feeReduction);
+        }
+        
+        // 检查是否解锁大神任务
+        if (completedNewbieTasks >= 3 && !godTasksUnlocked) {
+          godTasksUnlocked = true;
+        }
+        
+        saveState();
+        renderState();
+        alert('成功完成全部答题任务，获得20元奖励并降低提现手续费！');
+      } else {
+        alert('答题任务已完成！');
+      }
+    }
+
+    // ==================== 消息系统 ====================
+    
+    // 音效管理
+    let audioContext = null;
+    let soundEnabled = true;
+    
+    // 初始化音效系统
+    function initAudioSystem() {
+      try {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // 从本地存储读取音效设置
+        const savedSoundSetting = localStorage.getItem('soundEnabled');
+        if (savedSoundSetting !== null) {
+          soundEnabled = JSON.parse(savedSoundSetting);
+        }
+      } catch (error) {
+        console.warn('音效系统初始化失败:', error);
+        soundEnabled = false;
+      }
+    }
+    
+    // 播放消息提示音
+    function playMessageSound() {
+      if (!soundEnabled) return;
+      
+      try {
+        // 创建音频元素播放金币声效
+        const audio = new Audio('金币声效.mp3');
+        audio.volume = 0.5; // 设置音量为50%
+        
+        // 播放音效
+        const playPromise = audio.play();
+        
+        // 处理播放Promise（现代浏览器要求）
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log('音效播放失败:', error);
+          });
+        }
+        
+      } catch (error) {
+        console.warn('播放消息音效失败:', error);
+      }
+    }
+    
+    // 切换音效开关
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('soundEnabled', JSON.stringify(soundEnabled));
+      
+      // 更新设置面板中的开关状态
+      const soundToggle = document.querySelector('#soundToggle');
+      if (soundToggle) {
+        soundToggle.checked = soundEnabled;
+      }
+      
+      // 播放测试音效（如果开启）
+      if (soundEnabled) {
+        playMessageSound();
+      }
+    }
+    
+    // 消息数据管理
+    let messages = {
+      official: [],
+      team: []
+    };
+    
+    let messageReadStatus = {};
+    
+    // 初始化消息数据
+    function initMessages() {
+      const savedMessages = localStorage.getItem('messages');
+      const savedReadStatus = localStorage.getItem('messageReadStatus');
+      
+      if (savedMessages) {
+        messages = JSON.parse(savedMessages);
+      } else {
+        // 初始化默认消息
+        messages = {
+          official: [
+            {
+              id: 'official_1',
+              title: '欢迎加入平台',
+              content: '欢迎您加入我们的平台！完成新手任务可获得丰厚奖励，快来体验吧！',
+              time: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+              category: '系统通知'
+            },
+            {
+              id: 'official_2', 
+              title: '抢红包活动开启',
+              content: '每日三场红包雨活动已开启！时间：9:00、12:00、20:00，每场持续77秒，不要错过哦！',
+              time: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+              category: '活动公告'
+            },
+            {
+              id: 'official_3',
+              title: '平台升级公告',
+              content: '为了给您提供更好的服务体验，平台将在今晚23:00-24:00进行系统维护升级，期间可能影响部分功能使用，敬请谅解！',
+              time: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
+              category: '系统公告'
+            }
+          ],
+          team: [
+            {
+              id: 'team_1',
+              title: '团队收益提醒',
+              content: '您的团队今日收益已更新，当前团队总收益：156.8元，继续努力！',
+              time: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
+              category: '收益通知'
+            }
+          ]
+        };
+        saveMessages();
+      }
+      
+      if (savedReadStatus) {
+        messageReadStatus = JSON.parse(savedReadStatus);
+      }
+    }
+    
+    // 保存消息数据
+    function saveMessages() {
+      localStorage.setItem('messages', JSON.stringify(messages));
+      localStorage.setItem('messageReadStatus', JSON.stringify(messageReadStatus));
+    }
+    
+    // 添加新消息
+    function addMessage(type, messageData) {
+      const message = {
+        id: `${type}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        title: messageData.title,
+        content: messageData.content,
+        time: new Date().toISOString(),
+        category: messageData.category || '系统消息'
+      };
+      
+      messages[type].unshift(message);
+      saveMessages();
+      updateMessageButton();
+      
+      // 播放新消息音效
+      playMessageSound();
+      
+      // 触发消息图标抖动效果
+      const messageIcon = document.querySelector('.message-icon');
+      if (messageIcon) {
+        messageIcon.classList.add('shake');
+        setTimeout(() => {
+          messageIcon.classList.remove('shake');
+        }, 600);
+      }
+    }
+    
+    // 生成团队消息
+    function generateTeamMessage(action, data) {
+      let title, content, category;
+      
+      switch (action) {
+        case 'member_join':
+          title = '新成员加入';
+          content = `恭喜！您的团队新增了一名成员，当前团队人数：${data.teamSize}人`;
+          category = '团队动态';
+          break;
+        case 'balance_change':
+          title = '收益更新';
+          content = `您的账户余额发生变化，当前余额：${data.balance}元`;
+          category = '收益通知';
+          break;
+        case 'task_complete':
+          title = '任务完成';
+          content = `恭喜完成任务"${data.taskName}"，获得奖励${data.reward}元`;
+          category = '任务奖励';
+          break;
+        default:
+          return;
+      }
+      
+      addMessage('team', { title, content, category });
+    }
+    
+    // 显示消息弹窗
+    function showMessages() {
+      const modal = document.getElementById('messageModal');
+      modal.style.display = 'flex';
+      
+      // 默认显示官方公告
+      switchMessageTab('official');
+    }
+    
+    // 隐藏消息弹窗
+    function hideMessages() {
+      const modal = document.getElementById('messageModal');
+      modal.style.display = 'none';
+    }
+    
+    // 关闭消息弹窗（与hideMessages功能相同，用于按钮点击）
+    function closeMessages() {
+      hideMessages();
+    }
+    
+    // 切换消息标签页
+    function switchMessageTab(type) {
+      // 更新标签按钮状态
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`[onclick="switchMessageTab('${type}')"]`).classList.add('active');
+      
+      // 更新消息列表显示
+      document.querySelectorAll('.message-list').forEach(list => {
+        list.classList.remove('active');
+      });
+      document.getElementById(`${type}Messages`).classList.add('active');
+      
+      // 渲染消息列表
+      renderMessageList(type);
+    }
+    
+    // 渲染消息列表
+    function renderMessageList(type) {
+      const container = document.getElementById(`${type}Messages`);
+      const messageList = messages[type];
+      
+      if (messageList.length === 0) {
+        container.innerHTML = `
+          <div class="empty-message">
+            <div class="empty-icon">📭</div>
+            <div class="empty-text">暂无${type === 'official' ? '官方公告' : '团队消息'}</div>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = messageList.map(message => {
+        const isUnread = !messageReadStatus[message.id];
+        const timeStr = formatMessageTime(message.time);
+        
+        return `
+          <div class="message-item ${isUnread ? 'unread' : ''}" onclick="markMessageAsRead('${message.id}')">
+            <div class="message-header-info">
+              <h4 class="message-title-text">${message.title}</h4>
+              <span class="message-time">${timeStr}</span>
+            </div>
+            <p class="message-content-text">${message.content}</p>
+            <span class="message-category">${message.category}</span>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    // 格式化消息时间
+    function formatMessageTime(timeStr) {
+      const time = new Date(timeStr);
+      const now = new Date();
+      const diff = now - time;
+      
+      if (diff < 60 * 1000) {
+        return '刚刚';
+      } else if (diff < 60 * 60 * 1000) {
+        return `${Math.floor(diff / (60 * 1000))}分钟前`;
+      } else if (diff < 24 * 60 * 60 * 1000) {
+        return `${Math.floor(diff / (60 * 60 * 1000))}小时前`;
+      } else {
+        return time.toLocaleDateString();
+      }
+    }
+    
+    // 标记消息为已读
+    function markMessageAsRead(messageId) {
+      messageReadStatus[messageId] = true;
+      saveMessages();
+      updateMessageButton();
+      
+      // 重新渲染当前标签页
+      const activeTab = document.querySelector('.tab-btn.active');
+      if (activeTab) {
+        const type = activeTab.onclick.toString().includes('official') ? 'official' : 'team';
+        renderMessageList(type);
+      }
+    }
+    
+    // 更新消息按钮状态（现在更新消息图标状态）
+    function updateMessageButton() {
+      const messageIcon = document.querySelector('.message-icon');
+      const unreadDot = document.querySelector('#messageUnreadDot');
+      
+      if (!messageIcon || !unreadDot) return;
+      
+      // 检查是否有未读消息
+      const hasUnread = [...messages.official, ...messages.team].some(msg => !messageReadStatus[msg.id]);
+      
+      if (hasUnread) {
+        messageIcon.classList.add('has-unread');
+        unreadDot.style.display = 'block';
+      } else {
+        messageIcon.classList.remove('has-unread');
+        unreadDot.style.display = 'none';
+      }
+    }
+    
+    // 更新标签页未读计数
+    function updateTabUnreadCount() {
+      const officialCount = messages.official.filter(msg => !messageReadStatus[msg.id]).length;
+      const teamCount = messages.team.filter(msg => !messageReadStatus[msg.id]).length;
+      
+      // 更新官方公告标签
+      const officialTab = document.querySelector('[onclick="switchMessageTab(\'official\')"]');
+      if (officialTab) {
+        const countEl = officialTab.querySelector('.unread-count');
+        if (officialCount > 0) {
+          if (!countEl) {
+            officialTab.innerHTML += `<span class="unread-count">${officialCount}</span>`;
+          } else {
+            countEl.textContent = officialCount;
+          }
+        } else if (countEl) {
+          countEl.remove();
+        }
+      }
+      
+      // 更新团队消息标签
+      const teamTab = document.querySelector('[onclick="switchMessageTab(\'team\')"]');
+      if (teamTab) {
+        const countEl = teamTab.querySelector('.unread-count');
+        if (teamCount > 0) {
+          if (!countEl) {
+            teamTab.innerHTML += `<span class="unread-count">${teamCount}</span>`;
+          } else {
+            countEl.textContent = teamCount;
+          }
+        } else if (countEl) {
+          countEl.remove();
+        }
+      }
+    }
+
+    // 发送随机官方公告
+    function sendRandomAnnouncement() {
+      const announcements = [
+        {
+          title: '🎉 系统升级完成',
+          content: '亲爱的用户，系统升级已完成，新增多项功能优化，感谢您的耐心等待！',
+          category: '系统公告'
+        },
+        {
+          title: '💰 奖励活动开启',
+          content: '限时活动：完成指定任务可获得额外奖励，活动时间有限，快来参与吧！',
+          category: '活动公告'
+        },
+        {
+          title: '🔧 功能更新通知',
+          content: '新版本已发布，优化了用户体验，修复了已知问题，建议及时更新。',
+          category: '更新公告'
+        },
+        {
+          title: '⚠️ 重要提醒',
+          content: '为保障账户安全，请勿向他人透露您的登录信息，如有异常请及时联系客服。',
+          category: '安全提醒'
+        },
+        {
+          title: '🎊 节日祝福',
+          content: '祝您节日快乐！特别推出节日专属活动，丰厚奖励等您来拿！',
+          category: '节日公告'
+        },
+        {
+          title: '📈 数据统计',
+          content: '本月平台活跃度创新高，感谢所有用户的支持与参与！',
+          category: '数据公告'
+        },
+        {
+          title: '🛠️ 维护通知',
+          content: '系统将于今晚23:00-01:00进行例行维护，期间可能影响部分功能使用。',
+          category: '维护公告'
+        },
+        {
+          title: '🏆 排行榜更新',
+          content: '本周排行榜已更新，恭喜上榜用户！继续努力，争取更好成绩！',
+          category: '排行公告'
+        }
+      ];
+      
+      const randomAnnouncement = announcements[Math.floor(Math.random() * announcements.length)];
+      addMessage('official', randomAnnouncement);
+      
+      // 显示成功提示
+      showToast('📢 随机公告已发送！', 'success');
     }
 
     window.onload = init;
