@@ -221,6 +221,15 @@
     .custom-alert-button:hover {
       transform: translateY(-1px);
     }
+    .custom-alert-button:disabled {
+      background: linear-gradient(180deg, #666, #555);
+      cursor: not-allowed;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transform: none;
+    }
+    .custom-alert-button:disabled:hover {
+      transform: none;
+    }
   </style>
 </head>
 <body>
@@ -230,7 +239,10 @@
   <div class="custom-alert" id="customAlert">
     <div class="custom-alert-content">
       <div class="custom-alert-message" id="customAlertMessage"></div>
-      <button class="custom-alert-button" onclick="closeCustomAlert()">确定</button>
+      <button class="custom-alert-button" id="customAlertButton" onclick="closeCustomAlert()" disabled>
+        <span id="customAlertButtonText">确定</span>
+        <span id="customAlertCountdown" style="display: none;"></span>
+      </button>
     </div>
   </div>
   <div class="container">
@@ -475,7 +487,7 @@
           const activationTime = localStorage.getItem('activationTime') || new Date().toISOString();
           const remainingHours = Math.max(0, 168 - Math.floor((new Date() - new Date(activationTime)) / (1000 * 60 * 60)));
           
-          showCustomAlert(`✅ 你已完成【20/20】道裂金测验！\n你的财富思维已升维：红包=小雨点，结构=水库，复制=爆炸曲线。\n你不只是玩家，你是【裂变引擎】。\n**入口只剩 ${remainingHours} 小时**，立即陪新人完成【第一单】，让水库自动奔流！`);
+          showCustomAlert(`✅ 你已完成【20/20】道裂金测验！\n你的财富思维已升维：红包=小雨点，结构=水库，复制=爆炸曲线。\n你不只是玩家，你是【裂变引擎】。\n**入口只剩 ${remainingHours} 小时**，立即陪新人完成【第一单】，让水库自动奔流！`, true);
         } else {
           showCustomAlert('回答正确！提现手续费降低0.2%。');
         }
@@ -493,10 +505,38 @@
     renderQuestion();
     
     // 自定义弹窗函数
-    function showCustomAlert(message) {
-      document.getElementById('customAlertMessage').textContent = message;
-      document.getElementById('customAlert').style.display = 'flex';
-    }
+    function showCustomAlert(message, isCompleteQuiz = false) {
+          document.getElementById('customAlertMessage').textContent = message;
+          document.getElementById('customAlert').style.display = 'flex';
+          
+          // 设置倒计时时间：答错题3秒，完成测验5秒
+          const countdownTime = isCompleteQuiz ? 5 : 3;
+          let remainingTime = countdownTime;
+          
+          const button = document.getElementById('customAlertButton');
+          const buttonText = document.getElementById('customAlertButtonText');
+          const countdown = document.getElementById('customAlertCountdown');
+          
+          // 初始化按钮状态
+          button.disabled = true;
+          buttonText.style.display = 'none';
+          countdown.style.display = 'inline';
+          countdown.textContent = `${remainingTime}秒`;
+          
+          // 倒计时
+          const timer = setInterval(() => {
+            remainingTime--;
+            if (remainingTime > 0) {
+              countdown.textContent = `${remainingTime}秒`;
+            } else {
+              // 倒计时结束，激活按钮
+              clearInterval(timer);
+              button.disabled = false;
+              buttonText.style.display = 'inline';
+              countdown.style.display = 'none';
+            }
+          }, 1000);
+        }
     
     function closeCustomAlert() {
       document.getElementById('customAlert').style.display = 'none';
