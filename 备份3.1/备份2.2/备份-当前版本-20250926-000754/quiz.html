@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>裂金7日 · 答题任务</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQ6GQ79K7G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QQ6GQ79K7G');
+  </script>
+  
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="css/global-background.css">
+  <script src="theme-switcher.js"></script>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #111823;
+      --card: #0e141d;
+      --brand: #56ccf2;
+      --brand-2: #2f80ed;
+      --text: #e6efff;
+      --muted: #9fb3cd;
+      --accent-border: rgba(111, 158, 255, 0.18);
+      /* 安全区域适配：用于 iPhone X 等带底部凹槽设备 */
+      --safe: env(safe-area-inset-bottom, 0px);
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      overflow: hidden;
+    }
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      position: relative;
+      flex: 0 0 20%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 20px;
+    }
+    .back-btn {
+      flex: 1;
+      margin: 0 6px;
+      border: none;
+      border-radius: 16px;
+      padding: 14px 0;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
+      background-image: linear-gradient(180deg, #6c757d, #5a6268);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+    }
+    .back-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+    .back-btn:active {
+      transform: translateY(0);
+      filter: brightness(0.95);
+    }
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #2193b0, #6dd5ed);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px rgba(109,213,237,0.5)) drop-shadow(0 0 24px rgba(109,213,237,0.3));
+      margin: 0;
+    }
+    /* 小logo样式 */
+    .logo-small {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-right: 8px;
+      filter: drop-shadow(0 0 8px rgba(109, 213, 237, 0.4)) drop-shadow(0 0 16px rgba(109, 213, 237, 0.2));
+    }
+
+    .content {
+      flex: 1;
+      padding: 0 16px;
+      overflow-x: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: linear-gradient(180deg, rgba(15,21,32,0.85), rgba(15,21,32,0.9));
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid var(--accent-border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+    }
+    .question {
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #cdd6f7;
+    }
+    .options {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .option {
+      margin-bottom: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .option:hover {
+      background: rgba(255,255,255,0.08);
+    }
+    .option.selected {
+      background: linear-gradient(180deg, var(--brand), var(--brand-2));
+      color: #031e2e;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    .status {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #9fb3cd;
+    }
+    .bottom {
+      flex: 0 0 auto;
+      padding: 14px 16px calc(24px + var(--safe));
+      display: flex;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin: 0 12px 12px;
+      border-radius: 16px;
+    }
+    .bottom button {
+      flex: 1;
+      margin: 0 6px;
+      border: none;
+      border-radius: 16px;
+      padding: 14px 0;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      /* 避免移动端按钮文字换行 */
+      white-space: nowrap;
+    }
+    .bottom button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .bottom button:active { transform: translateY(0); filter: brightness(0.95); }
+  </style>
+    <link rel="stylesheet" href="css/design-system.css">
+</head>
+<body>
+  <script src="js/smart-back.js"></script>
+  <div class="container">
+    <div class="header">
+      <img src="logo_gold7.png" alt="Logo" class="logo-small" />
+      <h1 class="text-h1">答题任务</h1>
+    </div>
+    <div class="content">
+      <div class="card">
+        <div class="question" id="question">加载中…</div>
+        <ul class="options" id="options"></ul>
+        <div class="status" id="status"></div>
+      </div>
+    </div>
+    <div class="bottom">
+      <button class="back-btn" onclick="goBack()">← 返回</button>
+      <button onclick="selectAnswer()" id="submitBtn" class="hidden">提交答案</button>
+    </div>
+  </div>
+  <script>
+    // 简易的题库示例，真实项目中可替换为50道题
+    const QUESTIONS = [
+      { q: '裂金7日入金门槛为多少 USDT？', options: ['50', '100', '200', '500'], a: '100' },
+      { q: '新手任务必须按怎样的顺序完成？', options: ['2→1→3', '1→2→3', '随机顺序', '3→2→1'], a: '1→2→3' },
+      { q: '抢红包每日开启几次？', options: ['1次', '2次', '3次', '4次'], a: '3次' },
+      { q: '邀请链接的有效期是多久？', options: ['24小时', '72小时', '168小时', '永久有效'], a: '168小时' },
+      { q: '提现最低金额为多少 USDT？', options: ['10', '20', '50', '100'], a: '20' },
+      { q: '完成答题任务可降低哪项费率？', options: ['激活费', '提现手续费', '入金金额', '红包手续费'], a: '提现手续费' },
+      { q: '大神任务一需要直推几人？', options: ['1人', '2人', '3人', '4人'], a: '2人' },
+      { q: '红包活动每次开放多久？', options: ['30秒', '60秒', '77秒', '120秒'], a: '77秒' },
+      { q: '团队收益从几层下级获得？', options: ['3层', '5层', '7层', '无层级限制'], a: '7层' },
+      { q: '答题任务最多可答对多少题？', options: ['5题', '10题', '15题', '20题'], a: '20题' },
+      // 继续填充更多问题，确保至少20道
+      { q: '未完成新手任务时，可以抢红包吗？', options: ['可以', '不可以'], a: '不可以' },
+      { q: '状态1可以做哪些事情？', options: ['激活账号、查看排行榜', '抢红包', '提现', '参与大神任务'], a: '激活账号、查看排行榜' },
+      { q: '红包池的收入来源占总入金的多少比例？', options: ['5%', '10%', '20%', '70%'], a: '10%' },
+      { q: '完成大神任务六将获得多少奖励？', options: ['500 USDT', '5000 USDT', '10000 USDT', '50000 USDT'], a: '50000 USDT' },
+      { q: '邀请码在注册时可以修改吗？', options: ['可以修改', '不可修改'], a: '不可修改' },
+      { q: '提现手续费包括哪两部分？', options: ['固定费+比例费', '入金费+服务费', '仅固定费', '仅比例费'], a: '固定费+比例费' },
+      { q: '邀请链接失效后会跳转到哪里？', options: ['任务页面', '钱包页面', '失效提示页面', '主页面'], a: '失效提示页面' },
+      { q: '完成新手任务解锁哪项任务？', options: ['红包任务', '答题任务', '邀请任务', '无'], a: '答题任务' },
+      { q: '大神任务共有几级？', options: ['3级', '4级', '5级', '6级'], a: '6级' },
+      { q: '玩家成功入金后会通知几层上级？', options: ['3层', '5层', '7层', '无'], a: '7层' }
+    ];
+    let currentIndex = 0;
+    let correctCount = 0;
+    let selectedOption = null;
+    function loadProgress() {
+      const idx = parseInt(localStorage.getItem('quizIndex'));
+      const cnt = parseInt(localStorage.getItem('quizCorrect'));
+      if (!isNaN(idx)) currentIndex = idx;
+      if (!isNaN(cnt)) correctCount = cnt;
+    }
+    function saveProgress() {
+      localStorage.setItem('quizIndex', currentIndex);
+      localStorage.setItem('quizCorrect', correctCount);
+      // 更新手续费比例：5% - 正确题数*0.2%，最低1%
+      let rate = 0.05 - correctCount * 0.002;
+      if (rate < 0.01) rate = 0.01;
+      localStorage.setItem('withdrawFeeRate', rate.toFixed(4));
+    }
+    function renderQuestion() {
+      // 已完成所有题目
+      if (correctCount >= 20 || currentIndex >= QUESTIONS.length) {
+        document.getElementById('question').innerText = '答题任务完成';
+        document.getElementById('options').innerHTML = '';
+        document.getElementById('status').innerText = `你答对了 ${correctCount} 题，提现手续费已降至 ${(parseFloat(localStorage.getItem('withdrawFeeRate'))*100).toFixed(1)}%。`;
+        document.getElementById('submitBtn').style.display = 'none';
+        
+        // 显示返回按钮
+        const bottomDiv = document.querySelector('.bottom');
+        bottomDiv.style.display = 'flex';
+        bottomDiv.innerHTML = '<button onclick="goBack()" style="background: linear-gradient(180deg, #4CAF50, #45a049);">返回</button>';
+        return;
+      }
+      const q = QUESTIONS[currentIndex];
+      document.getElementById('question').innerText = `第 ${currentIndex+1} 题：${q.q}`;
+      const ul = document.getElementById('options');
+      ul.innerHTML = '';
+      q.options.forEach(opt => {
+        const li = document.createElement('li');
+        li.className = 'option';
+        li.innerText = opt;
+        li.addEventListener('click', () => {
+          document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+          li.classList.add('selected');
+          selectedOption = opt;
+          // 直接提交答案，无需确认按钮
+          setTimeout(() => {
+            selectAnswer();
+          }, 300); // 短暂延迟显示选中效果
+        });
+        ul.appendChild(li);
+      });
+      document.getElementById('status').innerText = `已答对 ${correctCount} 题，手续费 ${(parseFloat(localStorage.getItem('withdrawFeeRate'))*100).toFixed(1)}%`;
+    }
+    function goBack() {
+      // 返回到上一级页面（主页面）
+      window.location.href = 'index.html';
+    }
+    
+    function selectAnswer() {
+      if (correctCount >= 20) {
+        // 答题完成，返回主页并更新状态
+        const appState = JSON.parse(localStorage.getItem('appState') || '{}');
+        appState.quizCompleted = true;
+        appState.withdrawFeeRate = parseFloat(localStorage.getItem('withdrawFeeRate'));
+        localStorage.setItem('appState', JSON.stringify(appState));
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const q = QUESTIONS[currentIndex];
+      // 移除选择检查，因为点击选项就直接提交了
+      if (!selectedOption) {
+        return; // 如果没有选择就直接返回，不显示提示
+      }
+      
+      if (selectedOption === q.a) {
+        correctCount++;
+        currentIndex++;
+        selectedOption = null;
+        saveProgress();
+        
+        if (correctCount >= 20) {
+          // 完成所有题目
+          const appState = JSON.parse(localStorage.getItem('appState') || '{}');
+          appState.quizCompleted = true;
+          appState.withdrawFeeRate = parseFloat(localStorage.getItem('withdrawFeeRate'));
+          
+          // 添加交易记录
+          const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
+          transactions.push({
+            type: 'task_reward',
+            amount: 0,
+            description: '完成答题任务，提现手续费降至' + (appState.withdrawFeeRate * 100).toFixed(1) + '%',
+            timestamp: new Date().toISOString()
+          });
+          localStorage.setItem('transactions', JSON.stringify(transactions));
+          localStorage.setItem('appState', JSON.stringify(appState));
+          
+          alert(`恭喜完成答题任务！\n答对${correctCount}题，提现手续费降至${(appState.withdrawFeeRate * 100).toFixed(1)}%`);
+        } else {
+          alert('回答正确！提现手续费降低0.2%。');
+        }
+      } else {
+        alert(`回答错误，正确答案是：${q.a}`);
+        selectedOption = null;
+      }
+      renderQuestion();
+    }
+    loadProgress();
+    // 初始化提现费率如果未设置
+    if (!localStorage.getItem('withdrawFeeRate')) {
+      localStorage.setItem('withdrawFeeRate', '0.05');
+    }
+    renderQuestion();
+  </script>
+  <script src="js/global-background.js"></script>
+</body>
+</html>

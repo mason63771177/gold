@@ -1,0 +1,197 @@
+/* 设计系统 - 字阶规范 */
+
+/* 字阶定义 */
+:root {
+  /* H1 - 主标题 */
+  --font-h1: 24px;
+  --weight-h1: 700;
+  
+  /* H2 - 副标题 */
+  --font-h2: 18px;
+  --weight-h2: 600;
+  
+  /* Body - 正文 */
+  --font-body: 14px;
+  --weight-body: 400;
+  
+  /* Caption - 说明文字 */
+  --font-caption: 12px;
+  --weight-caption: 400;
+  
+  /* 等宽数字字体 - 用于金额和倒计时 */
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+/* 字阶类 */
+.text-h1 {
+  font-size: var(--font-h1);
+  font-weight: var(--weight-h1);
+  line-height: 1.2;
+}
+
+.text-h2 {
+  font-size: var(--font-h2);
+  font-weight: var(--weight-h2);
+  line-height: 1.3;
+}
+
+.text-body {
+  font-size: var(--font-body);
+  font-weight: var(--weight-body);
+  line-height: 1.4;
+}
+
+.text-caption {
+  font-size: var(--font-caption);
+  font-weight: var(--weight-caption);
+  line-height: 1.3;
+}
+
+/* 等宽数字类 - 用于金额显示 */
+.text-amount {
+  font-family: var(--font-mono);
+  font-size: var(--font-h2);
+  font-weight: var(--weight-h1);
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 等宽数字类 - 用于倒计时 */
+.text-countdown {
+  font-family: var(--font-mono);
+  font-size: var(--font-h1);
+  font-weight: var(--weight-h1);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 重写现有元素的字体大小 */
+h1, .header h1 {
+  font-size: var(--font-h1) !important;
+  font-weight: var(--weight-h1) !important;
+}
+
+h2, .section-title {
+  font-size: var(--font-h2) !important;
+  font-weight: var(--weight-h2) !important;
+}
+
+.bottom button {
+  font-size: var(--font-body) !important;
+}
+
+.btn, button {
+  font-size: var(--font-body) !important;
+}
+
+/* 金额相关元素使用等宽字体 */
+.balance, .amount, .price, .value {
+  font-family: var(--font-mono) !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* 倒计时使用等宽字体 */
+#countdown, .countdown {
+  font-family: var(--font-mono) !important;
+  font-variant-numeric: tabular-nums !important;
+}
+/* 工具类 - 补充 */
+.hidden {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--color-neutral-500);
+}
+
+.mb-xs {
+  margin-bottom: 4px;
+}
+
+.mb-sm {
+  margin-bottom: 8px;
+}
+
+.mb-md {
+  margin-bottom: 16px;
+}
+
+.mb-lg {
+  margin-bottom: 24px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+/* 按钮状态类 */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  border: none;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--color-success), #1e7e34);
+  color: white;
+  border: none;
+}
+
+/* 卡片类 */
+.card-section {
+  background: var(--bg-card);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  margin-bottom: 8px;
+}
+
+/* 错误消息类 */
+.error-message {
+  color: var(--color-error);
+  font-size: var(--font-caption);
+  margin-top: 4px;
+}
+
+/* 补充CSS变量 */
+:root {
+  /* 圆角变量 */
+  --radius-btn: 14px;
+  --radius-card: 16px;
+  --radius-modal: 24px;
+  
+  /* 阴影变量 */
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 4px 16px rgba(0, 0, 0, 0.15);
+  
+  /* 颜色变量补充 */
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-500: #6b7280;
+  --color-primary: #3b82f6;
+  --color-primary-dark: #1d4ed8;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  
+  /* 背景变量 */
+  --bg-card: #ffffff;
+}

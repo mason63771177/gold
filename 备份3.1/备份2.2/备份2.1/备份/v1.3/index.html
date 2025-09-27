@@ -1,0 +1,2503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>裂金7日 H5 页面</title>
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-K7WCTWLM');</script>
+  <!-- End Google Tag Manager -->
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQ6GQ79K7G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QQ6GQ79K7G');
+  </script>
+  
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="css/global-background.css">
+  <script src="theme-switcher.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 16px;
+      overflow: hidden;
+    }
+
+    /* 应用容器 100vh 三段式布局 */
+    .app {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+
+
+
+    /* 顶部区域 - 固定高度 */
+    .header {
+      flex: 0 0 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding-top: 4px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+    
+    .header-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+    }
+    
+    .status-info {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .logo {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: var(--btn-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: var(--logo-filter);
+    }
+
+    /* 新的 logo 图片样式 - 适中尺寸 */
+    .logo-img {
+      width: 65px;
+      height: 65px;
+      object-fit: contain;
+      filter: var(--logo-filter);
+    }
+    .state-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-shadow: 0 0 6px var(--accent-color);
+    }
+    .subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+      opacity: 0.8;
+    }
+    /* 开发测试按钮，可隐藏于生产环境 */
+    .test-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--accent-color);
+      font-size: 12px;
+      padding: 3px 6px;
+    }
+    
+    .reset-btn {
+      position: absolute;
+      top: 8px;
+      right: 90px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: #ff6464;
+      font-size: 12px;
+      padding: 3px 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .reset-btn:hover {
+      background: linear-gradient(135deg, #ff6464, #ff4444);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+    
+    .settings-btn {
+      background: rgba(255,255,255,0.2) !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(255,255,255,0.4) !important;
+      border-radius: 8px !important;
+      padding: 6px 10px !important;
+      font-size: 14px !important;
+      cursor: pointer !important;
+      position: fixed !important;
+      top: 10px !important;
+      right: 10px !important;
+      z-index: 999 !important;
+      opacity: 0.9 !important;
+      transition: all 0.3s ease !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+    }
+    
+    .settings-btn:hover {
+      opacity: 1 !important;
+      background: rgba(255,255,255,0.3) !important;
+      border-color: rgba(255,255,255,0.6) !important;
+      transform: scale(1.05) !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+    }
+    
+    .theme-demo-btn {
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      background: var(--btn-gradient);
+      border: none;
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-size: 12px;
+      padding: 3px 6px;
+      cursor: pointer;
+      box-shadow: var(--btn-shadow);
+      transition: all 0.3s ease;
+    }
+    
+    .theme-demo-btn:hover {
+       transform: translateY(-1px);
+       filter: brightness(1.1);
+     }
+     
+     .test-btn {
+       cursor: pointer;
+       transition: all 0.3s ease;
+    }
+    .test-btn:hover {
+      background: var(--btn-gradient);
+      color: var(--text-primary);
+    }
+
+    /* 中部内容卡片区域 - 可滚动 */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden; /* 禁止水平滚动 */
+      padding: 16px;
+      padding-bottom: 100px; /* 为底部固定按钮留出空间 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--btn-shadow);
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .section {
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .section:last-child {
+      margin-bottom: 0;
+    }
+    /* 光效分割线 */
+    .section:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+      opacity: 0.4;
+    }
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-secondary);
+    }
+    .section-content {
+      font-size: 14px;
+      line-height: 1.4;
+      color: var(--text-primary);
+      opacity: 0.9;
+    }
+    /* 任务列表样式 */
+    .task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+    }
+    .task-item:not(:last-child) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .task-title {
+      flex: 1;
+      font-size: 14px;
+      color: #e0e5fb;
+    }
+    .task-status {
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 12px;
+      background: linear-gradient(45deg, #00eaff, #0088ff);
+      box-shadow: 0 0 6px rgba(0, 136, 255, 0.6);
+      color: #031e2e;
+    }
+    .task-status.done {
+      background: linear-gradient(45deg, #9be15d, #00e3ae);
+      box-shadow: 0 0 6px rgba(0, 227, 174, 0.6);
+    }
+    /* 再次激活突出样式 */
+    .reactivate-highlight {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 193, 7, 0.15));
+      border: 2px solid rgba(255, 107, 107, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .reactivate-highlight::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+    .reactivate-highlight .section-title {
+      color: #ff6b6b;
+      font-size: 18px;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+    }
+    .reactivate-btn {
+      background: linear-gradient(45deg, #ff6b6b, #ffc107);
+      border: none;
+      border-radius: 25px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+      transition: all 0.3s ease;
+      width: 100%;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    .reactivate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+    }
+    .reactivate-btn:active {
+       transform: translateY(0);
+     }
+
+    /* 底部按钮区域 - 固定在屏幕底部 */
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 14px 16px calc(24px + env(safe-area-inset-bottom, 0px));
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      /* 半透明背景与模糊，仿原生底部栏 */
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin: 0 12px 12px;
+      border-radius: 20px 20px 0 0;
+      z-index: 100;
+    }
+    .bottom button {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      border-radius: 16px;
+      padding: 12px 8px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 0.08s ease, filter 0.2s ease, box-shadow 0.2s ease;
+      /* 避免移动端按钮文字换行 */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+      box-shadow: 0 8px 24px rgba(47, 128, 237, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+    /* 当按钮超过6个时，调整布局 */
+    .bottom.many-buttons {
+      justify-content: center;
+    }
+    .bottom.many-buttons button {
+      flex: 0 1 calc(33.333% - 6px);
+      margin: 2px;
+      padding: 10px 6px;
+      font-size: 12px;
+    }
+    /* 按钮颜色渐变 */
+    .bottom button.red,
+    .bottom button.orange,
+    .bottom button.green,
+    .bottom button.purple,
+    .bottom button.blue {
+      background: var(--btn-gradient);
+      box-shadow: var(--btn-shadow), var(--btn-glow);
+    }
+    .bottom button:disabled {
+      opacity: 0.4;
+      cursor: default;
+      filter: grayscale(0.6);
+    }
+    .bottom button:not(:disabled):hover {
+      transform: translateY(-3px);
+      filter: brightness(1.2);
+    }
+    .bottom button:not(:disabled):active {
+      transform: translateY(0);
+      filter: brightness(0.95);
+    }
+    /* 邀请按钮突出显示，增加光晕 */
+    .bottom button[data-key="invite"],
+    .bottom button[data-key="inviteNew"] {
+      box-shadow: 0 12px 32px rgba(86, 204, 242, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    /* 主要突出按钮样式 - 激活账号专用 */
+    .bottom button.primary-highlight {
+      font-size: 18px !important;
+      font-weight: bold !important;
+      padding: 16px 24px !important;
+      background: linear-gradient(135deg, #00ff88, #00cc66, #009944) !important;
+      box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4), 0 4px 12px rgba(0, 204, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+      border: 2px solid rgba(0, 255, 136, 0.6) !important;
+      animation: pulse-glow 2s ease-in-out infinite !important;
+    }
+    .bottom button.primary-highlight:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 12px 32px rgba(0, 255, 136, 0.5), 0 6px 16px rgba(0, 204, 102, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 8px 24px rgba(0, 255, 136, 0.4), 0 4px 12px rgba(0, 204, 102, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+      50% { box-shadow: 0 12px 32px rgba(0, 255, 136, 0.6), 0 6px 16px rgba(0, 204, 102, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+    }
+    /* 高级弹窗样式 */
+    .dialog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(8px);
+    }
+    .dialog.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .dialog .dialog-box {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 28px 32px;
+      max-width: 85%;
+      min-width: 280px;
+      color: var(--text-primary);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-color);
+      transform: scale(0.7) translateY(20px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .dialog.show .dialog-box {
+      transform: scale(1) translateY(0);
+    }
+    .dialog .dialog-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s;
+    }
+    .dialog.show .dialog-box::before {
+      left: 100%;
+    }
+    .dialog .dialog-box h3 {
+      margin: 0 0 16px 0;
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* 模态框基础样式 */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+    }
+
+    /* 设置面板样式 */
+    .settings-panel {
+      padding: 0;
+    }
+    
+    /* 设置标题 */
+    .settings-header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border-color);
+    }
+    .settings-header h2 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+    
+    /* 个人资料卡片 */
+    .profile-card {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 8px 24px rgba(47, 128, 237, 0.2);
+    }
+    .profile-avatar {
+      flex-shrink: 0;
+    }
+    .avatar-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      backdrop-filter: blur(10px);
+    }
+    .profile-info {
+      flex: 1;
+      color: white;
+    }
+    .profile-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .profile-code {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    .profile-level {
+      flex-shrink: 0;
+    }
+    .level-badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+    }
+    
+    /* 设置区域 */
+    .settings-section {
+      margin-bottom: 24px;
+    }
+    .settings-section h3 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    
+    /* 设置卡片 */
+    .settings-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+    
+    /* 设置项 */
+    .setting-item {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color 0.2s ease;
+    }
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+    .setting-item.clickable {
+      cursor: pointer;
+    }
+    .setting-item.clickable:hover {
+      background: rgba(47, 128, 237, 0.05);
+    }
+    .setting-info {
+      flex: 1;
+    }
+    .setting-title {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    .setting-desc {
+      display: block;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .arrow {
+      font-size: 18px;
+      color: var(--text-secondary);
+      font-weight: bold;
+    }
+    
+    /* 主题按钮 */
+    .theme-btn {
+      background: var(--brand);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .theme-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(47, 128, 237, 0.3);
+    }
+    .theme-preview {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    }
+    
+    /* 现代化选择框 */
+    .modern-select {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      min-width: 140px;
+      transition: all 0.2s ease;
+    }
+    .modern-select:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.1);
+    }
+    
+    /* Toggle开关 */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.3s;
+      border-radius: 28px;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    input:checked + .toggle-slider {
+      background-color: var(--brand);
+    }
+    input:checked + .toggle-slider:before {
+      transform: translateX(22px);
+    }
+    
+    /* 操作按钮 */
+    .action-btn {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .action-btn:hover {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
+    
+    /* 危险操作区域 */
+    .danger-zone {
+      margin: 32px 0 24px 0;
+    }
+    .danger-zone h3 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      color: #ff6b6b;
+      font-weight: 600;
+    }
+    .danger-card {
+      background: rgba(255, 107, 107, 0.05);
+      border: 1px solid rgba(255, 107, 107, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .danger-warning {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: rgba(255, 107, 107, 0.1);
+      border-radius: 8px;
+    }
+    .warning-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .warning-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .danger-btn {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+    .danger-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+    }
+    .danger-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* 设置页脚 */
+    .settings-footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 2px solid var(--border-color);
+      text-align: center;
+    }
+    .back-btn {
+      background: linear-gradient(135deg, #4a90e2, #357abd);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+      min-width: 200px;
+    }
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+    }
+    .back-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* 兼容旧样式 */
+    .settings-select:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 2px rgba(47, 128, 237, 0.2);
+    }
+    .dialog .dialog-box p {
+      margin: 0 0 24px 0;
+      line-height: 1.6;
+      text-align: center;
+      font-size: 16px;
+      white-space: pre-line;
+    }
+    .dialog .dialog-box button {
+      background: linear-gradient(135deg, var(--btn-primary), #0066cc);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 0 6px;
+      box-shadow: 0 4px 16px rgba(0, 102, 204, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .dialog .dialog-box button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 102, 204, 0.4);
+    }
+    .dialog .dialog-box button:active {
+      transform: translateY(0);
+      color: var(--text-primary);
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--btn-shadow);
+      margin: 0 5px;
+    }
+    
+    .dialog .dialog-box .secondary-btn {
+      background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+      color: white;
+    }
+    
+    .dialog .dialog-box .danger-btn {
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      color: white;
+    }
+    
+    #dialogButtons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    
+    /* 任务完成弹窗特殊样式 */
+    .dialog.success .dialog-box {
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 255, 136, 0.05) 100%);
+      border: 2px solid rgba(0, 255, 136, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2), 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    .dialog.success .dialog-box h3 {
+      color: #00ff88;
+      text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    }
+    .dialog.success .dialog-box::after {
+      content: '🎉';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 24px;
+      animation: celebrate 0.6s ease-out;
+    }
+    @keyframes celebrate {
+      0% { transform: scale(0) rotate(0deg); opacity: 0; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+      100% { transform: scale(1) rotate(360deg); opacity: 1; }
+    }
+    
+    /* 粒子效果 */
+     .dialog.success .dialog-box::before {
+       background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
+     }
+     
+     /* 成功弹窗的脉冲动画 */
+     .dialog.success .dialog-box {
+       animation: successPulse 2s ease-in-out infinite;
+     }
+     @keyframes successPulse {
+       0%, 100% { 
+         box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2), 0 8px 24px rgba(0, 0, 0, 0.2);
+       }
+       50% { 
+         box-shadow: 0 20px 60px rgba(0, 255, 136, 0.4), 0 8px 24px rgba(0, 255, 136, 0.1);
+       }
+     }
+     
+     /* 成功弹窗按钮特殊效果 */
+     .dialog.success button {
+       background: linear-gradient(135deg, #00ff88, #00cc66);
+       box-shadow: 0 4px 16px rgba(0, 255, 136, 0.4);
+     }
+     .dialog.success button:hover {
+       box-shadow: 0 8px 24px rgba(0, 255, 136, 0.6);
+       transform: translateY(-3px);
+     }
+    /* 邀请区高亮样式 */
+    .invite-highlight {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 12px;
+      margin-top: 12px;
+      box-shadow: var(--btn-glow);
+    }
+    .invite-highlight .section-title {
+      color: var(--accent-color);
+    }
+    
+    .invite-link-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .invite-link-container input {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .invite-link-container button:hover {
+      background: linear-gradient(135deg, #45a049, #3d8b40) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7WCTWLM"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <div id="app" class="app">
+    <div class="header">
+      <div class="header-main">
+        <!-- 放大的logo -->
+        <img src="logo_gold7.png" alt="Logo" class="logo-img" />
+        <div class="status-info">
+          <div id="stateLabel" class="state-label">状态1</div>
+          <div id="subtitle" class="subtitle">欢迎加入裂金7日</div>
+        </div>
+      </div>
+      <button class="settings-btn" onclick="console.log('设置按钮被点击'); openSettings();">⚙️</button>
+    </div>
+    <div class="content">
+      <div id="card" class="card">
+        <!-- 动态内容将在这里注入 -->
+      </div>
+    </div>
+    <div id="bottomButtons" class="bottom">
+      <!-- 底部按钮动态生成 -->
+    </div>
+  </div>
+  <!-- 模态弹窗 -->
+  <div id="modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <button id="modalClose" class="modal-close">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+  <div id="dialog" class="dialog" style="display:none;">
+    <div class="dialog-box">
+      <h3 id="dialogTitle">提示</h3>
+      <p id="dialogMsg">内容</p>
+      <div id="dialogButtons">
+        <button onclick="closeDialog()">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 设置面板 -->
+  <div id="settingsModal" class="modal" style="display:none;">
+    <div class="modal-content" style="max-width: 420px; width: 95%; max-height: 90vh; overflow-y: auto;">
+      <button class="modal-close" onclick="closeSettings()">✕</button>
+      <div class="settings-panel">
+        <!-- 标题 -->
+        <div class="settings-header">
+          <h2>⚙️ 设置中心</h2>
+        </div>
+        
+        <!-- 个人资料卡片 -->
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <div class="avatar-circle">👤</div>
+          </div>
+          <div class="profile-info">
+            <div class="profile-name" id="userEmailDisplay">未登录</div>
+            <div class="profile-code">邀请码：<span id="userInviteCodeDisplay">-</span></div>
+          </div>
+          <div class="profile-level">
+            <span class="level-badge">LV.1</span>
+          </div>
+        </div>
+
+        <!-- 外观设置 -->
+        <div class="settings-section">
+          <h3>🎨 外观设置</h3>
+          <div class="settings-card">
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">主题风格</span>
+                <span class="setting-desc">选择您喜欢的界面主题</span>
+              </div>
+              <button class="theme-btn" onclick="window.location.href='theme-demo.html'">
+                <span class="theme-preview"></span>
+                切换
+              </button>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">🌐 语言</span>
+                <span class="setting-desc">选择界面显示语言</span>
+              </div>
+              <select id="languageSelect" class="modern-select">
+                <option value="zh-CN" selected>🇨🇳 简体中文</option>
+                <option value="zh-TW">🇨🇳 繁體中文</option>
+                <option value="en-US">🇺🇸 English</option>
+                <option value="ja-JP">🇯🇵 日本語</option>
+                <option value="ko-KR">🇰🇷 한국어</option>
+                <option value="th-TH">🇹🇭 ไทย</option>
+                <option value="hi-IN">🇮🇳 हिन्दी</option>
+                <option value="vi-VN">🇻🇳 Tiếng Việt</option>
+                <option value="km-KH">🇰🇭 ខ្មែរ</option>
+                <option value="ru-RU">🇷🇺 Русский</option>
+                <option value="mn-MN">🇲🇳 Монгол</option>
+                <option value="my-MM">🇲🇲 မြန်မာ</option>
+                <option value="lo-LA">🇱🇦 ລາວ</option>
+                <option value="ar-SA">🇸🇦 العربية</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 功能设置 -->
+        <div class="settings-section">
+          <h3>🔧 功能设置</h3>
+          <div class="settings-card">
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">🔔 消息通知</span>
+                <span class="setting-desc">接收重要消息提醒</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">🔊 音效</span>
+                <span class="setting-desc">开启操作音效反馈</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">📊 数据管理</span>
+                <span class="setting-desc">重置本地测试数据</span>
+              </div>
+              <button class="action-btn" onclick="resetTestData()">重置数据</button>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">🔄 状态切换</span>
+                <span class="setting-desc">切换用户状态进行测试</span>
+              </div>
+              <select id="stateSelect" class="modern-select" onchange="switchToState(this.value)">
+                <option value="">选择状态</option>
+                <option value="1">状态1 - 新手未入金</option>
+                <option value="2">状态2 - 新手已入金</option>
+                <option value="3">状态3 - 本期挑战结束</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <div class="setting-info">
+                <span class="setting-title">🎨 主题演示</span>
+                <span class="setting-desc">查看主题切换效果</span>
+              </div>
+              <button class="action-btn" onclick="demoTheme()">主题演示</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 帮助与支持 -->
+        <div class="settings-section">
+          <h3>❓ 帮助与支持</h3>
+          <div class="settings-card">
+            <div class="setting-item clickable" onclick="showHelp()">
+              <div class="setting-info">
+                <span class="setting-title">📖 使用帮助</span>
+                <span class="setting-desc">查看功能说明和操作指南</span>
+              </div>
+              <span class="arrow">›</span>
+            </div>
+            <div class="setting-item clickable" onclick="showFeedback()">
+              <div class="setting-info">
+                <span class="setting-title">💬 意见反馈</span>
+                <span class="setting-desc">提交建议和问题反馈</span>
+              </div>
+              <span class="arrow">›</span>
+            </div>
+            <div class="setting-item clickable" onclick="showAbout()">
+              <div class="setting-info">
+                <span class="setting-title">ℹ️ 关于我们</span>
+                <span class="setting-desc">版本信息和开发团队</span>
+              </div>
+              <span class="arrow">›</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 危险操作区域 -->
+        <div class="danger-zone">
+          <h3>⚠️ 危险操作</h3>
+          <div class="danger-card">
+            <div class="danger-warning">
+              <span class="warning-icon">🚨</span>
+              <div class="warning-text">
+                <strong>注意：</strong>退出登录将清除所有本地数据，请确保重要信息已备份
+              </div>
+            </div>
+            <button class="danger-btn" onclick="confirmLogout()">
+              🚪 退出登录
+            </button>
+          </div>
+        </div>
+
+        <!-- 返回按钮 -->
+        <div class="settings-footer">
+          <button class="back-btn" onclick="closeSettings()">
+            ← 返回主页
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 设置面板功能 - 提前定义确保onclick可以找到
+    function openSettings() {
+      console.log('openSettings函数被调用');
+      const settingsModal = document.getElementById('settingsModal');
+      console.log('settingsModal元素:', settingsModal);
+      
+      if (!settingsModal) {
+        console.error('找不到settingsModal元素');
+        alert('设置面板元素未找到，请刷新页面重试');
+        return;
+      }
+      
+      settingsModal.style.display = 'flex';
+      console.log('设置面板已显示');
+      
+      // 更新个人信息显示
+      updateProfileDisplay();
+      
+      // 加载保存的设置
+      loadSettingsFromStorage();
+    }
+
+    function closeSettings() {
+      const settingsModal = document.getElementById('settingsModal');
+      settingsModal.style.display = 'none';
+    }
+
+    function updateSettingsInfo() {
+      const userEmail = localStorage.getItem('userEmail') || '未登录';
+      const userInviteCode = localStorage.getItem('userInviteCode') || '-';
+      const currentLanguage = localStorage.getItem('language') || 'zh-CN';
+      
+      document.getElementById('userEmailDisplay').textContent = userEmail;
+      document.getElementById('userInviteCodeDisplay').textContent = userInviteCode;
+      document.getElementById('languageSelect').value = currentLanguage;
+    }
+
+    /* 状态数据与逻辑定义 */
+    const STATES = {
+      1: {
+        name: '状态1',
+        subtitle: '新手未入金',
+        card: function() {
+          return `
+            <div class="section reactivate-highlight">
+              <div class="section-title">激活账号</div>
+              <div class="section-content" style="margin-bottom: 16px;">立即入金100 USDT，开启168小时挑战期，解锁任务系统和收益机会。</div>
+              <button class="reactivate-btn" onclick="activateAccount()">立即激活 100 USDT</button>
+            </div>
+            <div class="section">
+              <div class="section-title">收益预览</div>
+              <div class="section-content">查看前10名收益排行榜，了解潜在收益机会。</div>
+              <button onclick="showRanking()" style="margin-top: 12px; padding: 8px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; width: 100%; font-weight: 500; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">查看排行榜</button>
+            </div>
+          `;
+        },
+        buttons: []
+      },
+      2: {
+        name: '状态2',
+        subtitle: '168小时倒计时中',
+        card: function() {
+          // 当前新手任务：只显示尚未完成的第一个任务
+          const currentTask = newTasks.find(t => !t.done);
+          let taskSection;
+          if (currentTask) {
+            taskSection = `
+            <div class="section">
+              <div class="section-title">当前任务</div>
+              <div class="section-content">${currentTask.title}</div>
+            </div>
+            `;
+          } else {
+            taskSection = `
+            <div class="section">
+              <div class="section-title">当前任务</div>
+              <div class="section-content">所有新手任务已完成</div>
+            </div>
+            `;
+          }
+          const completedTasks = newTasks.filter(t => t.done).length;
+          
+          // 可接的任务区域：显示所有未完成的新手任务
+          const availableTasks = newTasks.filter(t => !t.done);
+          let availableTasksSection = '';
+          if (availableTasks.length > 0) {
+            availableTasksSection = `
+            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; cursor: pointer;" onclick="window.location.href='tasks.html'">
+              <div class="section-title" style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 6px;">📋 可接的任务</div>
+              <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">点击查看详细任务列表</div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                ${availableTasks.map(task => `
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span style="font-size: 12px; color: var(--text);">${task.title}</span>
+                    <span style="font-size: 10px; padding: 2px 6px; background: linear-gradient(45deg, #00eaff, #0088ff); color: #031e2e; border-radius: 8px;">待完成</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            `;
+          }
+          
+          // 答题任务区域：完成至少一个新手任务后出现，且未完成全部20题
+          const firstDone = newTasks[0] && newTasks[0].done;
+          const quizCorrect = parseInt(localStorage.getItem('quizCorrect')) || 0;
+          let quizSection = '';
+          if (firstDone && quizCorrect < 20) {
+            quizSection = `
+            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; box-shadow: var(--btn-glow); cursor: pointer;" onclick="window.location.href='quiz.html'">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 2px;">📝 答题任务</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">降低提现手续费</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 12px; color: var(--text-secondary);">进度</div>
+                  <div style="font-weight: bold; color: var(--accent-color);">${quizCorrect}/20</div>
+                </div>
+              </div>
+            </div>
+            `;
+          }
+          
+          // 大神任务区域：完成所有新手任务且完成答题任务后显示
+          const allNewTasksCompleted = newTasks.every(task => task.done);
+          const quizCompleted = quizCorrect >= 20;
+          let masterTasksSection = '';
+          if (allNewTasksCompleted && quizCompleted) {
+            // 获取大神任务完成状态
+            const godTasksCompleted = parseInt(localStorage.getItem('godTasksCompleted')) || 0;
+            const currentMasterTask = godTasks.find(task => !task.done);
+            
+            masterTasksSection = `
+            <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; box-shadow: var(--btn-glow); cursor: pointer;" onclick="window.location.href='tasks.html?tab=master'">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 2px;">🏆 大神任务</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">${currentMasterTask ? currentMasterTask.title : '所有大神任务已完成'}</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 12px; color: var(--text-secondary);">进度</div>
+                  <div style="font-weight: bold; color: var(--accent-color);">${godTasksCompleted}/6</div>
+                </div>
+              </div>
+            </div>
+            `;
+          }
+          
+          return `
+            <div class="section" style="display: flex; gap: 12px; margin-bottom: 8px;">
+              <div style="flex: 1; background: var(--bg-secondary); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80px;">
+                <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">⏰ 倒计时</div>
+                <div style="font-weight: bold; color: var(--accent-color); font-size: 20px; line-height: 1;"><span id="countdown">--:--:--</span></div>
+              </div>
+              <div style="flex: 1.2; background: var(--bg-secondary); border-radius: 12px; padding: 12px;">
+                <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; text-align: center;">🏆 战绩卡</div>
+                <div style="font-size: 11px; line-height: 1.3; color: var(--text-primary);">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                    <span>新手任务:</span>
+                    <span style="color: var(--accent-color); font-weight: bold;"><span id="taskProgress">${completedTasks}</span>/3</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                     <span>答题进度:</span>
+                     <span style="color: var(--accent-color); font-weight: bold;">${quizCorrect}/20</span>
+                   </div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                    <span>团队人数:</span>
+                    <span style="color: var(--accent-color); font-weight: bold;"><span id="teamCount">${teamMembers}</span>人</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span>总收益:</span>
+                    <span style="color: var(--success-color); font-weight: bold;"><span id="totalEarnings">${totalEarnings.toFixed(2)}</span> USDT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            ${availableTasksSection}
+            ${quizSection}
+            ${masterTasksSection}
+            <div class="section invite-highlight">
+              <div class="section-title">邀请链接</div>
+              <div class="section-content">
+                <!-- 专属邀请码区域 -->
+                <div style="margin-bottom: 12px; padding: 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; box-shadow: 0 2px 8px var(--accent-shadow);">
+                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">💎 我的专属邀请码</div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="flex: 1; font-weight: bold; color: var(--accent-color); font-size: 16px; text-align: center; padding: 10px; background: var(--input-bg); border-radius: 8px; border: 1px solid var(--border-color); box-shadow: inset 0 1px 3px var(--accent-shadow);" id="myInviteCode">ABC123</div>
+                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制码</button>
+                  </div>
+                </div>
+                
+                <!-- 邀请链接区域 -->
+                <div style="padding: 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; box-shadow: 0 2px 8px var(--accent-shadow);">
+                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 邀请链接</div>
+                  <div class="invite-link-container" style="display: flex; gap: 8px;">
+                    <input type="text" id="inviteLink" value="https://gold7.com/invite?code=ABC123" readonly style="flex: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--input-bg); font-size: 11px; color: var(--accent-color); box-shadow: inset 0 1px 3px var(--accent-shadow);">
+                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制链接</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        },
+        buttons: [
+          { text: '任务', color: 'green', key: 'task', action: () => openTasks() },
+          { text: '红包', color: 'red', key: 'red', action: () => grabRedPacket() },
+          { text: '团队', color: 'orange', key: 'team', action: () => showTeam() },
+          { text: '钱包', color: 'purple', key: 'wallet', action: () => showWallet() },
+          { text: '排行', color: 'green', key: 'rank', action: () => showRanking() }
+        ]
+      },
+      3: {
+        name: '状态3',
+        subtitle: '倒计时结束未复购',
+        card: function() {
+          const completedTasks = newTasks.filter(t => t.done).length;
+          return `
+            <div class="section reactivate-highlight">
+              <div class="section-title">🔥 再次激活</div>
+              <div class="section-content">
+                <p style="margin-bottom: 12px;">重新开启168小时挑战，继续赚取收益！</p>
+                <button class="reactivate-btn" onclick="repurchase()">立即激活 100 USDT</button>
+              </div>
+            </div>
+            <div class="section">
+              <div class="section-title">战绩卡</div>
+              <div class="section-content">本期收益：<strong>${totalEarnings.toFixed(2)} USDT</strong><br/>新手任务：${completedTasks}/3 完成<br/>团队人数：${teamMembers}人</div>
+            </div>
+            <div class="section">
+              <div class="section-title">我的团队</div>
+              <div class="section-content">查看七层团队结构和人数。</div>
+            </div>
+          `;
+        },
+        buttons: [
+          { text: '团队', color: 'orange', action: () => showTeam() },
+          { text: '钱包', color: 'purple', action: () => showWallet() },
+          { text: '排行', color: 'green', action: () => showRanking() }
+        ]
+      }
+    };
+
+    /* 任务数据 */
+    const newTasks = [
+      { id: 1, title: '直接推荐1人', desc: '邀请1位好友注册并激活账号', done: false, reward: 10 },
+      { id: 2, title: '帮助下级推荐1人', desc: '指导你的下级成功邀请1位新用户', done: false, reward: 10 },
+      { id: 3, title: '教下级如何教他的下级推荐1人', desc: '培训下级的推广技巧，帮助三级推广', done: false, reward: 10 }
+    ];
+    
+    // 答题任务数据
+    const quizTasks = [
+      { id: 'quiz1', title: '基础知识答题', desc: '完成20道基础题目，正确率达到80%', done: false, reward: 20, feeReduction: 0.02 }
+    ];
+    
+    const godTasks = [
+      { id: 1, title: '大神任务一：直推2人 × 2层 = 6人', desc: '建立2层团队结构，每层2人', done: false, reward: 50 },
+      { id: 2, title: '大神任务二：直推3人 × 3层 = 39人', desc: '建立3层团队结构，每层3人', done: false, reward: 250 },
+      { id: 3, title: '大神任务三：直推4人 × 4层 = 340人', desc: '建立4层团队结构，每层4人', done: false, reward: 1250 },
+      { id: 4, title: '大神任务四：直推5人 × 5层 = 3905人', desc: '建立5层团队结构，每层5人', done: false, reward: 6250 },
+      { id: 5, title: '大神任务五：直推6人 × 6层 = 55986人', desc: '建立6层团队结构，每层6人', done: false, reward: 31250 },
+      { id: 6, title: '大神任务六：直推7人 × 7层 = 960799人', desc: '建立7层团队结构，每层7人', done: false, reward: 156250 }
+    ];
+
+    /* 全局状态变量 */
+    let currentState = 1;
+    let countdownStart = null; // 开启倒计时的时间戳
+    let inviteStart = null;    // 邀请链接生效时间戳
+    let countdownTimer = null;
+
+    // 模拟用户钱包余额，用于红包和提现功能
+    let walletBalance = 0;
+
+    // 交易记录列表
+    let transactions = [];
+
+    // 提现手续费比例，默认为 5%（0.05），可通过答题任务降低，最低 1%（0.01）
+    let withdrawFeeRate = 0.05;
+
+    // 新增状态管理变量
+    let userLevel = 0; // 用户等级 0:未激活 1:已激活
+    let completedNewbieTasks = 0; // 已完成新手任务数量
+    let quizCompleted = false; // 答题任务是否完成
+    let godTasksUnlocked = false; // 大神任务是否解锁
+    let teamMembers = 0; // 团队成员数量
+    let totalEarnings = 0; // 总收益
+
+    /**
+     * 从 localStorage 初始化状态，包括余额、任务完成状态和交易记录。
+     */
+    function loadState() {
+      const savedState = localStorage.getItem('appState');
+      if (savedState) {
+        try {
+          const state = JSON.parse(savedState);
+          currentState = state.currentState || 1;
+          countdownStart = state.countdownStart;
+          inviteStart = state.inviteStart;
+          walletBalance = state.walletBalance || 0;
+          transactions = state.transactions || [];
+          userLevel = state.userLevel || 0;
+          completedNewbieTasks = state.completedNewbieTasks || 0;
+          quizCompleted = state.quizCompleted || false;
+          godTasksUnlocked = state.godTasksUnlocked || false;
+          teamMembers = state.teamMembers || 0;
+          totalEarnings = state.totalEarnings || 0;
+          withdrawFeeRate = state.withdrawFeeRate || 0.05;
+          
+          // 同步团队收益：总收益 = 团队人数 * 10
+          const teamData = JSON.parse(localStorage.getItem('teamData') || '{}');
+          if (teamData.totalMembers) {
+            totalEarnings = teamData.totalMembers * 10;
+            teamMembers = teamData.totalMembers;
+          }
+          
+          // 恢复任务状态
+          if (state.newTasks) {
+            state.newTasks.forEach((task, index) => {
+              if (newTasks[index]) newTasks[index].done = task.done;
+            });
+            // 同步completedNewbieTasks变量，确保与newTasks数组状态一致
+            completedNewbieTasks = newTasks.filter(t => t.done).length;
+          }
+          if (state.quizTasks) {
+            state.quizTasks.forEach((task, index) => {
+              if (quizTasks[index]) quizTasks[index].done = task.done;
+            });
+          }
+          if (state.godTasks) {
+            state.godTasks.forEach((task, index) => {
+              if (godTasks[index]) godTasks[index].done = task.done;
+            });
+          }
+        } catch (e) {
+          console.warn('无法解析 appState', e);
+        }
+      }
+    }
+
+    /**
+     * 将当前状态保存到 localStorage。
+     */
+    function saveState() {
+      // 同步团队收益：总收益 = 团队人数 * 10
+      const teamData = JSON.parse(localStorage.getItem('teamData') || '{}');
+      if (teamData.totalMembers) {
+        totalEarnings = teamData.totalMembers * 10;
+      }
+      
+      const state = {
+        currentState,
+        countdownStart,
+        inviteStart,
+        walletBalance,
+        transactions,
+        userLevel,
+        completedNewbieTasks,
+        quizCompleted,
+        godTasksUnlocked,
+        teamMembers,
+        totalEarnings,
+        withdrawFeeRate,
+        newTasks: newTasks.map(t => ({ ...t })),
+        quizTasks: quizTasks.map(t => ({ ...t })),
+        godTasks: godTasks.map(t => ({ ...t }))
+      };
+      localStorage.setItem('appState', JSON.stringify(state));
+    }
+
+    // 生成用户专属邀请码
+    function generateUserInviteCode() {
+      const userEmail = localStorage.getItem('userEmail');
+      if (userEmail) {
+        // 使用邮箱前缀 + 随机6位字符生成邀请码
+        const emailPrefix = userEmail.split('@')[0].substring(0, 6).toUpperCase();
+        const randomSuffix = Math.random().toString(36).substring(2, 8).toUpperCase();
+        return emailPrefix + randomSuffix;
+      }
+      // 如果没有邮箱，生成随机邀请码
+      return 'USER' + Math.random().toString(36).substring(2, 8).toUpperCase();
+    }
+
+    function init() {
+      // 检查用户是否已登录
+      const userEmail = localStorage.getItem('userEmail');
+      if (!userEmail) {
+        // 未登录，跳转到登录页面
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      // 从 localStorage 加载历史状态
+      loadState();
+      
+      // 生成或获取用户邀请码
+      let userInviteCode = localStorage.getItem('userInviteCode');
+      if (!userInviteCode) {
+        userInviteCode = generateUserInviteCode();
+        localStorage.setItem('userInviteCode', userInviteCode);
+      }
+      
+      renderState();
+      
+      // 初始化设置面板事件监听器
+      initSettingsEvents();
+    }
+
+    function renderState() {
+      const state = STATES[currentState];
+      document.getElementById('stateLabel').innerText = state.name;
+      document.getElementById('subtitle').innerText = state.subtitle;
+      // 渲染卡片内容
+      document.getElementById('card').innerHTML = state.card();
+      
+      // 更新战绩卡数据
+      updateStatsDisplay();
+      
+      // 渲染底部按钮
+      const bottom = document.getElementById('bottomButtons');
+      bottom.innerHTML = '';
+      
+      // 严格按状态控制按钮显示
+      const buttonsToShow = getButtonsForState(currentState);
+      
+      // 如果按钮超过6个，添加many-buttons类
+      if (buttonsToShow.length > 6) {
+        bottom.classList.add('many-buttons');
+      } else {
+        bottom.classList.remove('many-buttons');
+      }
+      
+      buttonsToShow.forEach(btnConfig => {
+        const b = document.createElement('button');
+        b.innerText = btnConfig.text;
+        b.classList.add(btnConfig.color);
+        b.onclick = btnConfig.action;
+        // 设置 data-key 以便样式定制（如邀请按钮高亮）
+        if (btnConfig.key) {
+          b.dataset.key = btnConfig.key;
+        }
+        bottom.appendChild(b);
+      });
+      
+      // 控制倒计时
+      if (currentState === 2) {
+        if (!countdownStart) {
+          countdownStart = Date.now();
+          inviteStart = countdownStart;
+        }
+        updateCountdown();
+        countdownTimer = setInterval(updateCountdown, 1000);
+      } else {
+        if (countdownTimer) clearInterval(countdownTimer);
+      }
+    }
+    
+    // 根据状态严格控制按钮显示
+    function getButtonsForState(state) {
+      const baseButtons = STATES[state].buttons;
+      const result = [...baseButtons];
+      
+
+      
+      return result;
+    }
+    
+    // 更新战绩卡显示
+    function updateStatsDisplay() {
+      const taskProgressEl = document.getElementById('taskProgress');
+      const teamCountEl = document.getElementById('teamCount');
+      const totalEarningsEl = document.getElementById('totalEarnings');
+      
+      // 使用newTasks数组的实际完成状态，确保与内容栏显示一致
+      const actualCompletedTasks = newTasks.filter(t => t.done).length;
+      if (taskProgressEl) taskProgressEl.innerText = actualCompletedTasks;
+      if (teamCountEl) teamCountEl.innerText = teamMembers;
+      if (totalEarningsEl) totalEarningsEl.innerText = totalEarnings.toFixed(2);
+    }
+
+    function updateCountdown() {
+      // 倒计时 168h = 7*24*3600s
+      const total = 168 * 3600 * 1000;
+      const now = Date.now();
+      const elapsed = now - countdownStart;
+      let remaining = total - elapsed;
+      if (remaining < 0) remaining = 0;
+      const hrs = Math.floor(remaining / 3600000);
+      const mins = Math.floor((remaining % 3600000) / 60000);
+      const secs = Math.floor((remaining % 60000) / 1000);
+      const str = `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      const countdownEl = document.getElementById('countdown');
+      if (countdownEl) countdownEl.innerText = str;
+      
+      // 更新邀请链接显示
+      updateInviteDisplay();
+      
+      // 当倒计时结束，自动进入状态3
+      if (remaining === 0 && currentState === 2) {
+        currentState = 3;
+        countdownStart = null;
+        renderState();
+      }
+      // 当倒计时结束，从状态2回到状态3
+      if (remaining === 0 && currentState === 2) {
+        currentState = 3;
+        countdownStart = null;
+        renderState();
+      }
+    }
+    
+    // 更新邀请链接显示
+    function updateInviteDisplay() {
+      // 更新邀请码和邀请链接内容
+      const userInviteCode = localStorage.getItem('userInviteCode') || 'ABC123';
+      
+      // 更新专属邀请码显示
+      const inviteCodeEl = document.getElementById('myInviteCode');
+      if (inviteCodeEl) {
+        inviteCodeEl.textContent = userInviteCode;
+      }
+      
+      // 更新邀请链接
+      const inviteLinkEl = document.getElementById('inviteLink');
+      if (inviteLinkEl) {
+        inviteLinkEl.value = `https://gold7.com/login.html?invite=${userInviteCode}`;
+      }
+    }
+
+    // 开发测试循环状态
+    function cycleState() {
+      currentState++;
+      if (currentState > 3) currentState = 1;
+      countdownStart = null;
+      renderState();
+    }
+
+    // 切换到指定状态
+    function switchToState(state) {
+      if (state === '') return; // 如果选择了空选项，不执行任何操作
+      
+      currentState = parseInt(state);
+      countdownStart = null;
+      renderState();
+      
+      // 重置下拉菜单
+      document.getElementById('stateSelect').value = '';
+      
+      // 自动关闭设置面板
+      closeSettings();
+    }
+
+    // 激活账号/首次入金
+    function activateAccount() {
+      showDialog('激活账号', '请向系统提供的USDT地址支付100 USDT以激活账号。激活后将开启168小时挑战期。');
+      // 模拟支付成功
+      setTimeout(() => {
+        // 首次激活记录交易（入金不影响余额，余额来源于佣金）
+        transactions.push({ 
+          type: '激活缴费', 
+          amount: -100, 
+          fee: 0, 
+          net: -100, 
+          time: new Date().toISOString(),
+          desc: '首次激活账号缴费' 
+        });
+        
+        // 更新状态
+        userLevel = 1;
+        currentState = 2;
+        countdownStart = Date.now();
+        inviteStart = countdownStart;
+        
+        saveState();
+        renderState();
+        
+        showDialog('激活成功', '账号激活成功！168小时挑战期已开始，请完成任务获得收益。');
+      }, 1000);
+    }
+
+    // 再次入金（复购）
+    function repurchase() {
+      showDialog('再次激活', '请向系统提供的新USDT地址支付100 USDT以重新激活。重新激活后将开启新的168小时挑战期。');
+      setTimeout(() => {
+        // 复购记录交易
+        transactions.push({ 
+          type: '复购缴费', 
+          amount: -100, 
+          fee: 0, 
+          net: -100, 
+          time: new Date().toISOString(),
+          desc: '复购激活缴费' 
+        });
+        
+        // 更新状态
+        currentState = 2;
+        countdownStart = Date.now();
+        inviteStart = countdownStart;
+        
+        saveState();
+        renderState();
+        
+        showDialog('复购成功', '复购激活成功！新的168小时挑战期已开始。');
+      }, 1000);
+    }
+
+    // 任务按钮 - 实现按序触发逻辑
+    function openTasks() {
+      // 找到下一个未完成的任务（按ID顺序）
+      const nextTask = newTasks.find(t => !t.done && t.id === completedNewbieTasks + 1);
+      
+      if (nextTask) {
+        // 显示任务详情
+        showDialog('当前任务', `任务${nextTask.id}：${nextTask.title}\n\n${nextTask.desc}\n\n完成奖励：${nextTask.reward} USDT\n\n点击确定标记完成`);
+        
+        // 模拟任务完成
+        setTimeout(() => {
+          nextTask.done = true;
+          // 同步completedNewbieTasks变量，确保与newTasks数组状态一致
+          completedNewbieTasks = newTasks.filter(t => t.done).length;
+          
+          // 任务奖励
+          walletBalance += nextTask.reward;
+          totalEarnings += nextTask.reward;
+          
+          // 记录交易
+          transactions.push({ 
+            type: '任务奖励', 
+            amount: nextTask.reward, 
+            fee: 0, 
+            net: nextTask.reward, 
+            time: new Date().toISOString(),
+            desc: `完成${nextTask.title}` 
+          });
+          
+          saveState();
+          renderState();
+          
+          // 显示任务完成弹窗
+          showDialog('任务完成', `恭喜完成任务：${nextTask.title}！\n奖励：${nextTask.reward} USDT\n当前余额：${walletBalance.toFixed(2)} USDT`);
+          
+          // 检查是否解锁答题任务，直接加入弹窗队列
+          if (completedNewbieTasks >= 1 && !quizCompleted) {
+            showDialog('解锁答题任务', '恭喜！解锁答题任务，完成可降低提现手续费！\n\n当前手续费：' + ((withdrawFeeRate * 100).toFixed(1)) + '%');
+          }
+        }, 1500);
+      } else if (completedNewbieTasks >= 3) {
+        // 检查答题任务状态
+        const quizCorrect = parseInt(localStorage.getItem('quizCorrect')) || 0;
+        if (quizCorrect < 20) {
+          showDialog('答题任务', '所有新手任务已完成！\n\n答题任务可用，完成20题可降低提现手续费。\n\n当前手续费：' + ((withdrawFeeRate * 100).toFixed(1)) + '%');
+        } else {
+          showDialog('新手任务', '所有新手任务已完成！\n\n答题任务也已完成，手续费已降至最低。');
+        }
+      } else {
+        showDialog('任务系统', '请按顺序完成任务。');
+      }
+    }
+    
+
+    
+    // 复制邀请链接
+    function copyInvite() {
+      const link = 'https://example.com/invite?code=ABC123';
+      navigator.clipboard.writeText(link).then(() => {
+        showDialog('邀请链接已复制', `有效期剩余 ${document.getElementById('inviteLeft').innerText}。`);
+      });
+    }
+    
+    // 新的复制邀请链接函数
+    function copyInviteLink() {
+      const linkInput = document.getElementById('inviteLink');
+      const link = linkInput.value;
+      
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(link).then(() => {
+          const detailedTime = getDetailedCountdown();
+          showDialog('邀请链接已复制', `有效期剩余 ${detailedTime}`);
+        }).catch(() => {
+          fallbackCopy(link);
+        });
+      } else {
+        fallbackCopy(link);
+      }
+    }
+    
+    // 复制专属邀请码函数
+    function copyInviteCode() {
+      const codeEl = document.getElementById('myInviteCode');
+      const code = codeEl.textContent;
+      
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(code).then(() => {
+          const detailedTime = getDetailedCountdown();
+          showDialog('邀请码已复制', `专属邀请码: ${code}\n有效期剩余 ${detailedTime}`);
+        }).catch(() => {
+          fallbackCopyCode(code);
+        });
+      } else {
+        fallbackCopyCode(code);
+      }
+    }
+    
+    // 获取详细倒计时时间
+    function getDetailedCountdown() {
+      const total = 168 * 3600 * 1000;
+      const now = Date.now();
+      const inviteRemainingMs = Math.max(0, (inviteStart + total) - now);
+      const days = Math.floor(inviteRemainingMs / (24 * 3600000));
+      const hrs = Math.floor((inviteRemainingMs % (24 * 3600000)) / 3600000);
+      const mins = Math.floor((inviteRemainingMs % 3600000) / 60000);
+      
+      let result = '';
+      if (days > 0) result += `${days}天`;
+      if (hrs > 0) result += `${hrs}小时`;
+      if (mins > 0) result += `${mins}分钟`;
+      if (result === '') result = '不足1分钟';
+      
+      return result;
+    }
+    
+    // 降级复制方案
+    function fallbackCopy(text) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        const detailedTime = getDetailedCountdown();
+        showDialog('邀请链接已复制', `有效期剩余 ${detailedTime}`);
+      } catch (err) {
+        showDialog('复制失败', '请手动复制链接');
+      }
+      document.body.removeChild(textArea);
+    }
+    
+    // 降级复制邀请码方案
+    function fallbackCopyCode(code) {
+      const textArea = document.createElement('textarea');
+      textArea.value = code;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        const detailedTime = getDetailedCountdown();
+        showDialog('邀请码已复制', `专属邀请码: ${code}\n有效期剩余 ${detailedTime}`);
+      } catch (err) {
+        showDialog('复制失败', '请手动复制邀请码');
+      }
+      document.body.removeChild(textArea);
+    }
+    // 抢红包 - 跳转到红包页面
+    function grabRedPacket() {
+      // 检查资格：仅状态2有红包按钮
+      if (currentState !== 2) {
+        showDialog('无抢红包资格', '只有在激活状态（初次挑战或复购状态）才可以抢红包。');
+        return;
+      }
+      
+      // 跳转到红包页面
+      window.location.href = 'redpacket.html';
+    }
+    // 我的团队
+    function showTeam() {
+      // 跳转到团队页面
+      window.location.href = 'team.html';
+    }
+    // 我的钱包
+    function showWallet() {
+      // 跳转到钱包页面
+      window.location.href = 'wallet.html';
+    }
+    // 排行榜
+    function showRanking() {
+      // 跳转到排行榜页面
+      window.location.href = 'ranking.html';
+    }
+    function showRedRanking() {
+      showDialog('红包排行榜', '按红包收入USDT总额排行。');
+    }
+    function showGodRanking() {
+      showDialog('大神排行榜', '按大神等级排行。');
+    }
+    function openGodTasks() {
+      showDialog('大神任务', '请在卡片中查看大神任务目标。');
+    }
+    /* 高级对话框 */
+    // 弹窗队列管理
+    let dialogQueue = [];
+    let isDialogShowing = false;
+    
+    function showDialog(title, msg, buttons = null, type = 'normal', callback = null) {
+      // 如果当前有弹窗正在显示，将新弹窗加入队列
+      if (isDialogShowing) {
+        dialogQueue.push({ title, msg, buttons, type, callback });
+        return;
+      }
+      
+      isDialogShowing = true;
+      const dialog = document.getElementById('dialog');
+      const dialogTitle = document.getElementById('dialogTitle');
+      const dialogMsg = document.getElementById('dialogMsg');
+      const dialogButtons = document.getElementById('dialogButtons');
+      
+      dialogTitle.innerText = title;
+      dialogMsg.innerText = msg;
+      
+      // 根据类型添加特殊样式
+       dialog.className = 'dialog';
+       if (title.includes('任务完成') || title.includes('恭喜') || title.includes('成功') || title.includes('抢红包成功') || title.includes('激活成功')) {
+         dialog.classList.add('success');
+       }
+      
+      if (buttons && Array.isArray(buttons)) {
+        // 自定义按钮
+        dialogButtons.innerHTML = '';
+        buttons.forEach(button => {
+          const btn = document.createElement('button');
+          btn.textContent = button.text;
+          btn.className = button.style === 'danger' ? 'danger-btn' : (button.style === 'secondary' ? 'secondary-btn' : '');
+          btn.onclick = () => {
+            closeDialog(() => {
+              if (button.action) {
+                button.action();
+              }
+              if (callback) {
+                callback();
+              }
+            });
+          };
+          dialogButtons.appendChild(btn);
+        });
+      } else {
+        // 默认确定按钮
+        dialogButtons.innerHTML = '';
+        const defaultBtn = document.createElement('button');
+        defaultBtn.textContent = '确定';
+        defaultBtn.onclick = () => {
+          closeDialog(callback);
+        };
+        dialogButtons.appendChild(defaultBtn);
+      }
+      
+      // 显示弹窗并添加动画
+      dialog.style.display = 'flex';
+      setTimeout(() => {
+        dialog.classList.add('show');
+      }, 10);
+    }
+    
+    function closeDialog(callback = null) {
+      const dialog = document.getElementById('dialog');
+      dialog.classList.remove('show');
+      setTimeout(() => {
+        dialog.style.display = 'none';
+        dialog.className = 'dialog'; // 重置类名
+        isDialogShowing = false;
+        
+        if (callback) {
+          callback();
+        }
+        
+        // 处理队列中的下一个弹窗，添加500ms延迟避免视觉冲突
+        if (dialogQueue.length > 0) {
+          setTimeout(() => {
+            const nextDialog = dialogQueue.shift();
+            showDialog(nextDialog.title, nextDialog.msg, nextDialog.buttons, nextDialog.type, nextDialog.callback);
+          }, 500);
+        }
+      }, 300);
+    }
+
+    /**
+     * 重置测试数据
+     */
+    function resetTestData() {
+      if(confirm('确定要重置所有测试数据吗？此操作不可撤销。')) {
+        // 重置所有任务状态
+        newTasks.forEach(task => task.done = false);
+        quizCompleted = false;
+        godTasksCompleted = false;
+        
+        // 生成随机团队人数 (1-50人)
+        const randomTeamSize = Math.floor(Math.random() * 50) + 1;
+        
+        // 设置余额为团队人数*10 USDT
+        const newBalance = randomTeamSize * 10;
+        
+        // 清空localStorage中的相关数据
+        localStorage.removeItem('userTasks');
+        localStorage.removeItem('quizCompleted');
+        localStorage.removeItem('godTasksCompleted');
+        localStorage.removeItem('userBalance');
+        localStorage.removeItem('teamSize');
+        
+        // 重置答题相关数据
+        localStorage.removeItem('quizIndex');
+        localStorage.removeItem('quizCorrect');
+        localStorage.setItem('withdrawFeeRate', '0.05'); // 重置手续费为5%
+        
+        // 清除交易记录和应用状态数据
+        localStorage.removeItem('transactions');
+        localStorage.removeItem('appState');
+        localStorage.removeItem('teamData');
+        localStorage.removeItem('recentRed');
+        
+        // 重置全局变量到初始状态
+        transactions = [];
+        userLevel = 0;
+        completedNewbieTasks = 0;
+        godTasksUnlocked = false;
+        teamMembers = randomTeamSize;
+        totalEarnings = randomTeamSize * 10;
+        withdrawFeeRate = 0.05;
+        walletBalance = randomTeamSize * 10;
+        countdownStart = null;
+        inviteStart = null;
+        
+        // 设置新的数据到localStorage
+        localStorage.setItem('teamSize', randomTeamSize.toString());
+        localStorage.setItem('userBalance', newBalance.toString());
+        
+        // 重置到状态1
+        currentState = 1;
+        
+        // 重新渲染页面
+        renderState();
+        
+        // 强制显示风格选择弹窗
+        showForceThemeSelection(randomTeamSize, newBalance);
+      }
+    }
+
+    /**
+     * 强制风格选择弹窗
+     */
+    function showForceThemeSelection(teamSize, balance) {
+      const themes = {
+        'cyberpunk': { name: '赛博朋克', icon: '🌆', description: '未来科技感' },
+        'rainbow': { name: '彩虹渐变', icon: '🌈', description: '多彩绚烂' },
+        'business': { name: '商务蓝', icon: '💼', description: '专业稳重' },
+        'dark-tech': { name: '暗黑科技', icon: '⚡', description: '神秘酷炫' },
+        'fresh': { name: '清新绿', icon: '🌿', description: '自然清新' }
+      };
+      
+      const themeOptionsHTML = Object.entries(themes).map(([key, theme]) => `
+        <div class="force-theme-option" data-theme="${key}">
+          <span class="force-theme-icon">${theme.icon}</span>
+          <div class="force-theme-info">
+            <div class="force-theme-name">${theme.name}</div>
+            <div class="force-theme-desc">${theme.description}</div>
+          </div>
+        </div>
+      `).join('');
+      
+      const modalHTML = `
+        <div id="forceThemeModal" class="force-theme-modal">
+          <div class="force-theme-content">
+            <div class="force-theme-header">
+              <h2>🎨 选择您的专属风格</h2>
+              <p>数据重置成功！请选择一个风格主题继续使用</p>
+            </div>
+            <div class="force-theme-options">
+              ${themeOptionsHTML}
+            </div>
+            <div class="force-theme-footer">
+              <p class="force-theme-info-text">团队人数：${teamSize}人 | 余额：${balance} USDT | 所有任务已重置</p>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // 添加样式
+      const styleHTML = `
+        <style>
+        .force-theme-modal {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.8);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 10000;
+          backdrop-filter: blur(10px);
+        }
+        .force-theme-content {
+          background: var(--bg-card);
+          border-radius: 20px;
+          padding: 24px;
+          max-width: 400px;
+          width: 90%;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+          border: 1px solid var(--border-color);
+        }
+        .force-theme-header {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        .force-theme-header h2 {
+          color: var(--text-primary);
+          margin: 0 0 8px 0;
+          font-size: 20px;
+        }
+        .force-theme-header p {
+          color: var(--text-secondary);
+          margin: 0;
+          font-size: 14px;
+        }
+        .force-theme-options {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-bottom: 20px;
+        }
+        .force-theme-option {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 12px;
+          border: 2px solid var(--border-color);
+          border-radius: 12px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background: var(--bg-secondary);
+        }
+        .force-theme-option:hover {
+          border-color: var(--accent-color);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .force-theme-option.selected {
+          border-color: var(--accent-color);
+          background: var(--btn-gradient);
+          color: var(--text-primary);
+        }
+        .force-theme-icon {
+          font-size: 24px;
+          width: 32px;
+          text-align: center;
+        }
+        .force-theme-info {
+          flex: 1;
+        }
+        .force-theme-name {
+          font-weight: 600;
+          font-size: 16px;
+          margin-bottom: 2px;
+        }
+        .force-theme-desc {
+          font-size: 12px;
+          opacity: 0.8;
+        }
+        .force-theme-footer {
+          text-align: center;
+        }
+        .force-theme-info-text {
+          font-size: 12px;
+          color: var(--text-secondary);
+          margin: 0;
+        }
+        </style>
+      `;
+      
+      // 插入样式和模态框
+      document.head.insertAdjacentHTML('beforeend', styleHTML);
+      document.body.insertAdjacentHTML('beforeend', modalHTML);
+      
+      // 绑定事件
+      const modal = document.getElementById('forceThemeModal');
+      const options = document.querySelectorAll('.force-theme-option');
+      
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          const selectedTheme = option.getAttribute('data-theme');
+          
+          // 应用选中的主题
+          if (window.themeSwitcher) {
+            window.themeSwitcher.switchTheme(selectedTheme);
+          } else {
+            document.documentElement.setAttribute('data-theme', selectedTheme === 'cyberpunk' ? '' : selectedTheme);
+            localStorage.setItem('selectedTheme', selectedTheme);
+          }
+          
+          // 关闭模态框
+          modal.remove();
+          
+          // 显示成功信息
+          const themeName = themes[selectedTheme].name;
+          showDialog('风格设置成功', `已切换至${themeName}风格\n团队人数：${teamSize}人\n余额：${balance} USDT\n所有任务已重置`);
+        });
+      });
+    }
+
+    /**
+     * 模态弹窗管理
+     */
+    const modal = document.getElementById('modal');
+    const modalClose = document.getElementById('modalClose');
+    const modalBody = document.getElementById('modalBody');
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    function openModal(type) {
+      let html = '';
+      if(type === 'task') {
+        const currentTask = newTasks.find(t => !t.done);
+        if(currentTask) {
+          html += `<h3 style="margin-top:0;color:var(--brand)">${currentTask.title}</h3>`;
+          html += `<p style="font-size:14px;color:var(--muted)">${currentTask.desc ? currentTask.desc : '完成此任务可推进进度。'}</p>`;
+          html += `<button class="btn" id="modalTaskDone" style="margin-top:16px;width:100%">标记完成</button>`;
+        } else {
+          html += `<h3 style="margin-top:0;color:var(--brand)">所有新手任务已完成</h3>`;
+          html += `<p style="font-size:14px;color:var(--muted)">无需再执行新手任务。</p>`;
+        }
+      } else if(type === 'wallet') {
+        html += `<h3 style="margin-top:0;color:var(--brand)">我的钱包</h3>`;
+        html += `<p style="font-size:14px;color:var(--muted)">当前余额：-- USDT</p>`;
+        html += `<button class="btn" style="margin-top:16px;width:100%">提现</button>`;
+      } else if(type === 'team') {
+        html += `<h3 style="margin-top:0;color:var(--brand)">我的团队</h3>`;
+        html += `<p style="font-size:14px;color:var(--muted)">此处展示七层团队结构（占位）</p>`;
+      } else if(type === 'ranking') {
+        html += `<h3 style="margin-top:0;color:var(--brand)">排行榜</h3>`;
+        html += `<p style="font-size:14px;color:var(--muted)">此处展示团队、红包与大神排行（占位）</p>`;
+      }
+      modalBody.innerHTML = html;
+      modal.style.display = 'flex';
+      // 绑定任务完成按钮
+      const completeBtn = document.getElementById('modalTaskDone');
+      if(completeBtn) {
+        completeBtn.addEventListener('click', () => {
+          const task = newTasks.find(t => !t.done);
+          if(task) task.done = true;
+          modal.style.display = 'none';
+          renderState();
+        });
+      }
+    }
+
+    // 退出登录功能
+    // 确认退出登录
+    function confirmLogout() {
+      // 先关闭设置界面
+      closeSettings();
+      
+      // 然后显示确认退出对话框
+      showDialog('确认退出', '退出登录将清除所有本地数据，确定要继续吗？', [
+        {
+          text: '取消',
+          style: 'secondary',
+          action: () => {}
+        },
+        {
+          text: '确认退出',
+          style: 'danger',
+          action: logout
+        }
+      ]);
+    }
+    
+    function logout() {
+      // 清除所有用户相关的本地存储数据
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('userPassword');
+      localStorage.removeItem('appState');
+      localStorage.removeItem('userInviteCode');
+      localStorage.removeItem('teamData');
+      localStorage.removeItem('language');
+      localStorage.removeItem('userStatus');
+      localStorage.removeItem('inviteCode');
+      
+      // 直接跳转到登录页面
+      window.location.href = 'login.html';
+    }
+    
+    // 显示帮助信息
+    function showHelp() {
+      closeSettings();
+      showDialog('使用帮助', '这里是功能说明和操作指南\n\n• 激活账号：完成邮箱验证\n• 邀请好友：分享专属邀请码\n• 完成任务：获得奖励积分\n• 抢红包：在指定时间参与\n• 查看排行：了解当前排名');
+    }
+    
+    // 显示意见反馈
+    function showFeedback() {
+      closeSettings();
+      showDialog('意见反馈', '感谢您的宝贵意见！\n\n请通过以下方式联系我们：\n• 邮箱：feedback@example.com');
+    }
+    
+    // 显示关于信息
+    function showAbout() {
+      closeSettings();
+      showDialog('关于我们', '裂金7日 H5应用\n\n版本：v1.0.0\n更新时间：2024年1月\n\n开发团队致力于为用户提供\n最佳的互动体验');
+    }
+
+    // 设置面板功能已移至script开头
+
+    // 主题切换功能
+    function selectTheme(theme) {
+      // 移除所有主题按钮的active状态
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // 激活选中的主题按钮
+      event.target.classList.add('active');
+      
+      // 保存主题设置
+      localStorage.setItem('theme', theme);
+      
+      // 应用主题（这里可以添加实际的主题切换逻辑）
+      showDialog('主题设置', `已切换到${theme}主题`);
+    }
+    
+    // Toggle开关功能
+    function toggleSwitch(switchId) {
+      const toggle = document.getElementById(switchId);
+      const isChecked = toggle.checked;
+      
+      // 保存设置
+      localStorage.setItem(switchId, isChecked);
+      
+      // 根据不同的开关执行不同的逻辑
+      switch(switchId) {
+        case 'soundToggle':
+          showDialog('声音设置', isChecked ? '已开启声音效果' : '已关闭声音效果');
+          break;
+        case 'vibrationToggle':
+          showDialog('震动设置', isChecked ? '已开启震动反馈' : '已关闭震动反馈');
+          break;
+        case 'notificationToggle':
+          showDialog('通知设置', isChecked ? '已开启推送通知' : '已关闭推送通知');
+          break;
+      }
+    }
+    
+    // 语言切换功能
+    function changeLanguage() {
+      const select = document.getElementById('languageSelect');
+      const selectedLanguage = select.value;
+      const selectedText = select.options[select.selectedIndex].text;
+      
+      localStorage.setItem('language', selectedLanguage);
+      showDialog('语言设置', `已切换到：${selectedText}`);
+    }
+
+    // 初始化设置面板事件监听器
+    function initSettingsEvents() {
+      // 加载保存的设置
+      loadSettingsFromStorage();
+      
+      // 语言选择器事件监听
+      const languageSelect = document.getElementById('languageSelect');
+      if (languageSelect) {
+        languageSelect.addEventListener('change', changeLanguage);
+      }
+      
+      // 点击模态框背景关闭设置面板
+      document.addEventListener('click', function(e) {
+        const settingsModal = document.getElementById('settingsModal');
+        if (e.target === settingsModal) {
+          closeSettings();
+        }
+      });
+    }
+    
+    // 从本地存储加载设置
+    function loadSettingsFromStorage() {
+      // 加载主题设置
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      const themeBtn = document.querySelector(`[onclick="selectTheme('${savedTheme}')"]`);
+      if (themeBtn) {
+        themeBtn.classList.add('active');
+      }
+      
+      // 加载语言设置
+      const savedLanguage = localStorage.getItem('language') || 'zh-CN';
+      const languageSelect = document.getElementById('languageSelect');
+      if (languageSelect) {
+        languageSelect.value = savedLanguage;
+      }
+      
+      // 加载开关设置
+      const switches = ['soundToggle', 'vibrationToggle', 'notificationToggle'];
+      switches.forEach(switchId => {
+        const toggle = document.getElementById(switchId);
+        if (toggle) {
+          const savedState = localStorage.getItem(switchId);
+          toggle.checked = savedState === 'true';
+        }
+      });
+    }
+    
+    // 更新个人资料显示
+    function updateProfileDisplay() {
+      const userEmail = localStorage.getItem('userEmail') || 'user@example.com';
+      const profileEmail = document.getElementById('profileEmail');
+      if (profileEmail) {
+        profileEmail.textContent = userEmail;
+      }
+      
+      // 可以添加更多个人信息的更新逻辑
+    }
+
+    window.onload = init;
+  </script>
+  <script src="js/global-background.js"></script>
+</body>
+</html>
