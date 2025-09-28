@@ -169,6 +169,9 @@
       });
     }
     
+    // 创建跨页语言切换控件
+    createLanguageSwitch();
+    
     // 监听窗口大小变化
     window.addEventListener('resize', debouncedResize);
     
@@ -185,6 +188,81 @@
         logo.style.animationPlayState = 'running';
       }
     });
+  }
+  
+  // 创建语言切换控件（固定右上角）
+  function createLanguageSwitch() {
+    if (document.querySelector('.global-lang-switch')) return;
+    const currentLang = (localStorage.getItem('preferred-language') || localStorage.getItem('language') || navigator.language || 'zh-CN');
+    const isEN = (currentLang || '').toLowerCase().startsWith('en');
+    
+    const container = document.createElement('div');
+    container.className = 'global-lang-switch';
+    container.setAttribute('aria-label', 'Language Switcher');
+    container.style.zIndex = '9999';
+    
+    const btn = document.createElement('button');
+    btn.className = 'lang-btn';
+    btn.type = 'button';
+    btn.innerHTML = `🌐 ${isEN ? 'EN' : '中文'}`;
+    
+    const menu = document.createElement('div');
+    menu.className = 'lang-menu';
+    menu.innerHTML = `
+      <button class="lang-item" data-lang="zh-CN">中文（简体）</button>
+      <button class="lang-item" data-lang="en-US">English</button>
+    `;
+    
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+    
+    // 选择语言
+    menu.addEventListener('click', (e) => {
+      const target = e.target.closest('.lang-item');
+      if (!target) return;
+      const lang = target.getAttribute('data-lang');
+      localStorage.setItem('language', lang);
+      localStorage.setItem('preferred-language', lang);
+      // 立即更新按钮文案
+      btn.innerHTML = `🌐 ${lang.toLowerCase().startsWith('en') ? 'EN' : '中文'}`;
+      menu.classList.remove('open');
+      
+      // 分发语言变更事件
+      document.dispatchEvent(new Event('language-changed'));
+      
+      // 若页面提供了模板替换函数，尝试即时替换
+      try {
+        if (window.i18n && typeof window.i18n.init === 'function') {
+          // 重新初始化以应用新语言
+          window.i18n.init().then(() => {
+            if (typeof window.scheduleReplace === 'function') {
+              window.scheduleReplace();
+            }
+          }).catch(() => {
+            // 回退刷新
+            setTimeout(() => location.reload(), 200);
+          });
+        } else {
+          // 无i18n引擎，回退刷新
+          setTimeout(() => location.reload(), 200);
+        }
+      } catch (err) {
+        // 安全回退：刷新页面
+        setTimeout(() => location.reload(), 200);
+      }
+    });
+    
+    // 点击页面其他区域时关闭菜单
+    document.addEventListener('click', (e) => {
+      if (!container.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
+    
+    container.appendChild(btn);
+    container.appendChild(menu);
+    document.body.appendChild(container);
   }
   
   // DOM加载完成后初始化

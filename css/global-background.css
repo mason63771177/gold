@@ -210,3 +210,48 @@
     animation: none;
   }
 }
+
+/* 全局语言切换控件 */
+.global-lang-switch {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 10000;
+}
+.global-lang-switch .lang-btn {
+  background: var(--btn-gradient, linear-gradient(45deg, #2193b0, #6dd5ed));
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: var(--btn-shadow, 0 8px 32px rgba(33, 147, 176, 0.3));
+  cursor: pointer;
+}
+.global-lang-switch .lang-menu {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background: var(--bg-card, rgba(22, 33, 62, 0.9));
+  border: 1px solid var(--border-color, rgba(109, 213, 237, 0.3));
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  padding: 6px;
+  display: none;
+}
+.global-lang-switch .lang-menu.open { display: block; }
+.global-lang-switch .lang-item {
+  display: block;
+  width: 160px;
+  text-align: left;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary, #fff);
+  font-size: 12px;
+  cursor: pointer;
+}
+.global-lang-switch .lang-item:hover {
+  background: rgba(109, 213, 237, 0.12);
+}
