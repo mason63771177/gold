@@ -214,9 +214,9 @@
 /* 全局语言切换控件 */
 .global-lang-switch {
   position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 10000;
+  top: 8px;
+  right: 8px;
+  z-index: 9999;
 }
 .global-lang-switch .lang-btn {
   background: var(--btn-gradient, linear-gradient(45deg, #2193b0, #6dd5ed));
