@@ -808,14 +808,14 @@
           <input id="loginEmail" type="email" placeholder="{{placeholders._______}}" required />
           <div class="security-tip">
             <div class="security-icon">🔒</div>
-            <span>{{messages.security_tip_info || '我们使用加密技术保护您的信息'}}</span>
+            <span>${ (window.i18n && typeof i18n.t==='function') ? i18n.t('messages.security_tip_info') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'We use encryption to protect your information' : '我们使用加密技术保护您的信息') }</span>
           </div>
-          <div class="error-message">{{messages.email_invalid || '请输入有效的邮箱地址'}}</div>
+          <div class="error-message">${ (window.i18n && typeof i18n.t==='function') ? i18n.t('messages.email_invalid') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'Please enter a valid email address' : '请输入有效的邮箱地址') }</div>
         </div>
         <div class="form-group">
           <label for="loginPassword">{{content.password}}</label>
           <input id="loginPassword" type="password" placeholder="{{placeholders._____}}" required />
-          <div class="error-message">{{messages.password_empty || '密码不能为空'}}</div>
+          <div class="error-message">${ (window.i18n && typeof i18n.t==='function') ? i18n.t('messages.password_empty') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'Password cannot be empty' : '密码不能为空') }</div>
         </div>
         <button class="btn" id="loginBtn">{{content.start_challenge}}</button>
         <div class="note">
