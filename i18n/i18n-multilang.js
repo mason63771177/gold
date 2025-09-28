@@ -324,7 +324,7 @@ const translations = {
         'content._____150': 'Earnings: 150',
         'content.3____c': '3. User C',
         'content._____120': 'Earnings: 120',
-        'messages.grab': 'Grab Red Packet',
+        'messages.grab': 'Grab',
         'messages.all_newbie_tasks_done': 'All newbie tasks are completed',
         'messages.no_need_newbie_tasks': 'No need to perform newbie tasks.',
         'messages.wallet_title': 'My Wallet',
@@ -379,7 +379,7 @@ const translations = {
         'buttons.reset_time': 'Reset',
         'buttons.submit_report': '📝 Submit Report',
         // Bottom nav buttons
-        'buttons.redpacket': 'Red Packet',
+        'buttons.redpacket': 'Grab',
         'buttons.team': 'Team',
         'buttons.wallet': 'Wallet',
         'buttons.ranking': 'Ranking',
