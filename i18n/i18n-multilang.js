@@ -219,7 +219,8 @@ const translations = {
          'messages.not_started': '未开始',
           // 团队页面
           'content.team_title': '我的团队',
-               'content.performance_card_title': '战绩卡',
+                'content.performance_card_title': '战绩卡',
+                'content.team_overview_desc': '查看七层团队结构和人数。',
                 'content.period_earnings_label': '本期收益',
           'content.team_total_members': '团队总人数',
           'content.team_direct_members': '直推人数',
@@ -483,7 +484,8 @@ const translations = {
          'messages.not_started': 'Not started',
           // Team page
           'content.team_title': 'My Team',
-                'content.performance_card_title': 'Performance Card',
+                  'content.performance_card_title': 'Performance Card',
+                  'content.team_overview_desc': 'View seven-layer team structure and member counts.',
                   'content.period_earnings_label': 'Period Earnings',
           'content.team_total_members': 'Total Team Members',
           'content.team_direct_members': 'Direct Referrals',

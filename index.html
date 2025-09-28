@@ -2811,7 +2811,7 @@
             </div>
             <div class="section">
               <div class="section-title">${ (window.i18n && typeof i18n.t==='function') ? i18n.t('content.team_title') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'My Team' : '我的团队') }</div>
-              <div class="section-content">查看七层团队结构和人数。</div>
+              <div class="section-content">${ (window.i18n && typeof i18n.t==='function') ? i18n.t('content.team_overview_desc') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'View seven-layer team structure and member counts.' : '查看七层团队结构和人数。') }</div>
             </div>
           `;
         },
