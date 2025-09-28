@@ -224,6 +224,7 @@
       const lang = target.getAttribute('data-lang');
       localStorage.setItem('language', lang);
       localStorage.setItem('preferred-language', lang);
+      localStorage.setItem('gold7_language', lang);
       // 立即更新按钮文案
       btn.innerHTML = `🌐 ${lang.toLowerCase().startsWith('en') ? 'EN' : '中文'}`;
       menu.classList.remove('open');
@@ -236,6 +237,9 @@
         if (window.i18n && typeof window.i18n.init === 'function') {
           // 重新初始化以应用新语言
           window.i18n.init().then(() => {
+            if (typeof window.i18n.setLanguage === 'function') {
+              window.i18n.setLanguage(lang);
+            }
             if (typeof window.scheduleReplace === 'function') {
               window.scheduleReplace();
             }
