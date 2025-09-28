@@ -1296,6 +1296,17 @@
             if (typeof window.scheduleReplace === 'function') {
               window.scheduleReplace();
             }
+            // 强制更新登录页关键提示，避免残留中文
+            try {
+              const secTipEl = document.querySelector('[data-i18n="messages.security_tip_info"]');
+              if (secTipEl && typeof i18n.t === 'function') {
+                secTipEl.textContent = i18n.t('messages.security_tip_info');
+              }
+              const testTipEl = document.querySelector('[data-i18n="messages.test_mode_tip"]');
+              if (testTipEl && typeof i18n.t === 'function') {
+                testTipEl.textContent = i18n.t('messages.test_mode_tip');
+              }
+            } catch (e) { console.warn('login tips i18n force update failed:', e); }
           }).catch((err) => {
             console.warn('i18n init failed on login:', err);
           });
