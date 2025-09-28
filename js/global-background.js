@@ -165,12 +165,23 @@
       window.i18n.init().then(() => {
         console.log('国际化初始化完成');
       }).catch(error => {
-        console.error($t('messages._________'), error);
+        if (typeof window.$t === 'function') {
+          console.error(window.$t('messages._________'), error);
+        } else {
+          console.error('i18n init failed', error);
+        }
       });
     }
     
     // 创建跨页语言切换控件
     createLanguageSwitch();
+
+    // 确保语言切换控件存在（若被意外移除则立即重建）
+    ensureLanguageSwitchExists();
+    const langObserver = new MutationObserver(() => {
+      ensureLanguageSwitchExists();
+    });
+    langObserver.observe(document.body, { childList: true, subtree: true });
     
     // 监听窗口大小变化
     window.addEventListener('resize', debouncedResize);
@@ -199,7 +210,7 @@
     const container = document.createElement('div');
     container.className = 'global-lang-switch';
     container.setAttribute('aria-label', 'Language Switcher');
-    container.style.zIndex = '9999';
+    container.style.zIndex = '2147483647';
     
     const btn = document.createElement('button');
     btn.className = 'lang-btn';
@@ -267,6 +278,21 @@
     container.appendChild(btn);
     container.appendChild(menu);
     document.body.appendChild(container);
+  }
+  
+  // 若不存在语言切换控件，则创建；若结构不完整则重建
+  function ensureLanguageSwitchExists() {
+    const container = document.querySelector('.global-lang-switch');
+    if (!container) {
+      try { createLanguageSwitch(); } catch (e) { /* noop */ }
+      return;
+    }
+    const hasBtn = !!container.querySelector('.lang-btn');
+    const hasMenu = !!container.querySelector('.lang-menu');
+    if (!hasBtn || !hasMenu) {
+      try { container.remove(); } catch (e) { /* noop */ }
+      try { createLanguageSwitch(); } catch (e) { /* noop */ }
+    }
   }
   
   // DOM加载完成后初始化
