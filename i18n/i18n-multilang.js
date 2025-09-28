@@ -659,8 +659,10 @@ function scheduleReplace() {
 
 // 创建语言切换器
 function createLanguageSwitcher() {
-    // 检查是否已存在语言切换器
-    if (document.getElementById('language-switcher')) {
+                // 若全局语言按钮已存在，则不再创建内部切换器
+                if (document.querySelector('.global-lang-switch')) return;
+                // 检查是否已存在语言切换器
+                if (document.getElementById('language-switcher')) {
         return;
     }
     
