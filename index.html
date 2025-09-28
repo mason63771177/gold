@@ -2050,28 +2050,7 @@
                 <span data-i18n="settings.switch">切换</span>
               </button>
             </div>
-            <div class="setting-item">
-              <div class="setting-info">
-                <span class="setting-title" data-i18n="settings.language">🌐 语言</span>
-                <span class="setting-desc" data-i18n="settings.languageDesc">选择界面显示语言</span>
-              </div>
-              <select id="languageSelect" class="modern-select">
-                <option value="zh-CN" selected data-i18n="settings.lang.zhCN">🇨🇳 简体中文</option>
-                <option value="zh-TW" data-i18n="settings.lang.zhTW">🇨🇳 繁體中文</option>
-                <option value="en-US" data-i18n="settings.lang.enUS">🇺🇸 English</option>
-                <option value="ja-JP" data-i18n="settings.lang.jaJP">🇯🇵 日本語</option>
-                <option value="ko-KR" data-i18n="settings.lang.koKR">🇰🇷 한국어</option>
-                <option value="th-TH" data-i18n="settings.lang.thTH">🇹🇭 ไทย</option>
-                <option value="hi-IN" data-i18n="settings.lang.hiIN">🇮🇳 हिन्दी</option>
-                <option value="vi-VN" data-i18n="settings.lang.viVN">🇻🇳 Tiếng Việt</option>
-                <option value="km-KH" data-i18n="settings.lang.kmKH">🇰🇭 ខ្មែរ</option>
-                <option value="ru-RU" data-i18n="settings.lang.ruRU">🇷🇺 Русский</option>
-                <option value="mn-MN" data-i18n="settings.lang.mnMN">🇲🇳 Монгол</option>
-                <option value="my-MM" data-i18n="settings.lang.myMM">🇲🇲 မြန်မာ</option>
-                <option value="lo-LA" data-i18n="settings.lang.loLA">🇱🇦 ລາວ</option>
-                <option value="ar-SA" data-i18n="settings.lang.arSA">🇸🇦 العربية</option>
-              </select>
-            </div>
+            <!-- 语言选择器已按你的选择（方案B）移除，统一使用右上角全局语言按钮 -->
           </div>
         </div>
 
@@ -4404,10 +4383,7 @@
       loadSettingsFromStorage();
       
       // 语言选择器事件监听
-      const languageSelect = document.getElementById('languageSelect');
-      if (languageSelect) {
-        languageSelect.addEventListener('change', changeLanguage);
-      }
+      // 语言选择器已移除（方案B），统一使用右上角全局语言按钮
       
       // 初始化音效开关状态
       const soundToggle = document.getElementById('soundToggle');
@@ -4438,11 +4414,7 @@
       }
       
       // 加载语言设置
-      const savedLanguage = localStorage.getItem('language') || 'zh-CN';
-      const languageSelect = document.getElementById('languageSelect');
-      if (languageSelect) {
-        languageSelect.value = savedLanguage;
-      }
+      // 语言选择器已移除（方案B），不再进行默认赋值
       
       // 加载开关设置
       const switches = ['soundToggle', 'vibrationToggle', 'notificationToggle'];

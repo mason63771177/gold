@@ -192,12 +192,9 @@
   
   // 创建语言切换控件（固定右上角）
   function createLanguageSwitch() {
-     // 登录页不创建全局语言按钮，避免与页面内控件或顶部布局重叠
-     const path = (window.location && window.location.pathname) || '';
-     if (path.includes('login.html')) return;
-     if (document.querySelector('.global-lang-switch')) return;
-     const currentLang = (localStorage.getItem('preferred-language') || localStorage.getItem('language') || navigator.language || 'zh-CN');
-     const isEN = (currentLang || '').toLowerCase().startsWith('en');
+      if (document.querySelector('.global-lang-switch')) return;
+      const currentLang = (localStorage.getItem('preferred-language') || localStorage.getItem('language') || navigator.language || 'zh-CN');
+      const isEN = (currentLang || '').toLowerCase().startsWith('en');
     
     const container = document.createElement('div');
     container.className = 'global-lang-switch';
