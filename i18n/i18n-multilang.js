@@ -759,7 +759,7 @@ function init() {
     const titleEl = document.querySelector('title');
     if (titleEl) {
       const dict = translations[getCurrentLanguage()] || translations['zh-CN'];
-      const src = '{{content.__7__h5}}';
+      const src = 'Gold7 · H5';
       titleEl.textContent = replaceTokens(src, dict);
     }
     
