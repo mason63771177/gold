@@ -72,7 +72,7 @@
     .bottom button:hover { transform: translateY(-3px); filter: brightness(1.2); }
     .bottom button:active { transform: translateY(0); filter: brightness(0.95); }
   </style>
-  <script src="i18n/i18n-direct.js"></script>
+  <script src="i18n/i18n-multilang.js"></script>
 </head>
 <body>
   <script src="js/smart-back.js"></script>
@@ -97,7 +97,7 @@
       </div>
     </div>
     <div class="bottom">
-      <button onclick="smartBack()">返回</button>
+      <button onclick="smartBack()">{{buttons.back}}</button>
     </div>
   </div>
   <script>
@@ -205,9 +205,17 @@
           else if (rank === 3) rankIcon = '🥉';
           else rankIcon = rank + '.';
           
+          const lang = localStorage.getItem('preferred-language') || localStorage.getItem('language') || 'zh-CN';
+          const isEn = (lang || '').toLowerCase().startsWith('en');
+          const labels = {
+            team: isEn ? (window.i18n ? i18n.t('messages.team_members') : 'Team Members') : (window.i18n ? i18n.t('messages.team_members') : '团队人数'),
+            red: isEn ? (window.i18n ? i18n.t('messages.redpacket_income') : 'Red Packet Income') : (window.i18n ? i18n.t('messages.redpacket_income') : '红包收入'),
+            master: isEn ? (window.i18n ? i18n.t('messages.master_level') : 'Master Level') : (window.i18n ? i18n.t('messages.master_level') : '大神等级')
+          };
+          const label = currentTab === 0 ? labels.team : (currentTab === 1 ? labels.red : labels.master);
           const valueText = currentTab === 1 ? 
-            `${item.desc}：${item.value.toFixed(2)} USDT` : 
-            `${item.desc}：${item.value}`;
+            `${label}: ${item.value.toFixed(2)} USDT` : 
+            `${label}: ${item.value}`;
           
           const nameStyle = item.isMe ? 'color:#56ccf2;font-weight:bold;' : '';
           

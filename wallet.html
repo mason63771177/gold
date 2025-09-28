@@ -222,42 +222,51 @@
     .bottom button:hover { transform: translateY(-3px); filter: brightness(1.2); }
     .bottom button:active { transform: translateY(0); filter: brightness(0.95); }
   </style>
-  <script src="i18n/i18n-direct.js"></script>
+  <script src="i18n/i18n-multilang.js"></script>
 </head>
 <body>
   <script src="js/smart-back.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      if (window.i18n && typeof replaceTemplates === 'function') {
+        replaceTemplates();
+      } else if (typeof scheduleReplace === 'function') {
+        scheduleReplace();
+      }
+    });
+  </script>
   <div class="container">
     <div class="header">
 
       <img src="logo_gold7.png" alt="Logo" class="logo-small" />
-      <h1>我的钱包</h1>
+      <h1>{{content.wallet_title}}</h1>
     </div>
     <div class="content">
       <div class="card">
         <div class="section">
-          <div class="section-title">当前余额</div>
+          <div class="section-title">{{content.current_balance_label}}</div>
           <div class="balance">-- USDT</div>
         </div>
         <div class="section">
-          <div class="section-title">钱包地址</div>
+          <div class="section-title">{{content.wallet_address_label}}</div>
           <div class="address-section">
-            <div class="current-address" id="currentAddress">未绑定钱包地址</div>
-            <button class="bind-btn" onclick="showAddressBinding()">绑定地址</button>
+            <div class="current-address" id="currentAddress">{{messages.wallet_unbound}}</div>
+            <button class="bind-btn" onclick="showAddressBinding()">{{buttons.bind_address}}</button>
           </div>
         </div>
         <div class="section">
-          <div class="section-title">交易记录</div>
+          <div class="section-title">{{content.transaction_records_label}}</div>
           <ul class="transaction-list">
-            <li class="txn-item"><span>激活缴费</span><span class="txn-amount neg">-100 USDT</span></li>
-            <li class="txn-item"><span>任务奖励</span><span class="txn-amount pos">+10 USDT</span></li>
-            <li class="txn-item"><span>红包收入</span><span class="txn-amount pos">+0.75 USDT</span></li>
+            <li class="txn-item"><span>{{content.activation_fee_label}}</span><span class="txn-amount neg">-100 USDT</span></li>
+            <li class="txn-item"><span>{{content.task_reward_label}}</span><span class="txn-amount pos">+10 USDT</span></li>
+            <li class="txn-item"><span>{{content.red_income_label}}</span><span class="txn-amount pos">+0.75 USDT</span></li>
             <li class="txn-item"><span>{{messages.withdraw}}</span><span class="txn-amount neg">-30 USDT</span></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="bottom">
-      <button onclick="smartBack()">返回</button>
+      <button onclick="smartBack()">{{buttons.back}}</button>
       <button onclick="window.location.href='transaction.html'">{{content.__}}</button>
       <button onclick="window.location.href='withdraw.html'">{{messages.withdraw}}</button>
     </div>
@@ -266,7 +275,7 @@
   <!-- 地址绑定模态框 -->
   <div class="modal" id="addressModal">
     <div class="modal-content">
-      <div class="modal-title">绑定钱包地址</div>
+      <div class="modal-title">{{messages.bind_wallet_address_title}}</div>
       <input type="text" class="modal-input" id="addressInput" placeholder="{{placeholders.___usdt_____trc20}}" />
       <div class="modal-buttons">
         <button class="modal-btn secondary" onclick="hideAddressBinding()">{{messages.cancel}}</button>
@@ -288,7 +297,7 @@
         addressEl.innerText = walletAddress.substring(0, 10) + '...' + walletAddress.substring(walletAddress.length - 6);
         addressEl.style.color = 'var(--text)';
       } else {
-        addressEl.innerText = '未绑定钱包地址';
+        addressEl.innerText = i18n ? i18n.t('messages.wallet_unbound') : '{{messages.wallet_unbound}}';
         addressEl.style.color = 'var(--muted)';
       }
       
@@ -305,7 +314,7 @@
       listEl.innerHTML = '';
       
       if (tx.length === 0) {
-        listEl.innerHTML = '<li class="txn-item"><span style="color: #666;">暂无交易记录</span></li>';
+        listEl.innerHTML = '<li class="txn-item"><span style="color: #666;">{{messages.no_transactions}}</span></li>';
         return;
       }
       

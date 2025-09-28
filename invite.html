@@ -51,7 +51,7 @@
     .bottom button:hover { transform:translateY(-3px); filter:brightness(1.2); }
     .bottom button:active { transform:translateY(0); filter:brightness(0.95); }
   </style>
-  <script src="i18n/i18n-direct.js"></script>
+  <script src="i18n/i18n-multilang.js"></script>
 </head>
 <body>
   <script src="js/smart-back.js"></script>
@@ -64,13 +64,13 @@
       <div class="card">
         <div class="info">{{content.______________ta}}</div>
         <div id="linkBox" class="link-box">尚未生成邀请链接</div>
-        <button class="btn" id="copyBtn" onclick="copyLink()">复制链接</button>
-        <button class="btn" id="newBtn" onclick="generate()">生成/刷新链接</button>
+        <button class="btn" id="copyBtn" onclick="copyLink()">{{buttons.copy_link}}</button>
+        <button class="btn" id="newBtn" onclick="generate()">{{buttons.generate_link}}</button>
         <div id="timeInfo" class="info"></div>
       </div>
     </div>
     <div class="bottom">
-      <button onclick="smartBack()">返回</button>
+      <button onclick="smartBack()">{{buttons.back}}</button>
     </div>
   </div>
   <script>

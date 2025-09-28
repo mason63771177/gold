@@ -374,7 +374,7 @@
       transform: translateY(-2px);
     }
   </style>
-  <script src="i18n/i18n-direct.js"></script>
+  <script src="i18n/i18n-multilang.js"></script>
 </head>
 <body>
   <script src="js/smart-back.js"></script>
@@ -388,12 +388,12 @@
         <div class="section">
           <div class="balance-info">
             <div class="balance-amount" id="currentBalance">-- USDT</div>
-            <div class="balance-label">可提现余额</div>
+            <div class="balance-label">{{messages.withdrawable_balance}}</div>
           </div>
         </div>
         
         <div class="section">
-          <div class="section-title">提现金额</div>
+          <div class="section-title">{{messages.withdraw_amount_title}}</div>
           <div class="form-group">
             <label class="form-label">{{content.amount__usdt_}}</label>
             <input type="number" class="form-input" id="withdrawAmount" placeholder="{{placeholders.__20_usdt}}" min="20" step="0.01">
@@ -408,7 +408,7 @@
         </div>
         
         <div class="section">
-          <div class="section-title">收款地址</div>
+          <div class="section-title">{{messages.recipient_address_title}}</div>
           <div class="form-group">
             <label class="form-label">{{content.usdt____}}</label>
             <input type="text" class="form-input" id="walletAddress" placeholder="{{placeholders.___usdt____}}">
@@ -417,16 +417,16 @@
             <div id="addressBindingStatus" style="display: none; margin-top: 8px; padding: 8px 12px; background: rgba(0, 227, 174, 0.1); border: 1px solid rgba(0, 227, 174, 0.3); border-radius: 8px; font-size: 12px;">
               <div style="color: var(--success); margin-bottom: 4px;">✓ 已绑定默认收款地址</div>
               <div style="color: var(--muted); word-break: break-all;" id="boundAddressDisplay"></div>
-              <button type="button" id="changeAddressBtn" style="margin-top: 6px; padding: 4px 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: var(--text); font-size: 11px; cursor: pointer;">修改地址</button>
+              <button type="button" id="changeAddressBtn" style="margin-top: 6px; padding: 4px 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: var(--text); font-size: 11px; cursor: pointer;">{{buttons.modify_address}}</button>
             </div>
           </div>
         </div>
         
         <div class="section">
-          <div class="section-title">费用明细</div>
+          <div class="section-title">{{messages.fee_details_title}}</div>
           <div class="fee-info">
             <div class="fee-row">
-              <span>提现金额</span>
+              <span>{{messages.withdraw_amount_label}}</span>
               <span id="feeAmount">0.00 USDT</span>
             </div>
             <div class="fee-row">
@@ -438,7 +438,7 @@
               <span id="feePercent">0.00 USDT</span>
             </div>
             <div class="fee-row">
-              <span>实际扣除</span>
+              <span>{{messages.actual_deduct_label}}</span>
               <span id="totalDeduct">0.00 USDT</span>
             </div>
           </div>
@@ -446,8 +446,8 @@
       </div>
     </div>
     <div class="bottom">
-      <button class="back-btn" onclick="smartBackToParent()">返回</button>
-      <button id="confirmBtn" onclick="confirmWithdraw()" disabled>确认提现</button>
+      <button class="back-btn" onclick="smartBackToParent()">{{buttons.back}}</button>
+      <button id="confirmBtn" onclick="confirmWithdraw()" disabled>确认{{buttons.withdraw}}</button>
     </div>
   </div>
 
@@ -466,7 +466,7 @@
       </div>
       <div class="modal-footer">
         <button class="modal-btn cancel-btn" onclick="closeAddressConfirmModal()">{{messages.cancel}}</button>
-        <button class="modal-btn confirm-btn" onclick="confirmAddress()">确认地址</button>
+        <button class="modal-btn confirm-btn" onclick="confirmAddress()">{{buttons.confirm_address}}</button>
       </div>
     </div>
   </div>
@@ -482,8 +482,8 @@
         <p class="hint-text">{{content.__________________}}</p>
       </div>
       <div class="modal-footer">
-        <button class="modal-btn cancel-btn" onclick="skipBinding()">暂不绑定</button>
-        <button class="modal-btn confirm-btn" onclick="confirmBinding()">设为默认</button>
+        <button class="modal-btn cancel-btn" onclick="skipBinding()">{{buttons.skip_binding}}</button>
+        <button class="modal-btn confirm-btn" onclick="confirmBinding()">{{buttons.set_default}}</button>
       </div>
     </div>
   </div>
@@ -522,26 +522,35 @@
     function updateFeeRateLabel() {
       const feeRateLabel = document.getElementById('feeRateLabel');
       const feeRatePercent = (feeRate * 100).toFixed(0);
+      const lang = localStorage.getItem('preferred-language') || localStorage.getItem('language') || 'zh-CN';
       
       // 获取答题进度
       const correctCount = parseInt(localStorage.getItem('quizCorrect')) || 0;
       
-      // 根据答题进度显示不同的文案
+      // 根据答题进度显示不同的文案（国际化）
       let progressText = '';
       if (correctCount === 0) {
-        progressText = '未开始答题';
+        progressText = (window.i18n ? i18n.t('messages.quiz_not_started') : (lang === 'en-US' ? 'Not started' : '未开始答题'));
       } else if (feeRate <= 0.01) {
-        progressText = `已答对${correctCount}题，已达最低`;
+        const answeredPrefix = window.i18n ? i18n.t('messages.quiz_answered_prefix') : (lang === 'en-US' ? 'Answered' : '已答对');
+        const questionsSuffix = window.i18n ? i18n.t('messages.quiz_questions_suffix') : (lang === 'en-US' ? ' questions' : '题');
+        const minReached = window.i18n ? i18n.t('messages.quiz_min_reached') : (lang === 'en-US' ? ', minimum reached' : '，已达最低');
+        progressText = `${answeredPrefix}${correctCount}${questionsSuffix}${minReached}`;
       } else {
-        progressText = `已答对${correctCount}题`;
+        const answeredPrefix = window.i18n ? i18n.t('messages.quiz_answered_prefix') : (lang === 'en-US' ? 'Answered' : '已答对');
+        const questionsSuffix = window.i18n ? i18n.t('messages.quiz_questions_suffix') : (lang === 'en-US' ? ' questions' : '题');
+        progressText = `${answeredPrefix}${correctCount}${questionsSuffix}`;
       }
+      
+      const percentFeeLabel = window.i18n ? i18n.t('messages.percentage_fee_label') : (lang === 'en-US' ? 'Percentage Fee' : '比例手续费');
+      const reduceBtnText = window.i18n ? i18n.t('messages.quiz_reduce_fee_button') : (lang === 'en-US' ? 'Reduce Fee by Quiz' : '答题降费');
       
       if (feeRate !== 0.01) {
         // 手续费不是1%，显示答题按钮
-        feeRateLabel.innerHTML = `比例手续费 (${feeRatePercent}%) - ${progressText} <a href="quiz.html" class="quiz-btn">答题降费</a>`;
+        feeRateLabel.innerHTML = `${percentFeeLabel} (${feeRatePercent}%) - ${progressText} <a href="quiz.html" class="quiz-btn">${reduceBtnText}</a>`;
       } else {
         // 手续费是1%，不显示答题按钮
-        feeRateLabel.innerHTML = `比例手续费 (${feeRatePercent}%) - ${progressText}`;
+        feeRateLabel.innerHTML = `${percentFeeLabel} (${feeRatePercent}%) - ${progressText}`;
       }
     }
     
@@ -595,12 +604,12 @@
       
       if (amount < 20) {
         amountInput.classList.add('error');
-        amountError.innerText = '提现金额不能少于20 USDT';
+        amountError.innerText = (window.i18n ? i18n.t('messages.withdraw_min_limit_error') : '{{messages.withdraw_min_limit_error}}');
         amountError.style.display = 'block';
         isValid = false;
       } else if (totalDeduct > currentBalance) {
         amountInput.classList.add('error');
-        amountError.innerText = `余额不足，需要${totalDeduct.toFixed(2)} USDT（含手续费）`;
+        amountError.innerText = (window.i18n ? i18n.t('messages.insufficient_balance_error', { need: totalDeduct.toFixed(2) }) : `{{messages.insufficient_balance_error}} ${totalDeduct.toFixed(2)} USDT`);
         amountError.style.display = 'block';
         isValid = false;
       }
@@ -612,7 +621,7 @@
       
       if (address.length < 10) {
         addressInput.classList.add('error');
-        addressError.innerText = '请输入有效的钱包地址';
+        addressError.innerText = (window.i18n ? i18n.t('messages.invalid_wallet_address') : '{{messages.invalid_wallet_address}}');
         addressError.style.display = 'block';
         isValid = false;
       }

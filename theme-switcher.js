@@ -21,7 +21,7 @@ class ThemeSwitcher {
       'fresh': {
         name: '清新简约',
         icon: '🌿',
-        description: $t('messages._____')
+        description: '清新简约风格'
       }
     };
     

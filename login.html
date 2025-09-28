@@ -16,7 +16,7 @@
   </script>
   
   <link rel="stylesheet" href="css/global-background.css">
-  <script src="i18n/i18n-direct.js"></script>
+  <script src="i18n/i18n-multilang.js"></script>
   <style>
     /* 多主题系统 - CSS变量定义 */
     :root {
@@ -790,10 +790,10 @@
   <div class="app">
     <div class="card">
       <img src="logo_gold7.png" alt="{{alts.__7_}}" class="logo" />
-      <h1>裂金7日挑战</h1>
+      <h1>{{content.___7_____}}</h1>
       <div class="subtitle">
-        <div class="challenge-badge">{{content.___7_____}}</div>
-        <div>开启你的财富增长之旅</div>
+        <div class="challenge-badge">Gold Rush 7-Day Challenge</div>
+        <div>{{content.___7_____subtitle}}</div>
       </div>
       
       <div class="tab-container" id="tabContainer">
@@ -804,29 +804,29 @@
       <!-- 登录表单 -->
       <div id="loginForm" class="form-container active">
         <div class="form-group">
-          <label for="loginEmail">邮箱地址</label>
+          <label for="loginEmail">{{content.email_label}}</label>
           <input id="loginEmail" type="email" placeholder="{{placeholders._______}}" required />
           <div class="security-tip">
             <div class="security-icon">🔒</div>
-            <span>我们使用加密技术保护您的信息</span>
+            <span>{{messages.security_tip_info || '我们使用加密技术保护您的信息'}}</span>
           </div>
-          <div class="error-message">请输入有效的邮箱地址</div>
+          <div class="error-message">{{messages.email_invalid || '请输入有效的邮箱地址'}}</div>
         </div>
         <div class="form-group">
           <label for="loginPassword">{{content.password}}</label>
           <input id="loginPassword" type="password" placeholder="{{placeholders._____}}" required />
-          <div class="error-message">密码不能为空</div>
+          <div class="error-message">{{messages.password_empty || '密码不能为空'}}</div>
         </div>
-        <button class="btn" id="loginBtn">开始挑战</button>
+        <button class="btn" id="loginBtn">{{content.start_challenge}}</button>
         <div class="note">
           <div class="security-tip">
             <div class="security-icon">⚡</div>
-            <span>测试模式：点击即可快速体验</span>
+            <span>{{messages.test_mode_tip || '测试模式：点击即可快速体验'}}</span>
           </div>
         </div>
         
         <div class="forgot-link">
-          <a href="forgot-password.html">忘记密码？</a>
+          <a href="forgot-password.html">{{content.forgot_password}}</a>
         </div>
       </div>
       

@@ -231,7 +231,7 @@
       transform: none;
     }
   </style>
-  <script src="i18n/i18n-direct.js"></script>
+  <script src="i18n/i18n-multilang.js"></script>
 </head>
 <body>
   <script src="js/smart-back.js"></script>
@@ -249,7 +249,7 @@
   <div class="container">
     <div class="header">
       <img src="logo_gold7.png" alt="Logo" class="logo-small" />
-      <h1>答题任务</h1>
+      <h1>{{content.quiz_tasks_title}}</h1>
     </div>
     <div class="content">
       <div class="card">
@@ -259,13 +259,13 @@
       </div>
     </div>
     <div class="bottom">
-      <button class="back-btn" onclick="goBack()">← 返回</button>
-      <button onclick="selectAnswer()" id="submitBtn" style="display: none;">提交答案</button>
+      <button class="back-btn" onclick="goBack()">← {{buttons.back}}</button>
+      <button onclick="selectAnswer()" id="submitBtn" style="display: none;">{{buttons.submit_answer}}</button>
     </div>
   </div>
   <script>
-    // 裂金7日 · 20题测验题库
-    const QUESTIONS = [
+    // 中文题库
+    const QUESTIONS_ZH = [
       { 
         q: '你的专属邀请链接有效期是多久？', 
         options: ['24小时', '72小时', '168小时（7天）', '永久'], 
@@ -387,6 +387,34 @@
         wrongMsg: '爆发来自会的人越来越多，不是你一个人更累。'
       }
     ];
+    // 英文题库
+    const QUESTIONS_EN = [
+      { q: 'How long is your invite link valid?', options: ['24 hours', '72 hours', '168 hours (7 days)', 'Permanent'], a: '168 hours (7 days)', wrongMsg: 'The link expires after 168 hours. The earlier you ignite within the window, the faster the structure grows.' },
+      { q: 'Which sentence best describes “Red Packet” and “7-level rebate”?', options: ['Rebate only from red packets', 'Red Packet = today’s thrill, Rebate = tomorrow’s steady flow from your structure', 'Red packet amount decides rebate amount', 'More red packets, deeper levels'], a: 'Red Packet = today’s thrill, Rebate = tomorrow’s steady flow from your structure', wrongMsg: 'Red packets are short showers; rebates are reservoirs flowing down the structure. You don’t need an umbrella; you need a dam.' },
+      { q: 'In your 7-level network, when any level adds 1 activated member, what do you earn?', options: ['Random amount', '$10 / per level / per person', '$10 only for direct referrals (level 1)', '$10 only for top 3 levels'], a: '$10 / per level / per person', wrongMsg: 'Structure rebate is $10 per level per person, up to 7 levels. The better you “teach down”, the faster levels light up.' },
+      { q: 'Math: you directly refer 2 (L1=2). Each refers 2 (L2=4), all activated. Total structure rebate?', options: ['$20', '$40', '$60', '$80'], a: '$60', wrongMsg: 'L1: 2×$10=$20; L2: 4×$10=$40; total $60. Once levels move, income stacks fast.' },
+      { q: 'Which analogy best captures “structure beats solo”?', options: ['Red packet like drizzle, structure like reservoir', 'Red packet like jackpot, structure like luck', 'Structure relies on chance', 'More red packets, deeper levels'], a: 'Red packet like drizzle, structure like reservoir', wrongMsg: 'Red packet is instant drizzle; structure can store and keep flowing—key is letting water flow down levels.' },
+      { q: 'To really make the structure “move”, which step is key?', options: ['Directly refer 3 more', 'Grab another red packet', 'Change avatar, post posters', 'Teach your level-1 to teach their next level'], a: 'Teach your level-1 to teach their next level', wrongMsg: 'Upgrade from “can pull” to “can lead others to lead”, then levels cascade.' },
+      { q: 'After the 168-hour window closes, what remains?', options: ['Invites and red packets continue', 'Everything resets', 'Only direct referrals have rebate', 'Your reservoir keeps flowing, but you can’t add a single drop'], a: 'Your reservoir keeps flowing, but you can’t add a single drop', wrongMsg: 'Entry locks; red packets and invites stop. But the reservoir built in 7 days keeps flowing to you.' },
+      { q: 'To ignite the “explosive growth curve”, what’s the core?', options: ['Pull more yourself', 'Post more ads', 'Stare at red packets', 'Push tutorials downward so every node can “teach again”'], a: 'Push tutorials downward so every node can “teach again”', wrongMsg: 'Geometric explosion comes from capability copying, not personal labor.' },
+      { q: 'You’ve directly referred 2. Next most effective step?', options: ['Spend 30 mins each to accompany them to finish the first invite', 'Refer 1 more yourself', 'Pause', 'Make cooler graphics'], a: 'Spend 30 mins each to accompany them to finish the first invite', wrongMsg: 'Help them take off; they’ll run and bring people.' },
+      { q: 'In the copy mindset, which is critical?', options: ['Fill many days first', 'Every newbie “makes his first invite”', 'Wait for system push', 'The fancier the content the better'], a: 'Every newbie “makes his first invite”', wrongMsg: 'Once the first invite is out, confidence stands and the copy chain starts.' },
+      { q: 'Ideal geometric: if each brings 2, up to level 3, total people (not including you)?', options: ['8', '10', '16', '14'], a: '14', wrongMsg: '2+4+8=14; by level 3 you feel it getting easier.' },
+      { q: 'Which is stronger?', options: ['Teach 2 who can teach others', 'Pull 10 at once but none can teach', 'Rely on system', 'Only chase instant rewards'], a: 'Teach 2 who can teach others', wrongMsg: 'Seeds who can teach grow many branches; 10 who can’t teach go silent.' },
+      { q: 'If only one task today, choose?', options: ['Help a newbie “make the first invite”', 'Write a long tutorial', 'Fix a poster', 'Chat in groups'], a: 'Help a newbie “make the first invite”', wrongMsg: 'First invite = ignition; others are prep.' },
+      { q: 'The one knife to trigger the curve?', options: ['I work harder', 'Make more materials', 'Let every newbie make his first invite and teach him to do so', 'Watch rankings'], a: 'Let every newbie make his first invite and teach him to do so', wrongMsg: 'Explosion comes from more people who know how, not you being more tired.' },
+      { q: 'If only one thing today, which is most “cost-effective”?', options: ['Voice-call the closest friend for 60 seconds to send the first invite on the spot', 'Write promo copy', 'Edit images', 'Learn methodology for half a day'], a: 'Voice-call the closest friend for 60 seconds to send the first invite on the spot', wrongMsg: 'Strong ties × act on the spot → fastest first invite.' },
+      { q: 'Golden hour at night, do?', options: ['Edit images', 'Write long articles', 'Chat groups', 'Three voice calls: each helps 1 person finish the first invite'], a: 'Three voice calls: each helps 1 person finish the first invite', wrongMsg: 'Voice × small wins ×3 beats materials by far.' },
+      { q: 'Which structure metric to watch tomorrow?', options: ['Red packet times', 'Ranking', 'Private chats', 'Level-2 new “first-invite achieved” count'], a: 'Level-2 new “first-invite achieved” count', wrongMsg: 'When level-2 first invites rise, the structure starts “running itself”.' },
+      { q: 'If the other hesitates, which sentence ignites him?', options: ['“Pay first then talk”', '“Go research slowly”', '“Let’s try the most reliable friend now, I’ll accompany you throughout”', '“Whatever, up to you”'], a: '“Let’s try the most reliable friend now, I’ll accompany you throughout”', wrongMsg: 'Accompany = confidence injection. Pilot + accompany → easiest ignition.' },
+      { q: 'After first invite succeeds, golden 5 minutes do?', options: ['Wait a day', 'Only emojis', 'Immediately reach strangers', 'Review 3 lines: how to say, how to demo, who’s next'], a: 'Review 3 lines: how to say, how to demo, who’s next', wrongMsg: 'Review → solidify → copy; heat is precious.' },
+      { q: 'The true “first pedal” of scaling?', options: ['I work harder', 'Make more materials', 'Let every newbie make his first invite and teach him to copy these 3 steps', 'Watch rankings'], a: 'Let every newbie make his first invite and teach him to copy these 3 steps', wrongMsg: 'Scaling comes from more people who know how, not you being more tired.' }
+    ];
+    // 语言设置；若英文题库未定义则回退到中文题库
+    const RAW_LANG = localStorage.getItem('preferred-language') || localStorage.getItem('language') || 'zh-CN';
+    const LANG = RAW_LANG;
+    const IS_EN = (RAW_LANG || '').toLowerCase().startsWith('en');
+    const QUESTIONS = (IS_EN && typeof QUESTIONS_EN !== 'undefined') ? QUESTIONS_EN : QUESTIONS_ZH;
     let currentIndex = 0;
     let correctCount = 0;
     let selectedOption = null;
@@ -405,21 +433,23 @@
       localStorage.setItem('withdrawFeeRate', rate.toFixed(4));
     }
     function renderQuestion() {
-      // 已完成所有题目
+      // 已完成所有题目 / All completed
       if (correctCount >= 20 || currentIndex >= QUESTIONS.length) {
-        document.getElementById('question').innerText = '答题任务完成';
+        document.getElementById('question').innerText = (IS_EN ? 'Quiz Completed' : '答题任务完成');
         document.getElementById('options').innerHTML = '';
-        document.getElementById('status').innerText = `你答对了 ${correctCount} 题，提现手续费已降至 ${(parseFloat(localStorage.getItem('withdrawFeeRate'))*100).toFixed(1)}%。`;
+        const rateStr = (parseFloat(localStorage.getItem('withdrawFeeRate'))*100).toFixed(1);
+        document.getElementById('status').innerText = (IS_EN ? `Answered ${correctCount} correct, withdrawal fee reduced to ${rateStr}%` : `你答对了 ${correctCount} 题，提现手续费已降至 ${rateStr}%。`);
         document.getElementById('submitBtn').style.display = 'none';
-        
-        // 显示返回按钮
         const bottomDiv = document.querySelector('.bottom');
         bottomDiv.style.display = 'flex';
-        bottomDiv.innerHTML = '<button onclick="goBack()" style="background: linear-gradient(180deg, #4CAF50, #45a049);">返回</button>';
+        bottomDiv.innerHTML = `<button onclick="goBack()" style="background: linear-gradient(180deg, #4CAF50, #45a049);">{{buttons.back}}</button>`;
         return;
       }
       const q = QUESTIONS[currentIndex];
-      document.getElementById('question').innerText = `第 ${currentIndex+1} 题：${q.q}`;
+      const prefix = (IS_EN ? 'Question' : '第');
+      const mid = (IS_EN ? '' : ' ');
+      const colon = (IS_EN ? ':' : ' 题：');
+      document.getElementById('question').innerText = (IS_EN ? `${prefix} ${currentIndex+1}${colon} ${q.q}` : `${prefix}${mid}${currentIndex+1}${colon}${q.q}`);
       const ul = document.getElementById('options');
       ul.innerHTML = '';
       q.options.forEach(opt => {
@@ -430,14 +460,12 @@
           document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
           li.classList.add('selected');
           selectedOption = opt;
-          // 直接提交答案，无需确认按钮
-          setTimeout(() => {
-            selectAnswer();
-          }, 300); // 短暂延迟显示选中效果
+          setTimeout(() => { selectAnswer(); }, 300);
         });
         ul.appendChild(li);
       });
-      document.getElementById('status').innerText = `已答对 ${correctCount} 题，手续费 ${(parseFloat(localStorage.getItem('withdrawFeeRate'))*100).toFixed(1)}%`;
+      const rateStr = (parseFloat(localStorage.getItem('withdrawFeeRate'))*100).toFixed(1);
+      document.getElementById('status').innerText = (IS_EN ? `Answered ${correctCount} correct, fee ${rateStr}%` : `已答对 ${correctCount} 题，手续费 ${rateStr}%`);
     }
     function goBack() {
       // 返回到上一级页面（主页面）
@@ -462,38 +490,30 @@
       }
       
       if (selectedOption === q.a) {
+        // 正确 / Correct
         correctCount++;
         currentIndex++;
         selectedOption = null;
         saveProgress();
-        
         if (correctCount >= 20) {
-          // 完成所有题目
           const appState = JSON.parse(localStorage.getItem('appState') || '{}');
           appState.quizCompleted = true;
           appState.withdrawFeeRate = parseFloat(localStorage.getItem('withdrawFeeRate'));
-          
-          // 添加交易记录
           const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
-          transactions.push({
-            type: 'task_reward',
-            amount: 0,
-            description: '完成答题任务，提现手续费降至' + (appState.withdrawFeeRate * 100).toFixed(1) + '%',
-            timestamp: new Date().toISOString()
-          });
+          transactions.push({ type: 'task_reward', amount: 0, description: (LANG === 'en-US' ? 'Completed quiz, withdrawal fee reduced to ' : '完成答题任务，提现手续费降至') + (appState.withdrawFeeRate * 100).toFixed(1) + '%', timestamp: new Date().toISOString() });
           localStorage.setItem('transactions', JSON.stringify(transactions));
           localStorage.setItem('appState', JSON.stringify(appState));
-          
-          // 计算剩余小时数（示例：假设从激活开始计算168小时）
           const activationTime = localStorage.getItem('activationTime') || new Date().toISOString();
           const remainingHours = Math.max(0, 168 - Math.floor((new Date() - new Date(activationTime)) / (1000 * 60 * 60)));
-          
-          showCustomAlert(`✅ 你已完成【20/20】道裂金测验！\n你的财富思维已升维：红包=小雨点，结构=水库，复制=爆炸曲线。\n你不只是玩家，你是【裂变引擎】。\n**入口只剩 ${remainingHours} 小时**，立即陪新人完成【第一单】，让水库自动奔流！`, true, true);
+          const msg = IS_EN
+            ? `✅ You completed 【20/20】 quiz!\nMindset upgraded: Red Packet = drizzle, Structure = reservoir, Copy = explosive curve.\nYou’re not just a player; you’re a 【growth engine】.\n**Only ${remainingHours} hours left** for entry — accompany a newbie to make the first invite now!`
+            : `✅ 你已完成【20/20】道裂金测验！\n你的财富思维已升维：红包=小雨点，结构=水库，复制=爆炸曲线。\n你不只是玩家，你是【裂变引擎】。\n**入口只剩 ${remainingHours} 小时**，立即陪新人完成【第一单】，让水库自动奔流！`;
+          showCustomAlert(msg, true, true);
         } else {
-          showCustomAlert('回答正确！提现手续费降低0.2%。', false, false);
+          showCustomAlert(IS_EN ? 'Correct! Withdrawal fee decreased by 0.2%.' : '回答正确！提现手续费降低0.2%。', false, false);
         }
       } else {
-        showCustomAlert(q.wrongMsg || `回答错误，正确答案是：${q.a}`, false, true);
+        showCustomAlert(q.wrongMsg || (IS_EN ? `Incorrect. Correct answer: ${q.a}` : `回答错误，正确答案是：${q.a}`), false, true);
         selectedOption = null;
       }
       renderQuestion();
@@ -530,13 +550,11 @@
           button.disabled = true;
           buttonText.style.display = 'none';
           countdown.style.display = 'inline';
-          countdown.textContent = `${remainingTime}秒`;
-          
-          // 倒计时
+          countdown.textContent = (LANG === 'en-US' ? `${remainingTime}s` : `${remainingTime}秒`);
           const timer = setInterval(() => {
             remainingTime--;
             if (remainingTime > 0) {
-              countdown.textContent = `${remainingTime}秒`;
+              countdown.textContent = (LANG === 'en-US' ? `${remainingTime}s` : `${remainingTime}秒`);
             } else {
               // 倒计时结束，激活按钮
               clearInterval(timer);

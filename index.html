@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="css/global-background.css">
   <link rel="stylesheet" href="websocket.css">
   <script src="theme-switcher.js"></script>
-  <script src="i18n/i18n-direct.js"></script>
+  <script src="i18n/i18n-multilang.js"></script>
   <style>
     html, body {
       margin: 0;
@@ -2006,7 +2006,7 @@
       <h3 id="dialogTitle" data-i18n="common.tip">提示</h3>
       <p id="dialogMsg" data-i18n="common.content">{{content.content}}</p>
       <div id="dialogButtons">
-        <button onclick="closeDialog()" data-i18n="common.confirm">确定</button>
+        <button onclick="closeDialog()" data-i18n="common.confirm">{{buttons.confirm}}</button>
       </div>
     </div>
   </div>
@@ -2103,7 +2103,7 @@
                 <span class="setting-title" data-i18n="settings.dataManagement">📊 数据管理</span>
                 <span class="setting-desc" data-i18n="settings.dataManagementDesc">重置本地测试数据</span>
               </div>
-              <button class="action-btn" onclick="resetTestData()" data-i18n="settings.resetData">重置数据</button>
+              <button class="action-btn" onclick="resetTestData()" data-i18n="settings.resetData">{{buttons.reset_data}}</button>
             </div>
             <div class="setting-item">
               <div class="setting-info">
@@ -2122,7 +2122,7 @@
                 <span class="setting-title" data-i18n="settings.themeDemo">🎨 主题演示</span>
                 <span class="setting-desc" data-i18n="settings.themeDemoDesc">查看主题切换效果</span>
               </div>
-              <button class="action-btn" onclick="demoTheme()" data-i18n="settings.themeDemoBtn">主题演示</button>
+              <button class="action-btn" onclick="demoTheme()" data-i18n="settings.themeDemoBtn">{{buttons.theme_demo}}</button>
             </div>
           </div>
         </div>
@@ -2148,7 +2148,7 @@
                 <span class="setting-title" data-i18n="settings.quizSim">📝 答题模拟</span>
                 <span class="setting-desc" data-i18n="settings.quizSimDesc">模拟完成全部答题任务</span>
               </div>
-              <button class="test-btn" onclick="simulateAllQuiz()" data-i18n="settings.completeAllQuiz">完成全部答题</button>
+              <button class="test-btn" onclick="simulateAllQuiz()" data-i18n="settings.completeAllQuiz">完成{{buttons.all_amount}}答题</button>
             </div>
             <div class="setting-item">
               <div class="setting-info">
@@ -2169,7 +2169,7 @@
                 <span class="setting-title" data-i18n="settings.messageTest">📢 消息测试</span>
                 <span class="setting-desc" data-i18n="settings.messageTestDesc">发送随机官方公告测试消息功能</span>
               </div>
-              <button class="test-btn" onclick="sendRandomAnnouncement()" data-i18n="settings.sendRandomAnnouncement">发送随机公告</button>
+              <button class="test-btn" onclick="sendRandomAnnouncement()" data-i18n="settings.sendRandomAnnouncement">{{buttons.send_announcement}}</button>
             </div>
             <div class="setting-item">
               <div class="setting-info">
@@ -2180,7 +2180,7 @@
                 <input type="number" id="debugHours" data-i18n-placeholder="settings.hours" placeholder="{{messages.hour}}" min="0" max="999" style="width: 60px; margin-right: 5px;">
                 <input type="number" id="debugMinutes" data-i18n-placeholder="settings.minutes" placeholder="{{messages.minute}}" min="0" max="59" style="width: 60px; margin-right: 5px;">
                 <input type="number" id="debugSeconds" data-i18n-placeholder="settings.seconds" placeholder="{{messages.second}}" min="0" max="59" style="width: 60px; margin-right: 10px;">
-                <button class="test-btn small" onclick="setDebugTime()" data-i18n="settings.setTime">设置时间</button>
+                <button class="test-btn small" onclick="setDebugTime()" data-i18n="settings.setTime">{{buttons.set_time}}</button>
                 <button class="test-btn small" onclick="resetDebugTime()" data-i18n="settings.reset">{{content.reset}}</button>
               </div>
             </div>
@@ -2375,14 +2375,14 @@
         card: function() {
           return `
             <div class="section reactivate-highlight">
-              <div class="section-title">激活账号</div>
+              <div class="section-title">{{content.activate_account_title}}</div>
               <div class="section-content" style="margin-bottom: 16px;">{{content.____100_usdt}}</div>
               <button class="reactivate-btn" onclick="activateAccount()">{{content._____100}}</button>
             </div>
             <div class="section">
-              <div class="section-title">收益预览</div>
+              <div class="section-title">{{content.earnings_preview}}</div>
               <div class="section-content">{{content.___10_______________}}</div>
-              <button onclick="showRanking()" style="margin-top: 12px; padding: 8px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; width: 100%; font-weight: 500; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">查看排行榜</button>
+              <button onclick="showRanking()" style="margin-top: 12px; padding: 8px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; width: 100%; font-weight: 500; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">{{buttons.view_ranking}}</button>
             </div>
           `;
         },
@@ -2398,15 +2398,15 @@
           if (currentTask) {
             taskSection = `
             <div class="section">
-              <div class="section-title">当前任务</div>
+              <div class="section-title">{{content.current_task_title}}</div>
               <div class="section-content">${currentTask.title}</div>
             </div>
             `;
           } else {
             taskSection = `
             <div class="section">
-              <div class="section-title">当前任务</div>
-              <div class="section-content">所有新手任务已完成</div>
+              <div class="section-title">{{content.current_task_title}}</div>
+              <div class="section-content">{{messages.all_newbie_tasks_done}}</div>
             </div>
             `;
           }
@@ -2418,13 +2418,13 @@
           if (availableTasks.length > 0) {
             availableTasksSection = `
             <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; cursor: pointer;" onclick="window.location.href='tasks.html'">
-              <div class="section-title" style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 6px;">📋 可接的任务</div>
-              <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">点击查看详细任务列表</div>
+              <div class="section-title" style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 6px;">📋 {{content.available_tasks_title}}</div>
+              <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">{{content.______________ta}}</div>
               <div style="display: flex; flex-direction: column; gap: 4px;">
                 ${availableTasks.map(task => `
                   <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
                     <span style="font-size: 12px; color: var(--text);">${task.title}</span>
-                    <span style="font-size: 10px; padding: 2px 6px; background: linear-gradient(45deg, #00eaff, #0088ff); color: #031e2e; border-radius: 8px;">待完成</span>
+                    <span style="font-size: 10px; padding: 2px 6px; background: linear-gradient(45deg, #00eaff, #0088ff); color: #031e2e; border-radius: 8px;">{{content.pending}}</span>
                   </div>
                 `).join('')}
               </div>
@@ -2441,8 +2441,8 @@
             <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; box-shadow: var(--btn-glow); cursor: pointer;" onclick="window.location.href='quiz.html'">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                  <div style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 2px;">📝 答题任务</div>
-                  <div style="font-size: 12px; color: var(--text-secondary);">降低提现手续费</div>
+                  <div style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 2px;">📝 {{content.quiz_task_title}}</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">{{content.reduce_withdraw_fee}}</div>
                 </div>
                 <div style="text-align: right;">
                   <div style="font-size: 12px; color: var(--text-secondary);">进度</div>
@@ -2466,7 +2466,7 @@
             <div class="section" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 8px; margin-bottom: 8px; box-shadow: var(--btn-glow); cursor: pointer;" onclick="window.location.href='tasks.html?tab=master'">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                  <div style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 2px;">🏆 大神任务</div>
+                  <div style="font-size: 14px; font-weight: bold; color: var(--accent-color); margin-bottom: 2px;">🏆 {{content.master_tasks_title}}</div>
                   <div style="font-size: 12px; color: var(--text-secondary);">{{content.__currentmastertask__}}</div>
                 </div>
                 <div style="text-align: right;">
@@ -2503,7 +2503,7 @@
                         border-radius: 50%;
                         animation: blink 1.5s ease-in-out infinite;
                       "></div>
-                      <span style="font-size: 11px; color: var(--accent-color); font-weight: 600;">⚡ 挑战倒计时</span>
+                      <span style="font-size: 11px; color: var(--accent-color); font-weight: 600;">⚡ {{content.countdown_label}}</span>
                     </div>
                     <div style="
                       background: rgba(47, 128, 237, 0.2);
@@ -2575,7 +2575,7 @@
                         font-size: 10px;
                         color: var(--text-secondary);
                       ">
-                        <span id="remainingDays" style="color: var(--accent-color); font-weight: 600;">剩余 -- 天</span>
+                        <span id="remainingDays" style="color: var(--accent-color); font-weight: 600;"></span>
                       </div>
                     </div>
                   </div>
@@ -2598,23 +2598,23 @@
             
             <!-- 邀请链接区域 -->
             <div class="section invite-highlight" style="margin-bottom: 16px;">
-              <div class="section-title">邀请链接</div>
+              <div class="section-title">{{content.invite_link_title}}</div>
               <div class="section-content">
                 <!-- 专属邀请码区域 -->
                 <div style="margin-bottom: 12px; padding: 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; box-shadow: 0 2px 8px var(--accent-shadow);">
-                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">💎 我的专属邀请码</div>
+                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">💎 {{content.my_invite_code_label}}</div>
                   <div style="display: flex; align-items: center; gap: 8px;">
                     <div style="flex: 1; font-weight: bold; color: var(--accent-color); font-size: 16px; text-align: center; padding: 10px; background: var(--input-bg); border-radius: 8px; border: 1px solid var(--border-color); box-shadow: inset 0 1px 3px var(--accent-shadow);" id="myInviteCode">--</div>
-                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制码</button>
+                    <button onclick="copyInviteCode()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">{{buttons.copy_code}}</button>
                   </div>
                 </div>
                 
                 <!-- 邀请链接区域 -->
                 <div style="padding: 12px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; box-shadow: 0 2px 8px var(--accent-shadow);">
-                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 邀请链接</div>
+                  <div style="font-size: 12px; color: var(--accent-color); margin-bottom: 8px; text-align: center; font-weight: 500;">🔗 {{content.invite_link_title}}</div>
                   <div class="invite-link-container" style="display: flex; gap: 8px;">
                     <input type="text" id="inviteLink" value="https://gold7.com/invite?code=--" readonly style="flex: 1; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--input-bg); font-size: 11px; color: var(--accent-color); box-shadow: inset 0 1px 3px var(--accent-shadow);">
-                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">复制链接</button>
+                    <button onclick="copyInviteLink()" style="padding: 10px 16px; background: var(--btn-gradient); color: white; border: none; border-radius: 8px; font-size: 11px; cursor: pointer; white-space: nowrap; font-weight: 600; box-shadow: 0 2px 6px var(--accent-shadow); transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px var(--accent-shadow-hover)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px var(--accent-shadow)'">{{buttons.copy_link}}</button>
                   </div>
                 </div>
               </div>
@@ -2645,7 +2645,7 @@
                   gap: 8px;
                 ">
                   <span>🏆</span>
-                  <span>我的战绩</span>
+                  <span>{{content.my_achievements}}</span>
                 </div>
                 <div class="grid-stats" style="
                    display: grid;
@@ -2664,7 +2664,7 @@
                      transition: all 0.2s ease;
                    " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(47, 128, 237, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">📚 新手任务</div>
+                       <div style="color: var(--text-secondary); font-size: 11px;">📚 {{content.newbie_tasks_label}}</div>
                        <div style="font-size: 10px; color: var(--accent-color); font-weight: 500;">{{content.__completedtasks____}}</div>
                      </div>
                      <div class="stat-value" style="color: var(--accent-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
@@ -2690,7 +2690,7 @@
                        "></div>
                      </div>
                      <div style="font-size: 10px; color: var(--text-secondary);">
-                       ${completedTasks < 3 ? `还需完成 ${3-completedTasks} 个任务` : '🎉 全部完成！'}
+                       ${completedTasks < 3 ? `{{messages.need_complete_prefix}} ${3-completedTasks} {{messages.tasks_suffix}}` : '🎉 {{messages.all_done}}'}
                      </div>
                    </div>
                    
@@ -2704,7 +2704,7 @@
                      transition: all 0.2s ease;
                    " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(47, 128, 237, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">🧠 答题进度</div>
+                       <div style="color: var(--text-secondary); font-size: 11px;">🧠 {{content.quiz_progress}}</div>
                        <div style="font-size: 10px; color: var(--accent-color); font-weight: 500;">{{content.__quizcorrect___}}</div>
                      </div>
                      <div class="stat-value" style="color: var(--accent-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
@@ -2730,7 +2730,7 @@
                        "></div>
                      </div>
                      <div style="font-size: 10px; color: var(--text-secondary);">
-                       ${completedTasks < 1 ? '需完成新手任务1解锁' : (quizCorrect < 16 ? `需答对 ${16-quizCorrect} 题通过` : '🎁 非固定已手续费永久已降低至1%')}
+                       ${completedTasks < 1 ? '{{messages.quiz_unlock_needed_task1}}' : (quizCorrect < 16 ? `{{messages.quiz_need_correct_prefix}} ${16-quizCorrect} {{messages.quiz_need_correct_suffix}}` : '🎁 {{messages.fee_reduced_to_1}}')}
                      </div>
                    </div>
                    
@@ -2744,16 +2744,16 @@
                      transition: all 0.2s ease;
                    " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(47, 128, 237, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">👥 团队规模</div>
+                       <div style="color: var(--text-secondary); font-size: 11px;">👥 {{content.team_size_label}}</div>
                        <div style="font-size: 10px; color: var(--success-color); font-weight: 500;">{{content.__teammembers__}}</div>
                      </div>
                      <div class="stat-value" style="color: var(--accent-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
-                       <span id="teamCount">${teamMembers}</span>{{content._}}</div>
+                       <span id="teamCount">${teamMembers}</span> {{content._}}</div>
                      <div style="font-size: 10px; color: var(--text-secondary); margin-bottom: 4px;">
-                       ${teamMembers < 2 ? '距离大神任务一还需' + (2-teamMembers) + '人' : '已达成大神任务一条件 🎯'}
+                       ${teamMembers < 2 ? `{{messages.need_more_master1_prefix}} ${2-teamMembers} {{messages.person}}` : `{{messages.master1_reached}} 🎯`}
                      </div>
                      <div style="font-size: 10px; color: var(--text-secondary);">
-                       💡 邀请更多好友加入团队
+                       💡 {{messages.invite_more_to_team}}
                      </div>
                    </div>
                    
@@ -2767,15 +2767,15 @@
                      transition: all 0.2s ease;
                    " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 20px rgba(40, 167, 69, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                       <div style="color: var(--text-secondary); font-size: 11px;">💰 总收益</div>
+                       <div style="color: var(--text-secondary); font-size: 11px;">💰 {{content.total_earnings_label}}</div>
                        <div style="font-size: 10px; color: var(--success-color); font-weight: 500;">{{content.__totalearnings__}}</div>
                      </div>
                      <div class="stat-value" style="color: var(--success-color); font-weight: bold; font-size: 16px; margin-bottom: 4px;">
                        <span id="totalEarnings">${totalEarnings.toFixed(2)}</span> USDT
                      </div>
                      <div style="font-size: 10px; color: var(--text-secondary); margin-bottom: 2px;">
-                       收益率: ${totalEarnings > 0 ? (totalEarnings/100*100).toFixed(1) + '%' : '0%'}
-                       ${totalEarnings > 0 ? ' | 日均: ' + (totalEarnings/7).toFixed(2) + ' USDT' : ''}
+                       {{content.yield_rate_label}} ${totalEarnings > 0 ? (totalEarnings/100*100).toFixed(1) + '%' : '0%'}
+                       ${totalEarnings > 0 ? ` | {{content.daily_avg_label}} ` + (totalEarnings/7).toFixed(2) + ' USDT' : ''}
                      </div>
                      <div style="font-size: 10px; color: var(--text-secondary);">{{content.__totalearnings____}}</div>
                    </div>
@@ -2785,10 +2785,10 @@
           `;
         },
         buttons: [
-          { text: '红包', color: 'red', key: 'red', action: () => grabRedPacket() },
-          { text: '团队', color: 'orange', key: 'team', action: () => showTeam() },
-          { text: '钱包', color: 'purple', key: 'wallet', action: () => showWallet() },
-          { text: '排行', color: 'green', key: 'rank', action: () => showRanking() }
+          { text: '{{buttons.redpacket}}', color: 'red', key: 'red', action: () => grabRedPacket() },
+          { text: '{{buttons.team}}', color: 'orange', key: 'team', action: () => showTeam() },
+          { text: '{{buttons.wallet}}', color: 'purple', key: 'wallet', action: () => showWallet() },
+          { text: '{{buttons.ranking}}', color: 'green', key: 'rank', action: () => showRanking() }
         ]
       },
       3: {
@@ -2843,9 +2843,9 @@
     
     /* 任务数据 */
     const newTasks = [
-      { id: 1, title: '直接推荐1人', desc: '邀请1位好友注册并激活账号', done: false, reward: 10 },
-      { id: 2, title: '帮助下级推荐1人', desc: '指导你的下级成功邀请1位新用户', done: false, reward: 10 },
-      { id: 3, title: '教下级如何教他的下级推荐1人', desc: '培训下级的推广技巧，帮助三级推广', done: false, reward: 10 }
+      { id: 1, title: '{{content.task1_title}}', desc: '{{content.task1_desc}}', done: false, reward: 10 },
+      { id: 2, title: '{{content.task2_title}}', desc: '{{content.task2_desc}}', done: false, reward: 10 },
+      { id: 3, title: '{{content.task3_title}}', desc: '{{content.task3_desc}}', done: false, reward: 10 }
     ];
     
     // 答题任务数据
@@ -3252,19 +3252,46 @@
       if (window.i18n) {
         window.i18n.init().then(() => {
           console.log('i18n系统初始化完成');
+          // 设置浏览器标题为当前语言
+          if (typeof updateDocumentTitle === 'function') {
+            updateDocumentTitle();
+          }
           // i18n初始化完成后继续其他初始化
           continueInit();
         }).catch(error => {
           console.error('i18n初始化失败:', error);
+          // 设置浏览器标题（使用回退）
+          if (typeof updateDocumentTitle === 'function') {
+            updateDocumentTitle();
+          }
           // 即使i18n初始化失败，也继续其他初始化
           continueInit();
         });
       } else {
         console.warn('i18n系统未找到，跳过国际化初始化');
+        // 设置浏览器标题（使用回退）
+        if (typeof updateDocumentTitle === 'function') {
+          updateDocumentTitle();
+        }
         continueInit();
       }
     }
     
+    // 更新浏览器标题
+    function updateDocumentTitle() {
+      const lang = localStorage.getItem('preferred-language') || localStorage.getItem('language') || 'zh-CN';
+      const isEn = (lang || '').toLowerCase().startsWith('en');
+      // 优先使用i18n字典
+      if (window.i18n && typeof i18n.t === 'function') {
+        try {
+          document.title = i18n.t('header.title') || (isEn ? 'Gold7 · H5' : '裂金7日 H5 页面');
+          return;
+        } catch (e) {}
+      }
+      // 回退值
+      document.title = isEn ? 'Gold7 · H5' : '裂金7日 H5 页面';
+    }
+
     function continueInit() {
       // 从 localStorage 加载历史状态
       loadState();
@@ -3302,10 +3329,18 @@
 
     function renderState() {
       const state = STATES[currentState];
-      document.getElementById('stateLabel').innerText = state.name;
-      document.getElementById('subtitle').innerText = state.subtitle;
+      // 使用国际化键（若存在）覆盖显示
+      const nameText = (currentState === 1) ? '{{content.state1_label}}' : (currentState === 2) ? '{{content.state2_label}}' : state.name;
+      const subtitleText = (currentState === 1) ? '{{content.state1_subtitle}}' : (currentState === 2) ? '{{content.state2_subtitle}}' : state.subtitle;
+      document.getElementById('stateLabel').innerText = nameText;
+      document.getElementById('subtitle').innerText = subtitleText;
       // 渲染卡片内容
       document.getElementById('card').innerHTML = state.card();
+      
+      // 触发国际化替换（动态DOM注入后）
+      if (typeof scheduleReplace === 'function') {
+        scheduleReplace();
+      }
       
       // 更新战绩卡数据
       updateStatsDisplay();
@@ -3347,6 +3382,11 @@
         bottom.appendChild(b);
       });
       
+      // 替换底部按钮中的模板文本
+      if (typeof scheduleReplace === 'function') {
+        scheduleReplace();
+      }
+      
       // 控制倒计时
       if (currentState === 2) {
         if (!countdownStart) {
@@ -3362,6 +3402,14 @@
       // 更新消息按钮状态
       updateMessageButton();
     }
+    
+    // 语言变更时，重新渲染状态并替换模板
+    document.addEventListener('language-changed', () => {
+      renderState();
+      if (typeof scheduleReplace === 'function') {
+        scheduleReplace();
+      }
+    });
     
     // 根据状态严格控制按钮显示
     function getButtonsForState(state) {
@@ -3428,11 +3476,16 @@
         const remainingMinutes = Math.floor((remaining % (3600 * 1000)) / (60 * 1000));
         
         // 根据剩余时间显示不同格式
-        if (remainingDays > 0) {
-          remainingDaysEl.textContent = `剩余${remainingDays}天${remainingHours}小时${remainingMinutes}分`;
-        } else {
-          remainingDaysEl.textContent = `仅剩余${remainingHours}小时${remainingMinutes}分`;
-        }
+        const lang = localStorage.getItem('preferred-language') || localStorage.getItem('language') || 'zh-CN';
+          if (remainingDays > 0) {
+            remainingDaysEl.textContent = (lang === 'en-US')
+              ? `Remaining ${remainingDays} day${remainingDays !== 1 ? 's' : ''} ${remainingHours} hour${remainingHours !== 1 ? 's' : ''} ${remainingMinutes} min${remainingMinutes !== 1 ? 's' : ''}`
+              : `剩余${remainingDays}天${remainingHours}小时${remainingMinutes}分`;
+          } else {
+            remainingDaysEl.textContent = (lang === 'en-US')
+              ? `Only ${remainingHours} hour${remainingHours !== 1 ? 's' : ''} ${remainingMinutes} min${remainingMinutes !== 1 ? 's' : ''}`
+              : `仅剩余${remainingHours}小时${remainingMinutes}分`;
+          }
       }
       
       // 更新状态提示和动画效果
@@ -4184,14 +4237,14 @@
         if(currentTask) {
           html += `<h3 style="margin-top:0;color:var(--brand)">${currentTask.title}</h3>`;
           html += `<p style="font-size:14px;color:var(--muted)">{{content.__currenttask_desc__}}</p>`;
-          html += `<button class="btn" id="modalTaskDone" style="margin-top:16px;width:100%">标记完成</button>`;
+          html += `<button class="btn" id="modalTaskDone" style="margin-top:16px;width:100%">{{buttons.mark_complete}}</button>`;
         } else {
-          html += `<h3 style="margin-top:0;color:var(--brand)">所有新手任务已完成</h3>`;
-          html += `<p style="font-size:14px;color:var(--muted)">无需再执行新手任务。</p>`;
+          html += `<h3 style="margin-top:0;color:var(--brand)">{{messages.all_newbie_tasks_done}}</h3>`;
+          html += `<p style="font-size:14px;color:var(--muted)">{{messages.no_need_newbie_tasks}}</p>`;
         }
       } else if(type === 'wallet') {
-        html += `<h3 style="margin-top:0;color:var(--brand)">我的钱包</h3>`;
-        html += `<p style="font-size:14px;color:var(--muted)">当前余额：-- USDT</p>`;
+        html += `<h3 style="margin-top:0;color:var(--brand)">{{messages.wallet_title}}</h3>`;
+        html += `<p style="font-size:14px;color:var(--muted)">{{messages.current_balance_prefix}} -- USDT</p>`;
         html += `<button class="btn" style="margin-top:16px;width:100%">{{messages.withdraw}}</button>`;
       } else if(type === 'team') {
         html += `<h3 style="margin-top:0;color:var(--brand)">我的团队</h3>`;
@@ -4705,6 +4758,16 @@
       const modal = document.getElementById('messageModal');
       modal.style.display = 'flex';
       
+      // 本地化标签文本
+      const lang = localStorage.getItem('preferred-language') || localStorage.getItem('language') || 'zh-CN';
+      const isEn = (lang || '').toLowerCase().startsWith('en');
+      const officialTab = document.querySelector('[onclick="switchMessageTab(\'official\')"]');
+      const teamTab = document.querySelector('[onclick="switchMessageTab(\'team\')"]');
+      const bugTab = document.querySelector('[onclick="switchMessageTab(\'bug\')"]');
+      if (officialTab) officialTab.innerHTML = `📢 ${isEn ? (window.i18n ? i18n.t('messages.announcements_tab') : 'Announcements') : (window.i18n ? i18n.t('messages.announcements_tab') : '官方公告')}`;
+      if (teamTab) teamTab.innerHTML = `👥 ${isEn ? (window.i18n ? i18n.t('messages.team_messages_tab') : 'Team Messages') : (window.i18n ? i18n.t('messages.team_messages_tab') : '团队消息')}`;
+      if (bugTab) bugTab.innerHTML = `🐛 ${isEn ? (window.i18n ? i18n.t('messages.bug_reports_tab') : 'Bug Reports') : (window.i18n ? i18n.t('messages.bug_reports_tab') : 'Bug报告')}`;
+      
       // 默认显示官方公告
       switchMessageTab('official');
     }
@@ -4779,15 +4842,29 @@
       const time = new Date(timeStr);
       const now = new Date();
       const diff = now - time;
+      const lang = localStorage.getItem('preferred-language') || localStorage.getItem('language') || 'zh-CN';
+      const isEn = (lang || '').toLowerCase().startsWith('en');
       
-      if (diff < 60 * 1000) {
-        return '刚刚';
-      } else if (diff < 60 * 60 * 1000) {
-        return `${Math.floor(diff / (60 * 1000))}分钟前`;
-      } else if (diff < 24 * 60 * 60 * 1000) {
-        return `${Math.floor(diff / (60 * 60 * 1000))}小时前`;
+      if (isEn) {
+        if (diff < 60 * 1000) {
+          return 'Just now';
+        } else if (diff < 60 * 60 * 1000) {
+          return `${Math.floor(diff / (60 * 1000))} minutes ago`;
+        } else if (diff < 24 * 60 * 60 * 1000) {
+          return `${Math.floor(diff / (60 * 60 * 1000))} hours ago`;
+        } else {
+          return time.toLocaleDateString();
+        }
       } else {
-        return time.toLocaleDateString();
+        if (diff < 60 * 1000) {
+          return '刚刚';
+        } else if (diff < 60 * 60 * 1000) {
+          return `${Math.floor(diff / (60 * 1000))}分钟前`;
+        } else if (diff < 24 * 60 * 60 * 1000) {
+          return `${Math.floor(diff / (60 * 60 * 1000))}小时前`;
+        } else {
+          return time.toLocaleDateString();
+        }
       }
     }
     
@@ -4816,7 +4893,9 @@
         type = 'team';
       } else if (activeTab.onclick.toString().includes('bug')) {
         // Bug报告页面不需要已读功能
-        alert('Bug报告无需标记已读');
+        const lang = localStorage.getItem('preferred-language') || localStorage.getItem('language') || 'zh-CN';
+        const isEn = (lang || '').toLowerCase().startsWith('en');
+        alert(isEn ? 'Bug reports do not need to be marked as read' : 'Bug报告无需标记已读');
         return;
       }
       

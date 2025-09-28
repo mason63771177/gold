@@ -370,7 +370,7 @@
             filter: brightness(0.95);
         }
     </style>
-  <script src="i18n/i18n-direct.js"></script>
+  <script src="i18n/i18n-multilang.js"></script>
 </head>
 <body>
     <div class="container">
@@ -385,13 +385,13 @@
             <div class="card">
                 <div class="pool-info">
                     <div class="pool-amount" id="poolAmount">8,888.88 USDT</div>
-                    <div class="pool-label">当前红包池总额</div>
+                    <div class="pool-label">{{content.redpacket_pool_label}}</div>
                 </div>
                 
                 <!-- 状态指示器 -->
                 <div class="status-indicator">
                     <div class="status-dot waiting" id="statusDot"></div>
-                    <span id="statusText">等待红包开始</span>
+                    <span id="statusText">{{messages.waiting_redpacket}}</span>
                 </div>
                 
                 <!-- 倒计时 -->
@@ -399,18 +399,18 @@
                 
                 <!-- 抢红包按钮 -->
                 <button class="grab-btn disabled" id="grabBtn" onclick="handleGrab()">
-                    等待红包开始
+                    {{messages.waiting_redpacket}}
                 </button>
             </div>
 
             <!-- 活动时间表 -->
             <div class="card">
                 <div class="schedule">
-                    <h3>📅 每日红包时间</h3>
+                    <h3>📅 {{content.redpacket_daily_times}}</h3>
                     <div class="time-slots">
                         <div class="time-slot" id="slot1">
                             <div>09:00</div>
-                            <div style="font-size: 12px; opacity: 0.7;">已结束</div>
+                            <div style="font-size: 12px; opacity: 0.7;">{{messages.ended}}</div>
                         </div>
                         <div class="time-slot active" id="slot2">
                             <div>12:00</div>
@@ -418,7 +418,7 @@
                         </div>
                         <div class="time-slot" id="slot3">
                             <div>20:00</div>
-                            <div style="font-size: 12px; opacity: 0.7;">未开始</div>
+                            <div style="font-size: 12px; opacity: 0.7;">{{messages.not_started}}</div>
                         </div>
                     </div>
                 </div>
@@ -427,16 +427,16 @@
             <!-- 无权限提示 -->
             <div class="card" id="noPermissionCard" style="display: none;">
                 <div class="no-permission">
-                    <h3>🔒 需要激活账号</h3>
-                    <p>只有激活账号的用户才能参与抢红包活动</p>
-                    <p>立即激活，开启您的财富之旅！</p>
+                    <h3>🔒 {{messages.need_activate_account}}</h3>
+                    <p>{{messages.redpacket_need_activation_desc1}}</p>
+                    <p>{{messages.redpacket_need_activation_desc2}}</p>
                 </div>
             </div>
 
             <!-- 上一期红包排行 -->
             <div class="card">
                 <div class="recent">
-                    <h3>🏆 上一期红包排行榜</h3>
+                    <h3>🏆 {{content.redpacket_last_ranking}}</h3>
                     <div class="recent-list" id="recentList">
                         <!-- 动态生成 -->
                     </div>
@@ -446,7 +446,7 @@
 
         <!-- 底部导航 -->
         <div class="bottom">
-            <button onclick="smartBack()">返回</button>
+            <button onclick="smartBack()">{{buttons.back}}</button>
         </div>
     </div>
 
@@ -455,7 +455,7 @@
         <div class="success-content">
             <div class="success-amount" id="successAmount">+12.34 USDT</div>
             <div class="success-text">🎉 恭喜抢到红包！</div>
-            <button class="success-btn" onclick="closeSuccess()">太棒了</button>
+            <button class="success-btn" onclick="closeSuccess()">{{buttons.awesome}}</button>
         </div>
     </div>
 
@@ -532,8 +532,9 @@
 
         // 格式化时间显示
         function formatTime(seconds) {
+            const lang = localStorage.getItem('preferred-language') || localStorage.getItem('language') || 'zh-CN';
             if (seconds < 60) {
-                return `${seconds}秒`;
+                return lang === 'en-US' ? `${seconds}s` : `${seconds}秒`;
             } else if (seconds < 3600) {
                 const minutes = Math.floor(seconds / 60);
                 const secs = seconds % 60;
@@ -599,33 +600,29 @@
                 // 无权限状态
                 noPermissionCard.style.display = 'block';
                 statusDot.className = 'status-dot ended';
-                statusText.textContent = '需要激活账号';
+                statusText.textContent = i18n ? i18n.t('messages.need_activate_account') : '{{messages.need_activate_account}}';
                 countdown.textContent = formatTime(currentState.timeLeft);
-                grabBtn.textContent = '激活账号参与';
+                grabBtn.textContent = i18n ? i18n.t('messages.activate_to_join') : '{{messages.activate_to_join}}';
                 grabBtn.className = 'grab-btn disabled';
             } else {
                 // 有权限状态
                 noPermissionCard.style.display = 'none';
-                
                 if (currentState.isInRedPacketTime) {
-                    // 红包进行中
                     statusDot.className = 'status-dot active';
-                    statusText.textContent = '红包进行中';
+                    statusText.textContent = i18n ? i18n.t('messages.redpacket_running') : '{{messages.redpacket_running}}';
                     countdown.textContent = formatTime(currentState.timeLeft);
-                    
                     if (currentState.hasGrabbedThisRound) {
-                        grabBtn.textContent = '已抢过本轮';
+                        grabBtn.textContent = i18n ? i18n.t('messages.already_grabbed') : '{{messages.already_grabbed}}';
                         grabBtn.className = 'grab-btn disabled';
                     } else {
-                        grabBtn.textContent = '立即抢红包';
-                        grabBtn.className = 'grab-btn active';
+                        grabBtn.textContent = i18n ? i18n.t('messages.grab_now') : '{{messages.grab_now}}';
+                        grabBtn.className = 'grab-btn';
                     }
                 } else {
-                    // 等待下次红包
                     statusDot.className = 'status-dot waiting';
-                    statusText.textContent = '等待红包开始';
+                    statusText.textContent = i18n ? i18n.t('messages.waiting_redpacket') : '{{messages.waiting_redpacket}}';
                     countdown.textContent = formatTime(currentState.timeLeft);
-                    grabBtn.textContent = '等待红包开始';
+                    grabBtn.textContent = i18n ? i18n.t('messages.waiting_redpacket') : '{{messages.waiting_redpacket}}';
                     grabBtn.className = 'grab-btn disabled';
                 }
             }
@@ -923,6 +920,13 @@
             
             // 更新界面状态
             updateStatus();
+            
+            // 触发一次国际化替换，确保静态模板被替换
+            if (window.i18n && typeof replaceTemplates === 'function') {
+              replaceTemplates();
+            } else if (typeof scheduleReplace === 'function') {
+              scheduleReplace();
+            }
             
             // 设置定时器
             setInterval(updateStatus, 1000);

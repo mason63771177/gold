@@ -219,49 +219,58 @@
     .bottom button:hover { transform: translateY(-3px); filter: brightness(1.2); }
     .bottom button:active { transform: translateY(0); filter: brightness(0.95); }
   </style>
-  <script src="i18n/i18n-direct.js"></script>
+  <script src="i18n/i18n-multilang.js"></script>
 </head>
 <body>
   <script src="js/smart-back.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      if (window.i18n && typeof replaceTemplates === 'function') {
+        replaceTemplates();
+      } else if (typeof scheduleReplace === 'function') {
+        scheduleReplace();
+      }
+    });
+  </script>
   <div class="container">
     <div class="header">
 
       <img src="logo_gold7.png" alt="Logo" class="logo-small" />
-      <h1>我的团队</h1>
+      <h1>{{content.team_title}}</h1>
     </div>
     <div class="content">
       <div class="stats-section">
         <div class="stats-grid">
           <div class="stat-item">
             <div class="stat-value" id="totalMembers">0</div>
-            <div class="stat-label">团队总人数</div>
+            <div class="stat-label">{{content.team_total_members}}</div>
           </div>
           <div class="stat-item">
             <div class="stat-value" id="directMembers">0</div>
-            <div class="stat-label">直推人数</div>
+            <div class="stat-label">{{content.team_direct_members}}</div>
           </div>
           <div class="stat-item">
             <div class="stat-value" id="teamEarnings">0.00</div>
-            <div class="stat-label">团队收益</div>
+            <div class="stat-label">{{content.team_earnings}}</div>
           </div>
         </div>
         
         <div class="invite-section">
-          <div class="invite-title">我的邀请链接</div>
-          <div class="invite-link" id="inviteLink">生成中...</div>
-          <button class="copy-btn" onclick="copyInviteLink()">复制链接</button>
+            <div class="invite-title">{{content.my_invite_link_title}}</div>
+          <div class="invite-link" id="inviteLink">{{content.generating}}</div>
+          <button class="copy-btn" onclick="copyInviteLink()">{{buttons.copy_link}}</button>
         </div>
       </div>
       
       <div class="levels-section">
-        <div class="levels-title">团队层级</div>
+        <div class="levels-title">{{content.team_levels_title}}</div>
         <div id="levelsList">
-          <div class="empty-state">暂无团队成员</div>
+          <div class="empty-state">{{messages.no_team_members}}</div>
         </div>
       </div>
     </div>
     <div class="bottom">
-      <button onclick="smartBack()">返回</button>
+      <button onclick="smartBack()">{{buttons.back}}</button>
     </div>
   </div>
   <script>
@@ -398,7 +407,7 @@
       const totalMembers = Number(teamData.totalMembers) || 0;
       const directMembers = Number(teamData.directMembers) || 0;
       const teamEarnings = Number(teamData.teamEarnings) || 0;
-      const inviteLink = teamData.inviteLink || '生成中...';
+      const inviteLink = teamData.inviteLink || (window.i18n ? i18n.t('content.generating') : '{{content.generating}}');
       
       document.getElementById('totalMembers').textContent = totalMembers;
       document.getElementById('directMembers').textContent = directMembers;
@@ -412,7 +421,7 @@
       const container = document.getElementById('levelsList');
       
       if (!teamData.levels || teamData.levels.length === 0) {
-        container.innerHTML = '<div class="empty-state">暂无团队成员</div>';
+        container.innerHTML = '<div class="empty-state">{{messages.no_team_members}}</div>';
         return;
       }
       

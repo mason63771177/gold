@@ -60,7 +60,7 @@
     .bottom button:hover { transform: translateY(-3px); filter: brightness(1.2); }
     .bottom button:active { transform: translateY(0); filter: brightness(0.95); }
   </style>
-  <script src="i18n/i18n-direct.js"></script>
+  <script src="i18n/i18n-multilang.js"></script>
 </head>
 <body>
   <script src="js/smart-back.js"></script>
@@ -73,13 +73,13 @@
       <div class="card">
         <div class="section-title">{{content.____100}}</div>
         <div id="addr" class="address">生成中…</div>
-        <button class="btn-copy" onclick="copyAddr()">复制地址</button>
+        <button class="btn-copy" onclick="copyAddr()">{{buttons.copy_address}}</button>
         <div class="info">为保证安全，请通过您的数字钱包将 100 USDT 转入上述专属地址。链上确认后，系统将自动激活您的账号进入挑战。</div>
-        <button class="btn-finish" onclick="finish()">我已完成转账</button>
+        <button class="btn-finish" onclick="finish()">{{buttons.complete_transfer}}</button>
       </div>
     </div>
     <div class="bottom">
-      <button onclick="smartBack()">返回</button>
+      <button onclick="smartBack()">{{buttons.back}}</button>
     </div>
   </div>
   <script>
