@@ -792,7 +792,7 @@
       <img src="logo_gold7.png" alt="{{alts.__7_}}" class="logo" />
       <h1>{{content.___7_____}}</h1>
       <div class="subtitle">
-        <div class="challenge-badge">Gold Rush 7-Day Challenge</div>
+        <div class="challenge-badge">{{content.___7_____}}</div>
         <div>{{content.___7_____subtitle}}</div>
       </div>
       
@@ -833,36 +833,36 @@
       <!-- 注册表单 -->
       <div id="registerForm" class="form-container">
         <div class="form-group">
-          <label for="registerEmail">邮箱地址</label>
+          <label for="registerEmail">{{content.email_label}}</label>
           <input id="registerEmail" type="email" placeholder="{{placeholders._______}}" required />
           <div class="security-tip">
             <div class="security-icon">🔒</div>
-            <span>邮箱将用于账户安全验证</span>
+            <span data-i18n="content.email_security_note">{{content.email_security_note}}</span>
           </div>
-          <div class="error-message">请输入有效的邮箱地址</div>
+          <div class="error-message">{{messages.email_invalid}}</div>
         </div>
         <div class="form-group">
-          <label for="registerPassword">设置密码</label>
+          <label for="registerPassword">{{content.password}}</label>
           <input id="registerPassword" type="password" placeholder="{{placeholders.________6_}}" required oninput="checkPasswordStrength(this.value)" />
           <div class="password-strength" id="passwordStrength">
             <div class="password-strength-bar" id="passwordStrengthBar"></div>
           </div>
           <div class="security-tip">
             <div class="security-icon">🛡️</div>
-            <span>建议使用字母、数字和符号组合</span>
+            <span data-i18n="content.password_suggestion">{{content.password_suggestion}}</span>
           </div>
           <div class="error-message">{{messages.______6___}}</div>
         </div>
         <div class="form-group">
-          <label for="inviteCode">邀请码 <span style="color: #ff5d5d;">*</span></label>
+          <label for="inviteCode">{{content.invite_code_label}} <span style="color: #ff5d5d;">*</span></label>
           <input id="inviteCode" type="text" placeholder="{{placeholders.______}}" required />
           <div class="security-tip">
             <div class="security-icon">👥</div>
             <span>{{content.___________________}}</span>
           </div>
-          <div class="error-message">邀请码为必填项，请联系推荐人获取</div>
+          <div class="error-message">{{messages.invite_required}}</div>
         </div>
-        <button class="btn" id="registerBtn">加入挑战</button>
+        <button class="btn" id="registerBtn">{{buttons.start_register}}</button>
         <div class="note">
           <div class="security-tip">
             <div class="security-icon">📋</div>
@@ -872,7 +872,7 @@
       </div>
     </div>
     
-    <div class="foot">开启您的财富增长之旅</div>
+    <div class="foot" data-i18n="content.___7_____subtitle">{{content.___7_____subtitle}}</div>
   </div>
 
   <script>
@@ -977,7 +977,7 @@
           input.addEventListener('blur', function() {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (this.value && !emailRegex.test(this.value)) {
-              showError(inputId, '请输入有效的邮箱地址');
+              showError(inputId, (window.i18n && typeof i18n.t==='function') ? i18n.t('messages.email_invalid') : '请输入有效的邮箱地址');
             } else if (this.value) {
               showSuccess(inputId);
             }
@@ -998,7 +998,7 @@
         if (input) {
           input.addEventListener('blur', function() {
             if (this.value && this.value.length < 6) {
-              showError(inputId, '密码至少需要6位字符');
+              showError(inputId, (window.i18n && typeof i18n.t==='function') ? i18n.t('messages.______6___') : '密码至少需要6位字符');
             } else if (this.value) {
               showSuccess(inputId);
             }
