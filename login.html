@@ -1293,6 +1293,12 @@
       function initI18nOnLogin() {
         if (window.i18n && typeof window.i18n.init === 'function') {
           window.i18n.init().then(() => {
+            // 读取当前语言并应用到引擎
+            const lang = localStorage.getItem('gold7_language') || localStorage.getItem('preferred-language') || localStorage.getItem('language') || (navigator.language || 'zh-CN');
+            if (typeof window.i18n.setLanguage === 'function') {
+              window.i18n.setLanguage(lang);
+            }
+            // 执行替换
             if (typeof window.scheduleReplace === 'function') {
               window.scheduleReplace();
             }
