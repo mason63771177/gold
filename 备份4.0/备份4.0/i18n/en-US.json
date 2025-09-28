@@ -1,0 +1,45 @@
+{
+  "common": {
+    "confirm": "Confirm",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "loading": "Loading...",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info"
+  },
+  "header": {
+    "welcome": "Welcome to Gold Split 7 Days"
+  },
+  "status": {
+    "state1": "State 1",
+    "state2": "State 2",
+    "state3": "State 3", 
+    "state4": "State 4"
+  },
+  "settings": {
+    "title": "Settings Center",
+    "notLoggedIn": "Not Logged In",
+    "inviteCode": "Invite Code",
+    "appearance": "Appearance",
+    "themeStyle": "Theme Style",
+    "themeDescription": "Choose your preferred interface theme",
+    "language": "Language",
+    "languageDescription": "Select interface display language",
+    "functions": "Functions",
+    "messageNotification": "Message Notification",
+    "messageNotificationDescription": "Receive system messages and reminders",
+    "soundEffect": "Sound Effect",
+    "soundEffectDescription": "Enable game sound effects and notification sounds",
+    "dataManagement": "Data Management",
+    "dataManagementDescription": "Manage locally stored data",
+    "resetData": "Reset Data"
+  },
+  "language": {
+    "switchSuccess": "Language switched successfully",
+    "switchFailed": "Language switch failed"
+  }
+}

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>裂金7日 · 登录注册</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQ6GQ79K7G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QQ6GQ79K7G');
+  </script>
+  
+  <link rel="stylesheet" href="css/global-background.css">
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#111823;
+      --card:#0e141d;
+      --brand:#56ccf2;
+      --brand-2:#2f80ed;
+      --text:#e6efff;
+      --muted:#9fb3cd;
+      --danger:#ff5d5d;
+      --ok:#1ed760;
+      --safe: env(safe-area-inset-bottom, 0px);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;background:var(--bg);color:var(--text);margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",PingFang SC,Helvetica,Arial,"Microsoft Yahei",sans-serif;}
+    .app{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px;}
+    h1{margin-top:60px;margin-bottom:24px;font-size:24px;font-weight:700;letter-spacing:1px;text-align:center;color:var(--brand);}
+
+    /* logo 样式 */
+    .logo-small {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 16px auto;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:16px;
+      padding:24px;
+      width:100%;
+      max-width:360px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.3);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+    .card > div{margin-bottom:16px;}
+    .card > div:last-child{margin-bottom:0;}
+    label{display:block;margin-bottom:8px;font-size:14px;font-weight:500;color:var(--text);}
+    input{
+      width:100%;
+      padding:12px 16px;
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:8px;
+      background:rgba(255,255,255,0.05);
+      color:var(--text);
+      font-size:16px;
+      transition:all 0.2s ease;
+    }
+    input:focus{
+      outline:none;
+      border-color:var(--brand);
+      background:rgba(255,255,255,0.08);
+    }
+    input::placeholder{color:var(--muted);}
+    .btn{
+      width:100%;
+      padding:14px;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff;
+      border:none;
+      border-radius:8px;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+      transition:all 0.2s ease;
+      margin-top:8px;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 4px 16px rgba(86,204,242,0.3);
+    }
+    .btn:active{transform:translateY(0);}
+    .note{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.4;}
+    .foot{
+      margin-top:40px;
+      text-align:center;
+      font-size:12px;
+      color:var(--muted);
+    }
+    
+    /* 切换按钮样式 */
+    .tab-container {
+      display: flex;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 4px;
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: var(--brand);
+      color: #fff;
+    }
+    
+    /* 表单切换 */
+    .form-container {
+      display: none;
+    }
+    .form-container.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- logo 图像 -->
+    <img src="logo_gold7.png" alt="Logo" class="logo-small" />
+    <h1>裂金7日</h1>
+    
+    <div class="card">
+      <!-- 切换标签 -->
+      <div class="tab-container">
+        <button class="tab-btn active" onclick="switchTab('login')">登录</button>
+        <button class="tab-btn" onclick="switchTab('register')">注册</button>
+      </div>
+      
+      <!-- 登录表单 -->
+      <div id="loginForm" class="form-container active">
+        <div>
+          <label for="loginEmail">邮箱</label>
+          <input id="loginEmail" type="email" placeholder="请输入邮箱" />
+        </div>
+        <div>
+          <label for="loginPassword">密码</label>
+          <input id="loginPassword" type="password" placeholder="请输入密码" />
+        </div>
+        <button class="btn" id="loginBtn">立即登录</button>
+        <div class="note">登录即可继续您的7天挑战之旅</div>
+        <div class="note" style="color: #ff6b35; font-weight: bold; margin-top: 10px;">🧪 测试模式：直接点击登录按钮即可快速体验</div>
+      </div>
+      
+      <!-- 注册表单 -->
+      <div id="registerForm" class="form-container">
+        <div>
+          <label for="registerEmail">邮箱</label>
+          <input id="registerEmail" type="email" placeholder="请输入邮箱" />
+        </div>
+        <div>
+          <label for="registerPassword">密码</label>
+          <input id="registerPassword" type="password" placeholder="请输入密码" />
+        </div>
+        <div>
+          <label for="inviteCode">邀请码</label>
+          <input id="inviteCode" type="text" placeholder="请输入邀请码" />
+        </div>
+        <button class="btn" id="registerBtn">立即注册</button>
+        <div class="note">注册即表示您已年满18岁，且同意相关服务协议和隐私政策。</div>
+      </div>
+    </div>
+    
+    <div class="foot">开启您的财富增长之旅</div>
+  </div>
+
+  <script>
+    // 切换登录/注册表单
+    function switchTab(type) {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      
+      // 移除所有active类
+      tabBtns.forEach(btn => btn.classList.remove('active'));
+      loginForm.classList.remove('active');
+      registerForm.classList.remove('active');
+      
+      if (type === 'login') {
+        tabBtns[0].classList.add('active');
+        loginForm.classList.add('active');
+      } else {
+        tabBtns[1].classList.add('active');
+        registerForm.classList.add('active');
+      }
+    }
+    
+    // 解析邀请代码 from querystring
+    (function() {
+      const params = new URLSearchParams(location.search);
+      const inviteCode = params.get('invite') || params.get('code'); // 支持两种参数格式
+      if(inviteCode) {
+        // 如果有邀请码，自动切换到注册页面
+        switchTab('register');
+        document.getElementById('inviteCode').value = inviteCode;
+        document.getElementById('inviteCode').readOnly = true;
+        
+        // 显示邀请信息
+        const inviteInfo = document.createElement('div');
+        inviteInfo.style.cssText = 'background: rgba(86, 204, 242, 0.1); border: 1px solid var(--brand); border-radius: 8px; padding: 12px; margin-bottom: 16px; font-size: 14px; color: var(--brand);';
+        inviteInfo.innerHTML = `🎉 您通过邀请码 <strong>${inviteCode}</strong> 进入注册`;
+        document.querySelector('#registerForm .card').insertBefore(inviteInfo, document.querySelector('#registerForm .card').firstChild);
+      }
+    })();
+    
+    // 登录功能
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      
+      // 测试模式：如果没有填写邮箱密码，使用默认测试账号
+      if(!email && !password) {
+        // 使用测试账号自动登录
+        const testEmail = 'test@gold7.com';
+        const testPassword = 'test123';
+        
+        // 保存测试账号信息
+        localStorage.setItem('userEmail', testEmail);
+        localStorage.setItem('userPassword', testPassword);
+        localStorage.setItem('userStatus', '2'); // 设置为状态2，可以体验更多功能
+        
+        alert('测试模式登录成功！');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      if(!email || !password) {
+        alert('请输入邮箱和密码，或直接点击登录使用测试模式');
+        return;
+      }
+      
+      // 简单校验邮箱格式
+      if(!/.+@.+\..+/.test(email)) {
+        alert('邮箱格式不正确');
+        return;
+      }
+      
+      // 验证用户信息
+      const storedEmail = localStorage.getItem('userEmail');
+      const storedPassword = localStorage.getItem('userPassword');
+      
+      if(storedEmail === email && storedPassword === password) {
+        alert('登录成功！');
+        window.location.href = 'index.html';
+      } else {
+        alert('邮箱或密码错误，请检查后重试');
+      }
+    });
+    
+    // 注册功能
+    document.getElementById('registerBtn').addEventListener('click', () => {
+      const email = document.getElementById('registerEmail').value.trim();
+      const password = document.getElementById('registerPassword').value;
+      const invite = document.getElementById('inviteCode').value.trim();
+      
+      if(!email || !password || !invite) {
+        alert('请完整填写信息');
+        return;
+      }
+      
+      // 简单校验邮箱格式
+      if(!/.+@.+\..+/.test(email)) {
+        alert('邮箱格式不正确');
+        return;
+      }
+      
+      // 检查邮箱是否已注册
+      const storedEmail = localStorage.getItem('userEmail');
+      if(storedEmail === email) {
+        alert('该邮箱已注册，请直接登录');
+        switchTab('login');
+        document.getElementById('loginEmail').value = email;
+        return;
+      }
+      
+      // 保存到 localStorage (模拟注册)
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', password);
+      localStorage.setItem('myInviterCode', invite); // 保存邀请我的人的邀请码
+      // 设置状态1 (新手未入金)
+      localStorage.setItem('userStatus', '1');
+      
+      // 建立邀请关系 - 将自己添加到邀请人的团队中
+      const inviteRelations = JSON.parse(localStorage.getItem('inviteRelations') || '{}');
+      if (!inviteRelations[invite]) {
+        inviteRelations[invite] = [];
+      }
+      inviteRelations[invite].push({
+        email: email,
+        joinTime: new Date().toISOString(),
+        status: 'registered'
+      });
+      localStorage.setItem('inviteRelations', JSON.stringify(inviteRelations));
+      
+      alert('注册成功！即将跳转首页');
+      window.location.href = 'index.html';
+    });
+    
+    // 回车键登录/注册
+    document.addEventListener('keypress', function(e) {
+      if(e.key === 'Enter') {
+        const activeForm = document.querySelector('.form-container.active');
+        if(activeForm.id === 'loginForm') {
+          document.getElementById('loginBtn').click();
+        } else {
+          document.getElementById('registerBtn').click();
+        }
+      }
+    });
+  </script>
+  <script src="js/global-background.js"></script>
+</body>
+</html>

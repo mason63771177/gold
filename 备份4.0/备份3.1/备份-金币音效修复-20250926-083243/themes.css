@@ -1,0 +1,173 @@
+/* 多主题系统 - CSS变量定义 */
+:root {
+  /* 默认主题：赛博朋克 */
+  --bg-primary: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  --bg-secondary: rgba(26, 26, 46, 0.8);
+  --bg-card: linear-gradient(145deg, rgba(22, 33, 62, 0.9), rgba(26, 26, 46, 0.7));
+  --text-primary: #ffffff;
+  --text-secondary: #6dd5ed;
+  --text-accent: #2193b0;
+  --btn-gradient: linear-gradient(45deg, #2193b0, #6dd5ed);
+  --btn-shadow: 0 8px 32px rgba(33, 147, 176, 0.3);
+  --btn-glow: 0 0 20px rgba(109, 213, 237, 0.4);
+  --border-color: rgba(109, 213, 237, 0.3);
+  --accent-color: #6dd5ed;
+  --logo-filter: drop-shadow(0 0 8px rgba(109, 213, 237, 0.4));
+}
+
+
+
+/* 主题2：经典商务 */
+[data-theme="business"] {
+  --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+  --bg-secondary: rgba(52, 73, 94, 0.8);
+  --bg-card: linear-gradient(145deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.7));
+  --text-primary: #ecf0f1;
+  --text-secondary: #f39c12;
+  --text-accent: #e67e22;
+  --btn-gradient: linear-gradient(45deg, #f39c12, #e67e22);
+  --btn-shadow: 0 8px 32px rgba(243, 156, 18, 0.3);
+  --btn-glow: 0 0 20px rgba(243, 156, 18, 0.4);
+  --border-color: rgba(243, 156, 18, 0.3);
+  --accent-color: #f39c12;
+  --logo-filter: drop-shadow(0 0 8px rgba(243, 156, 18, 0.5));
+}
+
+/* 主题3：暗黑科技 */
+[data-theme="dark-tech"] {
+  --bg-primary: linear-gradient(135deg, #000000 0%, #0d1421 50%, #1a1a1a 100%);
+  --bg-secondary: rgba(13, 20, 33, 0.9);
+  --bg-card: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(13, 20, 33, 0.8));
+  --text-primary: #ffffff;
+  --text-secondary: #ff4757;
+  --text-accent: #ff3742;
+  --btn-gradient: linear-gradient(45deg, #ff4757, #ff3742);
+  --btn-shadow: 0 8px 32px rgba(255, 71, 87, 0.4);
+  --btn-glow: 0 0 20px rgba(255, 71, 87, 0.5);
+  --border-color: rgba(255, 71, 87, 0.4);
+  --accent-color: #ff4757;
+  --logo-filter: drop-shadow(0 0 10px rgba(255, 71, 87, 0.6));
+}
+
+/* 主题4：清新简约 */
+[data-theme="fresh"] {
+  --bg-primary: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+  --bg-secondary: rgba(248, 249, 250, 0.9);
+  --bg-card: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 249, 250, 0.8));
+  --text-primary: #212529;
+  --text-secondary: #20c997;
+  --text-accent: #17a2b8;
+  --btn-gradient: linear-gradient(45deg, #20c997, #17a2b8);
+  --btn-shadow: 0 4px 16px rgba(32, 201, 151, 0.2);
+  --btn-glow: 0 0 15px rgba(32, 201, 151, 0.3);
+  --border-color: rgba(32, 201, 151, 0.3);
+  --accent-color: #20c997;
+  --logo-filter: drop-shadow(0 0 6px rgba(32, 201, 151, 0.4));
+}
+
+/* 主题5：赛博朋克 */
+[data-theme="cyberpunk"] {
+  --bg-primary: linear-gradient(135deg, #0a0a0a 0%, #1a0d1a 25%, #0d1a1a 50%, #1a1a0d 75%, #0a0a0a 100%);
+  --bg-secondary: rgba(26, 13, 26, 0.95);
+  --bg-card: linear-gradient(145deg, rgba(26, 26, 13, 0.9), rgba(13, 26, 26, 0.8));
+  --text-primary: #00ff41;
+  --text-secondary: #ff0080;
+  --text-accent: #00d4ff;
+  --btn-gradient: linear-gradient(45deg, #ff0080, #00ff41, #00d4ff, #ff0080);
+  --btn-shadow: 0 8px 32px rgba(255, 0, 128, 0.5);
+  --btn-glow: 0 0 25px rgba(0, 255, 65, 0.6), 0 0 50px rgba(255, 0, 128, 0.4), 0 0 75px rgba(0, 212, 255, 0.3);
+  --border-color: rgba(0, 255, 65, 0.5);
+  --accent-color: #00ff41;
+  --logo-filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.8)) drop-shadow(0 0 30px rgba(255, 0, 128, 0.6));
+}
+
+
+
+/* 赛博朋克主题动画效果 */
+[data-theme="cyberpunk"] .btn {
+  animation: cyberpunk-glow 2s ease-in-out infinite alternate;
+}
+
+[data-theme="cyberpunk"] .logo-img {
+  animation: cyberpunk-logo 3s ease-in-out infinite;
+}
+
+[data-theme="cyberpunk"] .state-label {
+  animation: cyberpunk-text 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes cyberpunk-glow {
+  0% {
+    box-shadow: var(--btn-shadow), var(--btn-glow);
+    filter: brightness(1);
+  }
+  100% {
+    box-shadow: var(--btn-shadow), 0 0 35px rgba(0, 255, 65, 0.8), 0 0 70px rgba(255, 0, 128, 0.6), 0 0 105px rgba(0, 212, 255, 0.4);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes cyberpunk-logo {
+  0%, 100% {
+    filter: var(--logo-filter);
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(0, 255, 65, 1)) drop-shadow(0 0 40px rgba(255, 0, 128, 0.8)) drop-shadow(0 0 60px rgba(0, 212, 255, 0.6));
+    transform: scale(1.05);
+  }
+}
+
+@keyframes cyberpunk-text {
+  0% {
+    text-shadow: 0 0 6px var(--accent-color);
+    color: var(--text-secondary);
+  }
+  100% {
+    text-shadow: 0 0 12px var(--accent-color), 0 0 24px rgba(255, 0, 128, 0.6);
+    color: var(--accent-color);
+  }
+}
+
+/* 主题切换过渡动画 */
+* {
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 通用样式应用CSS变量 */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card, .content-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+.btn {
+  background: var(--btn-gradient);
+  box-shadow: var(--btn-shadow), var(--btn-glow);
+  border: 1px solid var(--border-color);
+}
+
+.logo-small, .logo-img {
+  filter: var(--logo-filter);
+}
+
+h1, h2, h3 {
+  color: var(--text-primary);
+}
+
+.accent-text {
+  color: var(--accent-color);
+}
+
+.secondary-text {
+  color: var(--text-secondary);
+}

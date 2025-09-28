@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>裂金7日 · 抢红包</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQ6GQ79K7G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QQ6GQ79K7G');
+  </script>
+  
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="css/global-background.css">
+  <script src="theme-switcher.js"></script>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #0e141d;
+      --brand: #56ccf2;
+      --brand-2: #2f80ed;
+      --text: #e6efff;
+      --muted: #9fb3cd;
+      --accent-border: rgba(111,158,255,0.18);
+      --safe: env(safe-area-inset-bottom, 0px);
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      overflow: hidden;
+    }
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      position: relative;
+      flex: 0 0 20%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 20px;
+    }
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #2193b0, #6dd5ed);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px rgba(109,213,237,0.5)) drop-shadow(0 0 24px rgba(109,213,237,0.3));
+      margin: 0;
+    }
+    /* 小logo样式 */
+    .logo-small {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-right: 8px;
+      filter: drop-shadow(0 0 8px rgba(109, 213, 237, 0.4)) drop-shadow(0 0 16px rgba(109, 213, 237, 0.2));
+    }
+
+    .content {
+      flex: 1;
+      padding: 0 16px;
+      overflow-x: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: linear-gradient(180deg, rgba(15,21,32,0.85), rgba(15,21,32,0.9));
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid var(--accent-border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .status {
+      font-size: 14px;
+      font-weight: 600;
+      color: #a3b6ff;
+      text-align: center;
+    }
+    .grab-btn {
+      appearance: none;
+      border: none;
+      border-radius: 16px;
+      padding: 14px 0;
+      font-size: 14px;
+      font-weight: 800;
+      color: #031e2e;
+      cursor: pointer;
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+    }
+    .grab-btn:disabled {
+      opacity: 0.5;
+      filter: grayscale(0.8);
+      cursor: default;
+    }
+    .recent {
+      font-size: 14px;
+      color: #cdd6f7;
+      margin-top: 10px;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .recent h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #a3b6ff;
+      text-align: center;
+    }
+    .recent-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .recent-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      font-size: 14px;
+    }
+    .bottom {
+      flex: 0 0 auto;
+      padding: 14px 16px calc(24px + var(--safe));
+      display: flex;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin: 0 12px 12px;
+      border-radius: 16px;
+    }
+    .bottom button {
+      flex: 1;
+      margin: 0 6px;
+      border: none;
+      border-radius: 16px;
+      padding: 14px 0;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
+      background-image: linear-gradient(180deg, var(--brand), var(--brand-2));
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+    }
+    .bottom button:hover { transform: translateY(-3px); filter: brightness(1.2); }
+    .bottom button:active { transform: translateY(0); filter: brightness(0.95); }
+  </style>
+    <link rel="stylesheet" href="css/design-system.css">
+</head>
+<body>
+  <script src="js/smart-back.js"></script>
+  <div class="container">
+    <div class="header">
+
+      <img src="logo_gold7.png" alt="Logo" class="logo-small" />
+      <h1 class="text-h1">抢红包</h1>
+    </div>
+    <div class="content">
+      <div class="card">
+        <div id="status" class="status">加载中…</div>
+        <button id="grabBtn" class="grab-btn" onclick="grab()" disabled>立即抢红包</button>
+        <div class="recent">
+          <h3>近期红包领取</h3>
+          <ul id="recentList" class="recent-list"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <button onclick="smartBack()">返回</button>
+    </div>
+  </div>
+  <script>
+    // 判断是否在可抢时间段
+    function inWindow() {
+      const now = new Date();
+      const hour = now.getHours();
+      const minute = now.getMinutes();
+      const second = now.getSeconds();
+      // 三个窗口：9:00-9:01:17, 12:00-12:01:17, 20:00-20:01:17
+      const windows = [ {h:9,m:0}, {h:12,m:0}, {h:20,m:0} ];
+      for (const w of windows) {
+        const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), w.h, w.m, 0);
+        const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), w.h, w.m, 0);
+        end.setSeconds(end.getSeconds() + 77);
+        if (now >= start && now <= end) {
+          const leftMs = end - now;
+          return {eligible: true, left: Math.floor(leftMs/1000)};
+        }
+      }
+      return {eligible: false};
+    }
+    function updateStatus() {
+      const st = inWindow();
+      const statusEl = document.getElementById('status');
+      const btn = document.getElementById('grabBtn');
+      if (st.eligible) {
+        statusEl.textContent = `红包进行中，剩余 ${st.left} 秒`;
+        btn.disabled = false;
+      } else {
+        // 计算下一次时间
+        const now = new Date();
+        const next = [9,12,20].map(h=>{
+          let t = new Date(now.getFullYear(), now.getMonth(), now.getDate(), h,0,0);
+          if (t <= now) t.setDate(t.getDate()+1);
+          return t;
+        }).sort((a,b)=>a-b)[0];
+        const diff = next - now;
+        const hours = Math.floor(diff/3600000);
+        const minutes = Math.floor((diff%3600000)/60000);
+        statusEl.textContent = `下轮 ${next.getHours()}:00 开始，剩余 ${hours}小时${minutes}分钟`;
+        btn.disabled = true;
+      }
+    }
+    // 抢红包逻辑
+    function grab() {
+      const st = inWindow();
+      if (!st.eligible) {
+        alert('不在红包开放时间，无法抢。');
+        return;
+      }
+      // 检查资格：状态存在于 localStorage 的 status=2【已取消状态4】
+        const status = parseInt(localStorage.getItem('userStatus')) || 1;
+        if (status !== 2) {
+        alert('当前状态没有资格抢红包。');
+        return;
+      }
+      // 生成随机金额 0.01 - 5 USDT
+      const amt = (Math.random() * 4.99 + 0.01);
+      const prize = parseFloat(amt.toFixed(2));
+      // 更新余额
+      const bal = parseFloat(localStorage.getItem('walletBalance') || '0');
+      const newBal = bal + prize;
+      localStorage.setItem('walletBalance', newBal.toFixed(2));
+      // 写入交易记录
+      let tx = [];
+      try {
+        const stored = localStorage.getItem('transactions');
+        if (stored) tx = JSON.parse(stored);
+      } catch (e) {}
+      tx.push({ type: '红包', amount: prize, fee: 0, net: prize, time: new Date().toISOString() });
+      localStorage.setItem('transactions', JSON.stringify(tx));
+      // 更新近期列表
+      let recent = [];
+      try {
+        const s = localStorage.getItem('recentRed');
+        if (s) recent = JSON.parse(s);
+      } catch (e) {}
+      recent.push({ name: '你', amount: prize.toFixed(2) });
+      if (recent.length > 20) recent.shift();
+      localStorage.setItem('recentRed', JSON.stringify(recent));
+      renderRecent();
+      alert(`恭喜你抢到 ${prize.toFixed(2)} USDT！\n当前余额：${newBal.toFixed(2)} USDT`);
+    }
+    function renderRecent() {
+      let recent = [];
+      try {
+        const s = localStorage.getItem('recentRed');
+        if (s) recent = JSON.parse(s);
+      } catch (e) {}
+      const ul = document.getElementById('recentList');
+      ul.innerHTML = '';
+      recent.slice().reverse().forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'recent-item';
+        li.innerHTML = `<span>${item.name}</span><span>${item.amount} USDT</span>`;
+        ul.appendChild(li);
+      });
+    }
+    // 页面初始化
+    window.addEventListener('DOMContentLoaded', () => {
+      renderRecent();
+      updateStatus();
+      setInterval(updateStatus, 1000);
+    });
+  </script>
+  <script src="js/global-background.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消息中心功能测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            opacity: 0.9;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>消息中心功能测试</h1>
+        
+        <div class="test-section">
+            <h3>1. 本地存储测试</h3>
+            <button class="test-button" onclick="testLocalStorage()">测试本地存储</button>
+            <div id="localStorage-status" class="status info">点击按钮开始测试...</div>
+        </div>
+        
+        <div class="test-section">
+            <h3>2. Bug报告数据结构测试</h3>
+            <button class="test-button" onclick="testBugReportStructure()">测试Bug报告结构</button>
+            <div id="bugStructure-status" class="status info">点击按钮开始测试...</div>
+        </div>
+        
+        <div class="test-section">
+            <h3>3. 消息系统集成测试</h3>
+            <button class="test-button" onclick="testMessageIntegration()">测试消息系统</button>
+            <div id="messageIntegration-status" class="status info">点击按钮开始测试...</div>
+        </div>
+        
+        <div class="test-section">
+            <h3>4. 功能完整性检查</h3>
+            <button class="test-button" onclick="testFunctionCompleteness()">检查功能完整性</button>
+            <div id="completeness-status" class="status info">点击按钮开始测试...</div>
+        </div>
+        
+        <div class="test-section">
+            <h3>5. 打开主页面测试</h3>
+            <button class="test-button" onclick="openMainPage()">打开主页面</button>
+            <div id="mainPage-status" class="status info">点击按钮打开主页面进行手动测试...</div>
+        </div>
+    </div>
+
+    <script>
+        function testLocalStorage() {
+            const statusDiv = document.getElementById('localStorage-status');
+            try {
+                // 测试基本的localStorage功能
+                const testData = { test: 'data', timestamp: Date.now() };
+                localStorage.setItem('test_message_features', JSON.stringify(testData));
+                
+                const retrieved = JSON.parse(localStorage.getItem('test_message_features'));
+                
+                if (retrieved && retrieved.test === 'data') {
+                    statusDiv.className = 'status success';
+                    statusDiv.innerHTML = '✅ 本地存储功能正常';
+                } else {
+                    throw new Error('数据检索失败');
+                }
+                
+                // 清理测试数据
+                localStorage.removeItem('test_message_features');
+                
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `❌ 本地存储测试失败: ${error.message}`;
+            }
+        }
+        
+        function testBugReportStructure() {
+            const statusDiv = document.getElementById('bugStructure-status');
+            try {
+                // 模拟Bug报告数据结构
+                const bugReport = {
+                    id: `bug_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                    title: '测试Bug报告',
+                    description: '这是一个测试用的Bug报告描述',
+                    type: '功能问题',
+                    time: new Date().toISOString(),
+                    status: '已提交'
+                };
+                
+                // 验证必要字段
+                const requiredFields = ['id', 'title', 'description', 'type', 'time', 'status'];
+                const missingFields = requiredFields.filter(field => !bugReport[field]);
+                
+                if (missingFields.length === 0) {
+                    statusDiv.className = 'status success';
+                    statusDiv.innerHTML = `✅ Bug报告数据结构正确<br>示例ID: ${bugReport.id}`;
+                } else {
+                    throw new Error(`缺少必要字段: ${missingFields.join(', ')}`);
+                }
+                
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `❌ Bug报告结构测试失败: ${error.message}`;
+            }
+        }
+        
+        function testMessageIntegration() {
+            const statusDiv = document.getElementById('messageIntegration-status');
+            try {
+                // 检查是否存在消息相关的localStorage数据
+                const messages = localStorage.getItem('messages');
+                const messageReadStatus = localStorage.getItem('messageReadStatus');
+                const bugReports = localStorage.getItem('bugReports');
+                
+                let results = [];
+                
+                if (messages) {
+                    results.push('✅ 消息数据存在');
+                } else {
+                    results.push('⚠️ 消息数据不存在（可能是首次访问）');
+                }
+                
+                if (messageReadStatus) {
+                    results.push('✅ 消息已读状态数据存在');
+                } else {
+                    results.push('⚠️ 消息已读状态数据不存在');
+                }
+                
+                if (bugReports) {
+                    results.push('✅ Bug报告数据存在');
+                } else {
+                    results.push('⚠️ Bug报告数据不存在（可能是首次访问）');
+                }
+                
+                statusDiv.className = 'status info';
+                statusDiv.innerHTML = results.join('<br>');
+                
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `❌ 消息系统集成测试失败: ${error.message}`;
+            }
+        }
+        
+        function testFunctionCompleteness() {
+            const statusDiv = document.getElementById('completeness-status');
+            
+            // 检查主页面是否包含必要的功能
+            fetch('/')
+                .then(response => response.text())
+                .then(html => {
+                    const checks = [
+                        { name: '一键已读按钮', pattern: /一键已读|mark-all-read-btn|markAllAsRead/i },
+                        { name: 'Bug报告标签', pattern: /Bug报告|bug.*报告/i },
+                        { name: 'Bug提交表单', pattern: /bugTitle|bugDescription|bugType/i },
+                        { name: 'Bug报告函数', pattern: /submitBugReport|renderBugReportList/i },
+                        { name: 'Bug报告初始化', pattern: /initBugReports/i }
+                    ];
+                    
+                    const results = checks.map(check => {
+                        const found = check.pattern.test(html);
+                        return `${found ? '✅' : '❌'} ${check.name}`;
+                    });
+                    
+                    const allPassed = checks.every(check => check.pattern.test(html));
+                    
+                    statusDiv.className = allPassed ? 'status success' : 'status error';
+                    statusDiv.innerHTML = results.join('<br>');
+                })
+                .catch(error => {
+                    statusDiv.className = 'status error';
+                    statusDiv.innerHTML = `❌ 功能完整性检查失败: ${error.message}`;
+                });
+        }
+        
+        function openMainPage() {
+            const statusDiv = document.getElementById('mainPage-status');
+            statusDiv.className = 'status info';
+            statusDiv.innerHTML = '🔄 正在打开主页面...';
+            
+            // 在新标签页中打开主页面
+            window.open('/', '_blank');
+            
+            setTimeout(() => {
+                statusDiv.innerHTML = '✅ 主页面已在新标签页中打开，请手动测试消息中心功能';
+            }, 1000);
+        }
+        
+        // 页面加载时自动运行基础测试
+        window.onload = function() {
+            console.log('消息中心功能测试页面已加载');
+        };
+    </script>
+</body>
+</html>

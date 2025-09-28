@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国际化系统测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .controls {
+            margin: 20px 0;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+        }
+        .error {
+            background: #ffe7e7;
+            border-color: #ffb3b3;
+            color: #d00;
+        }
+        .success {
+            background: #e7ffe7;
+            border-color: #b3ffb3;
+            color: #0a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ui.title}}</h1>
+        
+        <div class="controls">
+            <button onclick="switchLanguage('zh-CN')">中文</button>
+            <button onclick="switchLanguage('en-US')">English</button>
+            <button onclick="testI18n()">{{ui.test_button}}</button>
+        </div>
+
+        <div id="status" class="status">
+            {{ui.loading}}
+        </div>
+
+        <div class="test-section">
+            <h3>{{ui.template_test}}</h3>
+            <p>{{ui.welcome_message}}</p>
+            <p>{{ui.current_time}}: <span id="current-time"></span></p>
+            <input type="text" placeholder="{{ui.input_placeholder}}" />
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSIjRkZENzAwIi8+Cjwvc3ZnPgo=" alt="{{ui.star_icon}}" />
+        </div>
+
+        <div class="test-section">
+            <h3>{{ui.function_test}}</h3>
+            <p id="js-text">{{ui.js_loading}}</p>
+            <button onclick="updateJSText()">{{ui.update_text}}</button>
+        </div>
+
+        <div class="test-section">
+            <h3>{{ui.interpolation_test}}</h3>
+            <p id="interpolation-text">{{ui.user_info}}</p>
+        </div>
+
+        <div class="test-section">
+            <h3>{{ui.nested_test}}</h3>
+            <p>{{content.welcome}}</p>
+            <p>{{content.description}}</p>
+        </div>
+    </div>
+
+    <!-- 加载国际化系统 -->
+    <script src="i18n/texts.js"></script>
+    <script src="i18n/engine.js"></script>
+    <script src="i18n/lang/zh-CN.js"></script>
+    <script src="i18n/lang/en-US.js"></script>
+
+    <script>
+        let i18n;
+        let currentLang = 'zh-CN';
+
+        // 初始化国际化系统
+        async function initI18n() {
+            try {
+                i18n = new I18nEngine();
+                await i18n.init();
+                await i18n.setLanguage(currentLang);
+                
+                updateStatus('国际化系统初始化成功', 'success');
+                updateTime();
+                setInterval(updateTime, 1000);
+            } catch (error) {
+                updateStatus('初始化失败: ' + error.message, 'error');
+                console.error('I18n initialization error:', error);
+            }
+        }
+
+        // 切换语言
+        async function switchLanguage(lang) {
+            if (!i18n) {
+                updateStatus('国际化系统未初始化', 'error');
+                return;
+            }
+
+            try {
+                currentLang = lang;
+                await i18n.setLanguage(lang);
+                updateStatus(`语言已切换到: ${lang}`, 'success');
+                updateJSText();
+                updateInterpolationText();
+            } catch (error) {
+                updateStatus('语言切换失败: ' + error.message, 'error');
+                console.error('Language switch error:', error);
+            }
+        }
+
+        // 测试国际化功能
+        function testI18n() {
+            if (!i18n) {
+                updateStatus('国际化系统未初始化', 'error');
+                return;
+            }
+
+            const tests = [
+                { key: 'ui.title', expected: true },
+                { key: 'content.welcome', expected: true },
+                { key: 'nonexistent.key', expected: false }
+            ];
+
+            let passed = 0;
+            let total = tests.length;
+
+            tests.forEach(test => {
+                const result = i18n.t(test.key);
+                const isValid = result !== test.key; // 如果返回原key说明没找到翻译
+                
+                if (isValid === test.expected) {
+                    passed++;
+                }
+                
+                console.log(`Test ${test.key}: ${isValid ? 'PASS' : 'FAIL'} (result: ${result})`);
+            });
+
+            updateStatus(`测试完成: ${passed}/${total} 通过`, passed === total ? 'success' : 'error');
+        }
+
+        // 更新状态显示
+        function updateStatus(message, type = '') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = 'status ' + type;
+        }
+
+        // 更新时间显示
+        function updateTime() {
+            const timeEl = document.getElementById('current-time');
+            if (timeEl) {
+                timeEl.textContent = new Date().toLocaleString();
+            }
+        }
+
+        // 更新JS文本
+        function updateJSText() {
+            if (!i18n) return;
+            
+            const jsTextEl = document.getElementById('js-text');
+            if (jsTextEl) {
+                jsTextEl.textContent = i18n.t('ui.js_updated');
+            }
+        }
+
+        // 更新插值文本
+        function updateInterpolationText() {
+            if (!i18n) return;
+            
+            const interpolationEl = document.getElementById('interpolation-text');
+            if (interpolationEl) {
+                const userName = currentLang === 'zh-CN' ? '张三' : 'John';
+                const userAge = 25;
+                interpolationEl.innerHTML = i18n.t('ui.user_info', { name: userName, age: userAge });
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initI18n);
+    </script>
+</body>
+</html>

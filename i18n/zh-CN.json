@@ -1,0 +1,80 @@
+{
+  "common": {
+    "confirm": "确认",
+    "ok": "确定",
+    "cancel": "取消",
+    "close": "关闭",
+    "save": "保存",
+    "loading": "加载中...",
+    "success": "成功",
+    "error": "错误",
+    "warning": "警告",
+    "info": "信息"
+  },
+  "header": {
+    "welcome": "欢迎加入裂金7日"
+  },
+  "status": {
+    "state1": "状态1",
+    "state2": "状态2", 
+    "state3": "状态3",
+    "state4": "状态4"
+  },
+  "state1": {
+    "activateAccount": "激活账号",
+    "activateDescription": "立即入金100 USDT，开启168小时挑战期，解锁任务系统和收益机会。",
+    "activateButton": "立即激活 100 USDT",
+    "earningsPreview": "收益预览",
+    "earningsDescription": "查看前10名收益排行榜，了解潜在收益机会。",
+    "viewRankingButton": "查看排行榜"
+  },
+  "state2": {
+    "currentTask": "当前任务",
+    "allTasksCompleted": "所有新手任务已完成",
+    "availableTasks": "可接的任务",
+    "clickToViewTasks": "点击查看详细任务列表",
+    "pending": "待完成"
+  },
+  "state3": {
+    "subtitle": "倒计时结束未复购",
+    "reactivate": "再次激活",
+    "reactivateDescription": "重新开启168小时挑战，继续赚取收益！",
+    "reactivateButton": "立即激活 100 USDT",
+    "performanceCard": "战绩卡",
+    "currentEarnings": "本期收益",
+    "newbieTasks": "新手任务",
+    "completed": "完成",
+    "teamMembers": "团队人数",
+    "people": "人",
+    "myTeam": "我的团队",
+    "teamDescription": "查看七层团队结构和人数。"
+  },
+  "buttons": {
+    "redPacket": "红包",
+    "team": "团队",
+    "wallet": "钱包",
+    "ranking": "排行"
+  },
+  "settings": {
+    "title": "设置中心",
+    "notLoggedIn": "未登录",
+    "inviteCode": "邀请码",
+    "appearance": "外观设置",
+    "themeStyle": "主题风格",
+    "themeDescription": "选择您喜欢的界面主题",
+    "language": "语言",
+    "languageDescription": "选择界面显示语言",
+    "functions": "功能设置",
+    "messageNotification": "消息通知",
+    "messageNotificationDescription": "接收系统消息和提醒",
+    "soundEffect": "音效",
+    "soundEffectDescription": "开启游戏音效和提示音",
+    "dataManagement": "数据管理",
+    "dataManagementDescription": "管理本地存储的数据",
+    "resetData": "重置数据"
+  },
+  "language": {
+    "switchSuccess": "语言切换成功",
+    "switchFailed": "语言切换失败"
+  }
+}

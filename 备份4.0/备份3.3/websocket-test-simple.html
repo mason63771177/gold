@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket快速测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .log { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        button { padding: 10px 20px; margin: 5px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h2>WebSocket连接测试</h2>
+    <button onclick="testConnection()">测试连接</button>
+    <button onclick="clearLog()">清空日志</button>
+    <div id="log"></div>
+
+    <script>
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'success' ? 'success' : type === 'error' ? 'error' : '';
+            logDiv.innerHTML += `<div class="log ${className}">[${timestamp}] ${message}</div>`;
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+
+        function testConnection() {
+            log('开始WebSocket连接测试...');
+            
+            // 使用测试token
+            const testToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiaWF0IjoxNzU5MDEzMTM3LCJleHAiOjE3NTkwMTY3Mzd9.XD_0HbIvq5lL5PNdv5aTL6YUH_OVbp3Jdc44O-2HWT4';
+            
+            const wsUrl = `ws://localhost:3000/ws?token=${encodeURIComponent(testToken)}`;
+            log(`连接地址: ${wsUrl}`);
+            
+            const ws = new WebSocket(wsUrl);
+            
+            ws.onopen = function(event) {
+                log('✅ WebSocket连接成功！', 'success');
+                
+                // 发送测试消息
+                ws.send(JSON.stringify({
+                    type: 'ping',
+                    timestamp: Date.now()
+                }));
+                log('📤 发送ping消息');
+            };
+            
+            ws.onmessage = function(event) {
+                log(`📨 收到消息: ${event.data}`, 'success');
+            };
+            
+            ws.onclose = function(event) {
+                log(`🔌 连接关闭 (代码: ${event.code})`, event.code === 1000 ? 'success' : 'error');
+            };
+            
+            ws.onerror = function(error) {
+                log(`❌ 连接错误: ${error}`, 'error');
+            };
+            
+            // 5秒后自动关闭连接
+            setTimeout(() => {
+                if (ws.readyState === WebSocket.OPEN) {
+                    ws.close();
+                    log('⏰ 测试完成，主动关闭连接');
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

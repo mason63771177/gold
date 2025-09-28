@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="business">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>裂金7日 · 登录注册</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQ6GQ79K7G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QQ6GQ79K7G');
+  </script>
+  
+  <link rel="stylesheet" href="css/global-background.css">
+  <style>
+    /* 多主题系统 - CSS变量定义 */
+    :root {
+      /* 默认主题：赛博朋克 */
+      --bg-primary: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+      --bg-secondary: rgba(26, 26, 46, 0.8);
+      --bg-card: linear-gradient(145deg, rgba(22, 33, 62, 0.9), rgba(26, 26, 46, 0.7));
+      --text-primary: #ffffff;
+      --text-secondary: #6dd5ed;
+      --text-accent: #2193b0;
+      --btn-gradient: linear-gradient(45deg, #2193b0, #6dd5ed);
+      --btn-shadow: 0 8px 32px rgba(33, 147, 176, 0.3);
+      --btn-glow: 0 0 20px rgba(109, 213, 237, 0.4);
+      --border-color: rgba(109, 213, 237, 0.3);
+      --accent-color: #6dd5ed;
+      --logo-filter: drop-shadow(0 0 8px rgba(109, 213, 237, 0.4));
+      
+      /* 原有变量保持兼容 */
+      --bg:#0b0f14;
+      --panel:#111823;
+      --card:#0e141d;
+      --brand:#56ccf2;
+      --brand-2:#2f80ed;
+      --text:#e6efff;
+      --muted:#9fb3cd;
+      --danger:#ff5d5d;
+      --ok:#1ed760;
+      --safe: env(safe-area-inset-bottom, 0px);
+    }
+
+    /* 主题2：经典商务 */
+    [data-theme="business"] {
+      --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+      --bg-secondary: rgba(52, 73, 94, 0.8);
+      --bg-card: linear-gradient(145deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.7));
+      --text-primary: #ecf0f1;
+      --text-secondary: #f39c12;
+      --text-accent: #e67e22;
+      --btn-gradient: linear-gradient(45deg, #f39c12, #e67e22);
+      --btn-shadow: 0 8px 32px rgba(243, 156, 18, 0.3);
+      --btn-glow: 0 0 20px rgba(243, 156, 18, 0.4);
+      --border-color: rgba(243, 156, 18, 0.3);
+      --accent-color: #f39c12;
+      --logo-filter: drop-shadow(0 0 8px rgba(243, 156, 18, 0.5));
+      
+      /* 兼容原有变量名 */
+      --bg: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+      --panel: rgba(52, 73, 94, 0.8);
+      --card: linear-gradient(145deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.7));
+      --brand: #f39c12;
+      --brand-2: #e67e22;
+      --text: #ecf0f1;
+      --muted: #bdc3c7;
+      --danger: #e74c3c;
+      --ok: #27ae60;
+    }
+
+    /* 主题5：赛博朋克 */
+    [data-theme="cyberpunk"] {
+      --bg-primary: linear-gradient(135deg, #0a0a0a 0%, #1a0d1a 25%, #0d1a1a 50%, #1a1a0d 75%, #0a0a0a 100%);
+      --bg-secondary: rgba(26, 13, 26, 0.95);
+      --bg-card: linear-gradient(145deg, rgba(26, 26, 13, 0.9), rgba(13, 26, 26, 0.8));
+      --text-primary: #00ff41;
+      --text-secondary: #ff0080;
+      --text-accent: #00d4ff;
+      --btn-gradient: linear-gradient(45deg, #ff0080, #00ff41, #00d4ff, #ff0080);
+      --btn-shadow: 0 8px 32px rgba(255, 0, 128, 0.5);
+      --btn-glow: 0 0 25px rgba(0, 255, 65, 0.6), 0 0 50px rgba(255, 0, 128, 0.4), 0 0 75px rgba(0, 212, 255, 0.3);
+      --border-color: rgba(0, 255, 65, 0.5);
+      --accent-color: #00ff41;
+      --logo-filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.8)) drop-shadow(0 0 30px rgba(255, 0, 128, 0.6));
+    }
+
+    /* 赛博朋克主题动画效果 */
+    [data-theme="cyberpunk"] .btn {
+      animation: cyberpunk-glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes cyberpunk-glow {
+      0% {
+        box-shadow: var(--btn-shadow), var(--btn-glow);
+        filter: brightness(1);
+      }
+      100% {
+        box-shadow: var(--btn-shadow), 0 0 35px rgba(0, 255, 65, 0.8), 0 0 70px rgba(255, 0, 128, 0.6), 0 0 105px rgba(0, 212, 255, 0.4);
+        filter: brightness(1.2);
+      }
+    }
+
+    /* 主题切换过渡动画 */
+    * {
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;background:var(--bg-primary);background-attachment:fixed;color:var(--text-primary);margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",PingFang SC,Helvetica,Arial,"Microsoft Yahei",sans-serif;position:relative;overflow-x:hidden;display:flex;align-items:center;justify-content:center;padding:20px;}
+    
+    /* 添加背景光效 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(-20px, -20px) rotate(1deg); }
+      66% { transform: translate(20px, -10px) rotate(-1deg); }
+    }
+    .app{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px;}
+    h1 {
+      margin-top: 0;
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+      background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      margin-bottom: 25px;
+      font-weight: 400;
+    }
+    
+    .challenge-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 179, 71, 0.2) 100%);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: #ffd700;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    /* logo 样式 */
+    .logo-small {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 16px auto;
+    }
+    
+    .logo {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 20px auto;
+    }
+
+    .card{
+      background: rgba(14, 20, 29, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 20px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 215, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 215, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    .card > div{margin-bottom:16px;}
+    .card > div:last-child{margin-bottom:0;}
+    label{display:block;margin-bottom:8px;font-size:14px;font-weight:500;color:var(--text);}
+    input{
+      width:100%;
+      padding:12px 16px;
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:8px;
+      background:rgba(255,255,255,0.05);
+      color:var(--text);
+      font-size:16px;
+      transition:all 0.2s ease;
+    }
+    input:focus{
+      outline:none;
+      border-color:var(--brand);
+      background:rgba(255,255,255,0.08);
+    }
+    input::placeholder{color:var(--muted);}
+    .btn{
+      width:100%;
+      padding:4px 24px;
+      background:var(--btn-gradient);
+      border:none;
+      border-radius:12px;
+      color:var(--text-primary);
+      font-size:16px;
+      font-weight:700;
+      cursor:pointer;
+      transition:all 0.3s ease;
+      margin-top:8px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:var(--btn-shadow);
+    }
+    .btn::before {
+      content:'';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition:left 0.5s ease;
+    }
+    .btn:hover::before {
+      left:100%;
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:var(--btn-glow);
+    }
+    .btn:active{transform:translateY(0);}
+    .btn:disabled {
+      opacity:0.6;
+      cursor:not-allowed;
+      transform:none;
+    }
+    .loading-btn {
+      position:relative;
+      color:transparent;
+    }
+    .loading-btn::after {
+      content:'';
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:20px;
+      height:20px;
+      margin:-10px 0 0 -10px;
+      border:2px solid #0b0f14;
+      border-top:2px solid transparent;
+      border-radius:50%;
+      animation:spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform:rotate(0deg); }
+      100% { transform:rotate(360deg); }
+    }
+    .note{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.4;}
+    .foot{
+      margin-top:40px;
+      text-align:center;
+      font-size:12px;
+      color:var(--muted);
+    }
+    
+    /* 切换按钮样式 */
+    .tab-container {
+      display: flex;
+      margin-bottom: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tab-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      z-index: 1;
+    }
+    
+    .tab-container.register-active::before {
+      transform: translateX(100%);
+    }
+    
+    .tab-btn {
+      flex: 1;
+      padding: 12px 20px;
+      border: none;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .tab-btn.active {
+      color: #0b0f14;
+      font-weight: 700;
+    }
+    
+    .tab-btn:not(.active):hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* 表单切换 */
+    .form-container {
+      display: none;
+      position: relative;
+    }
+    .form-container.active {
+      display: block;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: #ffd700;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+    }
+    
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    
+    /* 密码强度指示器 */
+    .password-strength {
+      margin-top: 8px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .password-strength.visible {
+      opacity: 1;
+    }
+    
+    .password-strength-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff4444, #ffaa00, #00aa00);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+    
+    .security-tip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .security-icon {
+      width: 16px;
+      height: 16px;
+      background: rgba(255, 215, 0, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #ffd700;
+    }
+    
+    /* 触摸优化 */
+    .tab-btn, button, input {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    
+    /* 输入框焦点优化 */
+    input:focus {
+      outline: none;
+      border-color: #ffd700;
+      box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+      transform: translateY(-1px);
+    }
+    
+    /* 错误状态样式 */
+    .error-message {
+      color: #ff6b6b;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+      animation: shake 0.5s ease-in-out;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    
+    .form-group.error input {
+      border-color: #ff6b6b;
+      box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+    }
+    
+    .form-group.error .error-message {
+      display: block;
+    }
+    
+    /* 成功状态样式 */
+    .form-group.success input {
+      border-color: #4ecdc4;
+      box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.2);
+    }
+    
+    /* 按钮禁用状态 */
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+    
+    button:disabled:hover {
+      transform: none !important;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3) !important;
+    }
+    
+    /* 移动端优化 */
+    @media (max-width: 480px) {
+      .app {
+        padding: 16px 12px;
+        min-height: 100vh;
+        justify-content: center;
+      }
+      
+      .card {
+        width: 100%;
+        max-width: none;
+        padding: 24px 16px;
+        margin: 0;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+      
+      .logo {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 16px;
+      }
+      
+      h1 {
+        font-size: 24px;
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+      
+      .subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+      
+      .challenge-badge {
+        font-size: 11px;
+        padding: 3px 10px;
+        margin-bottom: 16px;
+      }
+      
+      .tab-container {
+        margin-bottom: 24px;
+      }
+      
+      .form-group {
+        margin-bottom: 18px;
+      }
+      
+      .form-group label {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+      
+      .form-group input {
+        padding: 14px 16px;
+        font-size: 16px; /* 防止iOS缩放 */
+        border-radius: 10px;
+      }
+      
+      .tab-btn {
+        padding: 12px 16px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      
+      button {
+        padding: 16px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 12px;
+        margin-top: 8px;
+      }
+      
+      .security-tip {
+        font-size: 12px;
+        margin-top: 6px;
+      }
+      
+      .security-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+      }
+      
+      .error-message {
+        font-size: 12px;
+        margin-top: 4px;
+      }
+      
+      .note {
+        font-size: 12px;
+        margin-top: 12px;
+      }
+      
+      .foot {
+        font-size: 12px;
+        margin-top: 24px;
+      }
+    }
+    
+    /* 小屏幕设备优化 */
+    @media (max-width: 360px) {
+      .app {
+        padding: 12px 8px;
+      }
+      
+      .card {
+        padding: 20px 12px;
+      }
+      
+      .logo {
+        width: 120px;
+        height: 120px;
+      }
+      
+      h1 {
+        font-size: 22px;
+      }
+      
+      .form-group input {
+        padding: 12px 14px;
+        font-size: 16px;
+      }
+      
+      button {
+        padding: 14px 16px;
+        font-size: 15px;
+      }
+    }
+    
+    /* 键盘弹出时的优化 */
+    @media (max-height: 600px) {
+      .app {
+        padding: 8px;
+        justify-content: flex-start;
+        padding-top: 16px;
+      }
+      
+      .logo {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 12px;
+      }
+      
+      h1 {
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+      
+      .subtitle {
+        margin-bottom: 12px;
+      }
+      
+      .challenge-badge {
+        margin-bottom: 12px;
+      }
+      
+      .form-group {
+        margin-bottom: 12px;
+      }
+      
+      .tab-container {
+        margin-bottom: 16px;
+      }
+      
+      .security-tip {
+        display: none; /* 键盘弹出时隐藏提示文字 */
+      }
+      
+      .foot {
+        margin-top: 16px;
+      }
+    }
+    
+    /* 横屏模式优化 */
+    @media (orientation: landscape) and (max-height: 500px) {
+      .app {
+        padding: 8px 16px;
+        justify-content: flex-start;
+      }
+      
+      .card {
+        padding: 16px;
+        max-width: 400px;
+      }
+      
+      .logo {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 8px;
+      }
+      
+      h1 {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+      
+      .subtitle {
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+      
+      .challenge-badge {
+        font-size: 10px;
+        margin-bottom: 8px;
+      }
+      
+      .form-group {
+        margin-bottom: 10px;
+      }
+      
+      .tab-container {
+        margin-bottom: 12px;
+      }
+      
+      .security-tip {
+        display: none;
+      }
+      
+      .foot {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="card">
+      <img src="logo_gold7.png" alt="裂金7日" class="logo" />
+      <h1>裂金7日挑战</h1>
+      <div class="subtitle">
+        <div class="challenge-badge">🏆 7天财富挑战</div>
+        <div>开启你的财富增长之旅</div>
+      </div>
+      
+      <div class="tab-container" id="tabContainer">
+        <button class="tab-btn active" onclick="showLogin()">登录</button>
+        <button class="tab-btn" onclick="showRegister()">注册</button>
+      </div>
+      
+      <!-- 登录表单 -->
+      <div id="loginForm" class="form-container active">
+        <div class="form-group">
+          <label for="loginEmail">邮箱地址</label>
+          <input id="loginEmail" type="email" placeholder="请输入邮箱地址" required />
+          <div class="security-tip">
+            <div class="security-icon">🔒</div>
+            <span>我们使用加密技术保护您的信息</span>
+          </div>
+          <div class="error-message">请输入有效的邮箱地址</div>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">密码</label>
+          <input id="loginPassword" type="password" placeholder="请输入密码" required />
+          <div class="error-message">密码不能为空</div>
+        </div>
+        <button class="btn" id="loginBtn">开始挑战</button>
+        <div class="note">
+          <div class="security-tip">
+            <div class="security-icon">⚡</div>
+            <span>测试模式：点击即可快速体验</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 注册表单 -->
+      <div id="registerForm" class="form-container">
+        <div class="form-group">
+          <label for="registerEmail">邮箱地址</label>
+          <input id="registerEmail" type="email" placeholder="请输入邮箱地址" required />
+          <div class="security-tip">
+            <div class="security-icon">🔒</div>
+            <span>邮箱将用于账户安全验证</span>
+          </div>
+          <div class="error-message">请输入有效的邮箱地址</div>
+        </div>
+        <div class="form-group">
+          <label for="registerPassword">设置密码</label>
+          <input id="registerPassword" type="password" placeholder="请设置密码（至少6位）" required oninput="checkPasswordStrength(this.value)" />
+          <div class="password-strength" id="passwordStrength">
+            <div class="password-strength-bar" id="passwordStrengthBar"></div>
+          </div>
+          <div class="security-tip">
+            <div class="security-icon">🛡️</div>
+            <span>建议使用字母、数字和符号组合</span>
+          </div>
+          <div class="error-message">密码至少需要6位字符</div>
+        </div>
+        <div class="form-group">
+          <label for="inviteCode">邀请码 <span style="color: #ff5d5d;">*</span></label>
+          <input id="inviteCode" type="text" placeholder="请输入邀请码" required />
+          <div class="security-tip">
+            <div class="security-icon">👥</div>
+            <span>我们是团队结构游戏，不支持玩家独立注册</span>
+          </div>
+          <div class="error-message">邀请码为必填项，请联系推荐人获取</div>
+        </div>
+        <button class="btn" id="registerBtn">加入挑战</button>
+        <div class="note">
+          <div class="security-tip">
+            <div class="security-icon">📋</div>
+            <span>注册即表示同意用户协议和隐私政策</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="foot">开启您的财富增长之旅</div>
+  </div>
+
+  <script>
+    // 切换登录/注册表单
+    function switchTab(type) {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const tabContainer = document.getElementById('tabContainer');
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      
+      // 移除所有active类
+      tabBtns.forEach(btn => btn.classList.remove('active'));
+      loginForm.classList.remove('active');
+      registerForm.classList.remove('active');
+      
+      if (type === 'login') {
+        tabBtns[0].classList.add('active');
+        loginForm.classList.add('active');
+        tabContainer.classList.remove('register-active');
+      } else {
+        tabBtns[1].classList.add('active');
+        registerForm.classList.add('active');
+        tabContainer.classList.add('register-active');
+      }
+    }
+    
+    function showLogin() {
+      switchTab('login');
+    }
+    
+    function showRegister() {
+      switchTab('register');
+    }
+    
+    // 显示错误信息
+    function showError(inputId, message) {
+      const formGroup = document.getElementById(inputId).parentElement;
+      const errorMessage = formGroup.querySelector('.error-message');
+      
+      formGroup.classList.add('error');
+      formGroup.classList.remove('success');
+      
+      if (message && errorMessage) {
+        errorMessage.textContent = message;
+      }
+      
+      // 3秒后自动清除错误状态
+      setTimeout(() => {
+        clearError(inputId);
+      }, 3000);
+    }
+    
+    // 清除错误信息
+    function clearError(inputId) {
+      const formGroup = document.getElementById(inputId).parentElement;
+      formGroup.classList.remove('error');
+    }
+    
+    // 显示成功状态
+    function showSuccess(inputId) {
+      const formGroup = document.getElementById(inputId).parentElement;
+      formGroup.classList.add('success');
+      formGroup.classList.remove('error');
+    }
+    
+    // 密码强度检查
+    function checkPasswordStrength(password) {
+      const strengthIndicator = document.getElementById('passwordStrength');
+      const strengthBar = document.getElementById('passwordStrengthBar');
+      
+      if (!password) {
+        strengthIndicator.classList.remove('visible');
+        return;
+      }
+      
+      strengthIndicator.classList.add('visible');
+      
+      let strength = 0;
+      if (password.length >= 6) strength += 25;
+      if (password.length >= 8) strength += 25;
+      if (/[A-Z]/.test(password)) strength += 25;
+      if (/[0-9]/.test(password)) strength += 25;
+      
+      strengthBar.style.width = strength + '%';
+      
+      if (strength < 50) {
+        strengthBar.style.background = '#ff6b6b';
+      } else if (strength < 75) {
+        strengthBar.style.background = '#ffd93d';
+      } else {
+        strengthBar.style.background = '#4ecdc4';
+      }
+    }
+    
+    // 输入框实时验证
+    document.addEventListener('DOMContentLoaded', function() {
+      // 邮箱实时验证
+      const emailInputs = ['loginEmail', 'registerEmail'];
+      emailInputs.forEach(inputId => {
+        const input = document.getElementById(inputId);
+        if (input) {
+          input.addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (this.value && !emailRegex.test(this.value)) {
+              showError(inputId, '请输入有效的邮箱地址');
+            } else if (this.value) {
+              showSuccess(inputId);
+            }
+          });
+          
+          input.addEventListener('input', function() {
+            if (this.parentElement.classList.contains('error')) {
+              clearError(inputId);
+            }
+          });
+        }
+      });
+      
+      // 密码实时验证
+      const passwordInputs = ['loginPassword', 'registerPassword'];
+      passwordInputs.forEach(inputId => {
+        const input = document.getElementById(inputId);
+        if (input) {
+          input.addEventListener('blur', function() {
+            if (this.value && this.value.length < 6) {
+              showError(inputId, '密码至少需要6位字符');
+            } else if (this.value) {
+              showSuccess(inputId);
+            }
+          });
+          
+          input.addEventListener('input', function() {
+            if (this.parentElement.classList.contains('error')) {
+              clearError(inputId);
+            }
+          });
+        }
+      });
+    });
+    
+    // 解析邀请代码 from querystring
+    (function() {
+      const params = new URLSearchParams(location.search);
+      const inviteCode = params.get('invite') || params.get('code'); // 支持两种参数格式
+      if(inviteCode) {
+        // 如果有邀请码，自动切换到注册页面
+        switchTab('register');
+        document.getElementById('inviteCode').value = inviteCode;
+        document.getElementById('inviteCode').readOnly = true;
+        
+        // 显示邀请信息
+        const inviteInfo = document.createElement('div');
+        inviteInfo.style.cssText = 'background: rgba(86, 204, 242, 0.1); border: 1px solid var(--brand); border-radius: 8px; padding: 12px; margin-bottom: 16px; font-size: 14px; color: var(--brand);';
+        inviteInfo.innerHTML = `🎉 您通过邀请码 <strong>${inviteCode}</strong> 进入注册`;
+        document.querySelector('#registerForm .card').insertBefore(inviteInfo, document.querySelector('#registerForm .card').firstChild);
+      }
+    })();
+    
+    // 登录功能
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const loginBtn = document.getElementById('loginBtn');
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      
+      // 清除之前的错误状态
+      clearError('loginEmail');
+      clearError('loginPassword');
+      
+      // 添加加载状态
+      loginBtn.classList.add('loading-btn');
+      loginBtn.disabled = true;
+      
+      setTimeout(() => {
+        // 测试模式：如果没有填写邮箱密码，使用默认测试账号
+        if(!email && !password) {
+          // 使用测试账号自动登录
+          const testEmail = 'test@gold7.com';
+          const testPassword = 'test123';
+          
+          // 保存测试账号信息
+          localStorage.setItem('userEmail', testEmail);
+          localStorage.setItem('userPassword', testPassword);
+          localStorage.setItem('userStatus', '2'); // 设置为状态2，可以体验更多功能
+          
+          alert('测试模式登录成功！');
+          window.location.href = 'index.html';
+          return;
+        }
+        
+        if(!email || !password) {
+          showError('loginEmail', '请输入邮箱和密码，或直接点击登录使用测试模式');
+          loginBtn.classList.remove('loading-btn');
+          loginBtn.disabled = false;
+          return;
+        }
+        
+        // 简单校验邮箱格式
+        if(!/.+@.+\..+/.test(email)) {
+          showError('loginEmail', '邮箱格式不正确');
+          loginBtn.classList.remove('loading-btn');
+          loginBtn.disabled = false;
+          return;
+        }
+        
+        // 验证用户信息
+        const storedEmail = localStorage.getItem('userEmail');
+        const storedPassword = localStorage.getItem('userPassword');
+        
+        if(storedEmail === email && storedPassword === password) {
+          alert('登录成功！');
+          window.location.href = 'index.html';
+        } else {
+          showError('loginEmail', '邮箱或密码错误，请检查后重试');
+          loginBtn.classList.remove('loading-btn');
+          loginBtn.disabled = false;
+        }
+      }, 1000);
+    });
+    
+    // 注册功能
+    document.getElementById('registerBtn').addEventListener('click', () => {
+      const registerBtn = document.getElementById('registerBtn');
+      const email = document.getElementById('registerEmail').value.trim();
+      const password = document.getElementById('registerPassword').value;
+      const invite = document.getElementById('inviteCode').value.trim();
+      
+      // 清除之前的错误状态
+      clearError('registerEmail');
+      clearError('registerPassword');
+      clearError('inviteCode');
+      
+      // 添加加载状态
+      registerBtn.classList.add('loading-btn');
+      registerBtn.disabled = true;
+      
+      setTimeout(() => {
+        // 验证邮箱
+        if(!email) {
+          showError('registerEmail', '请输入邮箱地址');
+          registerBtn.classList.remove('loading-btn');
+          registerBtn.disabled = false;
+          return;
+        }
+        
+        // 简单校验邮箱格式
+        if(!/.+@.+\..+/.test(email)) {
+          showError('registerEmail', '邮箱格式不正确');
+          registerBtn.classList.remove('loading-btn');
+          registerBtn.disabled = false;
+          return;
+        }
+        
+        // 验证密码
+        if(!password) {
+          showError('registerPassword', '请设置密码');
+          registerBtn.classList.remove('loading-btn');
+          registerBtn.disabled = false;
+          return;
+        }
+        
+        // 校验密码长度
+        if(password.length < 6) {
+          showError('registerPassword', '密码长度至少6位');
+          registerBtn.classList.remove('loading-btn');
+          registerBtn.disabled = false;
+          return;
+        }
+        
+        // 验证邀请码（必填）
+        if(!invite) {
+          showError('inviteCode', '邀请码为必填项，请联系推荐人获取');
+          registerBtn.classList.remove('loading-btn');
+          registerBtn.disabled = false;
+          return;
+        }
+        
+        // 检查邮箱是否已注册
+        const storedEmail = localStorage.getItem('userEmail');
+        if(storedEmail === email) {
+          showError('registerEmail', '该邮箱已注册，请直接登录');
+          switchTab('login');
+          document.getElementById('loginEmail').value = email;
+          registerBtn.classList.remove('loading-btn');
+          registerBtn.disabled = false;
+          return;
+        }
+        
+        // 保存到 localStorage (模拟注册)
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userPassword', password);
+        localStorage.setItem('myInviterCode', invite); // 保存邀请我的人的邀请码
+        // 设置状态1 (新手未入金)
+        localStorage.setItem('userStatus', '1');
+        
+        // 建立邀请关系 - 将自己添加到邀请人的团队中
+        const inviteRelations = JSON.parse(localStorage.getItem('inviteRelations') || '{}');
+        if (!inviteRelations[invite]) {
+          inviteRelations[invite] = [];
+        }
+        inviteRelations[invite].push({
+          email: email,
+          joinTime: new Date().toISOString(),
+          status: 'registered'
+        });
+        localStorage.setItem('inviteRelations', JSON.stringify(inviteRelations));
+        
+        alert('注册成功！即将跳转首页');
+        window.location.href = 'index.html';
+      }, 1000);
+    });
+    
+    // 回车键登录/注册
+    document.addEventListener('keypress', function(e) {
+      if(e.key === 'Enter') {
+        const activeForm = document.querySelector('.form-container.active');
+        if(activeForm.id === 'loginForm') {
+          document.getElementById('loginBtn').click();
+        } else {
+          document.getElementById('registerBtn').click();
+        }
+      }
+    });
+  </script>
+  <script src="js/global-background.js"></script>
+</body>
+</html>

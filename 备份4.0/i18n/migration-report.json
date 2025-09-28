@@ -1,0 +1,2251 @@
+{
+  "processedFiles": [
+    {
+      "file": "activation.html",
+      "replacements": 1
+    },
+    {
+      "file": "forgot-password.html",
+      "replacements": 6
+    },
+    {
+      "file": "index.html",
+      "replacements": 48
+    },
+    {
+      "file": "invite.html",
+      "replacements": 1
+    },
+    {
+      "file": "login.html",
+      "replacements": 14
+    },
+    {
+      "file": "quiz-admin.html",
+      "replacements": 11
+    },
+    {
+      "file": "ranking.html",
+      "replacements": 7
+    },
+    {
+      "file": "redpacket.html",
+      "replacements": 4
+    },
+    {
+      "file": "reset-password.html",
+      "replacements": 3
+    },
+    {
+      "file": "tasks.html",
+      "replacements": 1
+    },
+    {
+      "file": "team.html",
+      "replacements": 2
+    },
+    {
+      "file": "test-settings.html",
+      "replacements": 2
+    },
+    {
+      "file": "test-websocket.html",
+      "replacements": 3
+    },
+    {
+      "file": "test_message_features.html",
+      "replacements": 6
+    },
+    {
+      "file": "theme-demo.html",
+      "replacements": 3
+    },
+    {
+      "file": "transaction.html",
+      "replacements": 6
+    },
+    {
+      "file": "verify-email.html",
+      "replacements": 6
+    },
+    {
+      "file": "wallet.html",
+      "replacements": 6
+    },
+    {
+      "file": "websocket-test-simple.html",
+      "replacements": 1
+    },
+    {
+      "file": "withdraw.html",
+      "replacements": 14
+    },
+    {
+      "file": "backend/config/database.js",
+      "replacements": 4
+    },
+    {
+      "file": "backend/controllers/activationController.js",
+      "replacements": 1
+    },
+    {
+      "file": "backend/controllers/authController.js",
+      "replacements": 6
+    },
+    {
+      "file": "backend/controllers/rankingController.js",
+      "replacements": 3
+    },
+    {
+      "file": "backend/controllers/stateController.js",
+      "replacements": 2
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "replacements": 23
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "replacements": 12
+    },
+    {
+      "file": "backend/controllers/walletController.js",
+      "replacements": 5
+    },
+    {
+      "file": "backend/models/Transaction.js",
+      "replacements": 2
+    },
+    {
+      "file": "backend/models/User.js",
+      "replacements": 1
+    },
+    {
+      "file": "backend/models/WalletAddress.js",
+      "replacements": 3
+    },
+    {
+      "file": "backend/routes/user.js",
+      "replacements": 1
+    },
+    {
+      "file": "backend/routes/websocket.js",
+      "replacements": 1
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "replacements": 10
+    },
+    {
+      "file": "backend/server.js",
+      "replacements": 2
+    },
+    {
+      "file": "backend/services/EmailService.js",
+      "replacements": 4
+    },
+    {
+      "file": "backend/services/EmptyStructureReportService.js",
+      "replacements": 3
+    },
+    {
+      "file": "backend/services/TRC20Service.js",
+      "replacements": 1
+    },
+    {
+      "file": "backend/services/TransactionMonitor.js",
+      "replacements": 1
+    },
+    {
+      "file": "backend/services/WebSocketService.js",
+      "replacements": 2
+    },
+    {
+      "file": "backend/startup/initServices.js",
+      "replacements": 1
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "replacements": 13
+    },
+    {
+      "file": "clean-i18n-errors.js",
+      "replacements": 3
+    },
+    {
+      "file": "fix-i18n-timing.js",
+      "replacements": 2
+    },
+    {
+      "file": "fix-i18n.js",
+      "replacements": 25
+    },
+    {
+      "file": "frontend/js/websocket.js",
+      "replacements": 7
+    },
+    {
+      "file": "js/global-background.js",
+      "replacements": 1
+    },
+    {
+      "file": "js/websocket.js",
+      "replacements": 7
+    },
+    {
+      "file": "replace-i18n.js",
+      "replacements": 22
+    },
+    {
+      "file": "theme-switcher.js",
+      "replacements": 1
+    },
+    {
+      "file": "update-language-translations.js",
+      "replacements": 25
+    }
+  ],
+  "replacements": [
+    {
+      "file": "activation.html",
+      "type": "html-content",
+      "original": "请转入 100 USDT (TRC20)",
+      "replacement": "{{content.____100}}"
+    },
+    {
+      "file": "forgot-password.html",
+      "type": "html-content",
+      "original": "请输入您注册时使用的邮箱地址，我们将向您发送密码重置链接。",
+      "replacement": "{{content.____________________________}}"
+    },
+    {
+      "file": "forgot-password.html",
+      "type": "html-content",
+      "original": "重置链接将在1小时后过期",
+      "replacement": "{{content.______1_____}}"
+    },
+    {
+      "file": "forgot-password.html",
+      "type": "html-content",
+      "original": "每15分钟最多可申请5次重置",
+      "replacement": "{{content._15_______5___}}"
+    },
+    {
+      "file": "forgot-password.html",
+      "type": "html-content",
+      "original": "没有收到邮件？请检查垃圾邮件文件夹，或者等待几分钟后重试。",
+      "replacement": "{{content._________________}}"
+    },
+    {
+      "file": "forgot-password.html",
+      "type": "html-content",
+      "original": "查找来自 裂金7日 的邮件",
+      "replacement": "{{content._______7_}}"
+    },
+    {
+      "file": "forgot-password.html",
+      "type": "html-placeholder",
+      "original": "请输入您的邮箱地址",
+      "replacement": "{{placeholders._________}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "裂金7日 H5 页面",
+      "replacement": "{{content.__7__h5}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "状态1",
+      "replacement": "{{messages.__1}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "欢迎加入裂金7日",
+      "replacement": "{{content.______7_}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "内容",
+      "replacement": "{{content.content}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "状态1 - 新手未入金",
+      "replacement": "{{content.__1__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "状态2 - 新手已入金",
+      "replacement": "{{content.__2__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "状态3 - 本期挑战结束",
+      "replacement": "{{content.__3__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "模拟完成新手任务1/2/3",
+      "replacement": "{{content.________1_2_3}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "任务1",
+      "replacement": "{{content.__1}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "任务2",
+      "replacement": "{{content.__2}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "任务3",
+      "replacement": "{{content.__3}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "模拟完成大神任务1-6",
+      "replacement": "{{content.________1_6}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "任务1",
+      "replacement": "{{content.__1}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "任务2",
+      "replacement": "{{content.__2}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "任务3",
+      "replacement": "{{content.__3}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "任务4",
+      "replacement": "{{content.__4}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "任务5",
+      "replacement": "{{content.__5}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "任务6",
+      "replacement": "{{content.__6}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "重置",
+      "replacement": "{{content.reset}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "退出登录将清除所有本地数据，请确保重要信息已备份",
+      "replacement": "{{content.________________________}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "Bug标题：",
+      "replacement": "{{content.bug__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "已提交的Bug报告",
+      "replacement": "{{content.____bug__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "暂无Bug报告",
+      "replacement": "{{content.__bug__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "立即入金100 USDT，开启168小时挑战期，解锁任务系统和收益机会。",
+      "replacement": "{{content.____100_usdt}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "立即激活 100 USDT",
+      "replacement": "{{content._____100}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "查看前10名收益排行榜，了解潜在收益机会。",
+      "replacement": "{{content.___10_______________}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "${currentMasterTask ? currentMasterTask.title : '所有大神任务已完成'}",
+      "replacement": "{{content.__currentmastertask__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "168小时挑战",
+      "replacement": "{{content.168____}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "${completedTasks === 3 ? '✅ 已完成' : '进行中'}",
+      "replacement": "{{content.__completedtasks____}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "${quizCorrect >= 16 ? '✅ 通过' : (completedTasks >= 1 ? '可答题' : '🔒 未解锁')}",
+      "replacement": "{{content.__quizcorrect___}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "${teamMembers > 0 ? '↗️ 增长中' : '待发展'}",
+      "replacement": "{{content.__teammembers__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "人",
+      "replacement": "{{content._}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "${totalEarnings > 0 ? '📈 盈利中' : '待激活'}",
+      "replacement": "{{content.__totalearnings__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "${totalEarnings === 0 ? '💡 完成任务开始赚取收益' : '🚀 继续完成任务提升收益'}",
+      "replacement": "{{content.__totalearnings____}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "重新开启168小时挑战，继续赚取收益！",
+      "replacement": "{{content.____168___________}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "立即激活 100 USDT",
+      "replacement": "{{content._____100}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "新手任务：${completedTasks}/3 完成",
+      "replacement": "{{content._______completedtasks__3}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "团队人数：${teamMembers}人",
+      "replacement": "{{content._______teammembers__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "${currentTask.desc ? currentTask.desc : '完成此任务可推进进度。'}",
+      "replacement": "{{content.__currenttask_desc__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "提现",
+      "replacement": "{{messages.withdraw}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "排行榜",
+      "replacement": "{{messages.ranking}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "暂无${type === 'official' ? '官方公告' : '团队消息'}",
+      "replacement": "{{content.____type____}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-content",
+      "original": "暂无Bug报告",
+      "replacement": "{{content.__bug__}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-placeholder",
+      "original": "小时",
+      "replacement": "{{messages.hour}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-placeholder",
+      "original": "分钟",
+      "replacement": "{{messages.minute}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-placeholder",
+      "original": "秒",
+      "replacement": "{{messages.second}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-placeholder",
+      "original": "请详细描述问题的具体情况、复现步骤等",
+      "replacement": "{{placeholders.__________________}}"
+    },
+    {
+      "file": "index.html",
+      "type": "html-alt",
+      "original": "消息",
+      "replacement": "{{alts.message}}"
+    },
+    {
+      "file": "invite.html",
+      "type": "html-content",
+      "original": "分享你的专属邀请链接给好友，TA 通过该链接注册并在 168 小时内激活后即可成为你的团队成员。",
+      "replacement": "{{content.______________ta}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-content",
+      "original": "🏆 7天财富挑战",
+      "replacement": "{{content.___7_____}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-content",
+      "original": "登录",
+      "replacement": "{{content.login}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-content",
+      "original": "注册",
+      "replacement": "{{content.register}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-content",
+      "original": "密码",
+      "replacement": "{{content.password}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-content",
+      "original": "密码至少需要6位字符",
+      "replacement": "{{messages.______6___}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-content",
+      "original": "我们是团队结构游戏，不支持玩家独立注册",
+      "replacement": "{{content.___________________}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-content",
+      "original": "注册即表示同意用户协议和隐私政策",
+      "replacement": "{{content.________________}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-content",
+      "original": "点击重新发送验证邮件",
+      "replacement": "{{content.__________}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-placeholder",
+      "original": "请输入邮箱地址",
+      "replacement": "{{placeholders._______}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-placeholder",
+      "original": "请输入密码",
+      "replacement": "{{placeholders._____}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-placeholder",
+      "original": "请输入邮箱地址",
+      "replacement": "{{placeholders._______}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-placeholder",
+      "original": "请设置密码（至少6位）",
+      "replacement": "{{placeholders.________6_}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-placeholder",
+      "original": "请输入邀请码",
+      "replacement": "{{placeholders.______}}"
+    },
+    {
+      "file": "login.html",
+      "type": "html-alt",
+      "original": "裂金7日",
+      "replacement": "{{alts.__7_}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-content",
+      "original": "取消",
+      "replacement": "{{messages.cancel}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-content",
+      "original": "✏️ 编辑",
+      "replacement": "{{content.___edit}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-content",
+      "original": "👁️ 预览",
+      "replacement": "{{content.____preview}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-content",
+      "original": "🗑️ 删除",
+      "replacement": "{{content.____deletion}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-placeholder",
+      "original": "🔍 搜索题目内容...",
+      "replacement": "{{placeholders.____________}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-placeholder",
+      "original": "请输入题目内容...",
+      "replacement": "{{placeholders.__________}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-placeholder",
+      "original": "选项 A",
+      "replacement": "{{placeholders.option_a}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-placeholder",
+      "original": "选项 B",
+      "replacement": "{{placeholders.option_b}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-placeholder",
+      "original": "选项 C",
+      "replacement": "{{placeholders.option_c}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-placeholder",
+      "original": "选项 D",
+      "replacement": "{{placeholders.option_d}}"
+    },
+    {
+      "file": "quiz-admin.html",
+      "type": "html-placeholder",
+      "original": "答错时显示的提示信息（可选）",
+      "replacement": "{{placeholders._____________}}"
+    },
+    {
+      "file": "ranking.html",
+      "type": "html-content",
+      "original": "排行榜",
+      "replacement": "{{messages.ranking}}"
+    },
+    {
+      "file": "ranking.html",
+      "type": "html-content",
+      "original": "1. 用户A",
+      "replacement": "{{content.1____a}}"
+    },
+    {
+      "file": "ranking.html",
+      "type": "html-content",
+      "original": "团队人数：200",
+      "replacement": "{{content._____200}}"
+    },
+    {
+      "file": "ranking.html",
+      "type": "html-content",
+      "original": "2. 用户B",
+      "replacement": "{{content.2____b}}"
+    },
+    {
+      "file": "ranking.html",
+      "type": "html-content",
+      "original": "团队人数：150",
+      "replacement": "{{content._____150}}"
+    },
+    {
+      "file": "ranking.html",
+      "type": "html-content",
+      "original": "3. 用户C",
+      "replacement": "{{content.3____c}}"
+    },
+    {
+      "file": "ranking.html",
+      "type": "html-content",
+      "original": "团队人数：120",
+      "replacement": "{{content._____120}}"
+    },
+    {
+      "file": "redpacket.html",
+      "type": "html-content",
+      "original": "抢红包",
+      "replacement": "{{messages.grab}}"
+    },
+    {
+      "file": "redpacket.html",
+      "type": "html-content",
+      "original": "🧧 抢红包",
+      "replacement": "{{content.___grab}}"
+    },
+    {
+      "file": "redpacket.html",
+      "type": "html-content",
+      "original": "进行中",
+      "replacement": "{{content.progress}}"
+    },
+    {
+      "file": "redpacket.html",
+      "type": "html-content",
+      "original": "${record.username || '匿名用户'}",
+      "replacement": "{{content.__record_username___}}"
+    },
+    {
+      "file": "reset-password.html",
+      "type": "html-content",
+      "original": "请输入您的新密码，密码至少需要6位字符。",
+      "replacement": "{{content._______________6___}}"
+    },
+    {
+      "file": "reset-password.html",
+      "type": "html-placeholder",
+      "original": "请输入新密码（至少6位）",
+      "replacement": "{{placeholders._________6_}}"
+    },
+    {
+      "file": "reset-password.html",
+      "type": "html-placeholder",
+      "original": "请再次输入新密码",
+      "replacement": "{{placeholders.________}}"
+    },
+    {
+      "file": "tasks.html",
+      "type": "html-content",
+      "original": "完成全部新手任务后解锁大神任务。",
+      "replacement": "{{content._______________}}"
+    },
+    {
+      "file": "team.html",
+      "type": "html-content",
+      "original": "${level.count}人",
+      "replacement": "{{content.__level_count__}}"
+    },
+    {
+      "file": "team.html",
+      "type": "html-content",
+      "original": "收益: ${(member.earnings || 0).toFixed(2)} USDT | 加入: ${new Date(member.joinDate).toLocaleDateString()}",
+      "replacement": "{{content._______member_earnings}}"
+    },
+    {
+      "file": "test-settings.html",
+      "type": "html-content",
+      "original": "点击下方按钮测试设置功能",
+      "replacement": "{{content.____________}}"
+    },
+    {
+      "file": "test-settings.html",
+      "type": "html-content",
+      "original": "🔄 重新加载页面",
+      "replacement": "{{content._________}}"
+    },
+    {
+      "file": "test-websocket.html",
+      "type": "html-content",
+      "original": "连接WebSocket",
+      "replacement": "{{content.__websocket}}"
+    },
+    {
+      "file": "test-websocket.html",
+      "type": "html-content",
+      "original": "发送Ping",
+      "replacement": "{{content.__ping}}"
+    },
+    {
+      "file": "test-websocket.html",
+      "type": "html-placeholder",
+      "original": "输入JWT Token",
+      "replacement": "{{placeholders.__jwt_token}}"
+    },
+    {
+      "file": "test_message_features.html",
+      "type": "html-content",
+      "original": "1. 本地存储测试",
+      "replacement": "{{content.1________}}"
+    },
+    {
+      "file": "test_message_features.html",
+      "type": "html-content",
+      "original": "2. Bug报告数据结构测试",
+      "replacement": "{{content.2__bug________}}"
+    },
+    {
+      "file": "test_message_features.html",
+      "type": "html-content",
+      "original": "测试Bug报告结构",
+      "replacement": "{{content.__bug____}}"
+    },
+    {
+      "file": "test_message_features.html",
+      "type": "html-content",
+      "original": "3. 消息系统集成测试",
+      "replacement": "{{content.3__________}}"
+    },
+    {
+      "file": "test_message_features.html",
+      "type": "html-content",
+      "original": "4. 功能完整性检查",
+      "replacement": "{{content.4_________}}"
+    },
+    {
+      "file": "test_message_features.html",
+      "type": "html-content",
+      "original": "5. 打开主页面测试",
+      "replacement": "{{content.5_________}}"
+    },
+    {
+      "file": "theme-demo.html",
+      "type": "html-content",
+      "original": "裂金7日 主题演示",
+      "replacement": "{{content.__7______}}"
+    },
+    {
+      "file": "theme-demo.html",
+      "type": "html-content",
+      "original": "体验5种不同的视觉风格",
+      "replacement": "{{content.__5________}}"
+    },
+    {
+      "file": "theme-demo.html",
+      "type": "html-content",
+      "original": "排行榜",
+      "replacement": "{{messages.ranking}}"
+    },
+    {
+      "file": "transaction.html",
+      "type": "html-content",
+      "original": "状态",
+      "replacement": "{{content.state}}"
+    },
+    {
+      "file": "transaction.html",
+      "type": "html-content",
+      "original": "金额",
+      "replacement": "{{content.amount}}"
+    },
+    {
+      "file": "transaction.html",
+      "type": "html-content",
+      "original": "手续费",
+      "replacement": "{{content.___}}"
+    },
+    {
+      "file": "transaction.html",
+      "type": "html-content",
+      "original": "交易ID",
+      "replacement": "{{content.__id}}"
+    },
+    {
+      "file": "transaction.html",
+      "type": "html-content",
+      "original": "时间",
+      "replacement": "{{content.time}}"
+    },
+    {
+      "file": "transaction.html",
+      "type": "html-content",
+      "original": "未找到交易记录。",
+      "replacement": "{{content._______}}"
+    },
+    {
+      "file": "verify-email.html",
+      "type": "html-content",
+      "original": "恭喜您！您的邮箱已成功验证，现在可以正常使用所有功能了。",
+      "replacement": "{{content._____________}}"
+    },
+    {
+      "file": "verify-email.html",
+      "type": "html-content",
+      "original": "验证链接无效或已过期，请重新发送验证邮件。",
+      "replacement": "{{content.____________________}}"
+    },
+    {
+      "file": "verify-email.html",
+      "type": "html-content",
+      "original": "重新发送验证邮件",
+      "replacement": "{{content.________}}"
+    },
+    {
+      "file": "verify-email.html",
+      "type": "html-content",
+      "original": "重新发送验证邮件",
+      "replacement": "{{content.________}}"
+    },
+    {
+      "file": "verify-email.html",
+      "type": "html-content",
+      "original": "请输入您的邮箱地址，我们将重新发送验证邮件给您。",
+      "replacement": "{{content._______________________}}"
+    },
+    {
+      "file": "verify-email.html",
+      "type": "html-placeholder",
+      "original": "请输入邮箱地址",
+      "replacement": "{{placeholders._______}}"
+    },
+    {
+      "file": "wallet.html",
+      "type": "html-content",
+      "original": "提现",
+      "replacement": "{{messages.withdraw}}"
+    },
+    {
+      "file": "wallet.html",
+      "type": "html-content",
+      "original": "明细",
+      "replacement": "{{content.__}}"
+    },
+    {
+      "file": "wallet.html",
+      "type": "html-content",
+      "original": "提现",
+      "replacement": "{{messages.withdraw}}"
+    },
+    {
+      "file": "wallet.html",
+      "type": "html-content",
+      "original": "取消",
+      "replacement": "{{messages.cancel}}"
+    },
+    {
+      "file": "wallet.html",
+      "type": "html-content",
+      "original": "确认",
+      "replacement": "{{content.confirm}}"
+    },
+    {
+      "file": "wallet.html",
+      "type": "html-placeholder",
+      "original": "请输入USDT钱包地址（TRC20）",
+      "replacement": "{{placeholders.___usdt_____trc20}}"
+    },
+    {
+      "file": "websocket-test-simple.html",
+      "type": "html-content",
+      "original": "WebSocket快速测试",
+      "replacement": "{{content.websocket____}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "裂金7日 · 提现",
+      "replacement": "{{content.__7___}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "提现",
+      "replacement": "{{messages.withdraw}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "金额 (USDT)",
+      "replacement": "{{content.amount__usdt_}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "全部",
+      "replacement": "{{content.all}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "USDT钱包地址",
+      "replacement": "{{content.usdt____}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "固定手续费",
+      "replacement": "{{content._____}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "比例手续费 (5%)",
+      "replacement": "{{content._______5__}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "请仔细核对您的收款地址：",
+      "replacement": "{{content.___________}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "取消",
+      "replacement": "{{messages.cancel}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "设置默认地址",
+      "replacement": "{{content.______}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "是否将此地址设为默认收款地址？",
+      "replacement": "{{content.______________}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-content",
+      "original": "设为默认后，下次提现将自动填入此地址，方便您快速操作。",
+      "replacement": "{{content.__________________}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-placeholder",
+      "original": "最低20 USDT",
+      "replacement": "{{placeholders.__20_usdt}}"
+    },
+    {
+      "file": "withdraw.html",
+      "type": "html-placeholder",
+      "original": "请输入USDT钱包地址",
+      "replacement": "{{placeholders.___usdt____}}"
+    },
+    {
+      "file": "backend/config/database.js",
+      "type": "js-string",
+      "original": "✅ Redis连接成功",
+      "replacement": "$t('messages.__redis____')"
+    },
+    {
+      "file": "backend/config/database.js",
+      "type": "js-string",
+      "original": "❌ Redis连接错误:",
+      "replacement": "$t('messages.__redis_____')"
+    },
+    {
+      "file": "backend/config/database.js",
+      "type": "js-string",
+      "original": "✅ MySQL连接成功",
+      "replacement": "$t('messages.__mysql____')"
+    },
+    {
+      "file": "backend/config/database.js",
+      "type": "js-string",
+      "original": "✅ Redis连接测试成功",
+      "replacement": "$t('messages.__redis______')"
+    },
+    {
+      "file": "backend/controllers/activationController.js",
+      "type": "js-string",
+      "original": "账号激活成功！168小时挑战期已开始，请完成任务获得收益。",
+      "replacement": "$t('messages._______168________')"
+    },
+    {
+      "file": "backend/controllers/authController.js",
+      "type": "js-string",
+      "original": "Token刷新成功",
+      "replacement": "$t('messages.token____')"
+    },
+    {
+      "file": "backend/controllers/authController.js",
+      "type": "js-string",
+      "original": "刷新token错误:",
+      "replacement": "$t('messages.__token___')"
+    },
+    {
+      "file": "backend/controllers/authController.js",
+      "type": "js-string",
+      "original": "刷新token失败",
+      "replacement": "$t('messages.__token__')"
+    },
+    {
+      "file": "backend/controllers/authController.js",
+      "type": "js-string",
+      "original": "邮箱验证成功，您现在可以正常使用所有功能",
+      "replacement": "$t('messages.____________________')"
+    },
+    {
+      "file": "backend/controllers/authController.js",
+      "type": "js-string",
+      "original": "密码至少需要6位字符",
+      "replacement": "$t('messages.______6___')"
+    },
+    {
+      "file": "backend/controllers/authController.js",
+      "type": "js-string",
+      "original": "密码至少需要6位字符",
+      "replacement": "$t('messages.______6___')"
+    },
+    {
+      "file": "backend/controllers/rankingController.js",
+      "type": "js-string",
+      "original": "用户001",
+      "replacement": "$t('messages.__001')"
+    },
+    {
+      "file": "backend/controllers/rankingController.js",
+      "type": "js-string",
+      "original": "用户001",
+      "replacement": "$t('messages.__001')"
+    },
+    {
+      "file": "backend/controllers/rankingController.js",
+      "type": "js-string",
+      "original": "用户001",
+      "replacement": "$t('messages.__001')"
+    },
+    {
+      "file": "backend/controllers/stateController.js",
+      "type": "js-string",
+      "original": "只有状态3的用户才能复购",
+      "replacement": "$t('messages.____3_______')"
+    },
+    {
+      "file": "backend/controllers/stateController.js",
+      "type": "js-string",
+      "original": "目标状态必须是1、2或3",
+      "replacement": "$t('messages._______1_2_3')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "邀请1位好友注册并激活账号",
+      "replacement": "$t('messages.__1__________')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "帮助下级推荐1人",
+      "replacement": "$t('messages.______1_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "指导你的下级成功邀请1位新用户",
+      "replacement": "$t('messages.__________1____')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "教下级如何教他的下级推荐1人",
+      "replacement": "$t('messages.____________1_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "完成20道基础题目，正确率达到80%",
+      "replacement": "$t('messages.__20___________80_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "大神任务一：直推2人 × 2层 = 6人",
+      "replacement": "$t('messages.________2_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "建立2层团队结构，每层2人",
+      "replacement": "$t('messages.__2________2_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "大神任务二：直推3人 × 3层 = 39人",
+      "replacement": "$t('messages.________3_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "建立3层团队结构，每层3人",
+      "replacement": "$t('messages.__3________3_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "大神任务三：直推4人 × 4层 = 340人",
+      "replacement": "$t('messages.________4_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "建立4层团队结构，每层4人",
+      "replacement": "$t('messages.__4________4_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "大神任务四：直推5人 × 5层 = 3905人",
+      "replacement": "$t('messages.________5_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "建立5层团队结构，每层5人",
+      "replacement": "$t('messages.__5________5_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "大神任务五：直推6人 × 6层 = 55986人",
+      "replacement": "$t('messages.________6_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "建立6层团队结构，每层6人",
+      "replacement": "$t('messages.__6________6_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "大神任务六：直推7人 × 7层 = 960799人",
+      "replacement": "$t('messages.________7_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "建立7层团队结构，每层7人",
+      "replacement": "$t('messages.__7________7_')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "A. 通过社交媒体分享",
+      "replacement": "$t('messages.a__________')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "B. 提供优质服务",
+      "replacement": "$t('messages.b________')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "C. 诚信推荐",
+      "replacement": "$t('messages.c______')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "D. 以上都是",
+      "replacement": "$t('messages.d______')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "问题ID和答案不能为空",
+      "replacement": "$t('messages.__id_______')"
+    },
+    {
+      "file": "backend/controllers/taskController.js",
+      "type": "js-string",
+      "original": "正确率不足80%，请重新答题",
+      "replacement": "$t('messages._____80_______')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户001",
+      "replacement": "$t('messages.__001')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户002",
+      "replacement": "$t('messages.__002')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户003",
+      "replacement": "$t('messages.__003')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户002",
+      "replacement": "$t('messages.__002')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户003",
+      "replacement": "$t('messages.__003')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户004",
+      "replacement": "$t('messages.__004')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户005",
+      "replacement": "$t('messages.__005')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户ID不能为空",
+      "replacement": "$t('messages.__id____')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户ID不能为空",
+      "replacement": "$t('messages.__id____')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户ID不能为空",
+      "replacement": "$t('messages.__id____')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "邀请码、用户ID和用户名不能为空",
+      "replacement": "$t('messages.______id________')"
+    },
+    {
+      "file": "backend/controllers/teamController.js",
+      "type": "js-string",
+      "original": "用户ID不能为空",
+      "replacement": "$t('messages.__id____')"
+    },
+    {
+      "file": "backend/controllers/walletController.js",
+      "type": "js-string",
+      "original": "用户ID不能为空",
+      "replacement": "$t('messages.__id____')"
+    },
+    {
+      "file": "backend/controllers/walletController.js",
+      "type": "js-string",
+      "original": "请输入有效的USDT TRC20钱包地址",
+      "replacement": "$t('messages.______usdt_trc20____')"
+    },
+    {
+      "file": "backend/controllers/walletController.js",
+      "type": "js-string",
+      "original": "提现金额不能少于20 USDT",
+      "replacement": "$t('messages.________20_usdt')"
+    },
+    {
+      "file": "backend/controllers/walletController.js",
+      "type": "js-string",
+      "original": "用户ID不能为空",
+      "replacement": "$t('messages.__id____')"
+    },
+    {
+      "file": "backend/controllers/walletController.js",
+      "type": "js-string",
+      "original": "失败",
+      "replacement": "$t('messages.failure')"
+    },
+    {
+      "file": "backend/models/Transaction.js",
+      "type": "js-string",
+      "original": "提现",
+      "replacement": "$t('messages.withdraw')"
+    },
+    {
+      "file": "backend/models/Transaction.js",
+      "type": "js-string",
+      "original": "失败",
+      "replacement": "$t('messages.failure')"
+    },
+    {
+      "file": "backend/models/User.js",
+      "type": "js-string",
+      "original": "请等待5分钟后再重新发送",
+      "replacement": "$t('messages.___5________')"
+    },
+    {
+      "file": "backend/models/WalletAddress.js",
+      "type": "js-string",
+      "original": "数据库不可用，使用内存存储钱包地址",
+      "replacement": "$t('messages._________________')"
+    },
+    {
+      "file": "backend/models/WalletAddress.js",
+      "type": "js-string",
+      "original": "数据库不可用，使用内存存储查找用户钱包地址",
+      "replacement": "$t('messages._____________________')"
+    },
+    {
+      "file": "backend/models/WalletAddress.js",
+      "type": "js-string",
+      "original": "数据库不可用，使用内存存储标记钱包地址",
+      "replacement": "$t('messages.___________________')"
+    },
+    {
+      "file": "backend/routes/user.js",
+      "type": "js-string",
+      "original": "状态必须是1-4之间的整数",
+      "replacement": "$t('messages._____1_4_____')"
+    },
+    {
+      "file": "backend/routes/websocket.js",
+      "type": "js-string",
+      "original": "用户ID和任务名称不能为空",
+      "replacement": "$t('messages.__id_________')"
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "type": "js-string",
+      "original": "1:未激活 2:已激活 3:倒计时结束未复购",
+      "replacement": "$t('messages.1_____2____')"
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "type": "js-string",
+      "original": "层级 1-7",
+      "replacement": "$t('messages.___1_7')"
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "type": "js-string",
+      "original": "NULL表示系统通知",
+      "replacement": "$t('messages.null______')"
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "type": "js-string",
+      "original": "激活金额(USDT)",
+      "replacement": "$t('messages._____usdt_')"
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "type": "js-string",
+      "original": "固定提现手续费(USDT)",
+      "replacement": "$t('messages.________usdt_')"
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "type": "js-string",
+      "original": "每日提现限额(USDT)",
+      "replacement": "$t('messages._______usdt_')"
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "type": "js-string",
+      "original": "✅ 连接MySQL成功",
+      "replacement": "$t('messages.____mysql__')"
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "type": "js-string",
+      "original": "\\n📋 测试账号信息:",
+      "replacement": "$t('messages._n__________')"
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "type": "js-string",
+      "original": "密码: admin123",
+      "replacement": "$t('messages.____admin123')"
+    },
+    {
+      "file": "backend/scripts/init-database.js",
+      "type": "js-string",
+      "original": "邀请码: ADMIN1",
+      "replacement": "$t('messages._____admin1')"
+    },
+    {
+      "file": "backend/server.js",
+      "type": "js-string",
+      "original": "🔒 HTTP服务器已关闭",
+      "replacement": "$t('messages.___http______')"
+    },
+    {
+      "file": "backend/server.js",
+      "type": "js-string",
+      "original": "❌ 未处理的Promise拒绝:",
+      "replacement": "$t('messages.______promise___')"
+    },
+    {
+      "file": "backend/services/EmailService.js",
+      "type": "js-string",
+      "original": "🔄 尝试创建Ethereal测试账号...",
+      "replacement": "$t('messages._______ethereal_______')"
+    },
+    {
+      "file": "backend/services/EmailService.js",
+      "type": "js-string",
+      "original": "✅ Ethereal测试账号创建成功",
+      "replacement": "$t('messages.__ethereal________')"
+    },
+    {
+      "file": "backend/services/EmailService.js",
+      "type": "js-string",
+      "original": "❌ 创建Ethereal测试账号失败:",
+      "replacement": "$t('messages.____ethereal_______')"
+    },
+    {
+      "file": "backend/services/EmailService.js",
+      "type": "js-string",
+      "original": "邮件服务未配置，跳过发送验证邮件",
+      "replacement": "$t('messages.________________')"
+    },
+    {
+      "file": "backend/services/EmptyStructureReportService.js",
+      "type": "js-string",
+      "original": "金额(USDT)",
+      "replacement": "$t('messages.___usdt_')"
+    },
+    {
+      "file": "backend/services/EmptyStructureReportService.js",
+      "type": "js-string",
+      "original": "相关用户ID",
+      "replacement": "$t('messages.____id')"
+    },
+    {
+      "file": "backend/services/EmptyStructureReportService.js",
+      "type": "js-string",
+      "original": "描述",
+      "replacement": "$t('messages.description')"
+    },
+    {
+      "file": "backend/services/TRC20Service.js",
+      "type": "js-string",
+      "original": "TRC20Service 初始化失败:",
+      "replacement": "$t('messages.trc20service_______')"
+    },
+    {
+      "file": "backend/services/TransactionMonitor.js",
+      "type": "js-string",
+      "original": "处理已确认交易时发生错误:",
+      "replacement": "$t('messages._____________')"
+    },
+    {
+      "file": "backend/services/WebSocketService.js",
+      "type": "js-string",
+      "original": "🔌 WebSocket服务器已启动",
+      "replacement": "$t('messages.___websocket______')"
+    },
+    {
+      "file": "backend/services/WebSocketService.js",
+      "type": "js-string",
+      "original": "❌ WebSocket连接被拒绝: token无效",
+      "replacement": "$t('messages.__websocket______')"
+    },
+    {
+      "file": "backend/startup/initServices.js",
+      "type": "js-string",
+      "original": "TRC20服务初始化完成",
+      "replacement": "$t('messages.trc20_______')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "新激活用户ID:",
+      "replacement": "$t('messages._____id_')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "\\n=== 测试场景2：只有3层上级链条 ===",
+      "replacement": "$t('messages._n________2')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "新激活用户ID:",
+      "replacement": "$t('messages._____id_')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "\\n=== 测试场景3：没有上级（孤立用户） ===",
+      "replacement": "$t('messages._n________3')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "孤立用户ID:",
+      "replacement": "$t('messages.____id_')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "\\n=== 测试场景4：验证余额更新 ===",
+      "replacement": "$t('messages._n________4')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "\\n=== 测试场景5：验证交易记录 ===",
+      "replacement": "$t('messages._n________5')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "✅ 空结构交易金额正确: 60 USDT",
+      "replacement": "$t('messages.____________')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "🚀 开始空结构功能测试...\\n",
+      "replacement": "$t('messages.________________n')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "\\n=== 测试空结构报告服务 ===",
+      "replacement": "$t('messages._n_____________')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "\\n🎉 所有测试完成！",
+      "replacement": "$t('messages._n_________')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "\\n🧹 清理测试数据...",
+      "replacement": "$t('messages._n____________')"
+    },
+    {
+      "file": "backend/test/testEmptyStructure.js",
+      "type": "js-string",
+      "original": "❌ 清理测试数据失败:",
+      "replacement": "$t('messages.___________')"
+    },
+    {
+      "file": "clean-i18n-errors.js",
+      "type": "js-string",
+      "original": "开始清理错误的国际化标记...",
+      "replacement": "$t('messages._______________')"
+    },
+    {
+      "file": "clean-i18n-errors.js",
+      "type": "js-string",
+      "original": ">选择界面显示<span data-i18n=",
+      "replacement": "$t('messages.________span_data_i18n_')"
+    },
+    {
+      "file": "clean-i18n-errors.js",
+      "type": "js-string",
+      "original": ">开启操作<span data-i18n=",
+      "replacement": "$t('messages.______span_data_i18n_')"
+    },
+    {
+      "file": "fix-i18n-timing.js",
+      "type": "js-string",
+      "original": "开始修复国际化函数调用时机问题...",
+      "replacement": "$t('messages.__________________')"
+    },
+    {
+      "file": "fix-i18n-timing.js",
+      "type": "js-string",
+      "original": "已添加安全的国际化函数包装器",
+      "replacement": "$t('messages.______________')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "任务",
+      "replacement": "$t('messages.task')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "提现",
+      "replacement": "$t('messages.withdraw')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "保存",
+      "replacement": "$t('messages.save')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "删除",
+      "replacement": "$t('messages.deletion')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "编辑",
+      "replacement": "$t('messages.edit')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "复制",
+      "replacement": "$t('messages.copy')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "分享",
+      "replacement": "$t('messages.share')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "刷新",
+      "replacement": "$t('messages.refresh')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "取消",
+      "replacement": "$t('messages.cancel')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "团队",
+      "replacement": "$t('messages.team')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "抢红包",
+      "replacement": "$t('messages.grab')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "钱包",
+      "replacement": "$t('messages.wallet')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "排行榜",
+      "replacement": "$t('messages.ranking')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "状态1",
+      "replacement": "$t('messages.__1')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "状态2",
+      "replacement": "$t('messages.__2')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "状态3",
+      "replacement": "$t('messages.__3')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "状态4",
+      "replacement": "$t('messages.__4')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "168小时倒计时中",
+      "replacement": "$t('messages.168______')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "天",
+      "replacement": "$t('messages._')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "小时",
+      "replacement": "$t('messages.hour')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "分钟",
+      "replacement": "$t('messages.minute')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "秒",
+      "replacement": "$t('messages.second')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "排行榜",
+      "replacement": "$t('messages.ranking')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "抢红包",
+      "replacement": "$t('messages.grab')"
+    },
+    {
+      "file": "fix-i18n.js",
+      "type": "js-string",
+      "original": "JavaScript代码修复完成！",
+      "replacement": "$t('messages.javascript______')"
+    },
+    {
+      "file": "frontend/js/websocket.js",
+      "type": "js-string",
+      "original": "未找到认证token，无法连接WebSocket",
+      "replacement": "$t('messages._____token_____websocket')"
+    },
+    {
+      "file": "frontend/js/websocket.js",
+      "type": "js-string",
+      "original": "WebSocket连接已建立",
+      "replacement": "$t('messages.websocket_____')"
+    },
+    {
+      "file": "frontend/js/websocket.js",
+      "type": "js-string",
+      "original": "收到WebSocket消息:",
+      "replacement": "$t('messages.__websocket___')"
+    },
+    {
+      "file": "frontend/js/websocket.js",
+      "type": "js-string",
+      "original": "WebSocket连接已关闭:",
+      "replacement": "$t('messages.websocket______')"
+    },
+    {
+      "file": "frontend/js/websocket.js",
+      "type": "js-string",
+      "original": "发送WebSocket消息失败:",
+      "replacement": "$t('messages.__websocket_____')"
+    },
+    {
+      "file": "frontend/js/websocket.js",
+      "type": "js-string",
+      "original": "抢红包",
+      "replacement": "$t('messages.grab')"
+    },
+    {
+      "file": "frontend/js/websocket.js",
+      "type": "js-string",
+      "original": "抢红包",
+      "replacement": "$t('messages.grab')"
+    },
+    {
+      "file": "js/global-background.js",
+      "type": "js-string",
+      "original": "国际化初始化失败:",
+      "replacement": "$t('messages._________')"
+    },
+    {
+      "file": "js/websocket.js",
+      "type": "js-string",
+      "original": "未找到认证token，无法连接WebSocket",
+      "replacement": "$t('messages._____token_____websocket')"
+    },
+    {
+      "file": "js/websocket.js",
+      "type": "js-string",
+      "original": "WebSocket连接已建立",
+      "replacement": "$t('messages.websocket_____')"
+    },
+    {
+      "file": "js/websocket.js",
+      "type": "js-string",
+      "original": "收到WebSocket消息:",
+      "replacement": "$t('messages.__websocket___')"
+    },
+    {
+      "file": "js/websocket.js",
+      "type": "js-string",
+      "original": "WebSocket连接已关闭:",
+      "replacement": "$t('messages.websocket______')"
+    },
+    {
+      "file": "js/websocket.js",
+      "type": "js-string",
+      "original": "发送WebSocket消息失败:",
+      "replacement": "$t('messages.__websocket_____')"
+    },
+    {
+      "file": "js/websocket.js",
+      "type": "js-string",
+      "original": "抢红包",
+      "replacement": "$t('messages.grab')"
+    },
+    {
+      "file": "js/websocket.js",
+      "type": "js-string",
+      "original": "抢红包",
+      "replacement": "$t('messages.grab')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "取消",
+      "replacement": "$t('messages.cancel')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "保存",
+      "replacement": "$t('messages.save')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "删除",
+      "replacement": "$t('messages.deletion')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "编辑",
+      "replacement": "$t('messages.edit')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "复制",
+      "replacement": "$t('messages.copy')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "分享",
+      "replacement": "$t('messages.share')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "刷新",
+      "replacement": "$t('messages.refresh')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "任务",
+      "replacement": "$t('messages.task')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "团队",
+      "replacement": "$t('messages.team')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "抢红包",
+      "replacement": "$t('messages.grab')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "钱包",
+      "replacement": "$t('messages.wallet')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "排行榜",
+      "replacement": "$t('messages.ranking')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "状态2",
+      "replacement": "$t('messages.__2')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "状态3",
+      "replacement": "$t('messages.__3')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "状态4",
+      "replacement": "$t('messages.__4')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "168小时倒计时中",
+      "replacement": "$t('messages.168______')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "天",
+      "replacement": "$t('messages._')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "小时",
+      "replacement": "$t('messages.hour')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "分钟",
+      "replacement": "$t('messages.minute')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "秒",
+      "replacement": "$t('messages.second')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "提现",
+      "replacement": "$t('messages.withdraw')"
+    },
+    {
+      "file": "replace-i18n.js",
+      "type": "js-string",
+      "original": "HTML文件国际化替换完成！",
+      "replacement": "$t('messages.html_________')"
+    },
+    {
+      "file": "theme-switcher.js",
+      "type": "js-string",
+      "original": "简洁清新风",
+      "replacement": "$t('messages._____')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "开始更新语言包...",
+      "replacement": "$t('messages.__________')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "裂金7日 H5 页面",
+      "replacement": "$t('content.__7__h5')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "欢迎加入裂金7日",
+      "replacement": "$t('content.______7_')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "状态1",
+      "replacement": "$t('messages.__1')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "状态2",
+      "replacement": "$t('messages.__2')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "状态3",
+      "replacement": "$t('messages.__3')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "状态4",
+      "replacement": "$t('messages.__4')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "模拟完成新手任务1/2/3",
+      "replacement": "$t('content.________1_2_3')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "任务1",
+      "replacement": "$t('content.__1')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "任务2",
+      "replacement": "$t('content.__2')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "任务3",
+      "replacement": "$t('content.__3')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "重置",
+      "replacement": "$t('content.reset')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "了解更多信息",
+      "replacement": "$t('messages.______')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "状态1",
+      "replacement": "$t('messages.__1')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "状态2",
+      "replacement": "$t('messages.__2')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "状态3",
+      "replacement": "$t('messages.__3')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "状态4",
+      "replacement": "$t('messages.__4')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "168小时倒计时中",
+      "replacement": "$t('messages.168______')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "暂无Bug报告",
+      "replacement": "$t('content.__bug__')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "Bug标题",
+      "replacement": "$t('messages.bug__')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "请详细描述问题的具体情况、复现步骤等",
+      "replacement": "$t('placeholders.__________________')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "问题类型",
+      "replacement": "$t('messages.____')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "已提交的Bug报告",
+      "replacement": "$t('content.____bug__')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "语言包更新完成！",
+      "replacement": "$t('messages._______')"
+    },
+    {
+      "file": "update-language-translations.js",
+      "type": "js-string",
+      "original": "英文语言包已更新",
+      "replacement": "$t('messages.________')"
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "totalFiles": 75,
+    "totalReplacements": 339,
+    "totalErrors": 0
+  },
+  "migrationTime": "2025-09-28T15:02:35.061Z"
+}
