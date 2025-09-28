@@ -264,7 +264,7 @@ const translations = {
                'messages.master_level': '大神等级',
             'content.task1_title': '直接推荐1人',
         'content.task1_desc': '邀请1位好友注册并激活账号',
-        'content.task2_title': '帮助下级推荐1人',
+        'content.task2_title': 'assisted下级推荐1人',
         'content.task2_desc': '指导你的下级成功邀请1位新用户',
         'content.task3_title': '教下级如何教他的下级推荐1人',
         'content.task3_desc': '培训下级的推广技巧，帮助三级推广'
@@ -746,9 +746,13 @@ function updateSwitcherButtons() {
 function init() {
     console.log('多语言国际化系统初始化...');
     
+    // 清理任何遗留的内部语言切换器，统一只保留右上角全局按钮
+    const legacySwitcher = document.getElementById('language-switcher');
+    if (legacySwitcher) legacySwitcher.remove();
+
     // 语言切换器已统一为右上角全局按钮，不再创建内部切换器
             // createLanguageSwitcher();
-    
+
     // 缓存模板源（只做一次）
     cacheTemplates();
     
@@ -766,6 +770,13 @@ function init() {
     // 监听后续DOM变更（插入状态卡片等），自动替换
     const mo = new MutationObserver(scheduleReplace);
     mo.observe(document.body, { childList: true, subtree: true });
+
+    // 防御型处理：若后续脚本或异步逻辑再次插入内部切换器，则立即移除
+    const langMo = new MutationObserver(() => {
+        const lateLegacy = document.getElementById('language-switcher');
+        if (lateLegacy) lateLegacy.remove();
+    });
+    langMo.observe(document.body, { childList: true, subtree: true });
 }
 
 // DOM加载完成后执行

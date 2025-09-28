@@ -209,8 +209,8 @@
     const menu = document.createElement('div');
     menu.className = 'lang-menu';
     menu.innerHTML = `
-      <button class="lang-item" data-lang="zh-CN">中文（简体）</button>
-      <button class="lang-item" data-lang="en-US">English</button>
+      <button class="lang-item" data-lang="zh-CN">中文</button>
+      <button class="lang-item" data-lang="en-US">EN</button>
     `;
     
     btn.addEventListener('click', () => {
