@@ -821,7 +821,7 @@
         <div class="note">
           <div class="security-tip">
             <div class="security-icon">⚡</div>
-            <span>{{messages.test_mode_tip || '测试模式：点击即可快速体验'}}</span>
+            <span>${ (window.i18n && typeof i18n.t==='function') ? i18n.t('messages.test_mode_tip') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'Test mode: click to experience quickly' : '测试模式：点击即可快速体验') }</span>
           </div>
         </div>
         
