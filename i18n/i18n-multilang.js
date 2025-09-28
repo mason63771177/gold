@@ -746,8 +746,8 @@ function updateSwitcherButtons() {
 function init() {
     console.log('多语言国际化系统初始化...');
     
-    // 先创建语言切换器
-    createLanguageSwitcher();
+    // 语言切换器已统一为右上角全局按钮，不再创建内部切换器
+            // createLanguageSwitcher();
     
     // 缓存模板源（只做一次）
     cacheTemplates();
