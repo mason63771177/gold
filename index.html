@@ -2816,9 +2816,9 @@
           `;
         },
         buttons: [
-          { text: '团队', color: 'orange', action: () => showTeam() },
-          { text: '钱包', color: 'purple', action: () => showWallet() },
-          { text: '排行', color: 'green', action: () => showRanking() }
+          { text: '{{buttons.team}}', color: 'orange', key: 'team', action: () => showTeam() },
+          { text: '{{buttons.wallet}}', color: 'purple', key: 'wallet', action: () => showWallet() },
+          { text: '{{buttons.ranking}}', color: 'green', key: 'rank', action: () => showRanking() }
         ]
       }
     };
