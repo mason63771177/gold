@@ -2807,7 +2807,7 @@
             </div>
             <div class="section">
               <div class="section-title">${ (window.i18n && typeof i18n.t==='function') ? i18n.t('content.performance_card_title') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'Performance Card' : '战绩卡') }</div>
-              <div class="section-content">本期收益：<strong>${totalEarnings.toFixed(2)} USDT</strong><br/>{{content._______completedtasks__3}}<br/>{{content._______teammembers__}}</div>
+              <div class="section-content">${ (window.i18n && typeof i18n.t==='function') ? i18n.t('content.period_earnings_label') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'Period Earnings' : '本期收益') }: <strong>${totalEarnings.toFixed(2)} USDT</strong><br/>{{content._______completedtasks__3}}<br/>{{content._______teammembers__}}</div>
             </div>
             <div class="section">
               <div class="section-title">${ (window.i18n && typeof i18n.t==='function') ? i18n.t('content.team_title') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'My Team' : '我的团队') }</div>
