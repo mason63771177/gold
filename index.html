@@ -3330,8 +3330,16 @@
     function renderState() {
       const state = STATES[currentState];
       // 使用国际化键（若存在）覆盖显示
-      const nameText = (currentState === 1) ? '{{content.state1_label}}' : (currentState === 2) ? '{{content.state2_label}}' : state.name;
-      const subtitleText = (currentState === 1) ? '{{content.state1_subtitle}}' : (currentState === 2) ? '{{content.state2_subtitle}}' : state.subtitle;
+      const nameText = (currentState === 1)
+        ? '{{content.state1_label}}'
+        : (currentState === 2)
+          ? '{{content.state2_label}}'
+          : '{{content.state3_label}}';
+      const subtitleText = (currentState === 1)
+        ? '{{content.state1_subtitle}}'
+        : (currentState === 2)
+          ? '{{content.state2_subtitle}}'
+          : '{{content.state3_subtitle}}';
       document.getElementById('stateLabel').innerText = nameText;
       document.getElementById('subtitle').innerText = subtitleText;
       // 渲染卡片内容
