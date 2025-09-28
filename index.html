@@ -2799,18 +2799,18 @@
           const completedTasks = newTasks.filter(t => t.done).length;
           return `
             <div class="section reactivate-highlight">
-              <div class="section-title">🔥 <span data-i18n="nav.reactivate">再次激活</span></div>
+              <div class="section-title">🔥 ${ (window.i18n && typeof i18n.t==='function') ? i18n.t('nav.reactivate') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'Reactivate' : '再次激活') }</div>
               <div class="section-content">
                 <p style="margin-bottom: 12px;">{{content.____168___________}}</p>
                 <button class="reactivate-btn" onclick="repurchase()">{{content._____100}}</button>
               </div>
             </div>
             <div class="section">
-              <div class="section-title" data-i18n="content.performance_card_title">战绩卡</div>
+              <div class="section-title">${ (window.i18n && typeof i18n.t==='function') ? i18n.t('content.performance_card_title') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'Performance Card' : '战绩卡') }</div>
               <div class="section-content">本期收益：<strong>${totalEarnings.toFixed(2)} USDT</strong><br/>{{content._______completedtasks__3}}<br/>{{content._______teammembers__}}</div>
             </div>
             <div class="section">
-              <div class="section-title" data-i18n="content.team_title">我的团队</div>
+              <div class="section-title">${ (window.i18n && typeof i18n.t==='function') ? i18n.t('content.team_title') : (((localStorage.getItem('preferred-language')||localStorage.getItem('language')||navigator.language||'zh-CN').toLowerCase().startsWith('en')) ? 'My Team' : '我的团队') }</div>
               <div class="section-content">查看七层团队结构和人数。</div>
             </div>
           `;
