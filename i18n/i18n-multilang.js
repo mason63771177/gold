@@ -219,6 +219,7 @@ const translations = {
          'messages.not_started': '未开始',
           // 团队页面
           'content.team_title': '我的团队',
+               'content.performance_card_title': '战绩卡',
           'content.team_total_members': '团队总人数',
           'content.team_direct_members': '直推人数',
           'content.team_earnings': '团队收益',
@@ -481,6 +482,7 @@ const translations = {
          'messages.not_started': 'Not started',
           // Team page
           'content.team_title': 'My Team',
+                'content.performance_card_title': 'Performance Card',
           'content.team_total_members': 'Total Team Members',
           'content.team_direct_members': 'Direct Referrals',
           'content.team_earnings': 'Team Earnings',
